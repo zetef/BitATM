@@ -11,10 +11,37 @@ ApplicationWindow {
         anchors.centerIn: parent
         spacing: 12
 
+        Row {
+            anchors.horizontalCenter: parent.horizontalCenter
+            spacing: 8
+
+            TextField {
+                id: messageInput
+                placeholderText: "Type a message..."
+                width: 240
+                onAccepted: sendButton.clicked()
+            }
+
+            Button {
+                id: sendButton
+                text: "Send"
+                enabled: networkManager.isConnected
+                onClicked: {
+                    if (messageInput.text.length > 0) {
+                        networkManager.sendText(messageInput.text)
+                        messageInput.text = ""
+                    }
+                }
+            }
+        }
+
         Label {
             anchors.horizontalCenter: parent.horizontalCenter
-            text: "Hello from Qt"
-            font.pixelSize: 18
+            text: networkManager.lastMessage ? "Server: " + networkManager.lastMessage : "No response yet"
+            font.pixelSize: 14
+            color: networkManager.lastMessage
+                ? (networkManager.hasError ? "#f44336" : "#4caf50")
+                : "#999"
         }
 
         Row {
