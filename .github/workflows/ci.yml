@@ -51,7 +51,8 @@ jobs:
 
       - name: Create CMakeUserPresets
         run: |
-          '{"version":3,"configurePresets":[{"name":"default","inherits":"base","cacheVariables":{"VCPKG_INSTALLED_DIR":"${{ github.workspace }}/vcpkg_installed/bitatm"}}]}' | Set-Content CMakeUserPresets.json
+          $path = "${{ github.workspace }}/vcpkg_installed/bitatm" -replace '\\', '/'
+          "{`"version`":3,`"configurePresets`":[{`"name`":`"default`",`"inherits`":`"base`",`"cacheVariables`":{`"VCPKG_INSTALLED_DIR`":`"$path`"}}]}" | Set-Content CMakeUserPresets.json
 
       - name: Configure
         run: cmake --preset=default
