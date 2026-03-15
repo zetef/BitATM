@@ -1,0 +1,17 @@
+<map id="frontend/src/NetworkManager.h" name="frontend/src/NetworkManager.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="298,5,525,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,79,60,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="334,33,215,53,74,81,73,76,214,48,333,28"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="85,79,247,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="373,33,219,77,218,72,371,28"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="271,79,346,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="396,33,338,73,335,68,393,28"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="370,79,453,104"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="414,31,414,65,409,65,409,31"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="477,79,548,104"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="429,28,486,68,483,73,426,33"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="573,79,623,104"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="442,28,561,73,559,78,440,33"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="648,79,751,104"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="458,28,640,73,639,78,457,33"/>
+</map>

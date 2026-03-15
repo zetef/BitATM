@@ -1,0 +1,21 @@
+<map id="frontend/src/NetworkManager.cpp" name="frontend/src/NetworkManager.cpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="357,5,599,31"/>
+<area shape="rect" id="Node000002" href="$NetworkManager_8h.html" title=" " alt="" coords="339,79,484,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="469,33,433,70,430,67,465,29"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="509,79,583,104"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="491,29,527,67,523,70,487,33"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,152,60,177"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="339,106,219,126,74,155,73,149,218,120,338,101"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="85,152,247,177"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="373,107,219,151,218,146,371,101"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="271,152,346,177"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="396,106,338,146,335,142,393,102"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="370,152,453,177"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="414,104,414,138,409,138,409,104"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="477,152,548,177"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="429,102,486,142,483,146,426,106"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="573,152,623,177"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="442,102,561,146,559,151,440,107"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="648,152,751,177"/>
+<area shape="poly" id="edge8_Node000002_Node000009" title=" " alt="" coords="458,101,640,146,639,151,457,107"/>
+</map>
