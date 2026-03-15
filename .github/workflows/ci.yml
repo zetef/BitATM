@@ -50,7 +50,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: bitatm-backend
-          path: build/backend/backend
+          path: build/backend/bitatm-backend
           retention-days: 1
 
   build-windows:
@@ -100,7 +100,7 @@ jobs:
       - name: Test
         run: ctest --test-dir build --output-on-failure
 
-deploy:
+  deploy:
     runs-on: self-hosted
     needs: [build-linux, build-windows]
     if: github.ref == 'refs/heads/main'
