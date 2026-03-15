@@ -18,5 +18,4 @@ target_link_libraries(frontend PRIVATE
 )
 target_include_directories(frontend PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src)
 
-enable_testing()
 add_subdirectory(tests)

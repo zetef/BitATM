@@ -10,5 +10,4 @@ target_link_libraries(bitatm-backend PRIVATE
 )
 target_include_directories(bitatm-backend PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src)
 
-enable_testing()
 add_subdirectory(tests)
