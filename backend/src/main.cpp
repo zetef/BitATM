@@ -9,12 +9,15 @@
 
 #include <iostream>
 
+static const Poco::Timespan RECEIVE_TIMEOUT{5, 0};  // 5 seconds
+
 class EchoHandler : public Poco::Net::HTTPRequestHandler {
 public:
     void handleRequest(Poco::Net::HTTPServerRequest& req,
                        Poco::Net::HTTPServerResponse& res) override {
         try {
             Poco::Net::WebSocket ws(req, res);
+            ws.setReceiveTimeout(RECEIVE_TIMEOUT);
             std::cout << "Client connected\n";
             char buf[4096];
             int flags, n;
