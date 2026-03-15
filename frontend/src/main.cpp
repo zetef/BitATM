@@ -1,5 +1,6 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include <QQmlContext>
 
 #include "NetworkManager.h"
 
@@ -10,6 +11,7 @@ int main(int argc, char* argv[]) {
     net.connectToServer(QUrl("wss://api.zetef.xyz"));
 
     QQmlApplicationEngine engine;
+    engine.rootContext()->setContextProperty("networkManager", &net);
     engine.load(QUrl(QStringLiteral("qrc:/BitATM/qml/Main.qml")));
     return app.exec();
 }
