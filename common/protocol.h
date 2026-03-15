@@ -25,7 +25,34 @@ struct Packet {
     Packet& operator=(Packet&&) noexcept = default;
     ~Packet() = default;
 
-    bool operator==(const Packet& other) const;
-    friend std::ostream& operator<<(std::ostream& os, const Packet& p);
-    friend std::istream& operator>>(std::istream& is, Packet& p);
+    bool operator==(const Packet& other) const {
+        return type == other.type && version == other.version && from == other.from &&
+               to == other.to && body == other.body && key == other.key &&
+               timestamp == other.timestamp && errorMsg == other.errorMsg;
+    }
+
+    friend std::ostream& operator<<(std::ostream& os, const Packet& p) {
+        os << "Packet{type=" << static_cast<int>(p.type) << ", v=" << p.version
+           << ", from=" << p.from << ", to=" << p.to << ", body=" << p.body
+           << ", ts=" << p.timestamp;
+
+        if (!p.errorMsg.empty()) os << ", err=" << p.errorMsg;
+        os << "}";
+        return os;
+    }
+
+    // pipe delimited: type|version|from|to|body|key|timestamp|errorMsg
+    friend std::istream& operator>>(std::istream& is, Packet& p) {
+        int t;
+        char sep;
+        is >> t >> sep >> p.version >> sep;
+        std::getline(is, p.from, '|');
+        std::getline(is, p.to, '|');
+        std::getline(is, p.body, '|');
+        std::getline(is, p.key, '|');
+        std::getline(is, p.timestamp, '|');
+        std::getline(is, p.errorMsg);
+        p.type = static_cast<PacketType>(t);
+        return is;
+    }
 };
