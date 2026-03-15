@@ -1,0 +1,63 @@
+name: CI
+on: [push, pull_request]
+
+jobs:
+  build-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v3
+        with:
+          version: '6.7.0'
+          modules: 'qtwebsockets'
+
+      - name: Setup vcpkg
+        uses: lukka/run-vcpkg@v11
+        with:
+          vcpkgDirectory: '${{ github.workspace }}/vcpkg'
+          vcpkgJsonGlob: 'vcpkg.json'
+
+      - name: Create CMakeUserPresets
+        run: |
+          echo '{"version":3,"configurePresets":[{"name":"default","inherits":"base","cacheVariables":{"VCPKG_INSTALLED_DIR":"${{ github.workspace }}/vcpkg_installed/bitatm"}}]}' > CMakeUserPresets.json
+
+      - name: Configure
+        run: cmake --preset=default
+
+      - name: Build
+        run: cmake --build build
+
+      - name: Test
+        run: ctest --test-dir build --output-on-failure
+
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v3
+        with:
+          version: '6.7.0'
+          modules: 'qtwebsockets'
+
+      - name: Setup vcpkg
+        uses: lukka/run-vcpkg@v11
+        with:
+          vcpkgDirectory: '${{ github.workspace }}/vcpkg'
+          vcpkgJsonGlob: 'vcpkg.json'
+
+      - name: Create CMakeUserPresets
+        run: |
+          '{"version":3,"configurePresets":[{"name":"default","inherits":"base","cacheVariables":{"VCPKG_INSTALLED_DIR":"${{ github.workspace }}/vcpkg_installed/bitatm"}}]}' | Set-Content CMakeUserPresets.json
+
+      - name: Configure
+        run: cmake --preset=default
+
+      - name: Build
+        run: cmake --build build
+
+      - name: Test
+        run: ctest --test-dir build --output-on-failure

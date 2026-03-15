@@ -1,0 +1,18 @@
+# build output
+build/
+cmake-build-*/
+*.o *.a *.so *.dll *.exe
+
+# vcpkg
+vcpkg_installed/
+
+# doxygen
+docs/generated/
+
+# per-developer cmake settings
+CMakeUserPresets.json
+
+# qt creator
+*.pro.user
+CMakeLists.txt.user
+.qtc_clangd/

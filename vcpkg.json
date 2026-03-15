@@ -1,0 +1,12 @@
+{
+	"name": "bitatm",
+	"version": "0.1.0",
+	"dependencies": [
+		{
+			"name": "poco",
+			"features": ["net", "data", "postgresql", "util"]
+		},
+		"openssl",
+		"libpq"
+	]
+}
