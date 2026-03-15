@@ -7,11 +7,24 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Cache Qt
+        uses: actions/cache@v4
+        with:
+          path: ${{ github.workspace }}/Qt
+          key: qt-linux-6.7.0
+
       - name: Install Qt
         uses: jurplel/install-qt-action@v3
         with:
           version: '6.7.0'
           modules: 'qtwebsockets'
+          cache: true
+
+      - name: Cache vcpkg packages
+        uses: actions/cache@v4
+        with:
+          path: ${{ github.workspace }}/vcpkg_installed/bitatm
+          key: vcpkg-linux-${{ hashFiles('vcpkg.json') }}
 
       - name: Setup vcpkg
         uses: lukka/run-vcpkg@v11
@@ -40,11 +53,24 @@ jobs:
       - name: Activate MSVC
         uses: ilammy/msvc-dev-cmd@v1
 
+      - name: Cache Qt
+        uses: actions/cache@v4
+        with:
+          path: ${{ github.workspace }}/Qt
+          key: qt-windows-6.7.0
+
       - name: Install Qt
         uses: jurplel/install-qt-action@v3
         with:
           version: '6.7.0'
           modules: 'qtwebsockets'
+          cache: true
+
+      - name: Cache vcpkg packages
+        uses: actions/cache@v4
+        with:
+          path: ${{ github.workspace }}/vcpkg_installed/bitatm
+          key: vcpkg-windows-${{ hashFiles('vcpkg.json') }}
 
       - name: Setup vcpkg
         uses: lukka/run-vcpkg@v11
