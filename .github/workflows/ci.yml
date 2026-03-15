@@ -7,18 +7,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Cache Qt
-        uses: actions/cache@v4
-        with:
-          path: ${{ github.workspace }}/Qt
-          key: qt-linux-6.7.0
-
       - name: Install Qt
         uses: jurplel/install-qt-action@v3
         with:
           version: '6.7.0'
           modules: 'qtwebsockets'
           cache: true
+
+      - name: Cache vcpkg tool
+        uses: actions/cache@v4
+        with:
+          path: ${{ github.workspace }}/vcpkg
+          key: vcpkg-tool-linux-${{ hashFiles('vcpkg.json') }}
 
       - name: Cache vcpkg packages
         uses: actions/cache@v4
@@ -31,6 +31,9 @@ jobs:
         with:
           vcpkgDirectory: '${{ github.workspace }}/vcpkg'
           vcpkgJsonGlob: 'vcpkg.json'
+      
+      - name: Disable vcpkg x-gha binary caching
+        run: echo "VCPKG_BINARY_SOURCES=clear" >> $GITHUB_ENV
 
       - name: Create CMakeUserPresets
         run: |
@@ -61,18 +64,18 @@ jobs:
       - name: Activate MSVC
         uses: ilammy/msvc-dev-cmd@v1
 
-      - name: Cache Qt
-        uses: actions/cache@v4
-        with:
-          path: ${{ github.workspace }}/Qt
-          key: qt-windows-6.7.0
-
       - name: Install Qt
         uses: jurplel/install-qt-action@v3
         with:
           version: '6.7.0'
           modules: 'qtwebsockets'
           cache: true
+      
+      - name: Cache vcpkg tool
+        uses: actions/cache@v4
+        with:
+          path: ${{ github.workspace }}/vcpkg
+          key: vcpkg-tool-windows-${{ hashFiles('vcpkg.json') }}
 
       - name: Cache vcpkg packages
         uses: actions/cache@v4
