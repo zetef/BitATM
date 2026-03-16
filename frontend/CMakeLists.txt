@@ -5,6 +5,8 @@ qt_add_executable(frontend
 )
 set_target_properties(frontend PROPERTIES AUTOMOC ON)
 
+qt_policy(SET QTP0001 NEW)
+qt_policy(SET QTP0004 NEW)
 qt_add_qml_module(frontend
 	URI BitATM
 	VERSION 1.0
