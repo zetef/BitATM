@@ -5,7 +5,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(Qt6 REQUIRED COMPONENTS Core Quick Network WebSockets Test)
 find_package(PostgreSQL REQUIRED)
+set(CMAKE_MESSAGE_LOG_LEVEL ERROR) ## suppress vcpkg warnings
 find_package(Poco REQUIRED COMPONENTS Net Data DataPostgreSQL Util)
+set(CMAKE_MESSAGE_LOG_LEVEL STATUS) ## suppress vcpkg warnings
 find_package(OpenSSL REQUIRED)
 
 ### DOXYGEN
