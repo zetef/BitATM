@@ -1,0 +1,35 @@
+services:
+  postgres:
+    image: postgres:16
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: bitatm_chat
+      POSTGRES_USER: chatuser
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - backend
+  adminer:
+    image: adminer:latest
+    restart: unless-stopped
+    environment:
+      ADMINER_DEFAULT_SERVER: postgres
+      ADMINER_DESIGN: pepa-linha
+    ports:
+      - EXTERNAL_PORT:8080 ## REPLACE HERE
+    networks:
+      - backend
+  backend:
+    build:
+      context: /path/to/custom/stack ## REPLACE HERE
+      dockerfile: BitATM/backend/Dockerfile
+    restart: unless-stopped
+    ports:
+      - EXTERNAL_PORT:8080 ## REPLACE HERE
+    networks:
+      - backend
+volumes:
+  pgdata: null
+networks:
+  backend: null
