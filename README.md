@@ -23,7 +23,7 @@ End-to-end encrypted chat application built with C++20, Qt 6/QML, and a Poco Web
 
 ## Getting Started
 
-### Docker Compose (recommended)
+### Docker Compose (backend-only / recommended)
 
 ```bash
 mkdir -p /path/to/custom/bitatm-stack
@@ -36,6 +36,15 @@ cp BitATM/docker-compose.yml .
 ## to point to localhost:EXTERNAL_PORT from 
 ## your modified docker-compose.yml
 
+## SETUP DATABASE PASSWORD
+
+## please input the password another way
+echo -ne "POSTGRES_PASSWORD=change_me" > .env
+## seal it up
+chmod 400 .env
+
+docker compose up -d
+
 ## SIDE NOTE
 ## technically it should just work to modify the
 ## source code on the main branch as well but we 
@@ -44,11 +53,9 @@ cp BitATM/docker-compose.yml .
 ## maybe as a TODO we would include a custom param
 ## in the docker-compose.yml file to change the 
 ## backend API URL to something custom
-
-docker compose up -d
 ```
 
-### Build from source
+### Build from source (both back/frontend)
 
 #### Prerequisites
 
