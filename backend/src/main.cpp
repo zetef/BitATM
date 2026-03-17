@@ -56,7 +56,7 @@ class EchoServer : public Poco::Util::ServerApplication {
         Poco::Net::HTTPServer server(new EchoFactory, Poco::Net::ServerSocket(8080), params);
 
         server.start();
-        std::cout << "Echo server on :8080\n";
+        std::cout << "Echo server on :8080" << std::endl;
         waitForTerminationRequest();
         server.stop();
         return EXIT_OK;
