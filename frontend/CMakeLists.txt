@@ -2,6 +2,8 @@ qt_add_executable(frontend
 	src/main.cpp
 	src/NetworkManager.h
 	src/NetworkManager.cpp
+	src/ISymmetricStrategy.h
+	src/IAsymmetricStrategy.h
 )
 set_target_properties(frontend PROPERTIES AUTOMOC ON)
 
