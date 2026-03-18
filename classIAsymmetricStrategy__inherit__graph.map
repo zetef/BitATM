@@ -1,0 +1,5 @@
+<map id="IAsymmetricStrategy" name="IAsymmetricStrategy">
+<area shape="rect" id="Node000001" title="Abstract interface for asymmetric encryption strategies." alt="" coords="5,179,193,304"/>
+<area shape="rect" id="Node000002" href="$classICryptoStrategy.html" title="Strategy interface for encryption algorithms." alt="" coords="23,5,175,131"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="102,145,102,178,97,178,97,145"/>
+</map>

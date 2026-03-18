@@ -17,7 +17,10 @@ var hierarchy =
       [ "EchoFactory", "classEchoFactory.html", null ]
     ] ],
     [ "ICommandHandler", "classICommandHandler.html", null ],
-    [ "ICryptoStrategy", "classICryptoStrategy.html", null ],
+    [ "ICryptoStrategy", "classICryptoStrategy.html", [
+      [ "IAsymmetricStrategy", "classIAsymmetricStrategy.html", null ],
+      [ "ISymmetricStrategy", "classISymmetricStrategy.html", null ]
+    ] ],
     [ "IEntity", "classIEntity.html", null ],
     [ "Packet", "structPacket.html", null ],
     [ "QObject", null, [

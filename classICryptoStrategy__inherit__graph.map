@@ -1,0 +1,7 @@
+<map id="ICryptoStrategy" name="ICryptoStrategy">
+<area shape="rect" id="Node000001" title="Strategy interface for encryption algorithms." alt="" coords="127,5,279,131"/>
+<area shape="rect" id="Node000002" href="$classIAsymmetricStrategy.html" title="Abstract interface for asymmetric encryption strategies." alt="" coords="5,179,193,304"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="161,144,139,180,135,177,157,141"/>
+<area shape="rect" id="Node000003" href="$classISymmetricStrategy.html" title="Abstract interface for symmetric encryption strategies." alt="" coords="217,179,397,304"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="250,141,272,177,268,180,246,144"/>
+</map>
