@@ -32,7 +32,7 @@ git clone https://github.com/zetef/BitATM
 cp BitATM/docker-compose.yml .
 
 ## modify the docker-compose.yml to your needs
-## also modify inside BitATM/backend/main.cpp
+## also modify inside BitATM/frontend/main.cpp
 ## to point to localhost:EXTERNAL_PORT from 
 ## your modified docker-compose.yml
 
