@@ -1,9 +1,6 @@
-#ifndef CONVERSATIONHISTORY_H
-#define CONVERSATIONHISTORY_H
+#pragma once
 
 class ConversationHistory {
 public:
     ConversationHistory();
 };
-
-#endif  // CONVERSATIONHISTORY_H

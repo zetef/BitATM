@@ -1,9 +1,6 @@
-#ifndef OFFLINEMESSAGE_H
-#define OFFLINEMESSAGE_H
+#pragma once
 
 class OfflineMessage {
 public:
     OfflineMessage();
 };
-
-#endif  // OFFLINEMESSAGE_H

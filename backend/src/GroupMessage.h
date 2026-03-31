@@ -1,9 +1,6 @@
-#ifndef GROUPMESSAGE_H
-#define GROUPMESSAGE_H
+#pragma once
 
 class GroupMessage {
 public:
     GroupMessage();
 };
-
-#endif  // GROUPMESSAGE_H

@@ -1,9 +1,6 @@
-#ifndef PROTOCOLPARSER_H
-#define PROTOCOLPARSER_H
+#pragma once
 
 class ProtocolParser {
 public:
     ProtocolParser();
 };
-
-#endif  // PROTOCOLPARSER_H

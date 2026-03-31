@@ -1,9 +1,6 @@
-#ifndef USER_H
-#define USER_H
+#pragma once
 
 class User {
 public:
     User();
 };
-
-#endif  // USER_H

@@ -1,9 +1,6 @@
-#ifndef SESSION_H
-#define SESSION_H
+#pragma once
 
 class Session {
 public:
     Session();
 };
-
-#endif  // SESSION_H
