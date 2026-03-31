@@ -1,0 +1,12 @@
+<map id="backend/src/Session.cpp" name="backend/src/Session.cpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="9,5,189,31"/>
+<area shape="rect" id="Node000002" href="$Session_8h.html" title=" " alt="" coords="5,79,89,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="93,33,66,69,62,66,89,29"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="114,79,189,104"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="110,29,137,66,133,69,106,33"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="18,225,77,251"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="47,105,38,152,38,183,43,212,38,213,33,184,33,152,42,104"/>
+<area shape="rect" id="Node000004" href="$IEntity_8h.html" title=" " alt="" coords="47,152,122,177"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="56,103,75,139,70,141,51,106"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="81,179,62,215,57,212,76,176"/>
+</map>

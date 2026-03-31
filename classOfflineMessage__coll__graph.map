@@ -1,0 +1,5 @@
+<map id="OfflineMessage" name="OfflineMessage">
+<area shape="rect" id="Node000001" title="A queued message for an offline recipient. Maps to the offline_queue table." alt="" coords="5,199,156,464"/>
+<area shape="rect" id="Node000002" href="$classIEntity.html" title="Base interface for all persistent domain objects." alt="" coords="23,5,139,151"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="83,164,83,198,78,198,78,164"/>
+</map>

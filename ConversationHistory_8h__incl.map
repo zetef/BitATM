@@ -1,0 +1,16 @@
+<map id="backend/src/ConversationHistory.h" name="backend/src/ConversationHistory.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,195,45"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="105,240,164,265"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="67,48,48,62,32,79,23,98,24,118,41,151,63,182,111,229,107,233,59,186,36,154,19,119,17,97,27,76,44,58,64,43"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="34,93,97,119"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="94,47,79,82,74,79,89,44"/>
+<area shape="rect" id="Node000004" href="$IEntity_8h.html" title=" " alt="" coords="97,167,172,192"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="107,45,132,152,126,154,102,46"/>
+<area shape="rect" id="Node000005" href="$Message_8h.html" title=" " alt="" coords="173,93,265,119"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="130,43,191,84,188,88,127,48"/>
+<area shape="poly" id="edge4_Node000004_Node000002" title=" " alt="" coords="137,192,137,226,132,226,132,192"/>
+<area shape="poly" id="edge7_Node000005_Node000002" title=" " alt="" coords="218,120,206,154,186,193,157,231,153,228,182,191,201,151,213,118"/>
+<area shape="poly" id="edge8_Node000005_Node000004" title=" " alt="" coords="207,121,161,160,157,155,203,117"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="247,167,323,192"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="232,117,267,155,263,158,228,121"/>
+</map>

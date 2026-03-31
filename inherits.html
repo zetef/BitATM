@@ -111,7 +111,19 @@ $(document).ready(function(){initNavTree('hierarchy.html',''); initResizable(); 
 </td></tr>
 <tr><td><img src="inherit_graph_2.png" border="0" usemap="#aIEntity" alt=""/>
 <map name="aIEntity" id="aIEntity">
-<area shape="rect" href="classIEntity.html" title="Base interface for all persistent domain objects." alt="" coords="5,5,69,31"/>
+<area shape="rect" href="classIEntity.html" title="Base interface for all persistent domain objects." alt="" coords="5,129,69,155"/>
+<area shape="rect" href="classConversationHistory.html" title="Ordered message history between two users." alt="" coords="117,5,272,31"/>
+<area shape="poly" title=" " alt="" coords="50,116,77,77,95,57,116,40,138,28,140,33,119,44,99,61,81,80,54,119"/>
+<area shape="rect" href="classGroupMessage.html" title="A message sent to a group. Maps to the group_messages table." alt="" coords="135,55,254,80"/>
+<area shape="poly" title=" " alt="" coords="66,119,116,89,145,78,147,82,119,94,69,123"/>
+<area shape="rect" href="classMessage.html" title="A chat message. Maps to the messages table." alt="" coords="155,104,235,129"/>
+<area shape="poly" title=" " alt="" coords="82,132,154,120,155,126,83,137"/>
+<area shape="rect" href="classOfflineMessage.html" title="A queued message for an offline recipient. Maps to the offline_queue table." alt="" coords="133,153,256,179"/>
+<area shape="poly" title=" " alt="" coords="84,146,133,154,133,159,83,152"/>
+<area shape="rect" href="classSession.html" title="An authenticated session. Maps to the sessions table." alt="" coords="159,203,231,228"/>
+<area shape="poly" title=" " alt="" coords="69,160,118,188,160,203,158,208,116,192,67,164"/>
+<area shape="rect" href="classUser.html" title="Registered user. Maps to the users table." alt="" coords="169,252,221,277"/>
+<area shape="poly" title=" " alt="" coords="55,165,82,202,119,237,144,250,169,258,168,263,142,255,116,242,78,206,51,168"/>
 </map>
 </td></tr>
 <tr><td><img src="inherit_graph_3.png" border="0" usemap="#aPacket" alt=""/>
@@ -140,14 +152,19 @@ $(document).ready(function(){initNavTree('hierarchy.html',''); initResizable(); 
 <area shape="poly" title=" " alt="" coords="226,15,260,15,260,21,226,21"/>
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_7.png" border="0" usemap="#aQObject" alt=""/>
+<tr><td><img src="inherit_graph_7.png" border="0" usemap="#aProtocolParser" alt=""/>
+<map name="aProtocolParser" id="aProtocolParser">
+<area shape="rect" href="classProtocolParser.html" title="Stateless utility for serializing and deserializing Packets." alt="" coords="5,5,120,31"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_8.png" border="0" usemap="#aQObject" alt=""/>
 <map name="aQObject" id="aQObject">
 <area shape="rect" title=" " alt="" coords="5,5,80,31"/>
 <area shape="rect" href="classNetworkManager.html" title=" " alt="" coords="128,5,263,31"/>
 <area shape="poly" title=" " alt="" coords="94,15,128,15,128,21,94,21"/>
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_8.png" border="0" usemap="#astd_1_1exception" alt=""/>
+<tr><td><img src="inherit_graph_9.png" border="0" usemap="#astd_1_1exception" alt=""/>
 <map name="astd_1_1exception" id="astd_1_1exception">
 <area shape="rect" title=" " alt="" coords="5,80,120,105"/>
 <area shape="rect" title=" " alt="" coords="168,80,307,105"/>

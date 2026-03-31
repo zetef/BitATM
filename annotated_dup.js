@@ -1,18 +1,25 @@
 var annotated_dup =
 [
     [ "AppException", "classAppException.html", "classAppException" ],
+    [ "ConversationHistory", "classConversationHistory.html", "classConversationHistory" ],
     [ "CryptoException", "classCryptoException.html", "classCryptoException" ],
     [ "DbException", "classDbException.html", "classDbException" ],
     [ "EchoFactory", "classEchoFactory.html", "classEchoFactory" ],
     [ "EchoHandler", "classEchoHandler.html", "classEchoHandler" ],
     [ "EchoServer", "classEchoServer.html", null ],
+    [ "GroupMessage", "classGroupMessage.html", "classGroupMessage" ],
     [ "IAsymmetricStrategy", "classIAsymmetricStrategy.html", "classIAsymmetricStrategy" ],
     [ "ICommandHandler", "classICommandHandler.html", "classICommandHandler" ],
     [ "ICryptoStrategy", "classICryptoStrategy.html", "classICryptoStrategy" ],
     [ "IEntity", "classIEntity.html", "classIEntity" ],
     [ "ISymmetricStrategy", "classISymmetricStrategy.html", "classISymmetricStrategy" ],
+    [ "Message", "classMessage.html", "classMessage" ],
     [ "NetworkException", "classNetworkException.html", "classNetworkException" ],
     [ "NetworkManager", "classNetworkManager.html", "classNetworkManager" ],
+    [ "OfflineMessage", "classOfflineMessage.html", "classOfflineMessage" ],
     [ "Packet", "structPacket.html", "structPacket" ],
-    [ "ProtocolException", "classProtocolException.html", "classProtocolException" ]
+    [ "ProtocolException", "classProtocolException.html", "classProtocolException" ],
+    [ "ProtocolParser", "classProtocolParser.html", "classProtocolParser" ],
+    [ "Session", "classSession.html", "classSession" ],
+    [ "User", "classUser.html", "classUser" ]
 ];

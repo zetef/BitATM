@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['main_2ecpp_0',['main.cpp',['../backend_2src_2main_8cpp.html',1,'(Global Namespace)'],['../frontend_2src_2main_8cpp.html',1,'(Global Namespace)']]]
+  ['groupmessage_2ecpp_0',['GroupMessage.cpp',['../GroupMessage_8cpp.html',1,'']]],
+  ['groupmessage_2eh_1',['GroupMessage.h',['../GroupMessage_8h.html',1,'']]]
 ];

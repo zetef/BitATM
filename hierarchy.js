@@ -21,8 +21,16 @@ var hierarchy =
       [ "IAsymmetricStrategy", "classIAsymmetricStrategy.html", null ],
       [ "ISymmetricStrategy", "classISymmetricStrategy.html", null ]
     ] ],
-    [ "IEntity", "classIEntity.html", null ],
+    [ "IEntity", "classIEntity.html", [
+      [ "ConversationHistory", "classConversationHistory.html", null ],
+      [ "GroupMessage", "classGroupMessage.html", null ],
+      [ "Message", "classMessage.html", null ],
+      [ "OfflineMessage", "classOfflineMessage.html", null ],
+      [ "Session", "classSession.html", null ],
+      [ "User", "classUser.html", null ]
+    ] ],
     [ "Packet", "structPacket.html", null ],
+    [ "ProtocolParser", "classProtocolParser.html", null ],
     [ "QObject", null, [
       [ "NetworkManager", "classNetworkManager.html", null ]
     ] ],

@@ -1,0 +1,12 @@
+<map id="backend/src/GroupMessage.cpp" name="backend/src/GroupMessage.cpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="20,5,247,31"/>
+<area shape="rect" id="Node000002" href="$GroupMessage_8h.html" title=" " alt="" coords="5,79,136,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="125,33,92,70,88,66,121,29"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="160,79,235,104"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="146,29,180,67,176,70,142,33"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="41,225,100,251"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="70,105,61,152,62,183,67,212,61,213,57,184,56,152,65,104"/>
+<area shape="rect" id="Node000004" href="$IEntity_8h.html" title=" " alt="" coords="71,152,145,177"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="79,103,98,139,93,141,74,106"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="104,179,85,215,81,212,99,176"/>
+</map>

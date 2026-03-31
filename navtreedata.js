@@ -51,7 +51,8 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"AppException_8h.html"
+"AppException_8h.html",
+"protocol_8h.html#a70f52007f8c2408ec768efe3c27c8849"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

@@ -1,0 +1,5 @@
+<map id="ConversationHistory" name="ConversationHistory">
+<area shape="rect" id="Node000001" title="Ordered message history between two users." alt="" coords="5,199,188,464"/>
+<area shape="rect" id="Node000002" href="$classIEntity.html" title="Base interface for all persistent domain objects." alt="" coords="39,5,155,151"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="99,164,99,198,94,198,94,164"/>
+</map>
