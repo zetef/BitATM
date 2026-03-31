@@ -1,7 +1,8 @@
 add_executable(bitatm-backend src/main.cpp
     src/User.h src/User.cpp
     src/Message.h src/Message.cpp
-    src/Session.h src/Session.cpp)
+    src/Session.h src/Session.cpp
+    src/OfflineMessage.h src/OfflineMessage.cpp)
 target_link_libraries(bitatm-backend PRIVATE
     common
     Poco::Net
