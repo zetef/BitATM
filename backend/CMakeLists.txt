@@ -3,7 +3,8 @@ add_executable(bitatm-backend src/main.cpp
     src/Message.h src/Message.cpp
     src/Session.h src/Session.cpp
     src/OfflineMessage.h src/OfflineMessage.cpp
-    src/ConversationHistory.h src/ConversationHistory.cpp)
+    src/ConversationHistory.h src/ConversationHistory.cpp
+    src/GroupMessage.h src/GroupMessage.cpp)
 target_link_libraries(bitatm-backend PRIVATE
     common
     Poco::Net
