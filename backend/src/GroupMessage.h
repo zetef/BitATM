@@ -15,7 +15,7 @@ class GroupMessage : public IEntity {
     std::string _groupName;
     std::string _sender;
     std::string _encryptedBody;
-    std::string _encryptedKeys;  // JSON: { username → RSA-encrypted AES key }
+    std::string _encryptedKeys;  // JSON: { username -> RSA-encrypted AES key }
     std::string _createdAt;
 
 public:
