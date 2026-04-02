@@ -1,10 +1,6 @@
 #pragma once
 #include "ISymmetricStrategy.h"
-<<<<<<< Updated upstream
-
-=======
 #include <QLoggingCategory>
->>>>>>> Stashed changes
 Q_DECLARE_LOGGING_CATEGORY(logCrypto);
 
 /**

@@ -1,8 +1,4 @@
 #include "AesGcmStrategy.h"
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 #include <AppException.h>
 #include <openssl/evp.h>
 #include <openssl/rand.h>
