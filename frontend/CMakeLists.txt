@@ -18,6 +18,8 @@ qt_add_qml_module(frontend
 	URI BitATM
 	VERSION 1.0
 	QML_FILES qml/Main.qml
+	SOURCES src/AesGcmStrategy.h
+	SOURCES src/AesGcmStrategy.cpp
 )
 
 target_link_libraries(frontend PRIVATE
