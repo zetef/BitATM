@@ -4,6 +4,8 @@ qt_add_executable(frontend
 	src/NetworkManager.cpp
 	src/ISymmetricStrategy.h
 	src/IAsymmetricStrategy.h
+	src/OpensslAdapter.h
+	src/OpensslAdapter.cpp
 )
 set_target_properties(frontend PROPERTIES AUTOMOC ON)
 
