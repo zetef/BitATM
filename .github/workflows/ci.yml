@@ -7,6 +7,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Install Ninja
+        uses: ninja-build/setup-ninja@v1
+
       - name: Install Qt
         uses: jurplel/install-qt-action@v3
         with:
@@ -31,13 +34,10 @@ jobs:
         with:
           vcpkgDirectory: '${{ github.workspace }}/vcpkg'
           vcpkgJsonGlob: 'vcpkg.json'
-      
-      - name: Disable vcpkg x-gha binary caching
-        run: echo "VCPKG_BINARY_SOURCES=clear" >> $GITHUB_ENV
 
       - name: Create CMakeUserPresets
         run: |
-          echo '{"version":3,"configurePresets":[{"name":"default","inherits":"base","cacheVariables":{"VCPKG_INSTALLED_DIR":"${{ github.workspace }}/vcpkg_installed/bitatm"}}]}' > CMakeUserPresets.json
+          echo '{"version":3,"configurePresets":[{"name":"default","inherits":"base","generator":"Ninja","cacheVariables":{"VCPKG_INSTALLED_DIR":"${{ github.workspace }}/vcpkg_installed/bitatm"}}]}' > CMakeUserPresets.json
 
       - name: Configure
         run: cmake --preset=default
@@ -63,6 +63,9 @@ jobs:
 
       - name: Activate MSVC
         uses: ilammy/msvc-dev-cmd@v1
+
+      - name: Install Ninja
+        uses: ninja-build/setup-ninja@v1
 
       - name: Install Qt
         uses: jurplel/install-qt-action@v3
@@ -92,7 +95,7 @@ jobs:
       - name: Create CMakeUserPresets
         run: |
           $path = "${{ github.workspace }}/vcpkg_installed/bitatm" -replace '\\', '/'
-          "{`"version`":3,`"configurePresets`":[{`"name`":`"default`",`"inherits`":`"base`",`"cacheVariables`":{`"VCPKG_INSTALLED_DIR`":`"$path`"}}]}" | Set-Content CMakeUserPresets.json
+          "{`"version`":3,`"configurePresets`":[{`"name`":`"default`",`"inherits`":`"base`",`"generator`":`"Ninja`",`"cacheVariables`":{`"VCPKG_INSTALLED_DIR`":`"$path`"}}]}" | Set-Content CMakeUserPresets.json
 
       - name: Configure
         run: cmake --preset=default
