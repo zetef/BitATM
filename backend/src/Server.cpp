@@ -31,7 +31,20 @@ public:
             auto session = std::make_shared<ClientSession>(std::move(ws));
 
             Packet packet;
-            while (session->receive(packet)) {
+            while (true) {
+                // Parse failure is per-packet: send ERR and keep connection alive.
+                // Network failure (NetworkException) propagates to outer catch.
+                try {
+                    if (!session->receive(packet)) break;
+                } catch (const ProtocolException& e) {
+                    poco_warning(log, std::string("Bad packet: ") + e.what());
+                    Packet err;
+                    err.type = PacketType::ERR;
+                    err.errorMsg = e.what();
+                    session->send(err);
+                    continue;
+                }
+
                 try {
                     auto handler = _server.getFactory().create(packet.type);
                     handler->handle(packet, *session);
