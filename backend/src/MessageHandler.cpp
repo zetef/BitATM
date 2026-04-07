@@ -29,7 +29,7 @@ void MessageHandler::execute(Packet& packet, ClientSession& session) {
         auto saved = msgRepo.findByRecipient(packet.to);
         if (!saved.empty()) {
             OfflineQueueRepository offlineRepo;
-            OfflineMessage entry{0, saved.back().getId(), packet.to};
+            OfflineMessage entry{0, saved.back().getId(), packet.to, ""};
             offlineRepo.save(entry);
         }
     }
