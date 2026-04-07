@@ -39,13 +39,13 @@ public:
                 } catch (const ProtocolException& e) {
                     poco_warning(log, std::string("Protocol error: ") + e.what());
                     Packet err;
-                    err.type = PacketType::ERROR;
+                    err.type = PacketType::ERR;
                     err.errorMsg = e.what();
                     session->send(err);
                 } catch (const AppException& e) {
                     poco_error(log, std::string("Handler error: ") + e.what());
                     Packet err;
-                    err.type = PacketType::ERROR;
+                    err.type = PacketType::ERR;
                     err.errorMsg = e.what();
                     session->send(err);
                 }
