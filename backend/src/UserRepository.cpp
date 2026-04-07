@@ -53,14 +53,19 @@ void UserRepository::save(const User& u) {
     try {
         auto ses = DbManager::instance().session();
         if (u.getId() == 0) {
+            std::string username = u.getUsername();
+            std::string passwordHash = u.getPasswordHash();
+            std::string publicKey = u.getPublicKey();
             // clang-format off
             ses << "INSERT INTO users (username, password_hash, public_key) VALUES (?, ?, ?)",
-                use(u.getUsername()), use(u.getPasswordHash()), use(u.getPublicKey()), now;
+                use(username), use(passwordHash), use(publicKey), now;
             // clang-format on
         } else {
+            std::string publicKey = u.getPublicKey();
+            int id = u.getId();
             // clang-format off
             ses << "UPDATE users SET public_key = ?, last_seen = NOW() WHERE id = ?",
-                use(u.getPublicKey()), use(u.getId()), now;
+                use(publicKey), use(id), now;
             // clang-format on
         }
     } catch (const Poco::Exception& e) {
@@ -83,11 +88,12 @@ std::optional<User> UserRepository::findByUsername(const std::string& username) 
         int uid;
         std::string uname, passwordHash, publicKey, lastSeen, createdAt;
         // clang-format off
+        std::string usernameParam = username;
         ses << "SELECT id, username, password_hash, public_key, last_seen, created_at "
                "FROM users WHERE username = ?",
             into(uid), into(uname), into(passwordHash),
             into(publicKey), into(lastSeen), into(createdAt),
-            use(username), now;
+            use(usernameParam), now;
         // clang-format on
         if (uname.empty()) return std::nullopt;
         return User{uid, uname, passwordHash, publicKey, lastSeen, createdAt};

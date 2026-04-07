@@ -62,15 +62,19 @@ void SessionRepository::save(const ::Session& s) {
     try {
         auto ses = DbManager::instance().session();
         if (s.getId() == 0) {
+            int userId = s.getUserId();
+            std::string token = s.getSessionToken();
+            std::string expires = s.getExpiresAt();
             // clang-format off
             ses << "INSERT INTO sessions (user_id, session_token, expires_at) VALUES (?, ?, ?)",
-                use(s.getUserId()), use(s.getSessionToken()), use(s.getExpiresAt()), now;
+                use(userId), use(token), use(expires), now;
             // clang-format on
         } else {
             int active = s.isActive() ? 1 : 0;
+            int id = s.getId();
             // clang-format off
             ses << "UPDATE sessions SET is_active = ? WHERE id = ?",
-                use(active), use(s.getId()), now;
+                use(active), use(id), now;
             // clang-format on
         }
     } catch (const Poco::Exception& e) {
@@ -93,11 +97,12 @@ std::optional<::Session> SessionRepository::findByToken(const std::string& token
         int sid, userId, isActive;
         std::string tok, createdAt, expiresAt;
         // clang-format off
+        std::string tokenParam = token;
         ses << "SELECT id, user_id, session_token, created_at, expires_at, is_active "
                "FROM sessions WHERE session_token = ? AND is_active = TRUE",
             into(sid), into(userId), into(tok),
             into(createdAt), into(expiresAt), into(isActive),
-            use(token), now;
+            use(tokenParam), now;
         // clang-format on
         if (tok.empty()) return std::nullopt;
         return rowToSession(sid, userId, tok, createdAt, expiresAt, isActive != 0);

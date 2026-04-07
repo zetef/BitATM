@@ -64,16 +64,19 @@ void OfflineQueueRepository::save(const OfflineMessage& msg) {
     try {
         auto ses = DbManager::instance().session();
         if (msg.getId() == 0) {
+            int messageId = msg.getMessageId();
+            std::string recipient = msg.getRecipient();
             // clang-format off
             ses << "INSERT INTO offline_queue (message_id, recipient) VALUES (?, ?)",
-                use(msg.getMessageId()), use(msg.getRecipient()), now;
+                use(messageId), use(recipient), now;
             // clang-format on
         } else {
             int delivered = msg.isDelivered() ? 1 : 0;
             int attempts = msg.getDeliveryAttempts();
+            int id = msg.getId();
             // clang-format off
             ses << "UPDATE offline_queue SET delivered = ?, delivery_attempts = ? WHERE id = ?",
-                use(delivered), use(attempts), use(msg.getId()), now;
+                use(delivered), use(attempts), use(id), now;
             // clang-format on
         }
     } catch (const Poco::Exception& e) {
@@ -99,11 +102,12 @@ std::vector<OfflineMessage> OfflineQueueRepository::findUndeliveredByRecipient(
         std::string recip, queuedAt;
         Poco::Data::Statement sel(ses);
         // clang-format off
+        std::string recipientParam = recipient;
         sel << "SELECT id, message_id, recipient, queued_at, delivered, delivery_attempts "
                "FROM offline_queue WHERE recipient = ? AND delivered = FALSE ORDER BY queued_at ASC",
             into(oid), into(messageId), into(recip),
             into(queuedAt), into(delivered), into(deliveryAttempts),
-            use(recipient), range(0, 1);
+            use(recipientParam), range(0, 1);
         // clang-format on
         while (!sel.done()) {
             sel.execute();
