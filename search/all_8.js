@@ -23,5 +23,6 @@ var searchData=
   ['isdelivered_20',['isDelivered',['../classOfflineMessage.html#a8865b2edc2ed672883b801658c4c232a',1,'OfflineMessage']]],
   ['isymmetricstrategy_21',['ISymmetricStrategy',['../classISymmetricStrategy.html',1,'']]],
   ['isymmetricstrategy_2eh_22',['ISymmetricStrategy.h',['../ISymmetricStrategy_8h.html',1,'']]],
-  ['ivsize_23',['ivSize',['../classISymmetricStrategy.html#a56d3748a3e8df032e5365cbfdc037574',1,'ISymmetricStrategy']]]
+  ['iv_5fsize_23',['IV_SIZE',['../classAesGcmStrategy.html#ae915acac6103c93119fc59680b3aabfd',1,'AesGcmStrategy']]],
+  ['ivsize_24',['ivsize',['../classAesGcmStrategy.html#afecd5524243511a0ebd2c4debf8ff6aa',1,'AesGcmStrategy::ivSize()'],['../classISymmetricStrategy.html#a56d3748a3e8df032e5365cbfdc037574',1,'ISymmetricStrategy::ivSize()']]]
 ];

@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['generatekey_0',['generateKey',['../classISymmetricStrategy.html#a6397da80bd50ebbf9ff99088095d2c3d',1,'ISymmetricStrategy']]],
+  ['generatekey_0',['generatekey',['../classAesGcmStrategy.html#a1ac7dc2a139d66af96e3ce023e3b753c',1,'AesGcmStrategy::generateKey()'],['../classISymmetricStrategy.html#a6397da80bd50ebbf9ff99088095d2c3d',1,'ISymmetricStrategy::generateKey()']]],
   ['generatekeypair_1',['generateKeypair',['../classIAsymmetricStrategy.html#a1459cc018c9ed44ab1a5a3c42c16d414',1,'IAsymmetricStrategy']]],
   ['getcreatedat_2',['getcreatedat',['../classGroupMessage.html#acb3c5ee69137ce0655f4026290e6ef8e',1,'GroupMessage::getCreatedAt()'],['../classMessage.html#a7d1b23959f8424eb7be8f786859ed9d0',1,'Message::getCreatedAt()'],['../classSession.html#af08009a2390d5fedd855138ef139d3f3',1,'Session::getCreatedAt()'],['../classUser.html#ad5dd1754dc217815c11d6fd2bc212261',1,'User::getCreatedAt()']]],
   ['getdeliveryattempts_3',['getDeliveryAttempts',['../classOfflineMessage.html#abed4071cb9ec83ce1c1f18a9f1356694',1,'OfflineMessage']]],

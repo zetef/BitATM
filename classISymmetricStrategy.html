@@ -106,6 +106,8 @@ Inheritance diagram for ISymmetricStrategy:</div>
 <div class="center"><img src="classISymmetricStrategy__inherit__graph.png" border="0" usemap="#aISymmetricStrategy_inherit__map" alt="Inheritance graph"/></div>
 <map name="aISymmetricStrategy_inherit__map" id="aISymmetricStrategy_inherit__map">
 <area shape="rect" title="Abstract interface for symmetric encryption strategies." alt="" coords="5,179,185,304"/>
+<area shape="rect" href="classAesGcmStrategy.html" title="AES&#45;256&#45;GCM symmetric encryption strategy (L3 concrete)." alt="" coords="16,352,175,597"/>
+<area shape="poly" title=" " alt="" coords="98,318,98,352,93,352,93,318"/>
 <area shape="rect" href="classICryptoStrategy.html" title="Strategy interface for encryption algorithms." alt="" coords="19,5,171,131"/>
 <area shape="poly" title=" " alt="" coords="98,145,98,178,93,178,93,145"/>
 </map>
@@ -146,7 +148,7 @@ Public Member Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Abstract interface for symmetric encryption strategies. </p>
-<p>Extends <a class="el" href="classICryptoStrategy.html" title="Strategy interface for encryption algorithms.">ICryptoStrategy</a> with key generation and IV/key size queries. Concrete implementations (e.g. AesGcmStrategy) provide the actual OpenSSL calls. </p>
+<p>Extends <a class="el" href="classICryptoStrategy.html" title="Strategy interface for encryption algorithms.">ICryptoStrategy</a> with key generation and IV/key size queries. Concrete implementations (e.g. <a class="el" href="classAesGcmStrategy.html" title="AES-256-GCM symmetric encryption strategy (L3 concrete).">AesGcmStrategy</a>) provide the actual OpenSSL calls. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a863314dc21727559440afedc4b71f8c1" name="a863314dc21727559440afedc4b71f8c1"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a863314dc21727559440afedc4b71f8c1">&#9670;&#160;</a></span>~ISymmetricStrategy()</h2>
@@ -199,6 +201,8 @@ Public Member Functions</h2></td></tr>
 
 <p>Generate a random symmetric key. </p>
 
+<p>Implemented in <a class="el" href="classAesGcmStrategy.html#a1ac7dc2a139d66af96e3ce023e3b753c">AesGcmStrategy</a>.</p>
+
 </div>
 </div>
 <a id="a56d3748a3e8df032e5365cbfdc037574" name="a56d3748a3e8df032e5365cbfdc037574"></a>
@@ -226,6 +230,8 @@ Public Member Functions</h2></td></tr>
 
 <p>IV/nonce size in bytes (e.g. 12 for GCM). </p>
 
+<p>Implemented in <a class="el" href="classAesGcmStrategy.html#afecd5524243511a0ebd2c4debf8ff6aa">AesGcmStrategy</a>.</p>
+
 </div>
 </div>
 <a id="a54f098f4f719673e8538f0edd710741a" name="a54f098f4f719673e8538f0edd710741a"></a>
@@ -252,6 +258,8 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Key size in bytes (e.g. 32 for AES-256). </p>
+
+<p>Implemented in <a class="el" href="classAesGcmStrategy.html#a880c9c062c72bdea7c8bed98ebab0e85">AesGcmStrategy</a>.</p>
 
 </div>
 </div>

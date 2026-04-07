@@ -1,0 +1,24 @@
+var searchData=
+[
+  ['_7eaesgcmstrategy_0',['~AesGcmStrategy',['../classAesGcmStrategy.html#aa893ea73ca8a70a5a402317993640698',1,'AesGcmStrategy']]],
+  ['_7eclientsession_1',['~ClientSession',['../classClientSession.html#ac863b8bb3c21e836045e9ba8bd47b742',1,'ClientSession']]],
+  ['_7econversationhistory_2',['~ConversationHistory',['../classConversationHistory.html#a7275a283a1c015b1b19b1b8e13dc54de',1,'ConversationHistory']]],
+  ['_7egroupmessage_3',['~GroupMessage',['../classGroupMessage.html#a27c1278e2d8e0d53e1e749fbc9e0ef25',1,'GroupMessage']]],
+  ['_7eiasymmetricstrategy_4',['~IAsymmetricStrategy',['../classIAsymmetricStrategy.html#af94e27e24872f1d74e0464f5650a8aa6',1,'IAsymmetricStrategy']]],
+  ['_7eicommandhandler_5',['~ICommandHandler',['../classICommandHandler.html#a2c2d11b6bd94d4bd721935b793fcd33d',1,'ICommandHandler']]],
+  ['_7eicryptostrategy_6',['~ICryptoStrategy',['../classICryptoStrategy.html#a8fa70bcabfd2292763c043c22cd081ba',1,'ICryptoStrategy']]],
+  ['_7eientity_7',['~IEntity',['../classIEntity.html#a727892234e0efad23c7a399997dee974',1,'IEntity']]],
+  ['_7eirepository_8',['~IRepository',['../classIRepository.html#a1358ed9253601f09059575ddc131c587',1,'IRepository']]],
+  ['_7eisymmetricstrategy_9',['~ISymmetricStrategy',['../classISymmetricStrategy.html#a863314dc21727559440afedc4b71f8c1',1,'ISymmetricStrategy']]],
+  ['_7emessage_10',['~Message',['../classMessage.html#af68f5801c560c1b51c5458067e9b3fdd',1,'Message']]],
+  ['_7emessagerepository_11',['~MessageRepository',['../classMessageRepository.html#ac55c1e302a265a5aab8234d5fb9ab32e',1,'MessageRepository']]],
+  ['_7eofflinemessage_12',['~OfflineMessage',['../classOfflineMessage.html#a311637cd9a81e8b80fd32369048cbdd8',1,'OfflineMessage']]],
+  ['_7eofflinequeuerepository_13',['~OfflineQueueRepository',['../classOfflineQueueRepository.html#a053fd2e03ca523c01f0eb47e002c32fa',1,'OfflineQueueRepository']]],
+  ['_7epacket_14',['~Packet',['../structPacket.html#a9fef7789952566bff8ab09b49a0eee83',1,'Packet']]],
+  ['_7epackethandlerfactory_15',['~PacketHandlerFactory',['../classPacketHandlerFactory.html#a689100e1b419f1d602645ba5bae6b990',1,'PacketHandlerFactory']]],
+  ['_7eprotocolparser_16',['~ProtocolParser',['../classProtocolParser.html#a8b269b5e7de8af7c88ec51156cf09b61',1,'ProtocolParser']]],
+  ['_7esession_17',['~Session',['../classSession.html#a77cdd3dcbccb78435af2aa6aec7a40d8',1,'Session']]],
+  ['_7esessionrepository_18',['~SessionRepository',['../classSessionRepository.html#accedf471024a2efa458ce7b59627dd6a',1,'SessionRepository']]],
+  ['_7euser_19',['~User',['../classUser.html#a2aca5ee0046f477a5acb084653dcc801',1,'User']]],
+  ['_7euserrepository_20',['~UserRepository',['../classUserRepository.html#ab92bc26042c7229a9330f0d30be047dc',1,'UserRepository']]]
+];

@@ -21,7 +21,9 @@ var hierarchy =
     [ "ICommandHandler", "classICommandHandler.html", null ],
     [ "ICryptoStrategy", "classICryptoStrategy.html", [
       [ "IAsymmetricStrategy", "classIAsymmetricStrategy.html", null ],
-      [ "ISymmetricStrategy", "classISymmetricStrategy.html", null ]
+      [ "ISymmetricStrategy", "classISymmetricStrategy.html", [
+        [ "AesGcmStrategy", "classAesGcmStrategy.html", null ]
+      ] ]
     ] ],
     [ "IEntity", "classIEntity.html", [
       [ "ConversationHistory", "classConversationHistory.html", null ],
@@ -44,6 +46,7 @@ var hierarchy =
     [ "IRepository< User >", "classIRepository.html", [
       [ "UserRepository", "classUserRepository.html", null ]
     ] ],
+    [ "OpensslAdapter", "classOpensslAdapter.html", null ],
     [ "Packet", "structPacket.html", null ],
     [ "PacketHandlerFactory", "classPacketHandlerFactory.html", null ],
     [ "ProtocolParser", "classProtocolParser.html", null ],

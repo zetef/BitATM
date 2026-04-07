@@ -1,15 +1,15 @@
 var searchData=
 [
-  ['generatekey_0',['generateKey',['../classISymmetricStrategy.html#a6397da80bd50ebbf9ff99088095d2c3d',1,'ISymmetricStrategy']]],
+  ['generatekey_0',['generatekey',['../classISymmetricStrategy.html#a6397da80bd50ebbf9ff99088095d2c3d',1,'ISymmetricStrategy::generateKey()'],['../classAesGcmStrategy.html#a1ac7dc2a139d66af96e3ce023e3b753c',1,'AesGcmStrategy::generateKey()']]],
   ['generatekeypair_1',['generateKeypair',['../classIAsymmetricStrategy.html#a1459cc018c9ed44ab1a5a3c42c16d414',1,'IAsymmetricStrategy']]],
-  ['getcreatedat_2',['getcreatedat',['../classMessage.html#a7d1b23959f8424eb7be8f786859ed9d0',1,'Message::getCreatedAt()'],['../classSession.html#af08009a2390d5fedd855138ef139d3f3',1,'Session::getCreatedAt()'],['../classUser.html#ad5dd1754dc217815c11d6fd2bc212261',1,'User::getCreatedAt()'],['../classGroupMessage.html#acb3c5ee69137ce0655f4026290e6ef8e',1,'GroupMessage::getCreatedAt()']]],
+  ['getcreatedat_2',['getcreatedat',['../classGroupMessage.html#acb3c5ee69137ce0655f4026290e6ef8e',1,'GroupMessage::getCreatedAt()'],['../classMessage.html#a7d1b23959f8424eb7be8f786859ed9d0',1,'Message::getCreatedAt()'],['../classSession.html#af08009a2390d5fedd855138ef139d3f3',1,'Session::getCreatedAt()'],['../classUser.html#ad5dd1754dc217815c11d6fd2bc212261',1,'User::getCreatedAt()']]],
   ['getdeliveryattempts_3',['getDeliveryAttempts',['../classOfflineMessage.html#abed4071cb9ec83ce1c1f18a9f1356694',1,'OfflineMessage']]],
   ['getencryptedkey_4',['getEncryptedKey',['../classMessage.html#a155fb5cd521a737a2b039aa2df593251',1,'Message']]],
   ['getencryptedkeys_5',['getEncryptedKeys',['../classGroupMessage.html#adeeb3d9f5a2d2366871c814984c25428',1,'GroupMessage']]],
   ['getexpiresat_6',['getExpiresAt',['../classSession.html#ad30b4abe08c73b93623d3eb30dbc7cb3',1,'Session']]],
   ['getfactory_7',['getFactory',['../classServer.html#a5125611bb999de9619ea6b746e6448ce',1,'Server']]],
   ['getgroupname_8',['getGroupName',['../classGroupMessage.html#ac930c4b758c3ba4e9fbd41552f0c629f',1,'GroupMessage']]],
-  ['getid_9',['getid',['../classConversationHistory.html#a31eb1bb6a456a4528e0d03eec6445304',1,'ConversationHistory::getId()'],['../classUser.html#a97ca3ca233e5275501dca9786360cb2c',1,'User::getId()'],['../classSession.html#a6c8dfb5aa93b2c7d63b5d54c6e7224d3',1,'Session::getId()'],['../classOfflineMessage.html#a9d4ae615dffc02af012d152c47f564fe',1,'OfflineMessage::getId()'],['../classMessage.html#a8787580b81215372b898eadbe54a82fb',1,'Message::getId()'],['../classIEntity.html#a11c6e8b18c2456dc2f44d1fff94dc9b6',1,'IEntity::getId()'],['../classGroupMessage.html#a53dfec5cfed9835102cc11617de93c07',1,'GroupMessage::getId()']]],
+  ['getid_9',['getid',['../classConversationHistory.html#a31eb1bb6a456a4528e0d03eec6445304',1,'ConversationHistory::getId()'],['../classGroupMessage.html#a53dfec5cfed9835102cc11617de93c07',1,'GroupMessage::getId()'],['../classIEntity.html#a11c6e8b18c2456dc2f44d1fff94dc9b6',1,'IEntity::getId()'],['../classMessage.html#a8787580b81215372b898eadbe54a82fb',1,'Message::getId()'],['../classOfflineMessage.html#a9d4ae615dffc02af012d152c47f564fe',1,'OfflineMessage::getId()'],['../classSession.html#a6c8dfb5aa93b2c7d63b5d54c6e7224d3',1,'Session::getId()'],['../classUser.html#a97ca3ca233e5275501dca9786360cb2c',1,'User::getId() const override']]],
   ['getlastseen_10',['getLastSeen',['../classUser.html#afadba4a3a138a6233294b65a43ce2f2d',1,'User']]],
   ['getmessageid_11',['getMessageId',['../classOfflineMessage.html#a3adf875390f7f670efdec35be5da6253',1,'OfflineMessage']]],
   ['getmessages_12',['getMessages',['../classConversationHistory.html#a28b7df90e3b8b9a32a5d4e58d9633d95',1,'ConversationHistory']]],

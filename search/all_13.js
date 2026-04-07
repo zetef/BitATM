@@ -1,5 +1,9 @@
 var searchData=
 [
-  ['validate_0',['validate',['../classICommandHandler.html#a958ac0a8073a92c0cc17765061034482',1,'ICommandHandler']]],
-  ['version_1',['version',['../structPacket.html#ad13846cda7db38fd2cba1f63049bb4c2',1,'Packet']]]
+  ['user_0',['user',['../classUser.html',1,'User'],['../classUser.html#a4dd5fde1b81bb132994a67f27bc203d1',1,'User::User()=default'],['../classUser.html#a268f2592165f7da858a3db365ad79746',1,'User::User(int id, std::string username, std::string passwordHash, std::string publicKey={}, std::string lastSeen={}, std::string createdAt={})'],['../classUser.html#a3c20678fb9c65cdb1f27462a0d476303',1,'User::User(const User &amp;)=default'],['../classUser.html#ac8106d639827043ed02dec54917b2f69',1,'User::User(User &amp;&amp;) noexcept=default']]],
+  ['user_2ecpp_1',['User.cpp',['../User_8cpp.html',1,'']]],
+  ['user_2eh_2',['User.h',['../User_8h.html',1,'']]],
+  ['userrepository_3',['userrepository',['../classUserRepository.html',1,'UserRepository'],['../classUserRepository.html#a10fd495fa2dd82ab68c2f037467f74cf',1,'UserRepository::UserRepository()']]],
+  ['userrepository_2ecpp_4',['UserRepository.cpp',['../UserRepository_8cpp.html',1,'']]],
+  ['userrepository_2eh_5',['UserRepository.h',['../UserRepository_8h.html',1,'']]]
 ];

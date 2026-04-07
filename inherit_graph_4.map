@@ -1,15 +1,15 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
 <area shape="rect" id="Node000000" href="$classIEntity.html" title="Base interface for all persistent domain objects." alt="" coords="5,129,69,155"/>
 <area shape="rect" id="Node000001" href="$classConversationHistory.html" title="Ordered message history between two users." alt="" coords="117,5,272,31"/>
-<area shape="poly" id="edge3_Node000000_Node000001" title=" " alt="" coords="50,116,77,77,95,57,116,40,138,28,140,33,119,44,99,61,81,80,54,119"/>
+<area shape="poly" id="edge4_Node000000_Node000001" title=" " alt="" coords="50,116,77,77,95,57,116,40,138,28,140,33,119,44,99,61,81,80,54,119"/>
 <area shape="rect" id="Node000002" href="$classGroupMessage.html" title="A message sent to a group. Maps to the group_messages table." alt="" coords="135,55,254,80"/>
-<area shape="poly" id="edge4_Node000000_Node000002" title=" " alt="" coords="66,119,116,89,145,78,147,82,119,94,69,123"/>
+<area shape="poly" id="edge5_Node000000_Node000002" title=" " alt="" coords="66,119,116,89,145,78,147,82,119,94,69,123"/>
 <area shape="rect" id="Node000003" href="$classMessage.html" title="A chat message. Maps to the messages table." alt="" coords="155,104,235,129"/>
-<area shape="poly" id="edge5_Node000000_Node000003" title=" " alt="" coords="82,132,154,120,155,126,83,137"/>
+<area shape="poly" id="edge6_Node000000_Node000003" title=" " alt="" coords="82,132,154,120,155,126,83,137"/>
 <area shape="rect" id="Node000004" href="$classOfflineMessage.html" title="A queued message for an offline recipient. Maps to the offline_queue table." alt="" coords="133,153,256,179"/>
-<area shape="poly" id="edge6_Node000000_Node000004" title=" " alt="" coords="84,146,133,154,133,159,83,152"/>
+<area shape="poly" id="edge7_Node000000_Node000004" title=" " alt="" coords="84,146,133,154,133,159,83,152"/>
 <area shape="rect" id="Node000005" href="$classSession.html" title="An authenticated session. Maps to the sessions table." alt="" coords="159,203,231,228"/>
-<area shape="poly" id="edge7_Node000000_Node000005" title=" " alt="" coords="69,160,118,188,160,203,158,208,116,192,67,164"/>
+<area shape="poly" id="edge8_Node000000_Node000005" title=" " alt="" coords="69,160,118,188,160,203,158,208,116,192,67,164"/>
 <area shape="rect" id="Node000006" href="$classUser.html" title="Registered user. Maps to the users table." alt="" coords="169,252,221,277"/>
-<area shape="poly" id="edge8_Node000000_Node000006" title=" " alt="" coords="55,165,82,202,119,237,144,250,169,258,168,263,142,255,116,242,78,206,51,168"/>
+<area shape="poly" id="edge9_Node000000_Node000006" title=" " alt="" coords="55,165,82,202,119,237,144,250,169,258,168,263,142,255,116,242,78,206,51,168"/>
 </map>

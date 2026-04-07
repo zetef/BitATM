@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['encrypt_0',['encrypt',['../classICryptoStrategy.html#a45d047f994451a80c424cb9c08bc644b',1,'ICryptoStrategy']]],
+  ['encrypt_0',['encrypt',['../classAesGcmStrategy.html#a1400cb6aa4a01545a1615f023dff7c5f',1,'AesGcmStrategy::encrypt()'],['../classICryptoStrategy.html#a45d047f994451a80c424cb9c08bc644b',1,'ICryptoStrategy::encrypt()']]],
   ['encryptwithpublic_1',['encryptWithPublic',['../classIAsymmetricStrategy.html#a1980ef5a5377a0eb6bfec893eb312a8e',1,'IAsymmetricStrategy']]],
   ['err_2',['ERR',['../protocol_8h.html#a0a80a7bc045affcf10846075b88cbca0acd22bad976363fdd1bfbf6759fede482',1,'protocol.h']]],
   ['errormsg_3',['errorMsg',['../structPacket.html#aae4924b288ada0dfe58407dc91cc779a',1,'Packet']]],

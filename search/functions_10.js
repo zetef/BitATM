@@ -1,5 +1,16 @@
 var searchData=
 [
-  ['user_0',['user',['../classUser.html#a4dd5fde1b81bb132994a67f27bc203d1',1,'User::User()=default'],['../classUser.html#a268f2592165f7da858a3db365ad79746',1,'User::User(int id, std::string username, std::string passwordHash, std::string publicKey={}, std::string lastSeen={}, std::string createdAt={})'],['../classUser.html#a3c20678fb9c65cdb1f27462a0d476303',1,'User::User(const User &amp;)=default'],['../classUser.html#ac8106d639827043ed02dec54917b2f69',1,'User::User(User &amp;&amp;) noexcept=default']]],
-  ['userrepository_1',['UserRepository',['../classUserRepository.html#a10fd495fa2dd82ab68c2f037467f74cf',1,'UserRepository']]]
+  ['save_0',['save',['../classMessageRepository.html#aa07bc2bb626fc17580646e7598747cf6',1,'MessageRepository::save()'],['../classOfflineQueueRepository.html#a29e48ab68bfa73b53a9e990700f1eabf',1,'OfflineQueueRepository::save()'],['../classSessionRepository.html#a49d226d7af830a3a35c33f48f0174f6a',1,'SessionRepository::save()'],['../classUserRepository.html#acc2d72378c67bffd4a2ede7343533cc0',1,'UserRepository::save()'],['../classIRepository.html#a127bc412b5736f161efa93e575d7a056',1,'IRepository::save()']]],
+  ['send_1',['send',['../classClientSession.html#abd07a940e0ae4b6b6114f24c07db14fa',1,'ClientSession']]],
+  ['sendtext_2',['sendText',['../classNetworkManager.html#af0fc459832db6a1eb282c4871fbf52f8',1,'NetworkManager']]],
+  ['serialize_3',['serialize',['../classUser.html#aa088b17b4435938acf9bb0faa62cc28e',1,'User::serialize()'],['../classSession.html#a0c1defbd5c7f10c36170588eff88e235',1,'Session::serialize()'],['../classProtocolParser.html#a66aa123286a517050e78d42392fa25c8',1,'ProtocolParser::serialize()'],['../classOfflineMessage.html#aed55991b02f1722b1b1a6ee57dca8589',1,'OfflineMessage::serialize()'],['../classIEntity.html#aa4f30cea93685d58373c142620a074bf',1,'IEntity::serialize()'],['../classGroupMessage.html#a4d7aef244cda461fe101cf4287b12d4b',1,'GroupMessage::serialize()'],['../classConversationHistory.html#aa240591a59cd80e3befd143d55b4b6eb',1,'ConversationHistory::serialize()'],['../classMessage.html#a272597d642944dfe3179d892955faa07',1,'Message::serialize()']]],
+  ['session_4',['session',['../classSession.html#a7ffe9dec8c4343e2d6b111e5415aa24c',1,'Session::Session(Session &amp;&amp;) noexcept=default'],['../classSession.html#aa337544d924d87371047e45a876c8dfb',1,'Session::Session(const Session &amp;)=default'],['../classSession.html#a34bfdff643082dc57682e574477eafdd',1,'Session::Session(int id, int userId, std::string sessionToken, std::string createdAt, std::string expiresAt, bool isActive=true)'],['../classSession.html#aa4b4d16918e40cce563d629bea3f0c8d',1,'Session::Session()=default'],['../classDbManager.html#a94ec9e8855d7e633f2a2fcdb5e96f51c',1,'DbManager::session()']]],
+  ['sessionrepository_5',['SessionRepository',['../classSessionRepository.html#a27dd3c1e73d90d361361e6b7b6aecec1',1,'SessionRepository']]],
+  ['setlastseen_6',['setLastSeen',['../classUser.html#a7ef994456d8f87ccca20cc7b678d3d51',1,'User']]],
+  ['setpublickey_7',['setPublicKey',['../classUser.html#ade1abb59ac241e65338aaccc9f9b1f69',1,'User']]],
+  ['setsessiontoken_8',['setSessionToken',['../classClientSession.html#ab208e1fc4fb2e80afe21fced894b1eaa',1,'ClientSession']]],
+  ['setstate_9',['setState',['../classClientSession.html#af6d5a7cd0b9105152947cee568fe54b9',1,'ClientSession']]],
+  ['setstatus_10',['setStatus',['../classMessage.html#a5d6f20d6455c3034466a83bbfc16207e',1,'Message']]],
+  ['setusername_11',['setUsername',['../classClientSession.html#afc0bf4b3bf837a65cd4e4b5c9612c963',1,'ClientSession']]],
+  ['size_12',['size',['../classConversationHistory.html#aceb03380d1f19ed4b680837a3f6f8ac9',1,'ConversationHistory']]]
 ];

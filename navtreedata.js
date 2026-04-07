@@ -53,8 +53,8 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"AppException_8h.html",
-"classOfflineQueueRepository.html#ad3a3e520a3631a0c34ac869313b0b7fb"
+"AesGcmStrategy_8cpp.html",
+"classOfflineMessage.html#aab48c468f3eeba6d8f6fa5754e9d88a5"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['max_5fpacket_5fsize_0',['MAX_PACKET_SIZE',['../protocol_8h.html#ae4d2325390b1703d2db37ab125ef43cf',1,'protocol.h']]]
+  ['key_0',['key',['../structPacket.html#aa3757b0e0f59c9e810f0e7d0a02fb6e4',1,'Packet']]],
+  ['key_5fsize_1',['KEY_SIZE',['../classAesGcmStrategy.html#a1b49e5b681f22e622b6169d012d0e007',1,'AesGcmStrategy']]]
 ];

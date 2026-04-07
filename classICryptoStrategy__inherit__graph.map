@@ -4,4 +4,6 @@
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="161,144,139,180,135,177,157,141"/>
 <area shape="rect" id="Node000003" href="$classISymmetricStrategy.html" title="Abstract interface for symmetric encryption strategies." alt="" coords="217,179,397,304"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="250,141,272,177,268,180,246,144"/>
+<area shape="rect" id="Node000004" href="$classAesGcmStrategy.html" title="AES&#45;256&#45;GCM symmetric encryption strategy (L3 concrete)." alt="" coords="228,352,387,597"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="310,318,310,352,305,352,305,318"/>
 </map>

@@ -1,5 +1,6 @@
 var annotated_dup =
 [
+    [ "AesGcmStrategy", "classAesGcmStrategy.html", "classAesGcmStrategy" ],
     [ "AppException", "classAppException.html", "classAppException" ],
     [ "ClientSession", "classClientSession.html", "classClientSession" ],
     [ "ConnectionHandler", "classConnectionHandler.html", "classConnectionHandler" ],
@@ -21,6 +22,7 @@ var annotated_dup =
     [ "NetworkManager", "classNetworkManager.html", "classNetworkManager" ],
     [ "OfflineMessage", "classOfflineMessage.html", "classOfflineMessage" ],
     [ "OfflineQueueRepository", "classOfflineQueueRepository.html", "classOfflineQueueRepository" ],
+    [ "OpensslAdapter", "classOpensslAdapter.html", "classOpensslAdapter" ],
     [ "Packet", "structPacket.html", "structPacket" ],
     [ "PacketHandlerFactory", "classPacketHandlerFactory.html", "classPacketHandlerFactory" ],
     [ "ProtocolException", "classProtocolException.html", "classProtocolException" ],
