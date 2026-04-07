@@ -57,6 +57,8 @@ public:
             }
         } catch (const Poco::Exception& e) {
             poco_error(log, std::string("Connection error: ") + e.message());
+        } catch (const std::exception& e) {
+            poco_error(log, std::string("Connection error: ") + e.what());
         }
 
         if (!username.empty()) _server.removeClient(username);
