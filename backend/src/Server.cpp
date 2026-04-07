@@ -8,8 +8,11 @@
 #include <Poco/Net/ServerSocket.h>
 #include <Poco/Net/WebSocket.h>
 
+#include <cstdlib>
+
 #include "../../common/AppException.h"
 #include "AckHandler.h"
+#include "DbManager.h"
 #include "KeyExchangeHandler.h"
 #include "LoginHandler.h"
 #include "MessageHandler.h"
@@ -138,6 +141,17 @@ void Server::registerHandlers() {
 
 int Server::main(const std::vector<std::string>&) {
     Poco::Logger& log = Poco::Logger::get("Server");
+
+    const char* dbUrl = std::getenv("DATABASE_URL");
+    const std::string connStr =
+        dbUrl ? std::string(dbUrl)
+              : "host=localhost port=5432 dbname=bitatm_chat user=chatuser password=changeme";
+    try {
+        DbManager::instance().init(connStr);
+        poco_information(log, "Database pool initialised");
+    } catch (const DbException& e) {
+        poco_error(log, std::string("DB init failed: ") + e.what());
+    }
 
     registerHandlers();
 
