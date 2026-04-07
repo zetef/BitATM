@@ -38,10 +38,13 @@ public:
                     if (!session->receive(packet)) break;
                 } catch (const ProtocolException& e) {
                     poco_warning(log, std::string("Bad packet: ") + e.what());
-                    Packet err;
-                    err.type = PacketType::ERR;
-                    err.errorMsg = e.what();
-                    session->send(err);
+                    try {
+                        Packet err;
+                        err.type = PacketType::ERR;
+                        err.errorMsg = e.what();
+                        session->send(err);
+                    } catch (const std::exception&) {
+                    }
                     continue;
                 }
 
@@ -56,16 +59,22 @@ public:
                     }
                 } catch (const ProtocolException& e) {
                     poco_warning(log, std::string("Protocol error: ") + e.what());
-                    Packet err;
-                    err.type = PacketType::ERR;
-                    err.errorMsg = e.what();
-                    session->send(err);
+                    try {
+                        Packet err;
+                        err.type = PacketType::ERR;
+                        err.errorMsg = e.what();
+                        session->send(err);
+                    } catch (const std::exception&) {
+                    }
                 } catch (const AppException& e) {
                     poco_error(log, std::string("Handler error: ") + e.what());
-                    Packet err;
-                    err.type = PacketType::ERR;
-                    err.errorMsg = e.what();
-                    session->send(err);
+                    try {
+                        Packet err;
+                        err.type = PacketType::ERR;
+                        err.errorMsg = e.what();
+                        session->send(err);
+                    } catch (const std::exception&) {
+                    }
                 }
             }
         } catch (const Poco::Exception& e) {

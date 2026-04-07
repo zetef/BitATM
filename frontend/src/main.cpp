@@ -8,7 +8,7 @@ int main(int argc, char* argv[]) {
     QGuiApplication app(argc, argv);
 
     NetworkManager net;
-    net.connectToServer(QUrl("wss://api.zetef.xyz"));
+    net.connectToServer(QUrl("ws://localhost:8080"));
 
     QQmlApplicationEngine engine;
     engine.rootContext()->setContextProperty("networkManager", &net);

@@ -7,6 +7,8 @@
 #include <QUrl>
 #include <QWebSocket>
 
+#include "../../common/protocol.h"
+
 class NetworkManager : public QObject {
     Q_OBJECT
     Q_PROPERTY(bool isConnected READ isConnected NOTIFY connectionChanged)
@@ -15,7 +17,10 @@ class NetworkManager : public QObject {
 public:
     explicit NetworkManager(QObject* parent = nullptr);
     void connectToServer(const QUrl& url);
-    Q_INVOKABLE void sendText(const QString& text);
+
+    Q_INVOKABLE void sendRegister(const QString& username, const QString& password);
+    Q_INVOKABLE void sendLogin(const QString& username, const QString& password);
+
     bool isConnected() const;
     QString lastMessage() const;
     bool hasError() const;
@@ -36,6 +41,8 @@ private slots:
     void onReachabilityChanged(QNetworkInformation::Reachability reachability);
 
 private:
+    void sendPacket(const Packet& packet);
+
     QWebSocket _socket;
     QUrl _serverUrl;
     QString _lastMessage;
