@@ -40,5 +40,4 @@ private:
     QUrl _serverUrl;
     QString _lastMessage;
     bool _hasError = false;
-    bool _firstConnect = true;
 };

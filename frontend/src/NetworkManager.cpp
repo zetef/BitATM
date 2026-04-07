@@ -46,10 +46,6 @@ void NetworkManager::onConnected() {
     qInfo() << "Connected to server";
     emit connectionChanged();
     emit connected();
-    if (_firstConnect) {
-        _firstConnect = false;
-        sendText("Hello from Qt!");
-    }
 }
 
 void NetworkManager::onDisconnected() {
