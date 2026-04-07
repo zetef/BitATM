@@ -4,6 +4,8 @@ qt_add_executable(frontend
 	src/NetworkManager.cpp
 	src/ISymmetricStrategy.h
 	src/IAsymmetricStrategy.h
+	src/OpensslAdapter.h
+	src/OpensslAdapter.cpp
 )
 set_target_properties(frontend PROPERTIES AUTOMOC ON)
 
@@ -18,6 +20,8 @@ qt_add_qml_module(frontend
 	URI BitATM
 	VERSION 1.0
 	QML_FILES qml/Main.qml
+	SOURCES src/AesGcmStrategy.h
+	SOURCES src/AesGcmStrategy.cpp
 )
 
 target_link_libraries(frontend PRIVATE
