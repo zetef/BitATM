@@ -8,7 +8,7 @@ int main(int argc, char* argv[]) {
     QGuiApplication app(argc, argv);
 
     NetworkManager net;
-    net.connectToServer(QUrl("ws://localhost:8080"));
+    net.connectToServer(QUrl(QStringLiteral(BITATM_SERVER_URL)));
 
     QQmlApplicationEngine engine;
     engine.rootContext()->setContextProperty("networkManager", &net);
