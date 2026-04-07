@@ -13,6 +13,9 @@ add_executable(bitatm-backend
     src/MessageRepository.h       src/MessageRepository.cpp
     src/SessionRepository.h       src/SessionRepository.cpp
     src/OfflineQueueRepository.h  src/OfflineQueueRepository.cpp
+    src/ClientSession.h           src/ClientSession.cpp
+    src/PacketHandlerFactory.h    src/PacketHandlerFactory.cpp
+    src/Server.h                  src/Server.cpp
 )
 target_link_libraries(bitatm-backend PRIVATE
     common
