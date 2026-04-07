@@ -9,6 +9,11 @@
 #include <Poco/Net/WebSocket.h>
 
 #include "../../common/AppException.h"
+#include "AckHandler.h"
+#include "KeyExchangeHandler.h"
+#include "LoginHandler.h"
+#include "MessageHandler.h"
+#include "RegisterHandler.h"
 
 // ---------------------------------------------------------------------------
 // ConnectionHandler — one per WebSocket connection, runs in Poco thread pool
@@ -97,9 +102,14 @@ std::shared_ptr<ClientSession> Server::findClient(const std::string& username) {
 }
 
 void Server::registerHandlers() {
-    // Handlers are registered here once feat/stefan/handlers is merged.
-    // e.g.: _factory.registerHandler(PacketType::LOGIN,
-    //           []{ return std::make_unique<LoginHandler>(); });
+    _factory.registerHandler(PacketType::REGISTER,
+                             [] { return std::make_unique<RegisterHandler>(); });
+    _factory.registerHandler(PacketType::LOGIN, [] { return std::make_unique<LoginHandler>(); });
+    _factory.registerHandler(PacketType::MESSAGE,
+                             [this] { return std::make_unique<MessageHandler>(*this); });
+    _factory.registerHandler(PacketType::KEY_EXCHANGE,
+                             [] { return std::make_unique<KeyExchangeHandler>(); });
+    _factory.registerHandler(PacketType::ACK, [] { return std::make_unique<AckHandler>(); });
 }
 
 int Server::main(const std::vector<std::string>&) {
