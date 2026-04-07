@@ -24,6 +24,11 @@ qt_add_qml_module(frontend
 	SOURCES src/AesGcmStrategy.cpp
 )
 
+if(NOT DEFINED BITATM_SERVER_URL)
+    set(BITATM_SERVER_URL "wss://api.zetef.xyz")
+endif()
+target_compile_definitions(frontend PRIVATE BITATM_SERVER_URL="${BITATM_SERVER_URL}")
+
 target_link_libraries(frontend PRIVATE
 	common
 	Qt6::Core Qt6::Quick Qt6::Network Qt6::WebSockets

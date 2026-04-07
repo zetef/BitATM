@@ -4,44 +4,58 @@ import QtQuick.Controls
 ApplicationWindow {
     visible: true
     width: 400
-    height: 300
+    height: 340
     title: "BitATM"
 
     Column {
         anchors.centerIn: parent
         spacing: 12
+        width: 300
+
+        TextField {
+            id: usernameInput
+            placeholderText: "Username"
+            width: parent.width
+        }
+
+        TextField {
+            id: passwordInput
+            placeholderText: "Password"
+            echoMode: TextInput.Password
+            width: parent.width
+        }
 
         Row {
             anchors.horizontalCenter: parent.horizontalCenter
             spacing: 8
 
-            TextField {
-                id: messageInput
-                placeholderText: "Type a message..."
-                width: 240
-                onAccepted: sendButton.clicked()
+            Button {
+                text: "Register"
+                enabled: networkManager.isConnected
+                onClicked: {
+                    if (usernameInput.text.length > 0 && passwordInput.text.length > 0)
+                        networkManager.sendRegister(usernameInput.text, passwordInput.text)
+                }
             }
 
             Button {
-                id: sendButton
-                text: "Send"
+                text: "Login"
                 enabled: networkManager.isConnected
                 onClicked: {
-                    if (messageInput.text.length > 0) {
-                        networkManager.sendText(messageInput.text)
-                        messageInput.text = ""
-                    }
+                    if (usernameInput.text.length > 0 && passwordInput.text.length > 0)
+                        networkManager.sendLogin(usernameInput.text, passwordInput.text)
                 }
             }
         }
 
         Label {
             anchors.horizontalCenter: parent.horizontalCenter
-            text: networkManager.lastMessage ? "Server: " + networkManager.lastMessage : "No response yet"
+            text: networkManager.lastMessage ? "Server: " + networkManager.lastMessage
+                                             : "No response yet"
             font.pixelSize: 14
-            color: networkManager.lastMessage
-                ? (networkManager.hasError ? "#f44336" : "#4caf50")
-                : "#999"
+            color: networkManager.hasError ? "#f44336" : "#4caf50"
+            wrapMode: Text.Wrap
+            width: parent.width
         }
 
         Row {
