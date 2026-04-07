@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['groupmessage_2ecpp_0',['GroupMessage.cpp',['../GroupMessage_8cpp.html',1,'']]],
-  ['groupmessage_2eh_1',['GroupMessage.h',['../GroupMessage_8h.html',1,'']]]
+  ['dbmanager_2ecpp_0',['DbManager.cpp',['../DbManager_8cpp.html',1,'']]],
+  ['dbmanager_2eh_1',['DbManager.h',['../DbManager_8h.html',1,'']]]
 ];

@@ -1,0 +1,19 @@
+<map id="backend/src/IRepository.h" name="backend/src/IRepository.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="405,5,592,31"/>
+<area shape="rect" id="Node000002" href="$MessageRepository_8h.html" title=" " alt="" coords="18,86,259,111"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="434,36,192,89,191,83,432,31"/>
+<area shape="rect" id="Node000004" href="$OfflineQueueRepository_8h.html" title=" " alt="" coords="287,79,475,119"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="472,40,411,81,408,76,469,36"/>
+<area shape="rect" id="Node000006" href="$SessionRepository_8h.html" title=" " alt="" coords="503,86,737,111"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="530,36,603,84,601,88,527,41"/>
+<area shape="rect" id="Node000008" href="$UserRepository_8h.html" title=" " alt="" coords="771,86,984,111"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="567,31,823,83,822,89,566,36"/>
+<area shape="rect" id="Node000003" href="$MessageRepository_8cpp.html" title=" " alt="" coords="5,174,261,199"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="140,125,137,174,131,173,134,125"/>
+<area shape="rect" id="Node000005" href="$OfflineQueueRepository_8cpp.html" title=" " alt="" coords="286,167,474,207"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="383,133,383,166,378,166,378,133"/>
+<area shape="rect" id="Node000007" href="$SessionRepository_8cpp.html" title=" " alt="" coords="499,174,747,199"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="623,125,625,173,620,174,618,125"/>
+<area shape="rect" id="Node000009" href="$UserRepository_8cpp.html" title=" " alt="" coords="771,174,999,199"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="882,125,887,173,882,174,877,125"/>
+</map>

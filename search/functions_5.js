@@ -1,6 +1,27 @@
 var searchData=
 [
-  ['handle_0',['handle',['../classICommandHandler.html#a16f6823694fb8f2134d2b6942484dbaf',1,'ICommandHandler']]],
-  ['handlerequest_1',['handleRequest',['../classEchoHandler.html#ac9860d9d8590f2ef4c74af4eb3a09b15',1,'EchoHandler']]],
-  ['haserror_2',['hasError',['../classNetworkManager.html#a81c14937cc630aa9accb44c2a65b9cde',1,'NetworkManager']]]
+  ['generatekey_0',['generateKey',['../classISymmetricStrategy.html#a6397da80bd50ebbf9ff99088095d2c3d',1,'ISymmetricStrategy']]],
+  ['generatekeypair_1',['generateKeypair',['../classIAsymmetricStrategy.html#a1459cc018c9ed44ab1a5a3c42c16d414',1,'IAsymmetricStrategy']]],
+  ['getcreatedat_2',['getcreatedat',['../classMessage.html#a7d1b23959f8424eb7be8f786859ed9d0',1,'Message::getCreatedAt()'],['../classSession.html#af08009a2390d5fedd855138ef139d3f3',1,'Session::getCreatedAt()'],['../classUser.html#ad5dd1754dc217815c11d6fd2bc212261',1,'User::getCreatedAt()'],['../classGroupMessage.html#acb3c5ee69137ce0655f4026290e6ef8e',1,'GroupMessage::getCreatedAt()']]],
+  ['getdeliveryattempts_3',['getDeliveryAttempts',['../classOfflineMessage.html#abed4071cb9ec83ce1c1f18a9f1356694',1,'OfflineMessage']]],
+  ['getencryptedkey_4',['getEncryptedKey',['../classMessage.html#a155fb5cd521a737a2b039aa2df593251',1,'Message']]],
+  ['getencryptedkeys_5',['getEncryptedKeys',['../classGroupMessage.html#adeeb3d9f5a2d2366871c814984c25428',1,'GroupMessage']]],
+  ['getexpiresat_6',['getExpiresAt',['../classSession.html#ad30b4abe08c73b93623d3eb30dbc7cb3',1,'Session']]],
+  ['getgroupname_7',['getGroupName',['../classGroupMessage.html#ac930c4b758c3ba4e9fbd41552f0c629f',1,'GroupMessage']]],
+  ['getid_8',['getid',['../classConversationHistory.html#a31eb1bb6a456a4528e0d03eec6445304',1,'ConversationHistory::getId()'],['../classUser.html#a97ca3ca233e5275501dca9786360cb2c',1,'User::getId()'],['../classSession.html#a6c8dfb5aa93b2c7d63b5d54c6e7224d3',1,'Session::getId()'],['../classOfflineMessage.html#a9d4ae615dffc02af012d152c47f564fe',1,'OfflineMessage::getId()'],['../classMessage.html#a8787580b81215372b898eadbe54a82fb',1,'Message::getId()'],['../classIEntity.html#a11c6e8b18c2456dc2f44d1fff94dc9b6',1,'IEntity::getId()'],['../classGroupMessage.html#a53dfec5cfed9835102cc11617de93c07',1,'GroupMessage::getId()']]],
+  ['getlastseen_9',['getLastSeen',['../classUser.html#afadba4a3a138a6233294b65a43ce2f2d',1,'User']]],
+  ['getmessageid_10',['getMessageId',['../classOfflineMessage.html#a3adf875390f7f670efdec35be5da6253',1,'OfflineMessage']]],
+  ['getmessages_11',['getMessages',['../classConversationHistory.html#a28b7df90e3b8b9a32a5d4e58d9633d95',1,'ConversationHistory']]],
+  ['getpasswordhash_12',['getPasswordHash',['../classUser.html#af6151c2deb77f73d2700056f6c588b06',1,'User']]],
+  ['getpublickey_13',['getPublicKey',['../classUser.html#a9a2fa17d1b38aa1939a5494c629d908d',1,'User']]],
+  ['getqueuedat_14',['getQueuedAt',['../classOfflineMessage.html#aa2738512a7f05d0cbc8467f48c78c270',1,'OfflineMessage']]],
+  ['getrecipient_15',['getrecipient',['../classMessage.html#aad96a42dbfd135522f3f76671d604154',1,'Message::getRecipient()'],['../classOfflineMessage.html#a140b682cf423d353eb1ac9b5c7ac07fd',1,'OfflineMessage::getRecipient()']]],
+  ['getsender_16',['getsender',['../classGroupMessage.html#ad62aa89182c021f3f1de63d1d62d92ff',1,'GroupMessage::getSender()'],['../classMessage.html#a014cebbb88637fd79ba5fe2c9989fd8b',1,'Message::getSender()']]],
+  ['getsessiontoken_17',['getSessionToken',['../classSession.html#a829ae1126a8c8c1e03339ec0af1a5d58',1,'Session']]],
+  ['getstatus_18',['getStatus',['../classMessage.html#a746b5db3ed3e5777f0886b4a71ae8e0c',1,'Message']]],
+  ['getuser1_19',['getUser1',['../classConversationHistory.html#a8a465e2fa12da20ba3c890b5b2e19537',1,'ConversationHistory']]],
+  ['getuser2_20',['getUser2',['../classConversationHistory.html#a0cf69f716af31a1c930fa36c5ace8126',1,'ConversationHistory']]],
+  ['getuserid_21',['getUserId',['../classSession.html#a74d0189d01b34041d228c3a7808f6a8f',1,'Session']]],
+  ['getusername_22',['getUsername',['../classUser.html#a0bdca63ed72fc8ffcee690a0119c2104',1,'User']]],
+  ['groupmessage_23',['groupmessage',['../classGroupMessage.html#a1366277e42ed1552ce50b6be409f9eaa',1,'GroupMessage::GroupMessage()=default'],['../classGroupMessage.html#aa556a2f2bb63b5c7831a9355bf9fdc64',1,'GroupMessage::GroupMessage(int id, std::string groupName, std::string sender, std::string encryptedBody, std::string encryptedKeys, std::string createdAt={})'],['../classGroupMessage.html#a05fcd509823fcd2fa73cebc849ed494f',1,'GroupMessage::GroupMessage(const GroupMessage &amp;)=default'],['../classGroupMessage.html#ae926c644e6d52904af2bc7a7174b08e5',1,'GroupMessage::GroupMessage(GroupMessage &amp;&amp;) noexcept=default']]]
 ];

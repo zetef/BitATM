@@ -1,5 +1,6 @@
 var hierarchy =
 [
+    [ "DbManager", "classDbManager.html", null ],
     [ "std::exception", null, [
       [ "std::runtime_error", null, [
         [ "AppException", "classAppException.html", [
@@ -28,6 +29,19 @@ var hierarchy =
       [ "OfflineMessage", "classOfflineMessage.html", null ],
       [ "Session", "classSession.html", null ],
       [ "User", "classUser.html", null ]
+    ] ],
+    [ "IRepository< T >", "classIRepository.html", null ],
+    [ "IRepository< Message >", "classIRepository.html", [
+      [ "MessageRepository", "classMessageRepository.html", null ]
+    ] ],
+    [ "IRepository< OfflineMessage >", "classIRepository.html", [
+      [ "OfflineQueueRepository", "classOfflineQueueRepository.html", null ]
+    ] ],
+    [ "IRepository< Session >", "classIRepository.html", [
+      [ "SessionRepository", "classSessionRepository.html", null ]
+    ] ],
+    [ "IRepository< User >", "classIRepository.html", [
+      [ "UserRepository", "classUserRepository.html", null ]
     ] ],
     [ "Packet", "structPacket.html", null ],
     [ "ProtocolParser", "classProtocolParser.html", null ],

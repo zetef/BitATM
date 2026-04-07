@@ -4,6 +4,7 @@ var annotated_dup =
     [ "ConversationHistory", "classConversationHistory.html", "classConversationHistory" ],
     [ "CryptoException", "classCryptoException.html", "classCryptoException" ],
     [ "DbException", "classDbException.html", "classDbException" ],
+    [ "DbManager", "classDbManager.html", "classDbManager" ],
     [ "EchoFactory", "classEchoFactory.html", "classEchoFactory" ],
     [ "EchoHandler", "classEchoHandler.html", "classEchoHandler" ],
     [ "EchoServer", "classEchoServer.html", null ],
@@ -12,14 +13,19 @@ var annotated_dup =
     [ "ICommandHandler", "classICommandHandler.html", "classICommandHandler" ],
     [ "ICryptoStrategy", "classICryptoStrategy.html", "classICryptoStrategy" ],
     [ "IEntity", "classIEntity.html", "classIEntity" ],
+    [ "IRepository", "classIRepository.html", "classIRepository" ],
     [ "ISymmetricStrategy", "classISymmetricStrategy.html", "classISymmetricStrategy" ],
     [ "Message", "classMessage.html", "classMessage" ],
+    [ "MessageRepository", "classMessageRepository.html", "classMessageRepository" ],
     [ "NetworkException", "classNetworkException.html", "classNetworkException" ],
     [ "NetworkManager", "classNetworkManager.html", "classNetworkManager" ],
     [ "OfflineMessage", "classOfflineMessage.html", "classOfflineMessage" ],
+    [ "OfflineQueueRepository", "classOfflineQueueRepository.html", "classOfflineQueueRepository" ],
     [ "Packet", "structPacket.html", "structPacket" ],
     [ "ProtocolException", "classProtocolException.html", "classProtocolException" ],
     [ "ProtocolParser", "classProtocolParser.html", "classProtocolParser" ],
     [ "Session", "classSession.html", "classSession" ],
-    [ "User", "classUser.html", "classUser" ]
+    [ "SessionRepository", "classSessionRepository.html", "classSessionRepository" ],
+    [ "User", "classUser.html", "classUser" ],
+    [ "UserRepository", "classUserRepository.html", "classUserRepository" ]
 ];

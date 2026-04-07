@@ -95,12 +95,17 @@ $(document).ready(function(){initNavTree('hierarchy.html',''); initResizable(); 
 <div class="textblock">
 <p><a href="hierarchy.html">Go to the textual class hierarchy</a></p>
 </div><table border="0" cellspacing="10" cellpadding="0">
-<tr><td><img src="inherit_graph_0.png" border="0" usemap="#aICommandHandler" alt=""/>
+<tr><td><img src="inherit_graph_0.png" border="0" usemap="#aDbManager" alt=""/>
+<map name="aDbManager" id="aDbManager">
+<area shape="rect" href="classDbManager.html" title="Singleton that owns the PostgreSQL connection pool." alt="" coords="5,5,103,31"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_1.png" border="0" usemap="#aICommandHandler" alt=""/>
 <map name="aICommandHandler" id="aICommandHandler">
 <area shape="rect" href="classICommandHandler.html" title="Template Method base for all packet handlers." alt="" coords="5,5,149,31"/>
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_1.png" border="0" usemap="#aICryptoStrategy" alt=""/>
+<tr><td><img src="inherit_graph_2.png" border="0" usemap="#aICryptoStrategy" alt=""/>
 <map name="aICryptoStrategy" id="aICryptoStrategy">
 <area shape="rect" href="classICryptoStrategy.html" title="Strategy interface for encryption algorithms." alt="" coords="5,31,129,56"/>
 <area shape="rect" href="classIAsymmetricStrategy.html" title="Abstract interface for asymmetric encryption strategies." alt="" coords="177,5,337,31"/>
@@ -109,7 +114,7 @@ $(document).ready(function(){initNavTree('hierarchy.html',''); initResizable(); 
 <area shape="poly" title=" " alt="" coords="143,50,181,55,181,60,143,55"/>
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_2.png" border="0" usemap="#aIEntity" alt=""/>
+<tr><td><img src="inherit_graph_3.png" border="0" usemap="#aIEntity" alt=""/>
 <map name="aIEntity" id="aIEntity">
 <area shape="rect" href="classIEntity.html" title="Base interface for all persistent domain objects." alt="" coords="5,129,69,155"/>
 <area shape="rect" href="classConversationHistory.html" title="Ordered message history between two users." alt="" coords="117,5,272,31"/>
@@ -126,45 +131,78 @@ $(document).ready(function(){initNavTree('hierarchy.html',''); initResizable(); 
 <area shape="poly" title=" " alt="" coords="55,165,82,202,119,237,144,250,169,258,168,263,142,255,116,242,78,206,51,168"/>
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_3.png" border="0" usemap="#aPacket" alt=""/>
+<tr><td><img src="inherit_graph_4.png" border="0" usemap="#aIRepository_3_01Message_01_4" alt=""/>
+<map name="aIRepository_3_01Message_01_4" id="aIRepository_3_01Message_01_4">
+<area shape="rect" href="classIRepository.html" title=" " alt="" coords="5,5,189,31"/>
+<area shape="rect" href="classMessageRepository.html" title="PostgreSQL&#45;backed repository for Message records." alt="" coords="237,5,388,31"/>
+<area shape="poly" title=" " alt="" coords="203,15,237,15,237,21,203,21"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_5.png" border="0" usemap="#aIRepository_3_01OfflineMessage_01_4" alt=""/>
+<map name="aIRepository_3_01OfflineMessage_01_4" id="aIRepository_3_01OfflineMessage_01_4">
+<area shape="rect" href="classIRepository.html" title=" " alt="" coords="5,5,232,31"/>
+<area shape="rect" href="classOfflineQueueRepository.html" title="PostgreSQL&#45;backed repository for the offline_queue table." alt="" coords="280,5,457,31"/>
+<area shape="poly" title=" " alt="" coords="246,15,280,15,280,21,246,21"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_6.png" border="0" usemap="#aIRepository_3_01Session_01_4" alt=""/>
+<map name="aIRepository_3_01Session_01_4" id="aIRepository_3_01Session_01_4">
+<area shape="rect" href="classIRepository.html" title=" " alt="" coords="5,5,181,31"/>
+<area shape="rect" href="classSessionRepository.html" title="PostgreSQL&#45;backed repository for Session records." alt="" coords="229,5,372,31"/>
+<area shape="poly" title=" " alt="" coords="195,15,229,15,229,21,195,21"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_7.png" border="0" usemap="#aIRepository_3_01T_01_4" alt=""/>
+<map name="aIRepository_3_01T_01_4" id="aIRepository_3_01T_01_4">
+<area shape="rect" href="classIRepository.html" title="Abstract CRUD interface for a persistent store of domain objects." alt="" coords="5,5,140,31"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_8.png" border="0" usemap="#aIRepository_3_01User_01_4" alt=""/>
+<map name="aIRepository_3_01User_01_4" id="aIRepository_3_01User_01_4">
+<area shape="rect" href="classIRepository.html" title=" " alt="" coords="5,5,161,31"/>
+<area shape="rect" href="classUserRepository.html" title="PostgreSQL&#45;backed repository for User records." alt="" coords="209,5,332,31"/>
+<area shape="poly" title=" " alt="" coords="175,15,209,15,209,21,175,21"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_9.png" border="0" usemap="#aPacket" alt=""/>
 <map name="aPacket" id="aPacket">
 <area shape="rect" href="structPacket.html" title=" " alt="" coords="5,5,69,31"/>
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_4.png" border="0" usemap="#aPoco_1_1Net_1_1HTTPRequestHandler" alt=""/>
+<tr><td><img src="inherit_graph_10.png" border="0" usemap="#aPoco_1_1Net_1_1HTTPRequestHandler" alt=""/>
 <map name="aPoco_1_1Net_1_1HTTPRequestHandler" id="aPoco_1_1Net_1_1HTTPRequestHandler">
 <area shape="rect" title=" " alt="" coords="5,5,236,31"/>
 <area shape="rect" href="classEchoHandler.html" title=" " alt="" coords="284,5,388,31"/>
 <area shape="poly" title=" " alt="" coords="250,15,284,15,284,21,250,21"/>
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_5.png" border="0" usemap="#aPoco_1_1Net_1_1HTTPRequestHandlerFactory" alt=""/>
+<tr><td><img src="inherit_graph_11.png" border="0" usemap="#aPoco_1_1Net_1_1HTTPRequestHandlerFactory" alt=""/>
 <map name="aPoco_1_1Net_1_1HTTPRequestHandlerFactory" id="aPoco_1_1Net_1_1HTTPRequestHandlerFactory">
 <area shape="rect" title=" " alt="" coords="5,5,236,45"/>
 <area shape="rect" href="classEchoFactory.html" title=" " alt="" coords="284,13,384,38"/>
 <area shape="poly" title=" " alt="" coords="250,23,284,23,284,28,250,28"/>
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_6.png" border="0" usemap="#aPoco_1_1Util_1_1ServerApplication" alt=""/>
+<tr><td><img src="inherit_graph_12.png" border="0" usemap="#aPoco_1_1Util_1_1ServerApplication" alt=""/>
 <map name="aPoco_1_1Util_1_1ServerApplication" id="aPoco_1_1Util_1_1ServerApplication">
 <area shape="rect" title=" " alt="" coords="5,5,212,31"/>
 <area shape="rect" href="classEchoServer.html" title=" " alt="" coords="260,5,355,31"/>
 <area shape="poly" title=" " alt="" coords="226,15,260,15,260,21,226,21"/>
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_7.png" border="0" usemap="#aProtocolParser" alt=""/>
+<tr><td><img src="inherit_graph_13.png" border="0" usemap="#aProtocolParser" alt=""/>
 <map name="aProtocolParser" id="aProtocolParser">
 <area shape="rect" href="classProtocolParser.html" title="Stateless utility for serializing and deserializing Packets." alt="" coords="5,5,120,31"/>
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_8.png" border="0" usemap="#aQObject" alt=""/>
+<tr><td><img src="inherit_graph_14.png" border="0" usemap="#aQObject" alt=""/>
 <map name="aQObject" id="aQObject">
 <area shape="rect" title=" " alt="" coords="5,5,80,31"/>
 <area shape="rect" href="classNetworkManager.html" title=" " alt="" coords="128,5,263,31"/>
 <area shape="poly" title=" " alt="" coords="94,15,128,15,128,21,94,21"/>
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_9.png" border="0" usemap="#astd_1_1exception" alt=""/>
+<tr><td><img src="inherit_graph_15.png" border="0" usemap="#astd_1_1exception" alt=""/>
 <map name="astd_1_1exception" id="astd_1_1exception">
 <area shape="rect" title=" " alt="" coords="5,80,120,105"/>
 <area shape="rect" title=" " alt="" coords="168,80,307,105"/>
