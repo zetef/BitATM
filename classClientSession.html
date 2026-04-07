@@ -156,7 +156,7 @@ Public Member Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Represents one live WebSocket connection. </p>
-<p>Pattern: State — transitions through Connected → Authenticating → Authenticated → Disconnected. Shared ownership via shared_ptr (<a class="el" href="classServer.html" title="Main server application. Owns the client map and handler factory.">Server</a> holds the map, handler holds the per-thread reference).</p>
+<p>Pattern: State - transitions through Connected -&gt; Authenticating -&gt; Authenticated -&gt; Disconnected. Shared ownership via shared_ptr (<a class="el" href="classServer.html" title="Main server application. Owns the client map and handler factory.">Server</a> holds the map, handler holds the per-thread reference).</p>
 <p>Thread safety: state and credentials are guarded by _mutex. The WebSocket send/receive use Poco's internal frame locking. </p>
 </div><h2 class="groupheader">Member Enumeration Documentation</h2>
 <a id="a7285e048076fc75300a4becab14c6378" name="a7285e048076fc75300a4becab14c6378"></a>

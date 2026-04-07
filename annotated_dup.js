@@ -1,7 +1,9 @@
 var annotated_dup =
 [
+    [ "AckHandler", "classAckHandler.html", "classAckHandler" ],
     [ "AesGcmStrategy", "classAesGcmStrategy.html", "classAesGcmStrategy" ],
     [ "AppException", "classAppException.html", "classAppException" ],
+    [ "BaseAuthHandler", "classBaseAuthHandler.html", "classBaseAuthHandler" ],
     [ "ClientSession", "classClientSession.html", "classClientSession" ],
     [ "ConnectionHandler", "classConnectionHandler.html", "classConnectionHandler" ],
     [ "ConnectionHandlerFactory", "classConnectionHandlerFactory.html", "classConnectionHandlerFactory" ],
@@ -16,7 +18,10 @@ var annotated_dup =
     [ "IEntity", "classIEntity.html", "classIEntity" ],
     [ "IRepository", "classIRepository.html", "classIRepository" ],
     [ "ISymmetricStrategy", "classISymmetricStrategy.html", "classISymmetricStrategy" ],
+    [ "KeyExchangeHandler", "classKeyExchangeHandler.html", "classKeyExchangeHandler" ],
+    [ "LoginHandler", "classLoginHandler.html", "classLoginHandler" ],
     [ "Message", "classMessage.html", "classMessage" ],
+    [ "MessageHandler", "classMessageHandler.html", "classMessageHandler" ],
     [ "MessageRepository", "classMessageRepository.html", "classMessageRepository" ],
     [ "NetworkException", "classNetworkException.html", "classNetworkException" ],
     [ "NetworkManager", "classNetworkManager.html", "classNetworkManager" ],
@@ -27,6 +32,7 @@ var annotated_dup =
     [ "PacketHandlerFactory", "classPacketHandlerFactory.html", "classPacketHandlerFactory" ],
     [ "ProtocolException", "classProtocolException.html", "classProtocolException" ],
     [ "ProtocolParser", "classProtocolParser.html", "classProtocolParser" ],
+    [ "RegisterHandler", "classRegisterHandler.html", "classRegisterHandler" ],
     [ "Server", "classServer.html", "classServer" ],
     [ "Session", "classSession.html", "classSession" ],
     [ "SessionRepository", "classSessionRepository.html", "classSessionRepository" ],

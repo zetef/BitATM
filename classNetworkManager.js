@@ -11,7 +11,8 @@ var classNetworkManager =
     [ "lastMessage", "classNetworkManager.html#a6ee3929635e27c7b801a2a3d61279ce1", null ],
     [ "lastMessageChanged", "classNetworkManager.html#ae433b408a3a5b19bc4155008aa2f93ea", null ],
     [ "messageReceived", "classNetworkManager.html#a603d801e6200da430707381ba39241c2", null ],
-    [ "sendText", "classNetworkManager.html#af0fc459832db6a1eb282c4871fbf52f8", null ],
+    [ "sendLogin", "classNetworkManager.html#a2f815193125adfb0eb520665d8a87f5c", null ],
+    [ "sendRegister", "classNetworkManager.html#a04e128630115ed7fa113451dc745f1d7", null ],
     [ "hasError", "classNetworkManager.html#a1b808812493fcb6960347bdab710bd28", null ],
     [ "isConnected", "classNetworkManager.html#af4bbe1ae11e54eb1c5a7f1ce07a51af2", null ],
     [ "lastMessage", "classNetworkManager.html#acb5092184a7b088b3fa60f61106320cb", null ]

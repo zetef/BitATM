@@ -53,8 +53,8 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"AesGcmStrategy_8cpp.html",
-"classOfflineMessage.html#aab48c468f3eeba6d8f6fa5754e9d88a5"
+"AckHandler_8cpp.html",
+"classMessageRepository.html#a89b91e532b78180e46a42ace2d348ffe"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

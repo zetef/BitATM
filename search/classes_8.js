@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['packet_0',['Packet',['../structPacket.html',1,'']]],
-  ['packethandlerfactory_1',['PacketHandlerFactory',['../classPacketHandlerFactory.html',1,'']]],
-  ['protocolexception_2',['ProtocolException',['../classProtocolException.html',1,'']]],
-  ['protocolparser_3',['ProtocolParser',['../classProtocolParser.html',1,'']]]
+  ['message_0',['Message',['../classMessage.html',1,'']]],
+  ['messagehandler_1',['MessageHandler',['../classMessageHandler.html',1,'']]],
+  ['messagerepository_2',['MessageRepository',['../classMessageRepository.html',1,'']]]
 ];

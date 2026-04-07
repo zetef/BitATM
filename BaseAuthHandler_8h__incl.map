@@ -1,0 +1,13 @@
+<map id="backend/src/BaseAuthHandler.h" name="backend/src/BaseAuthHandler.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="23,5,249,31"/>
+<area shape="rect" id="Node000002" href="$ICommandHandler_8h.html" title=" " alt="" coords="59,79,213,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="139,31,139,65,133,65,133,31"/>
+<area shape="rect" id="Node000003" href="$protocol_8h.html" title=" " alt="" coords="50,152,222,177"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="139,104,139,138,133,138,133,104"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="5,225,72,251"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="122,180,67,219,64,215,119,175"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="96,225,176,251"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="139,178,139,212,133,212,133,178"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="200,225,259,251"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="153,175,205,215,202,219,149,179"/>
+</map>

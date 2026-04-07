@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['groupmessage_0',['GroupMessage',['../classGroupMessage.html',1,'']]]
+  ['dbexception_0',['DbException',['../classDbException.html',1,'']]],
+  ['dbmanager_1',['DbManager',['../classDbManager.html',1,'']]]
 ];

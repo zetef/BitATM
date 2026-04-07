@@ -1,0 +1,5 @@
+<map id="BaseAuthHandler" name="BaseAuthHandler">
+<area shape="rect" id="Node000001" title="L2 abstract handler for packet types that require an authenticated session." alt="" coords="28,199,155,264"/>
+<area shape="rect" id="Node000002" href="$classICommandHandler.html" title="Template Method base for all packet handlers." alt="" coords="5,5,177,151"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="94,164,94,198,89,198,89,164"/>
+</map>

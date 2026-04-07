@@ -107,7 +107,19 @@ $(document).ready(function(){initNavTree('hierarchy.html',''); initResizable(); 
 </td></tr>
 <tr><td><img src="inherit_graph_2.png" border="0" usemap="#aICommandHandler" alt=""/>
 <map name="aICommandHandler" id="aICommandHandler">
-<area shape="rect" href="classICommandHandler.html" title="Template Method base for all packet handlers." alt="" coords="5,5,149,31"/>
+<area shape="rect" href="classICommandHandler.html" title="Template Method base for all packet handlers." alt="" coords="5,105,149,131"/>
+<area shape="rect" href="classBaseAuthHandler.html" title="L2 abstract handler for packet types that require an authenticated session." alt="" coords="197,80,332,105"/>
+<area shape="poly" title=" " alt="" coords="163,104,197,99,198,104,163,109"/>
+<area shape="rect" href="classRegisterHandler.html" title="Handles REGISTER packets. L2 &#45; extends ICommandHandler directly (no session authentication required t..." alt="" coords="201,129,328,155"/>
+<area shape="poly" title=" " alt="" coords="164,126,201,131,200,137,163,132"/>
+<area shape="rect" href="classAckHandler.html" title="Handles ACK packets. L3 under BaseAuthHandler." alt="" coords="411,5,509,31"/>
+<area shape="poly" title=" " alt="" coords="303,72,379,40,413,28,414,33,381,44,305,77"/>
+<area shape="rect" href="classKeyExchangeHandler.html" title="Handles KEY_EXCHANGE packets. L3 under BaseAuthHandler." alt="" coords="380,55,540,80"/>
+<area shape="poly" title=" " alt="" coords="346,80,380,75,380,80,346,85"/>
+<area shape="rect" href="classLoginHandler.html" title="Handles LOGIN packets. L3 under BaseAuthHandler." alt="" coords="406,104,514,129"/>
+<area shape="poly" title=" " alt="" coords="346,100,406,107,405,113,346,105"/>
+<area shape="rect" href="classMessageHandler.html" title="Handles MESSAGE packets. L3 under BaseAuthHandler." alt="" coords="395,153,525,179"/>
+<area shape="poly" title=" " alt="" coords="317,108,333,114,381,138,416,151,414,156,379,143,331,119,315,113"/>
 </map>
 </td></tr>
 <tr><td><img src="inherit_graph_3.png" border="0" usemap="#aICryptoStrategy" alt=""/>
@@ -183,7 +195,7 @@ $(document).ready(function(){initNavTree('hierarchy.html',''); initResizable(); 
 </td></tr>
 <tr><td><img src="inherit_graph_12.png" border="0" usemap="#aPacketHandlerFactory" alt=""/>
 <map name="aPacketHandlerFactory" id="aPacketHandlerFactory">
-<area shape="rect" href="classPacketHandlerFactory.html" title="Factory Method — maps PacketType to its ICommandHandler." alt="" coords="5,5,168,31"/>
+<area shape="rect" href="classPacketHandlerFactory.html" title="Factory Method &#45; maps PacketType to its ICommandHandler." alt="" coords="5,5,168,31"/>
 </map>
 </td></tr>
 <tr><td><img src="inherit_graph_13.png" border="0" usemap="#aPoco_1_1Net_1_1HTTPRequestHandler" alt=""/>

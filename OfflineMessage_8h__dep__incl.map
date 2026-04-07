@@ -1,9 +1,15 @@
 <map id="backend/src/OfflineMessage.h" name="backend/src/OfflineMessage.h">
-<area shape="rect" id="Node000001" title=" " alt="" coords="129,5,345,31"/>
-<area shape="rect" id="Node000002" href="$OfflineMessage_8cpp.html" title=" " alt="" coords="5,86,236,111"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="210,41,139,88,136,84,207,36"/>
-<area shape="rect" id="Node000003" href="$OfflineQueueRepository_8h.html" title=" " alt="" coords="260,79,448,119"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="267,36,327,76,324,81,264,40"/>
-<area shape="rect" id="Node000004" href="$OfflineQueueRepository_8cpp.html" title=" " alt="" coords="260,167,448,207"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="357,133,357,166,351,166,351,133"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="241,5,457,31"/>
+<area shape="rect" id="Node000002" href="$OfflineMessage_8cpp.html" title=" " alt="" coords="117,86,348,111"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="322,41,251,88,248,84,319,36"/>
+<area shape="rect" id="Node000003" href="$OfflineQueueRepository_8h.html" title=" " alt="" coords="372,79,560,119"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="379,36,439,76,436,81,376,40"/>
+<area shape="rect" id="Node000004" href="$AckHandler_8cpp.html" title=" " alt="" coords="5,174,209,199"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="375,124,156,177,154,171,373,119"/>
+<area shape="rect" id="Node000005" href="$LoginHandler_8cpp.html" title=" " alt="" coords="233,174,448,199"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="428,129,359,176,356,172,425,125"/>
+<area shape="rect" id="Node000006" href="$MessageHandler_8cpp.html" title=" " alt="" coords="472,174,711,199"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="507,125,576,172,573,176,504,129"/>
+<area shape="rect" id="Node000007" href="$OfflineQueueRepository_8cpp.html" title=" " alt="" coords="735,167,923,207"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="559,119,750,164,749,169,558,124"/>
 </map>

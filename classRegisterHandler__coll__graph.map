@@ -1,0 +1,5 @@
+<map id="RegisterHandler" name="RegisterHandler">
+<area shape="rect" id="Node000001" title="Handles REGISTER packets. L2 &#45; extends ICommandHandler directly (no session authentication required t..." alt="" coords="32,199,151,304"/>
+<area shape="rect" id="Node000002" href="$classICommandHandler.html" title="Template Method base for all packet handlers." alt="" coords="5,5,177,151"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="94,164,94,199,89,199,89,164"/>
+</map>

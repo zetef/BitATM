@@ -104,7 +104,7 @@ Inheritance diagram for NetworkManager:</div>
 <div class="dyncontent">
 <div class="center"><img src="classNetworkManager__inherit__graph.png" border="0" usemap="#aNetworkManager_inherit__map" alt="Inheritance graph"/></div>
 <map name="aNetworkManager_inherit__map" id="aNetworkManager_inherit__map">
-<area shape="rect" title=" " alt="" coords="5,119,156,324"/>
+<area shape="rect" title=" " alt="" coords="5,119,156,344"/>
 <area shape="rect" title=" " alt="" coords="47,5,114,71"/>
 <area shape="poly" title=" " alt="" coords="83,84,83,119,78,119,78,84"/>
 </map>
@@ -114,7 +114,7 @@ Collaboration diagram for NetworkManager:</div>
 <div class="dyncontent">
 <div class="center"><img src="classNetworkManager__coll__graph.png" border="0" usemap="#aNetworkManager_coll__map" alt="Collaboration graph"/></div>
 <map name="aNetworkManager_coll__map" id="aNetworkManager_coll__map">
-<area shape="rect" title=" " alt="" coords="5,119,156,324"/>
+<area shape="rect" title=" " alt="" coords="5,119,156,344"/>
 <area shape="rect" title=" " alt="" coords="47,5,114,71"/>
 <area shape="poly" title=" " alt="" coords="83,84,83,119,78,119,78,84"/>
 </map>
@@ -141,8 +141,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a25e5a69c0dba31cc028050c2b6eea855"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa5e7b25d9a603077169f10aa9bc0485d" id="r_aa5e7b25d9a603077169f10aa9bc0485d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkManager.html#aa5e7b25d9a603077169f10aa9bc0485d">connectToServer</a> (const QUrl &amp;url)</td></tr>
 <tr class="separator:aa5e7b25d9a603077169f10aa9bc0485d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af0fc459832db6a1eb282c4871fbf52f8" id="r_af0fc459832db6a1eb282c4871fbf52f8"><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkManager.html#af0fc459832db6a1eb282c4871fbf52f8">sendText</a> (const QString &amp;text)</td></tr>
-<tr class="separator:af0fc459832db6a1eb282c4871fbf52f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04e128630115ed7fa113451dc745f1d7" id="r_a04e128630115ed7fa113451dc745f1d7"><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkManager.html#a04e128630115ed7fa113451dc745f1d7">sendRegister</a> (const QString &amp;username, const QString &amp;password)</td></tr>
+<tr class="separator:a04e128630115ed7fa113451dc745f1d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f815193125adfb0eb520665d8a87f5c" id="r_a2f815193125adfb0eb520665d8a87f5c"><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkManager.html#a2f815193125adfb0eb520665d8a87f5c">sendLogin</a> (const QString &amp;username, const QString &amp;password)</td></tr>
+<tr class="separator:a2f815193125adfb0eb520665d8a87f5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a97d1fb741f609c2442efdfd92e944ed2" id="r_a97d1fb741f609c2442efdfd92e944ed2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkManager.html#a97d1fb741f609c2442efdfd92e944ed2">isConnected</a> () const</td></tr>
 <tr class="separator:a97d1fb741f609c2442efdfd92e944ed2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6ee3929635e27c7b801a2a3d61279ce1" id="r_a6ee3929635e27c7b801a2a3d61279ce1"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkManager.html#a6ee3929635e27c7b801a2a3d61279ce1">lastMessage</a> () const</td></tr>
@@ -408,18 +410,56 @@ Properties</h2></td></tr>
 
 </div>
 </div>
-<a id="af0fc459832db6a1eb282c4871fbf52f8" name="af0fc459832db6a1eb282c4871fbf52f8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af0fc459832db6a1eb282c4871fbf52f8">&#9670;&#160;</a></span>sendText()</h2>
+<a id="a2f815193125adfb0eb520665d8a87f5c" name="a2f815193125adfb0eb520665d8a87f5c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f815193125adfb0eb520665d8a87f5c">&#9670;&#160;</a></span>sendLogin()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void NetworkManager::sendText </td>
+          <td class="memname">void NetworkManager::sendLogin </td>
           <td>(</td>
           <td class="paramtype">const QString &amp;&#160;</td>
-          <td class="paramname"><em>text</em></td><td>)</td>
+          <td class="paramname"><em>username</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>password</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a04e128630115ed7fa113451dc745f1d7" name="a04e128630115ed7fa113451dc745f1d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a04e128630115ed7fa113451dc745f1d7">&#9670;&#160;</a></span>sendRegister()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NetworkManager::sendRegister </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>username</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>password</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">

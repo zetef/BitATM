@@ -18,7 +18,15 @@ var hierarchy =
     [ "Poco::Net::HTTPRequestHandlerFactory", null, [
       [ "ConnectionHandlerFactory", "classConnectionHandlerFactory.html", null ]
     ] ],
-    [ "ICommandHandler", "classICommandHandler.html", null ],
+    [ "ICommandHandler", "classICommandHandler.html", [
+      [ "BaseAuthHandler", "classBaseAuthHandler.html", [
+        [ "AckHandler", "classAckHandler.html", null ],
+        [ "KeyExchangeHandler", "classKeyExchangeHandler.html", null ],
+        [ "LoginHandler", "classLoginHandler.html", null ],
+        [ "MessageHandler", "classMessageHandler.html", null ]
+      ] ],
+      [ "RegisterHandler", "classRegisterHandler.html", null ]
+    ] ],
     [ "ICryptoStrategy", "classICryptoStrategy.html", [
       [ "IAsymmetricStrategy", "classIAsymmetricStrategy.html", null ],
       [ "ISymmetricStrategy", "classISymmetricStrategy.html", [
