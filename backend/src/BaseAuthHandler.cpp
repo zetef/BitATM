@@ -5,5 +5,5 @@
 
 void BaseAuthHandler::authorize(const ClientSession& session) {
     if (!session.isAuthenticated())
-        throw ProtocolException("BaseAuthHandler: request rejected — session not authenticated");
+        throw ProtocolException("BaseAuthHandler: request rejected - session not authenticated");
 }

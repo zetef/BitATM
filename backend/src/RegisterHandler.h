@@ -2,11 +2,11 @@
 #include "ICommandHandler.h"
 
 /**
- * @brief Handles REGISTER packets. L2 — extends ICommandHandler directly
+ * @brief Handles REGISTER packets. L2 - extends ICommandHandler directly
  * (no session authentication required to create an account).
  *
- * Flow: validate username/password presence → check duplicate → hash
- * password (PBKDF2-SHA256, 100 000 iterations) → persist User → ACK.
+ * Flow: validate username/password presence -> check duplicate -> hash
+ * password (PBKDF2-SHA256, 100 000 iterations) -> persist User -> ACK.
  */
 class RegisterHandler : public ICommandHandler {
 protected:

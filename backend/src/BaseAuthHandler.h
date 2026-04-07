@@ -4,7 +4,7 @@
 /**
  * @brief L2 abstract handler for packet types that require an authenticated session.
  *
- * Implements authorize() — throws ProtocolException if the session is not
+ * Implements authorize() - throws ProtocolException if the session is not
  * in the Authenticated state. Subclasses (LoginHandler, MessageHandler,
  * KeyExchangeHandler, AckHandler) only need to override validate() and execute().
  */

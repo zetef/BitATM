@@ -16,7 +16,7 @@
 #include "RegisterHandler.h"
 
 // ---------------------------------------------------------------------------
-// ConnectionHandler — one per WebSocket connection, runs in Poco thread pool
+// ConnectionHandler - one per WebSocket connection, runs in Poco thread pool
 // ---------------------------------------------------------------------------
 class ConnectionHandler : public Poco::Net::HTTPRequestHandler {
 public:

@@ -15,12 +15,12 @@ void MessageHandler::validate(const Packet& packet) {
 }
 
 void MessageHandler::execute(Packet& packet, ClientSession& session) {
-    // Persist message — body is opaque ciphertext, server never decrypts
+    // Persist message - body is opaque ciphertext, server never decrypts
     Message msg{0, packet.from, packet.to, packet.body, packet.key};
     MessageRepository msgRepo;
     msgRepo.save(msg);
 
-    // Route: online → direct forward, offline → queue
+    // Route: online -> direct forward, offline -> queue
     auto recipient = _server.findClient(packet.to);
     if (recipient) {
         recipient->send(packet);

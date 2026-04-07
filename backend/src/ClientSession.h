@@ -9,8 +9,8 @@
 /**
  * @brief Represents one live WebSocket connection.
  *
- * Pattern: State — transitions through Connected → Authenticating →
- * Authenticated → Disconnected. Shared ownership via shared_ptr
+ * Pattern: State - transitions through Connected -> Authenticating ->
+ * Authenticated -> Disconnected. Shared ownership via shared_ptr
  * (Server holds the map, handler holds the per-thread reference).
  *
  * Thread safety: state and credentials are guarded by _mutex.

@@ -20,7 +20,7 @@ void DbManager::init(const std::string& connectionString, int poolSize) {
 }
 
 Poco::Data::Session DbManager::session() {
-    if (!_pool) throw DbException("DbManager: pool not initialised — call init() first");
+    if (!_pool) throw DbException("DbManager: pool not initialised - call init() first");
     try {
         return _pool->get();
     } catch (const Poco::Exception& e) {

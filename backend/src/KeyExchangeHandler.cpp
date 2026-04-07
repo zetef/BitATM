@@ -6,7 +6,7 @@
 
 void KeyExchangeHandler::validate(const Packet& packet) {
     if (packet.from.empty()) throw ProtocolException("KEY_EXCHANGE: sender (from) is required");
-    // Either uploading own key or requesting a peer's key — at least one must be present
+    // Either uploading own key or requesting a peer's key - at least one must be present
     if (packet.key.empty() && packet.to.empty())
         throw ProtocolException(
             "KEY_EXCHANGE: provide key to upload or 'to' to request a peer key");
@@ -37,7 +37,7 @@ void KeyExchangeHandler::execute(Packet& packet, ClientSession& session) {
         return;
     }
 
-    // Pure upload — acknowledge
+    // Pure upload - acknowledge
     Packet ack;
     ack.type = PacketType::ACK;
     ack.to = packet.from;

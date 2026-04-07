@@ -13,7 +13,7 @@ Message::Message(int id, std::string sender, std::string recipient, std::string 
       _createdAt(std::move(createdAt)) {}
 
 std::string Message::serialize() const {
-    // encryptedBody intentionally omitted — opaque to server
+    // encryptedBody intentionally omitted - opaque to server
     return std::to_string(_id) + "|" + _sender + "|" + _recipient + "|" + _encryptedKey + "|" +
            _status + "|" + _createdAt;
 }

@@ -13,7 +13,7 @@ GroupMessage::GroupMessage(int id, std::string groupName, std::string sender,
       _createdAt(std::move(createdAt)) {}
 
 std::string GroupMessage::serialize() const {
-    // encryptedBody intentionally omitted — opaque to server
+    // encryptedBody intentionally omitted - opaque to server
     return std::to_string(_id) + "|" + _groupName + "|" + _sender + "|" + _encryptedKeys + "|" +
            _createdAt;
 }

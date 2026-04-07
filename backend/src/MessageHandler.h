@@ -6,7 +6,7 @@ class Server;
 /**
  * @brief Handles MESSAGE packets. L3 under BaseAuthHandler.
  *
- * The server is relay-only — body and key are opaque ciphertext.
+ * The server is relay-only - body and key are opaque ciphertext.
  * If the recipient is online: forward directly via their session.
  * If offline: persist to messages + offline_queue for later delivery.
  */

@@ -21,7 +21,7 @@ Packet ProtocolParser::deserialize(const std::string& data) const {
     try {
         ss >> p;
     } catch (const std::exception& e) {
-        throw ProtocolException(std::string("ProtocolParser: malformed packet — ") + e.what());
+        throw ProtocolException(std::string("ProtocolParser: malformed packet - ") + e.what());
     }
 
     if (ss.fail()) throw ProtocolException("ProtocolParser: incomplete packet fields");
