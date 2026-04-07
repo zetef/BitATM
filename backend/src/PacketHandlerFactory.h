@@ -7,7 +7,7 @@
 #include "ICommandHandler.h"
 
 /**
- * @brief Factory Method — maps PacketType to its ICommandHandler.
+ * @brief Factory Method - maps PacketType to its ICommandHandler.
  *
  * Handlers register themselves at startup via registerHandler().
  * create() returns a fresh unique_ptr for each invocation.

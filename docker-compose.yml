@@ -10,6 +10,7 @@ services:
       - pgdata:/var/lib/postgresql/data
     networks:
       - backend
+
   adminer:
     image: adminer:latest
     restart: unless-stopped
@@ -17,19 +18,26 @@ services:
       ADMINER_DEFAULT_SERVER: postgres
       ADMINER_DESIGN: pepa-linha
     ports:
-      - EXTERNAL_PORT:8080 ## REPLACE HERE
+      - "${ADMINER_PORT:-8081}:8080"
     networks:
       - backend
+
   backend:
     build:
-      context: /path/to/custom/stack ## REPLACE HERE
-      dockerfile: BitATM/backend/Dockerfile
+      context: .
+      dockerfile: backend/Dockerfile
     restart: unless-stopped
+    environment:
+      DATABASE_URL: "host=postgres port=5432 dbname=bitatm_chat user=chatuser password=${POSTGRES_PASSWORD}"
     ports:
-      - EXTERNAL_PORT:8080 ## REPLACE HERE
+      - "${BACKEND_PORT:-8080}:8080"
+    depends_on:
+      - postgres
     networks:
       - backend
+
 volumes:
   pgdata: null
+
 networks:
   backend: null

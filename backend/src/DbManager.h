@@ -7,7 +7,7 @@
 /**
  * @brief Singleton that owns the PostgreSQL connection pool.
  *
- * Pattern: Meyers Singleton — thread-safe by C++11 static initialization.
+ * Pattern: Meyers Singleton - thread-safe by C++11 static initialization.
  * Usage: DbManager::instance().session()
  *
  * Throws DbException if the pool is not initialized or a connection fails.
@@ -31,7 +31,7 @@ public:
      */
     Poco::Data::Session session();
 
-    // Singleton — non-copyable, non-movable
+    // Singleton - non-copyable, non-movable
     DbManager(const DbManager&) = delete;
     DbManager& operator=(const DbManager&) = delete;
     DbManager(DbManager&&) = delete;

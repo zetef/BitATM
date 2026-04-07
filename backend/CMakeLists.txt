@@ -16,6 +16,13 @@ add_executable(bitatm-backend
     src/ClientSession.h           src/ClientSession.cpp
     src/PacketHandlerFactory.h    src/PacketHandlerFactory.cpp
     src/Server.h                  src/Server.cpp
+    src/ICommandHandler.h
+    src/BaseAuthHandler.h         src/BaseAuthHandler.cpp
+    src/RegisterHandler.h         src/RegisterHandler.cpp
+    src/LoginHandler.h            src/LoginHandler.cpp
+    src/MessageHandler.h          src/MessageHandler.cpp
+    src/KeyExchangeHandler.h      src/KeyExchangeHandler.cpp
+    src/AckHandler.h              src/AckHandler.cpp
 )
 target_link_libraries(bitatm-backend PRIVATE
     common

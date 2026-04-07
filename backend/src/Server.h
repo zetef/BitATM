@@ -13,7 +13,7 @@
 /**
  * @brief Main server application. Owns the client map and handler factory.
  *
- * Inherits Poco::Util::ServerApplication — entry point via POCO_SERVER_MAIN.
+ * Inherits Poco::Util::ServerApplication - entry point via POCO_SERVER_MAIN.
  * One thread per client (Poco thread pool). All access to _clients is
  * guarded by _clientsMutex.
  */
