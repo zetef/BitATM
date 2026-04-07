@@ -18,9 +18,10 @@ var searchData=
   ['irepository_3c_20session_20_3e_15',['IRepository&lt; Session &gt;',['../classIRepository.html',1,'']]],
   ['irepository_3c_20user_20_3e_16',['IRepository&lt; User &gt;',['../classIRepository.html',1,'']]],
   ['isactive_17',['isActive',['../classSession.html#a373fc8d50fca97a245c8eeea3bc8d066',1,'Session']]],
-  ['isconnected_18',['isconnected',['../classNetworkManager.html#af4bbe1ae11e54eb1c5a7f1ce07a51af2',1,'NetworkManager::isConnected'],['../classNetworkManager.html#a97d1fb741f609c2442efdfd92e944ed2',1,'NetworkManager::isConnected() const']]],
-  ['isdelivered_19',['isDelivered',['../classOfflineMessage.html#a8865b2edc2ed672883b801658c4c232a',1,'OfflineMessage']]],
-  ['isymmetricstrategy_20',['ISymmetricStrategy',['../classISymmetricStrategy.html',1,'']]],
-  ['isymmetricstrategy_2eh_21',['ISymmetricStrategy.h',['../ISymmetricStrategy_8h.html',1,'']]],
-  ['ivsize_22',['ivSize',['../classISymmetricStrategy.html#a56d3748a3e8df032e5365cbfdc037574',1,'ISymmetricStrategy']]]
+  ['isauthenticated_18',['isAuthenticated',['../classClientSession.html#af42902d8a38c41d71cb8addd15188759',1,'ClientSession']]],
+  ['isconnected_19',['isconnected',['../classNetworkManager.html#af4bbe1ae11e54eb1c5a7f1ce07a51af2',1,'NetworkManager::isConnected'],['../classNetworkManager.html#a97d1fb741f609c2442efdfd92e944ed2',1,'NetworkManager::isConnected() const']]],
+  ['isdelivered_20',['isDelivered',['../classOfflineMessage.html#a8865b2edc2ed672883b801658c4c232a',1,'OfflineMessage']]],
+  ['isymmetricstrategy_21',['ISymmetricStrategy',['../classISymmetricStrategy.html',1,'']]],
+  ['isymmetricstrategy_2eh_22',['ISymmetricStrategy.h',['../ISymmetricStrategy_8h.html',1,'']]],
+  ['ivsize_23',['ivSize',['../classISymmetricStrategy.html#a56d3748a3e8df032e5365cbfdc037574',1,'ISymmetricStrategy']]]
 ];

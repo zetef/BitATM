@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['message_0',['Message',['../classMessage.html',1,'']]],
-  ['messagerepository_1',['MessageRepository',['../classMessageRepository.html',1,'']]]
+  ['networkexception_0',['NetworkException',['../classNetworkException.html',1,'']]],
+  ['networkmanager_1',['NetworkManager',['../classNetworkManager.html',1,'']]]
 ];

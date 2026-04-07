@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['networkexception_0',['NetworkException',['../classNetworkException.html',1,'']]],
-  ['networkmanager_1',['NetworkManager',['../classNetworkManager.html',1,'']]]
+  ['offlinemessage_0',['OfflineMessage',['../classOfflineMessage.html',1,'']]],
+  ['offlinequeuerepository_1',['OfflineQueueRepository',['../classOfflineQueueRepository.html',1,'']]]
 ];

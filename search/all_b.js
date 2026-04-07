@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['main_0',['main',['../frontend_2src_2main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main.cpp']]],
+  ['main_0',['main',['../frontend_2src_2main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main():&#160;main.cpp'],['../classServer.html#a6f679bed8f2732e37ff8bff4b6ca7dd1',1,'Server::main()']]],
   ['main_2ecpp_1',['main.cpp',['../backend_2src_2main_8cpp.html',1,'(Global Namespace)'],['../frontend_2src_2main_8cpp.html',1,'(Global Namespace)']]],
   ['markdelivered_2',['markdelivered',['../classOfflineMessage.html#acbcf7030d6e6c4b4248f4c9f7081cc2c',1,'OfflineMessage::markDelivered()'],['../classOfflineQueueRepository.html#a6134cd9f25a0b69e4422083627e46cec',1,'OfflineQueueRepository::markDelivered()']]],
   ['max_5fpacket_5fsize_3',['MAX_PACKET_SIZE',['../protocol_8h.html#ae4d2325390b1703d2db37ab125ef43cf',1,'protocol.h']]],

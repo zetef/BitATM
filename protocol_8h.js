@@ -7,7 +7,7 @@ var protocol_8h =
       [ "MESSAGE", "protocol_8h.html#a0a80a7bc045affcf10846075b88cbca0a90791ed805bd5b00d78527d39d9ef7e4", null ],
       [ "KEY_EXCHANGE", "protocol_8h.html#a0a80a7bc045affcf10846075b88cbca0a0d03a900f6a4a7c5cd72e45c03dfb30c", null ],
       [ "ACK", "protocol_8h.html#a0a80a7bc045affcf10846075b88cbca0a0fc437bc317835cad5faafc12a83fad5", null ],
-      [ "ERROR", "protocol_8h.html#a0a80a7bc045affcf10846075b88cbca0abb1ca97ec761fc37101737ba0aa2e7c5", null ]
+      [ "ERR", "protocol_8h.html#a0a80a7bc045affcf10846075b88cbca0acd22bad976363fdd1bfbf6759fede482", null ]
     ] ],
     [ "MAX_PACKET_SIZE", "protocol_8h.html#ae4d2325390b1703d2db37ab125ef43cf", null ],
     [ "PROTOCOL_VERSION", "protocol_8h.html#a70f52007f8c2408ec768efe3c27c8849", null ]

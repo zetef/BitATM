@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['error_0',['ERROR',['../protocol_8h.html#a0a80a7bc045affcf10846075b88cbca0abb1ca97ec761fc37101737ba0aa2e7c5',1,'protocol.h']]]
+  ['connected_0',['Connected',['../classClientSession.html#a7285e048076fc75300a4becab14c6378a2ec0d16e4ca169baedb9b2d50ec5c6d7',1,'ClientSession']]]
 ];

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['session_0',['Session',['../classSession.html',1,'']]],
-  ['sessionrepository_1',['SessionRepository',['../classSessionRepository.html',1,'']]]
+  ['user_0',['User',['../classUser.html',1,'']]],
+  ['userrepository_1',['UserRepository',['../classUserRepository.html',1,'']]]
 ];

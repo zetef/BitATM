@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['packet_0',['Packet',['../structPacket.html',1,'']]],
-  ['protocolexception_1',['ProtocolException',['../classProtocolException.html',1,'']]],
-  ['protocolparser_2',['ProtocolParser',['../classProtocolParser.html',1,'']]]
+  ['server_0',['Server',['../classServer.html',1,'']]],
+  ['session_1',['Session',['../classSession.html',1,'']]],
+  ['sessionrepository_2',['SessionRepository',['../classSessionRepository.html',1,'']]]
 ];

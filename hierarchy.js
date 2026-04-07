@@ -1,5 +1,6 @@
 var hierarchy =
 [
+    [ "ClientSession", "classClientSession.html", null ],
     [ "DbManager", "classDbManager.html", null ],
     [ "std::exception", null, [
       [ "std::runtime_error", null, [
@@ -12,10 +13,10 @@ var hierarchy =
       ] ]
     ] ],
     [ "Poco::Net::HTTPRequestHandler", null, [
-      [ "EchoHandler", "classEchoHandler.html", null ]
+      [ "ConnectionHandler", "classConnectionHandler.html", null ]
     ] ],
     [ "Poco::Net::HTTPRequestHandlerFactory", null, [
-      [ "EchoFactory", "classEchoFactory.html", null ]
+      [ "ConnectionHandlerFactory", "classConnectionHandlerFactory.html", null ]
     ] ],
     [ "ICommandHandler", "classICommandHandler.html", null ],
     [ "ICryptoStrategy", "classICryptoStrategy.html", [
@@ -44,11 +45,12 @@ var hierarchy =
       [ "UserRepository", "classUserRepository.html", null ]
     ] ],
     [ "Packet", "structPacket.html", null ],
+    [ "PacketHandlerFactory", "classPacketHandlerFactory.html", null ],
     [ "ProtocolParser", "classProtocolParser.html", null ],
     [ "QObject", null, [
       [ "NetworkManager", "classNetworkManager.html", null ]
     ] ],
     [ "Poco::Util::ServerApplication", null, [
-      [ "EchoServer", "classEchoServer.html", null ]
+      [ "Server", "classServer.html", null ]
     ] ]
 ];

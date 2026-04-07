@@ -1,0 +1,20 @@
+<map id="backend/src/PacketHandlerFactory.h" name="backend/src/PacketHandlerFactory.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="183,5,379,45"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,93,92,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="226,48,96,91,95,86,224,43"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="117,93,194,119"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="252,48,187,88,184,84,249,43"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="219,93,343,119"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="283,46,283,79,278,79,278,46"/>
+<area shape="rect" id="Node000005" href="$protocol_8h.html" title=" " alt="" coords="352,167,524,192"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="304,44,357,91,420,155,416,158,353,95,301,48"/>
+<area shape="rect" id="Node000009" href="$ICommandHandler_8h.html" title=" " alt="" coords="418,93,573,119"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="333,43,452,86,450,91,331,48"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="307,240,374,265"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="424,194,369,234,366,229,421,190"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="398,240,478,265"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="441,192,441,226,435,226,435,192"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="502,240,561,265"/>
+<area shape="poly" id="edge7_Node000005_Node000008" title=" " alt="" coords="455,190,507,229,504,234,451,194"/>
+<area shape="poly" id="edge9_Node000009_Node000005" title=" " alt="" coords="488,121,458,158,454,154,484,117"/>
+</map>

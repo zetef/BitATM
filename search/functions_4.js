@@ -6,5 +6,6 @@ var searchData=
   ['findbysender_3',['findBySender',['../classMessageRepository.html#aa38f2f8ffa32af9b971e8772053cd827',1,'MessageRepository']]],
   ['findbytoken_4',['findByToken',['../classSessionRepository.html#a4808982cbeb5653e080fdeddeda91829',1,'SessionRepository']]],
   ['findbyusername_5',['findByUsername',['../classUserRepository.html#a75e636d043d3ea326ecf5d297fb16e18',1,'UserRepository']]],
-  ['findundeliveredbyrecipient_6',['findUndeliveredByRecipient',['../classOfflineQueueRepository.html#ad3a3e520a3631a0c34ac869313b0b7fb',1,'OfflineQueueRepository']]]
+  ['findclient_6',['findClient',['../classServer.html#ac0318de032d2da7c2dcc25ac916b4f47',1,'Server']]],
+  ['findundeliveredbyrecipient_7',['findUndeliveredByRecipient',['../classOfflineQueueRepository.html#ad3a3e520a3631a0c34ac869313b0b7fb',1,'OfflineQueueRepository']]]
 ];
