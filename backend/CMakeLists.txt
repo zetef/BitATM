@@ -1,12 +1,18 @@
 add_executable(bitatm-backend
     src/main.cpp
-    src/User.h             src/User.cpp
-    src/Message.h          src/Message.cpp
-    src/Session.h          src/Session.cpp
-    src/OfflineMessage.h   src/OfflineMessage.cpp
-    src/ConversationHistory.h src/ConversationHistory.cpp
-    src/GroupMessage.h     src/GroupMessage.cpp
-    src/ProtocolParser.h   src/ProtocolParser.cpp
+    src/User.h                    src/User.cpp
+    src/Message.h                 src/Message.cpp
+    src/Session.h                 src/Session.cpp
+    src/OfflineMessage.h          src/OfflineMessage.cpp
+    src/ConversationHistory.h     src/ConversationHistory.cpp
+    src/GroupMessage.h            src/GroupMessage.cpp
+    src/ProtocolParser.h          src/ProtocolParser.cpp
+    src/IRepository.h
+    src/DbManager.h               src/DbManager.cpp
+    src/UserRepository.h          src/UserRepository.cpp
+    src/MessageRepository.h       src/MessageRepository.cpp
+    src/SessionRepository.h       src/SessionRepository.cpp
+    src/OfflineQueueRepository.h  src/OfflineQueueRepository.cpp
 )
 target_link_libraries(bitatm-backend PRIVATE
     common
