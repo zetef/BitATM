@@ -1,8 +1,11 @@
 #include "LoginHandler.h"
 
 #include <openssl/evp.h>
+#include <openssl/kdf.h>
+#include <openssl/params.h>
 #include <openssl/rand.h>
 
+#include <cstdint>
 #include <iomanip>
 #include <sstream>
 
@@ -32,24 +35,45 @@ std::string fromHex(const std::string& hex) {
     return bytes;
 }
 
+// Verify password against a stored "saltHex:hashHex" produced by Argon2id.
 bool verifyPassword(const std::string& password, const std::string& stored) {
-    constexpr int ITERATIONS = 100000;
-    constexpr int KEY_LEN = 32;
+    constexpr std::size_t HASH_LEN = 32;
 
     const auto sep = stored.find(':');
     if (sep == std::string::npos) return false;
 
     const std::string saltBytes = fromHex(stored.substr(0, sep));
-    const std::string expected = stored.substr(sep + 1);
+    const std::string expectedHex = stored.substr(sep + 1);
 
-    unsigned char hash[KEY_LEN];
-    if (PKCS5_PBKDF2_HMAC(password.c_str(), static_cast<int>(password.size()),
-                          reinterpret_cast<const unsigned char*>(saltBytes.data()),
-                          static_cast<int>(saltBytes.size()), ITERATIONS, EVP_sha256(), KEY_LEN,
-                          hash) != 1)
-        throw CryptoException("LoginHandler: PBKDF2 verification failed");
+    uint32_t m_cost = 65536;
+    uint32_t t_cost = 3;
+    uint32_t lanes = 4;
+    uint32_t threads = 4;
 
-    return toHex(hash, KEY_LEN) == expected;
+    EVP_KDF* kdf = EVP_KDF_fetch(nullptr, "ARGON2ID", nullptr);
+    if (!kdf) throw CryptoException("LoginHandler: Argon2id not available");
+    EVP_KDF_CTX* ctx = EVP_KDF_CTX_new(kdf);
+    EVP_KDF_free(kdf);
+    if (!ctx) throw CryptoException("LoginHandler: EVP_KDF_CTX_new failed");
+
+    OSSL_PARAM params[] = {OSSL_PARAM_construct_octet_string(
+                               "pass", const_cast<char*>(password.data()), password.size()),
+                           OSSL_PARAM_construct_octet_string(
+                               "salt", const_cast<char*>(saltBytes.data()), saltBytes.size()),
+                           OSSL_PARAM_construct_uint32("m_cost", &m_cost),
+                           OSSL_PARAM_construct_uint32("t_cost", &t_cost),
+                           OSSL_PARAM_construct_uint32("lanes", &lanes),
+                           OSSL_PARAM_construct_uint32("threads", &threads),
+                           OSSL_PARAM_END};
+
+    unsigned char out[HASH_LEN];
+    if (EVP_KDF_derive(ctx, out, HASH_LEN, params) != 1) {
+        EVP_KDF_CTX_free(ctx);
+        throw CryptoException("LoginHandler: Argon2id verify failed");
+    }
+    EVP_KDF_CTX_free(ctx);
+
+    return toHex(out, HASH_LEN) == expectedHex;
 }
 
 std::string generateToken() {
@@ -79,18 +103,16 @@ void LoginHandler::execute(Packet& packet, ClientSession& session) {
     if (!verifyPassword(packet.body, userOpt->getPasswordHash()))
         throw ProtocolException("LOGIN: invalid credentials");
 
-    // Issue session token
     const std::string token = generateToken();
     SessionRepository sessionRepo;
     ::Session newSession{0, userOpt->getId(), token, {}, "NOW() + INTERVAL '24 hours'"};
     sessionRepo.save(newSession);
 
-    // Transition session state
     session.setUsername(packet.from);
     session.setSessionToken(token);
     session.setState(ClientSession::State::Authenticated);
 
-    // Flush pending offline messages
+    // flush pending offline messages
     OfflineQueueRepository offlineRepo;
     MessageRepository msgRepo;
     auto pending = offlineRepo.findUndeliveredByRecipient(packet.from);
@@ -101,14 +123,14 @@ void LoginHandler::execute(Packet& packet, ClientSession& session) {
             fwd.type = PacketType::MESSAGE;
             fwd.from = msgOpt->getSender();
             fwd.to = packet.from;
-            fwd.body = msgOpt->getEncryptedKey();  // body carries encrypted key for offline
+            fwd.body = msgOpt->getEncryptedBody();
+            fwd.key = msgOpt->getEncryptedKey();
             fwd.timestamp = msgOpt->getCreatedAt();
             session.send(fwd);
             offlineRepo.markDelivered(entry.getId());
         }
     }
 
-    // ACK with token in body
     Packet ack;
     ack.type = PacketType::ACK;
     ack.to = packet.from;
