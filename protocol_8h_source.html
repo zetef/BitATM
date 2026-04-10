@@ -157,11 +157,12 @@ $(document).ready(function(){initNavTree('protocol_8h_source.html',''); initResi
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        std::getline(is, p.<a class="code hl_variable" href="structPacket.html#aa3757b0e0f59c9e810f0e7d0a02fb6e4">key</a>, <span class="charliteral">&#39;|&#39;</span>);</div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        std::getline(is, p.<a class="code hl_variable" href="structPacket.html#a9c59bf2df4801081b4b913fa54a55ae3">timestamp</a>, <span class="charliteral">&#39;|&#39;</span>);</div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        std::getline(is, p.<a class="code hl_variable" href="structPacket.html#aae4924b288ada0dfe58407dc91cc779a">errorMsg</a>);</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        p.<a class="code hl_variable" href="structPacket.html#aebbae2cef32f967d0bbcabbe41dae6bf">type</a> = <span class="keyword">static_cast&lt;</span><a class="code hl_enumeration" href="protocol_8h.html#a0a80a7bc045affcf10846075b88cbca0">PacketType</a><span class="keyword">&gt;</span>(t);</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        <span class="keywordflow">return</span> is;</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    }</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        <span class="keywordflow">if</span> (is.eof()) is.clear();  <span class="comment">// EOF on last field is expected - errorMsg may be empty</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        p.<a class="code hl_variable" href="structPacket.html#aebbae2cef32f967d0bbcabbe41dae6bf">type</a> = <span class="keyword">static_cast&lt;</span><a class="code hl_enumeration" href="protocol_8h.html#a0a80a7bc045affcf10846075b88cbca0">PacketType</a><span class="keyword">&gt;</span>(t);</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        <span class="keywordflow">return</span> is;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    }</div>
 </div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>};</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>};</div>
 </div>
 <div class="ttc" id="aprotocol_8h_html_a0a80a7bc045affcf10846075b88cbca0"><div class="ttname"><a href="protocol_8h.html#a0a80a7bc045affcf10846075b88cbca0">PacketType</a></div><div class="ttdeci">PacketType</div><div class="ttdef"><b>Definition</b> protocol.h:9</div></div>
 <div class="ttc" id="aprotocol_8h_html_a0a80a7bc045affcf10846075b88cbca0a0d03a900f6a4a7c5cd72e45c03dfb30c"><div class="ttname"><a href="protocol_8h.html#a0a80a7bc045affcf10846075b88cbca0a0d03a900f6a4a7c5cd72e45c03dfb30c">PacketType::KEY_EXCHANGE</a></div><div class="ttdeci">@ KEY_EXCHANGE</div></div>
