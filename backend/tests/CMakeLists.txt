@@ -1,7 +1,25 @@
 find_package(Qt6 REQUIRED COMPONENTS Test)
 
+# UT-BE-01, UT-BE-02 - DbManager + repositories (requires DATABASE_URL)
 add_executable(db_manager_test DbManagerTest.cpp)
 set_target_properties(db_manager_test PROPERTIES AUTOMOC ON)
-target_link_libraries(db_manager_test PRIVATE Qt6::Test common)
+target_link_libraries(db_manager_test PRIVATE Qt6::Test bitatm-backend-lib)
 add_test(NAME DbManagerTest COMMAND db_manager_test)
-set_tests_properties(DbManagerTest PROPERTIES WILL_FAIL TRUE)
+
+# UT-BE-03, UT-BE-04 - ProtocolParser round-trip (pure logic, always runs)
+add_executable(protocol_parser_test ProtocolParserTest.cpp)
+set_target_properties(protocol_parser_test PROPERTIES AUTOMOC ON)
+target_link_libraries(protocol_parser_test PRIVATE Qt6::Test bitatm-backend-lib)
+add_test(NAME ProtocolParserTest COMMAND protocol_parser_test)
+
+# UT-BE-05 - LoginHandler (requires server on localhost:8080)
+add_executable(login_handler_test LoginHandlerTest.cpp)
+set_target_properties(login_handler_test PROPERTIES AUTOMOC ON)
+target_link_libraries(login_handler_test PRIVATE Qt6::Test bitatm-backend-lib)
+add_test(NAME LoginHandlerTest COMMAND login_handler_test)
+
+# UT-BE-06 - MessageHandler (requires server on localhost:8080)
+add_executable(message_handler_test MessageHandlerTest.cpp)
+set_target_properties(message_handler_test PROPERTIES AUTOMOC ON)
+target_link_libraries(message_handler_test PRIVATE Qt6::Test bitatm-backend-lib)
+add_test(NAME MessageHandlerTest COMMAND message_handler_test)
