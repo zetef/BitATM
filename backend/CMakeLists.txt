@@ -1,5 +1,4 @@
-add_executable(bitatm-backend
-    src/main.cpp
+add_library(bitatm-backend-lib STATIC
     src/User.h                    src/User.cpp
     src/Message.h                 src/Message.cpp
     src/Session.h                 src/Session.cpp
@@ -24,7 +23,8 @@ add_executable(bitatm-backend
     src/KeyExchangeHandler.h      src/KeyExchangeHandler.cpp
     src/AckHandler.h              src/AckHandler.cpp
 )
-target_link_libraries(bitatm-backend PRIVATE
+target_include_directories(bitatm-backend-lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src)
+target_link_libraries(bitatm-backend-lib PUBLIC
     common
     Poco::Net
     Poco::Util
@@ -33,6 +33,8 @@ target_link_libraries(bitatm-backend PRIVATE
     OpenSSL::SSL
     OpenSSL::Crypto
 )
-target_include_directories(bitatm-backend PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src)
+
+add_executable(bitatm-backend src/main.cpp)
+target_link_libraries(bitatm-backend PRIVATE bitatm-backend-lib)
 
 add_subdirectory(tests)
