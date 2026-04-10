@@ -22,7 +22,7 @@ std::optional<OfflineMessage> OfflineQueueRepository::findById(int id) {
         std::string recipient, queuedAt;
         // clang-format off
         ses << "SELECT id, message_id, recipient, queued_at, delivered, delivery_attempts "
-               "FROM offline_queue WHERE id = ?",
+               "FROM offline_queue WHERE id = $1",
             into(oid), into(messageId), into(recipient),
             into(queuedAt), into(delivered), into(deliveryAttempts),
             use(id), now;
@@ -67,7 +67,7 @@ void OfflineQueueRepository::save(const OfflineMessage& msg) {
             int messageId = msg.getMessageId();
             std::string recipient = msg.getRecipient();
             // clang-format off
-            ses << "INSERT INTO offline_queue (message_id, recipient) VALUES (?, ?)",
+            ses << "INSERT INTO offline_queue (message_id, recipient) VALUES ($1, $2)",
                 use(messageId), use(recipient), now;
             // clang-format on
         } else {
@@ -75,7 +75,7 @@ void OfflineQueueRepository::save(const OfflineMessage& msg) {
             int attempts = msg.getDeliveryAttempts();
             int id = msg.getId();
             // clang-format off
-            ses << "UPDATE offline_queue SET delivered = ?, delivery_attempts = ? WHERE id = ?",
+            ses << "UPDATE offline_queue SET delivered = $1, delivery_attempts = $2 WHERE id = $3",
                 use(delivered), use(attempts), use(id), now;
             // clang-format on
         }
@@ -87,7 +87,7 @@ void OfflineQueueRepository::save(const OfflineMessage& msg) {
 void OfflineQueueRepository::remove(int id) {
     try {
         auto ses = DbManager::instance().session();
-        ses << "DELETE FROM offline_queue WHERE id = ?", use(id), now;
+        ses << "DELETE FROM offline_queue WHERE id = $1", use(id), now;
     } catch (const Poco::Exception& e) {
         throw DbException("OfflineQueueRepository::remove: " + e.message());
     }
@@ -104,7 +104,7 @@ std::vector<OfflineMessage> OfflineQueueRepository::findUndeliveredByRecipient(
         // clang-format off
         std::string recipientParam = recipient;
         sel << "SELECT id, message_id, recipient, queued_at, delivered, delivery_attempts "
-               "FROM offline_queue WHERE recipient = ? AND delivered = FALSE ORDER BY queued_at ASC",
+               "FROM offline_queue WHERE recipient = $1 AND delivered = FALSE ORDER BY queued_at ASC",
             into(oid), into(messageId), into(recip),
             into(queuedAt), into(delivered), into(deliveryAttempts),
             use(recipientParam), range(0, 1);
@@ -124,7 +124,7 @@ std::vector<OfflineMessage> OfflineQueueRepository::findUndeliveredByRecipient(
 void OfflineQueueRepository::markDelivered(int id) {
     try {
         auto ses = DbManager::instance().session();
-        ses << "UPDATE offline_queue SET delivered = TRUE WHERE id = ?", use(id), now;
+        ses << "UPDATE offline_queue SET delivered = TRUE WHERE id = $1", use(id), now;
     } catch (const Poco::Exception& e) {
         throw DbException("OfflineQueueRepository::markDelivered: " + e.message());
     }

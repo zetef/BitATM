@@ -14,7 +14,7 @@ std::optional<User> UserRepository::findById(int id) {
         std::string username, passwordHash, publicKey, lastSeen, createdAt;
         // clang-format off
         ses << "SELECT id, username, password_hash, public_key, last_seen, created_at "
-               "FROM users WHERE id = ?",
+               "FROM users WHERE id = $1",
             into(uid), into(username), into(passwordHash),
             into(publicKey), into(lastSeen), into(createdAt),
             use(id), now;
@@ -57,14 +57,14 @@ void UserRepository::save(const User& u) {
             std::string passwordHash = u.getPasswordHash();
             std::string publicKey = u.getPublicKey();
             // clang-format off
-            ses << "INSERT INTO users (username, password_hash, public_key) VALUES (?, ?, ?)",
+            ses << "INSERT INTO users (username, password_hash, public_key) VALUES ($1, $2, $3)",
                 use(username), use(passwordHash), use(publicKey), now;
             // clang-format on
         } else {
             std::string publicKey = u.getPublicKey();
             int id = u.getId();
             // clang-format off
-            ses << "UPDATE users SET public_key = ?, last_seen = NOW() WHERE id = ?",
+            ses << "UPDATE users SET public_key = $1, last_seen = NOW() WHERE id = $2",
                 use(publicKey), use(id), now;
             // clang-format on
         }
@@ -76,7 +76,7 @@ void UserRepository::save(const User& u) {
 void UserRepository::remove(int id) {
     try {
         auto ses = DbManager::instance().session();
-        ses << "DELETE FROM users WHERE id = ?", use(id), now;
+        ses << "DELETE FROM users WHERE id = $1", use(id), now;
     } catch (const Poco::Exception& e) {
         throw DbException("UserRepository::remove: " + e.message());
     }
@@ -90,7 +90,7 @@ std::optional<User> UserRepository::findByUsername(const std::string& username) 
         // clang-format off
         std::string usernameParam = username;
         ses << "SELECT id, username, password_hash, public_key, last_seen, created_at "
-               "FROM users WHERE username = ?",
+               "FROM users WHERE username = $1",
             into(uid), into(uname), into(passwordHash),
             into(publicKey), into(lastSeen), into(createdAt),
             use(usernameParam), now;
