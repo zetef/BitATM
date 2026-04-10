@@ -52,6 +52,7 @@ struct Packet {
         std::getline(is, p.key, '|');
         std::getline(is, p.timestamp, '|');
         std::getline(is, p.errorMsg);
+        if (is.eof()) is.clear();  // EOF on last field is expected - errorMsg may be empty
         p.type = static_cast<PacketType>(t);
         return is;
     }
