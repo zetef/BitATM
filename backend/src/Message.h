@@ -33,6 +33,7 @@ public:
     int getId() const override { return _id; }
     const std::string& getSender() const { return _sender; }
     const std::string& getRecipient() const { return _recipient; }
+    const std::string& getEncryptedBody() const { return _encryptedBody; }
     const std::string& getEncryptedKey() const { return _encryptedKey; }
     const std::string& getStatus() const { return _status; }
     const std::string& getCreatedAt() const { return _createdAt; }

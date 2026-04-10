@@ -22,7 +22,7 @@ std::optional<::Session> SessionRepository::findById(int id) {
         int isActive;
         // clang-format off
         ses << "SELECT id, user_id, session_token, created_at, expires_at, is_active "
-               "FROM sessions WHERE id = ?",
+               "FROM sessions WHERE id = $1",
             into(sid), into(userId), into(token),
             into(createdAt), into(expiresAt), into(isActive),
             use(id), now;
@@ -66,14 +66,14 @@ void SessionRepository::save(const ::Session& s) {
             std::string token = s.getSessionToken();
             std::string expires = s.getExpiresAt();
             // clang-format off
-            ses << "INSERT INTO sessions (user_id, session_token, expires_at) VALUES (?, ?, ?)",
+            ses << "INSERT INTO sessions (user_id, session_token, expires_at) VALUES ($1, $2, $3)",
                 use(userId), use(token), use(expires), now;
             // clang-format on
         } else {
             int active = s.isActive() ? 1 : 0;
             int id = s.getId();
             // clang-format off
-            ses << "UPDATE sessions SET is_active = ? WHERE id = ?",
+            ses << "UPDATE sessions SET is_active = $1 WHERE id = $2",
                 use(active), use(id), now;
             // clang-format on
         }
@@ -85,7 +85,7 @@ void SessionRepository::save(const ::Session& s) {
 void SessionRepository::remove(int id) {
     try {
         auto ses = DbManager::instance().session();
-        ses << "DELETE FROM sessions WHERE id = ?", use(id), now;
+        ses << "DELETE FROM sessions WHERE id = $1", use(id), now;
     } catch (const Poco::Exception& e) {
         throw DbException("SessionRepository::remove: " + e.message());
     }
@@ -99,7 +99,7 @@ std::optional<::Session> SessionRepository::findByToken(const std::string& token
         // clang-format off
         std::string tokenParam = token;
         ses << "SELECT id, user_id, session_token, created_at, expires_at, is_active "
-               "FROM sessions WHERE session_token = ? AND is_active = TRUE",
+               "FROM sessions WHERE session_token = $1 AND is_active = TRUE",
             into(sid), into(userId), into(tok),
             into(createdAt), into(expiresAt), into(isActive),
             use(tokenParam), now;
@@ -114,7 +114,7 @@ std::optional<::Session> SessionRepository::findByToken(const std::string& token
 void SessionRepository::deactivateAllForUser(int userId) {
     try {
         auto ses = DbManager::instance().session();
-        ses << "UPDATE sessions SET is_active = FALSE WHERE user_id = ?", use(userId), now;
+        ses << "UPDATE sessions SET is_active = FALSE WHERE user_id = $1", use(userId), now;
     } catch (const Poco::Exception& e) {
         throw DbException("SessionRepository::deactivateAllForUser: " + e.message());
     }
