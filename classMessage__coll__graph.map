@@ -1,5 +1,5 @@
 <map id="Message" name="Message">
-<area shape="rect" id="Node000001" title="A chat message. Maps to the messages table." alt="" coords="5,199,127,464"/>
-<area shape="rect" id="Node000002" href="$classIEntity.html" title="Base interface for all persistent domain objects." alt="" coords="8,5,124,151"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="69,164,69,198,63,198,63,164"/>
+<area shape="rect" id="Node000001" title="A chat message. Maps to the messages table." alt="" coords="5,199,128,464"/>
+<area shape="rect" id="Node000002" href="$classIEntity.html" title="Base interface for all persistent domain objects." alt="" coords="9,5,125,151"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="69,164,69,198,64,198,64,164"/>
 </map>

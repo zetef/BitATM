@@ -7,6 +7,7 @@ var classMessage =
     [ "~Message", "classMessage.html#af68f5801c560c1b51c5458067e9b3fdd", null ],
     [ "deserialize", "classMessage.html#adace4b2af2e7d44f79a0dcc490c1a982", null ],
     [ "getCreatedAt", "classMessage.html#a7d1b23959f8424eb7be8f786859ed9d0", null ],
+    [ "getEncryptedBody", "classMessage.html#ab8aeaca553642f24bdfd84bde3bb500f", null ],
     [ "getEncryptedKey", "classMessage.html#a155fb5cd521a737a2b039aa2df593251", null ],
     [ "getId", "classMessage.html#a8787580b81215372b898eadbe54a82fb", null ],
     [ "getRecipient", "classMessage.html#aad96a42dbfd135522f3f76671d604154", null ],
