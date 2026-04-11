@@ -36,6 +36,7 @@ var annotated_dup =
     [ "Server", "classServer.html", "classServer" ],
     [ "Session", "classSession.html", "classSession" ],
     [ "SessionRepository", "classSessionRepository.html", "classSessionRepository" ],
+    [ "SyncHistoryHandler", "classSyncHistoryHandler.html", "classSyncHistoryHandler" ],
     [ "User", "classUser.html", "classUser" ],
     [ "UserRepository", "classUserRepository.html", "classUserRepository" ]
 ];

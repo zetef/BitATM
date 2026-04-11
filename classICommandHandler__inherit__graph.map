@@ -1,15 +1,17 @@
 <map id="ICommandHandler" name="ICommandHandler">
-<area shape="rect" id="Node000001" title="Template Method base for all packet handlers." alt="" coords="260,5,432,151"/>
-<area shape="rect" id="Node000002" href="$classBaseAuthHandler.html" title="L2 abstract handler for packet types that require an authenticated session." alt="" coords="209,219,336,284"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="312,165,289,219,284,217,307,162"/>
-<area shape="rect" id="Node000007" href="$classRegisterHandler.html" title="Handles REGISTER packets. L2 &#45; extends ICommandHandler directly (no session authentication required t..." alt="" coords="360,199,479,304"/>
-<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="385,162,400,198,395,200,380,164"/>
+<area shape="rect" id="Node000001" title="Template Method base for all packet handlers." alt="" coords="336,5,508,151"/>
+<area shape="rect" id="Node000002" href="$classBaseAuthHandler.html" title="L2 abstract handler for packet types that require an authenticated session." alt="" coords="285,219,412,284"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="388,165,365,219,360,217,383,162"/>
+<area shape="rect" id="Node000008" href="$classRegisterHandler.html" title="Handles REGISTER packets. L2 &#45; extends ICommandHandler directly (no session authentication required t..." alt="" coords="436,199,555,304"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="461,162,476,198,471,200,456,164"/>
 <area shape="rect" id="Node000003" href="$classAckHandler.html" title="Handles ACK packets. L3 under BaseAuthHandler." alt="" coords="5,362,97,447"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="206,293,112,354,99,364,96,360,108,350,203,289"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="274,280,193,312,111,354,97,364,94,360,109,350,191,307,272,275"/>
 <area shape="rect" id="Node000004" href="$classKeyExchangeHandler.html" title="Handles KEY_EXCHANGE packets. L3 under BaseAuthHandler." alt="" coords="122,362,274,447"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="253,298,221,363,216,360,249,295"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="309,296,242,363,238,360,305,292"/>
 <area shape="rect" id="Node000005" href="$classLoginHandler.html" title="Handles LOGIN packets. L3 under BaseAuthHandler." alt="" coords="299,352,399,457"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="297,295,325,350,320,353,292,297"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="351,298,351,352,346,352,346,298"/>
 <area shape="rect" id="Node000006" href="$classMessageHandler.html" title="Handles MESSAGE packets. L3 under BaseAuthHandler." alt="" coords="423,352,571,457"/>
-<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="332,289,350,302,424,351,421,356,347,306,329,294"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="391,292,448,350,444,353,387,296"/>
+<area shape="rect" id="Node000007" href="$classSyncHistoryHandler.html" title="Handles SYNC_HISTORY packets. L3 under BaseAuthHandler." alt="" coords="595,362,737,447"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="403,289,426,302,469,318,504,326,540,334,584,350,604,359,602,364,582,354,539,339,503,331,467,323,424,306,401,294"/>
 </map>

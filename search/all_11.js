@@ -1,10 +1,10 @@
 var searchData=
 [
-  ['save_0',['save',['../classIRepository.html#a127bc412b5736f161efa93e575d7a056',1,'IRepository::save()'],['../classMessageRepository.html#aa07bc2bb626fc17580646e7598747cf6',1,'MessageRepository::save()'],['../classOfflineQueueRepository.html#a29e48ab68bfa73b53a9e990700f1eabf',1,'OfflineQueueRepository::save()'],['../classSessionRepository.html#a49d226d7af830a3a35c33f48f0174f6a',1,'SessionRepository::save()'],['../classUserRepository.html#acc2d72378c67bffd4a2ede7343533cc0',1,'UserRepository::save()']]],
+  ['save_0',['save',['../classUserRepository.html#acc2d72378c67bffd4a2ede7343533cc0',1,'UserRepository::save()'],['../classSessionRepository.html#a49d226d7af830a3a35c33f48f0174f6a',1,'SessionRepository::save()'],['../classOfflineQueueRepository.html#a29e48ab68bfa73b53a9e990700f1eabf',1,'OfflineQueueRepository::save()'],['../classMessageRepository.html#aa07bc2bb626fc17580646e7598747cf6',1,'MessageRepository::save()'],['../classIRepository.html#a127bc412b5736f161efa93e575d7a056',1,'IRepository::save()']]],
   ['send_1',['send',['../classClientSession.html#abd07a940e0ae4b6b6114f24c07db14fa',1,'ClientSession']]],
   ['sendlogin_2',['sendLogin',['../classNetworkManager.html#a2f815193125adfb0eb520665d8a87f5c',1,'NetworkManager']]],
   ['sendregister_3',['sendRegister',['../classNetworkManager.html#a04e128630115ed7fa113451dc745f1d7',1,'NetworkManager']]],
-  ['serialize_4',['serialize',['../classUser.html#aa088b17b4435938acf9bb0faa62cc28e',1,'User::serialize()'],['../classSession.html#a0c1defbd5c7f10c36170588eff88e235',1,'Session::serialize()'],['../classProtocolParser.html#a66aa123286a517050e78d42392fa25c8',1,'ProtocolParser::serialize()'],['../classOfflineMessage.html#aed55991b02f1722b1b1a6ee57dca8589',1,'OfflineMessage::serialize()'],['../classMessage.html#a272597d642944dfe3179d892955faa07',1,'Message::serialize()'],['../classIEntity.html#aa4f30cea93685d58373c142620a074bf',1,'IEntity::serialize()'],['../classGroupMessage.html#a4d7aef244cda461fe101cf4287b12d4b',1,'GroupMessage::serialize()'],['../classConversationHistory.html#aa240591a59cd80e3befd143d55b4b6eb',1,'ConversationHistory::serialize()']]],
+  ['serialize_4',['serialize',['../classOfflineMessage.html#aed55991b02f1722b1b1a6ee57dca8589',1,'OfflineMessage::serialize()'],['../classMessage.html#a272597d642944dfe3179d892955faa07',1,'Message::serialize()'],['../classIEntity.html#aa4f30cea93685d58373c142620a074bf',1,'IEntity::serialize()'],['../classGroupMessage.html#a4d7aef244cda461fe101cf4287b12d4b',1,'GroupMessage::serialize()'],['../classConversationHistory.html#aa240591a59cd80e3befd143d55b4b6eb',1,'ConversationHistory::serialize()'],['../classProtocolParser.html#a66aa123286a517050e78d42392fa25c8',1,'ProtocolParser::serialize()'],['../classSession.html#a0c1defbd5c7f10c36170588eff88e235',1,'Session::serialize()'],['../classUser.html#aa088b17b4435938acf9bb0faa62cc28e',1,'User::serialize()']]],
   ['server_5',['Server',['../classServer.html',1,'']]],
   ['server_2ecpp_6',['Server.cpp',['../Server_8cpp.html',1,'']]],
   ['server_2eh_7',['Server.h',['../Server_8h.html',1,'']]],
@@ -22,5 +22,8 @@ var searchData=
   ['setusername_19',['setUsername',['../classClientSession.html#afc0bf4b3bf837a65cd4e4b5c9612c963',1,'ClientSession']]],
   ['size_20',['size',['../classConversationHistory.html#aceb03380d1f19ed4b680837a3f6f8ac9',1,'ConversationHistory']]],
   ['state_21',['State',['../classClientSession.html#a7285e048076fc75300a4becab14c6378',1,'ClientSession']]],
-  ['sync_5fhistory_22',['SYNC_HISTORY',['../protocol_8h.html#a0a80a7bc045affcf10846075b88cbca0a474780e98d767348d2687d0d25eba775',1,'protocol.h']]]
+  ['sync_5fhistory_22',['SYNC_HISTORY',['../protocol_8h.html#a0a80a7bc045affcf10846075b88cbca0a474780e98d767348d2687d0d25eba775',1,'protocol.h']]],
+  ['synchistoryhandler_23',['SyncHistoryHandler',['../classSyncHistoryHandler.html',1,'']]],
+  ['synchistoryhandler_2ecpp_24',['SyncHistoryHandler.cpp',['../SyncHistoryHandler_8cpp.html',1,'']]],
+  ['synchistoryhandler_2eh_25',['SyncHistoryHandler.h',['../SyncHistoryHandler_8h.html',1,'']]]
 ];

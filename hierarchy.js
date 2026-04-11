@@ -23,7 +23,8 @@ var hierarchy =
         [ "AckHandler", "classAckHandler.html", null ],
         [ "KeyExchangeHandler", "classKeyExchangeHandler.html", null ],
         [ "LoginHandler", "classLoginHandler.html", null ],
-        [ "MessageHandler", "classMessageHandler.html", null ]
+        [ "MessageHandler", "classMessageHandler.html", null ],
+        [ "SyncHistoryHandler", "classSyncHistoryHandler.html", null ]
       ] ],
       [ "RegisterHandler", "classRegisterHandler.html", null ]
     ] ],

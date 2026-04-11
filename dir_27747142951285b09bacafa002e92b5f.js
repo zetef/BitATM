@@ -42,6 +42,8 @@ var dir_27747142951285b09bacafa002e92b5f =
     [ "Session.h", "Session_8h.html", "Session_8h" ],
     [ "SessionRepository.cpp", "SessionRepository_8cpp.html", null ],
     [ "SessionRepository.h", "SessionRepository_8h.html", "SessionRepository_8h" ],
+    [ "SyncHistoryHandler.cpp", "SyncHistoryHandler_8cpp.html", null ],
+    [ "SyncHistoryHandler.h", "SyncHistoryHandler_8h.html", "SyncHistoryHandler_8h" ],
     [ "User.cpp", "User_8cpp.html", "User_8cpp" ],
     [ "User.h", "User_8h.html", "User_8h" ],
     [ "UserRepository.cpp", "UserRepository_8cpp.html", null ],
