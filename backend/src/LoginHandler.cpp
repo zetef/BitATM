@@ -88,9 +88,8 @@ void LoginHandler::validate(const Packet& packet) {
     if (packet.body.empty()) throw ProtocolException("LOGIN: password (body) is required");
 }
 
-void LoginHandler::authorize(const ClientSession& session) {
-    if (session.isAuthenticated())
-        throw ProtocolException("LOGIN: session is already authenticated");
+void LoginHandler::authorize(const ClientSession& /*session*/) {
+    // Re-login on the same connection is allowed (user switching accounts).
 }
 
 void LoginHandler::execute(Packet& packet, ClientSession& session) {
@@ -103,6 +102,7 @@ void LoginHandler::execute(Packet& packet, ClientSession& session) {
 
     const std::string token = generateToken();
     SessionRepository sessionRepo;
+    sessionRepo.deactivateAllForUser(userOpt->getId());
     ::Session newSession{0, userOpt->getId(), token, {}, {}};
     sessionRepo.save(newSession);
 
