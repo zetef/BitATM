@@ -22,6 +22,7 @@ add_library(bitatm-backend-lib STATIC
     src/MessageHandler.h          src/MessageHandler.cpp
     src/KeyExchangeHandler.h      src/KeyExchangeHandler.cpp
     src/AckHandler.h              src/AckHandler.cpp
+    src/SyncHistoryHandler.h      src/SyncHistoryHandler.cpp
 )
 target_include_directories(bitatm-backend-lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src)
 target_link_libraries(bitatm-backend-lib PUBLIC
