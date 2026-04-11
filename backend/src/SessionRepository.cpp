@@ -64,10 +64,10 @@ void SessionRepository::save(const ::Session& s) {
         if (s.getId() == 0) {
             int userId = s.getUserId();
             std::string token = s.getSessionToken();
-            std::string expires = s.getExpiresAt();
             // clang-format off
-            ses << "INSERT INTO sessions (user_id, session_token, expires_at) VALUES ($1, $2, $3)",
-                use(userId), use(token), use(expires), now;
+            ses << "INSERT INTO sessions (user_id, session_token, expires_at) "
+                   "VALUES ($1, $2, NOW() + INTERVAL '24 hours')",
+                use(userId), use(token), now;
             // clang-format on
         } else {
             int active = s.isActive() ? 1 : 0;

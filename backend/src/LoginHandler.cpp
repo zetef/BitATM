@@ -103,7 +103,7 @@ void LoginHandler::execute(Packet& packet, ClientSession& session) {
 
     const std::string token = generateToken();
     SessionRepository sessionRepo;
-    ::Session newSession{0, userOpt->getId(), token, {}, "NOW() + INTERVAL '24 hours'"};
+    ::Session newSession{0, userOpt->getId(), token, {}, {}};
     sessionRepo.save(newSession);
 
     session.setUsername(packet.from);
