@@ -4,13 +4,38 @@ import QtQuick.Controls
 ApplicationWindow {
     visible: true
     width: 400
-    height: 340
+    height: 380
     title: "BitATM"
+
+    property string statusMessage: ""
+
+    Connections {
+        target: networkManager
+        function onLastMessageChanged() {
+            statusMessage = networkManager.lastMessage
+            messageTimer.restart()
+        }
+    }
+
+    Timer {
+        id: messageTimer
+        interval: 4000
+        onTriggered: statusMessage = ""
+    }
 
     Column {
         anchors.centerIn: parent
         spacing: 12
         width: 300
+
+        Label {
+            anchors.horizontalCenter: parent.horizontalCenter
+            visible: networkManager.currentUsername.length > 0
+            text: "Logged in as: " + networkManager.currentUsername
+            font.pixelSize: 13
+            font.bold: true
+            color: "#4caf50"
+        }
 
         TextField {
             id: usernameInput
@@ -50,8 +75,8 @@ ApplicationWindow {
 
         Label {
             anchors.horizontalCenter: parent.horizontalCenter
-            text: networkManager.lastMessage ? "Server: " + networkManager.lastMessage
-                                             : "No response yet"
+            visible: statusMessage.length > 0
+            text: statusMessage
             font.pixelSize: 14
             color: networkManager.hasError ? "#f44336" : "#4caf50"
             wrapMode: Text.Wrap
