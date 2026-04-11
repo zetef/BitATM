@@ -109,6 +109,7 @@ void LoginHandler::execute(Packet& packet, ClientSession& session) {
     session.setUsername(packet.from);
     session.setSessionToken(token);
     session.setState(ClientSession::State::Authenticated);
+    userRepo.updateLastSeen(packet.from);
 
     // flush pending offline messages
     OfflineQueueRepository offlineRepo;
