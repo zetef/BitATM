@@ -1,5 +1,6 @@
 #pragma once
 #include <Poco/Net/HTTPServer.h>
+#include <Poco/Timer.h>
 #include <Poco/Util/ServerApplication.h>
 
 #include <memory>
@@ -19,6 +20,8 @@
  */
 class Server : public Poco::Util::ServerApplication {
 public:
+    Server();
+
     /** @brief Register a connected, authenticated session. */
     void addClient(const std::string& username, std::shared_ptr<ClientSession> session);
 
@@ -40,7 +43,15 @@ protected:
 private:
     void registerHandlers();
 
+    /**
+     * @brief Poco::Timer callback - runs every hour.
+     * Deactivates expired sessions and purges old delivered offline_queue rows.
+     */
+    void onCleanupTimer(Poco::Timer& timer);
+
     std::unordered_map<std::string, std::shared_ptr<ClientSession>> _clients;
     std::mutex _clientsMutex;
     PacketHandlerFactory _factory;
+    Poco::Timer _cleanupTimer;
+    Poco::TimerCallback<Server> _cleanupCallback;
 };

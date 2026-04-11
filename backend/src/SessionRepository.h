@@ -28,4 +28,10 @@ public:
 
     /** @brief Deactivate all sessions belonging to a user (logout everywhere). */
     void deactivateAllForUser(int userId);
+
+    /** @brief Deactivate the session identified by its token (called on WebSocket disconnect). */
+    void deactivateByToken(const std::string& token);
+
+    /** @brief Set is_active = FALSE for every session whose expires_at is in the past. */
+    void deactivateExpired();
 };

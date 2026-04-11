@@ -109,6 +109,11 @@ void LoginHandler::execute(Packet& packet, ClientSession& session) {
     session.setUsername(packet.from);
     session.setSessionToken(token);
     session.setState(ClientSession::State::Authenticated);
+    try {
+        userRepo.updateLastSeen(packet.from);
+    } catch (const std::exception&) {
+        // Non-fatal: stale last_seen is cosmetic, login must not fail over it.
+    }
 
     // flush pending offline messages
     OfflineQueueRepository offlineRepo;

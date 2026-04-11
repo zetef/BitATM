@@ -129,3 +129,15 @@ void OfflineQueueRepository::markDelivered(int id) {
         throw DbException("OfflineQueueRepository::markDelivered: " + e.message());
     }
 }
+
+void OfflineQueueRepository::cleanupDelivered() {
+    try {
+        auto ses = DbManager::instance().session();
+        // clang-format off
+        ses << "DELETE FROM offline_queue "
+               "WHERE delivered = TRUE AND queued_at < NOW() - INTERVAL '7 days'", now;
+        // clang-format on
+    } catch (const Poco::Exception& e) {
+        throw DbException("OfflineQueueRepository::cleanupDelivered: " + e.message());
+    }
+}

@@ -28,4 +28,7 @@ public:
 
     /** @brief Mark an entry as delivered and reset retry counter. */
     void markDelivered(int id);
+
+    /** @brief Delete rows that have been delivered and are older than 7 days. */
+    void cleanupDelivered();
 };
