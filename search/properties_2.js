@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['lastmessage_0',['lastMessage',['../classNetworkManager.html#acb5092184a7b088b3fa60f61106320cb',1,'NetworkManager']]]
+  ['isconnected_0',['isConnected',['../classNetworkManager.html#af4bbe1ae11e54eb1c5a7f1ce07a51af2',1,'NetworkManager']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['isconnected_0',['isConnected',['../classNetworkManager.html#af4bbe1ae11e54eb1c5a7f1ce07a51af2',1,'NetworkManager']]]
+  ['haserror_0',['hasError',['../classNetworkManager.html#a1b808812493fcb6960347bdab710bd28',1,'NetworkManager']]]
 ];

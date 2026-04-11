@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['haserror_0',['hasError',['../classNetworkManager.html#a1b808812493fcb6960347bdab710bd28',1,'NetworkManager']]]
+  ['currentusername_0',['currentUsername',['../classNetworkManager.html#a0acbd202200bebaed8c909e28b770f29',1,'NetworkManager']]]
 ];
