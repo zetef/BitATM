@@ -34,7 +34,7 @@ std::string hashPassword(const std::string& password) {
     uint32_t m_cost = 65536;
     uint32_t t_cost = 3;
     uint32_t lanes = 4;
-    uint32_t threads = 4;
+    uint64_t maxmem = 128ULL * 1024 * 1024;  // 128 MB - above the 64 MB m_cost
 
     EVP_KDF* kdf = EVP_KDF_fetch(nullptr, "ARGON2ID", nullptr);
     if (!kdf)
@@ -49,7 +49,7 @@ std::string hashPassword(const std::string& password) {
                            OSSL_PARAM_construct_uint32("m_cost", &m_cost),
                            OSSL_PARAM_construct_uint32("t_cost", &t_cost),
                            OSSL_PARAM_construct_uint32("lanes", &lanes),
-                           OSSL_PARAM_construct_uint32("threads", &threads),
+                           OSSL_PARAM_construct_uint64("maxmem_bytes", &maxmem),
                            OSSL_PARAM_END};
 
     unsigned char out[HASH_LEN];
