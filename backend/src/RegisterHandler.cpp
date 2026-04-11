@@ -1,8 +1,11 @@
 #include "RegisterHandler.h"
 
 #include <openssl/evp.h>
+#include <openssl/kdf.h>
+#include <openssl/params.h>
 #include <openssl/rand.h>
 
+#include <cstdint>
 #include <iomanip>
 #include <sstream>
 
@@ -10,9 +13,6 @@
 #include "ClientSession.h"
 #include "UserRepository.h"
 
-// ---------------------------------------------------------------------------
-// Internal helpers
-// ---------------------------------------------------------------------------
 namespace {
 
 std::string toHex(const unsigned char* data, std::size_t len) {
@@ -22,29 +22,48 @@ std::string toHex(const unsigned char* data, std::size_t len) {
     return ss.str();
 }
 
-/** PBKDF2-SHA256, 100 000 iterations, 32-byte key. Returns "saltHex:hashHex". */
+// Argon2id, m=65536 KB, t=3, p=4, 32-byte output. Returns "saltHex:hashHex".
 std::string hashPassword(const std::string& password) {
-    constexpr int ITERATIONS = 100000;
-    constexpr int KEY_LEN = 32;
-    constexpr int SALT_LEN = 16;
+    constexpr std::size_t SALT_LEN = 16;
+    constexpr std::size_t HASH_LEN = 32;
 
     unsigned char salt[SALT_LEN];
-    if (RAND_bytes(salt, SALT_LEN) != 1)
+    if (RAND_bytes(salt, static_cast<int>(SALT_LEN)) != 1)
         throw CryptoException("RegisterHandler: RAND_bytes failed");
 
-    unsigned char hash[KEY_LEN];
-    if (PKCS5_PBKDF2_HMAC(password.c_str(), static_cast<int>(password.size()), salt, SALT_LEN,
-                          ITERATIONS, EVP_sha256(), KEY_LEN, hash) != 1)
-        throw CryptoException("RegisterHandler: PBKDF2 failed");
+    uint32_t m_cost = 65536;
+    uint32_t t_cost = 3;
+    uint32_t lanes = 4;
+    uint32_t threads = 4;
 
-    return toHex(salt, SALT_LEN) + ":" + toHex(hash, KEY_LEN);
+    EVP_KDF* kdf = EVP_KDF_fetch(nullptr, "ARGON2ID", nullptr);
+    if (!kdf)
+        throw CryptoException("RegisterHandler: Argon2id not available in this OpenSSL build");
+    EVP_KDF_CTX* ctx = EVP_KDF_CTX_new(kdf);
+    EVP_KDF_free(kdf);
+    if (!ctx) throw CryptoException("RegisterHandler: EVP_KDF_CTX_new failed");
+
+    OSSL_PARAM params[] = {OSSL_PARAM_construct_octet_string(
+                               "pass", const_cast<char*>(password.data()), password.size()),
+                           OSSL_PARAM_construct_octet_string("salt", salt, SALT_LEN),
+                           OSSL_PARAM_construct_uint32("m_cost", &m_cost),
+                           OSSL_PARAM_construct_uint32("t_cost", &t_cost),
+                           OSSL_PARAM_construct_uint32("lanes", &lanes),
+                           OSSL_PARAM_construct_uint32("threads", &threads),
+                           OSSL_PARAM_END};
+
+    unsigned char out[HASH_LEN];
+    if (EVP_KDF_derive(ctx, out, HASH_LEN, params) != 1) {
+        EVP_KDF_CTX_free(ctx);
+        throw CryptoException("RegisterHandler: Argon2id derive failed");
+    }
+    EVP_KDF_CTX_free(ctx);
+
+    return toHex(salt, SALT_LEN) + ":" + toHex(out, HASH_LEN);
 }
 
 }  // namespace
 
-// ---------------------------------------------------------------------------
-// Handler implementation
-// ---------------------------------------------------------------------------
 void RegisterHandler::validate(const Packet& packet) {
     if (packet.from.empty()) throw ProtocolException("REGISTER: username (from) is required");
     if (packet.body.empty()) throw ProtocolException("REGISTER: password (body) is required");
