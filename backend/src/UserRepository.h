@@ -25,4 +25,7 @@ public:
 
     /** @brief Find a user by exact username (case-sensitive). */
     std::optional<User> findByUsername(const std::string& username);
+
+    /** @brief Stamp last_seen = NOW() for the given username (called on disconnect). */
+    void updateLastSeen(const std::string& username);
 };

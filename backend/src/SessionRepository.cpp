@@ -119,3 +119,28 @@ void SessionRepository::deactivateAllForUser(int userId) {
         throw DbException("SessionRepository::deactivateAllForUser: " + e.message());
     }
 }
+
+void SessionRepository::deactivateByToken(const std::string& token) {
+    try {
+        auto ses = DbManager::instance().session();
+        std::string tokenParam = token;
+        // clang-format off
+        ses << "UPDATE sessions SET is_active = FALSE WHERE session_token = $1",
+            use(tokenParam), now;
+        // clang-format on
+    } catch (const Poco::Exception& e) {
+        throw DbException("SessionRepository::deactivateByToken: " + e.message());
+    }
+}
+
+void SessionRepository::deactivateExpired() {
+    try {
+        auto ses = DbManager::instance().session();
+        // clang-format off
+        ses << "UPDATE sessions SET is_active = FALSE "
+               "WHERE expires_at < NOW() AND is_active = TRUE", now;
+        // clang-format on
+    } catch (const Poco::Exception& e) {
+        throw DbException("SessionRepository::deactivateExpired: " + e.message());
+    }
+}

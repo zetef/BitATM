@@ -82,6 +82,19 @@ void UserRepository::remove(int id) {
     }
 }
 
+void UserRepository::updateLastSeen(const std::string& username) {
+    try {
+        auto ses = DbManager::instance().session();
+        std::string usernameParam = username;
+        // clang-format off
+        ses << "UPDATE users SET last_seen = NOW() WHERE username = $1",
+            use(usernameParam), now;
+        // clang-format on
+    } catch (const Poco::Exception& e) {
+        throw DbException("UserRepository::updateLastSeen: " + e.message());
+    }
+}
+
 std::optional<User> UserRepository::findByUsername(const std::string& username) {
     try {
         auto ses = DbManager::instance().session();
