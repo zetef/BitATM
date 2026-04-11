@@ -143,7 +143,7 @@ private slots:
         // recipient's connection should receive the forwarded message
         char buf[65536];
         int flags = 0;
-        ws2->setTimeout(Poco::Timespan(2, 0));  // 2s timeout
+        ws2->setReceiveTimeout(Poco::Timespan(2, 0));  // 2s timeout
         int n = 0;
         try {
             n = ws2->receiveFrame(buf, sizeof(buf), flags);
