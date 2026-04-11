@@ -99,47 +99,55 @@ $(document).ready(function(){initNavTree('Server_8h_source.html',''); initResiza
 <div class="contents">
 <a href="Server_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &lt;Poco/Net/HTTPServer.h&gt;</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;Poco/Util/ServerApplication.h&gt;</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;mutex&gt;</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;unordered_map&gt;</span></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;<a class="code" href="ClientSession_8h.html">ClientSession.h</a>&quot;</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;<a class="code" href="PacketHandlerFactory_8h.html">PacketHandlerFactory.h</a>&quot;</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
-<div class="foldopen" id="foldopen00020" data-start="{" data-end="};">
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="classServer.html">   20</a></span><span class="keyword">class </span><a class="code hl_class" href="classServer.html">Server</a> : <span class="keyword">public</span> Poco::Util::ServerApplication {</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classServer.html#a192dea8c568586fe6f1cafac75a00b5b">addClient</a>(<span class="keyword">const</span> std::string&amp; username, std::shared_ptr&lt;ClientSession&gt; session);</div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;Poco/Timer.h&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;Poco/Util/ServerApplication.h&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;mutex&gt;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;unordered_map&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;<a class="code" href="ClientSession_8h.html">ClientSession.h</a>&quot;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;<a class="code" href="PacketHandlerFactory_8h.html">PacketHandlerFactory.h</a>&quot;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="foldopen" id="foldopen00021" data-start="{" data-end="};">
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="classServer.html">   21</a></span><span class="keyword">class </span><a class="code hl_class" href="classServer.html">Server</a> : <span class="keyword">public</span> Poco::Util::ServerApplication {</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <a class="code hl_function" href="classServer.html#ad5ec9462b520e59f7ea831e157ee5e59">Server</a>();</div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classServer.html#a15dc7558643fe9664cca7238679b3a7b">removeClient</a>(<span class="keyword">const</span> std::string&amp; username);</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classServer.html#a192dea8c568586fe6f1cafac75a00b5b">addClient</a>(<span class="keyword">const</span> std::string&amp; username, std::shared_ptr&lt;ClientSession&gt; session);</div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    std::shared_ptr&lt;ClientSession&gt; <a class="code hl_function" href="classServer.html#ac0318de032d2da7c2dcc25ac916b4f47">findClient</a>(<span class="keyword">const</span> std::string&amp; username);</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="classServer.html#a5125611bb999de9619ea6b746e6448ce">   35</a></span>    <a class="code hl_class" href="classPacketHandlerFactory.html">PacketHandlerFactory</a>&amp; <a class="code hl_function" href="classServer.html#a5125611bb999de9619ea6b746e6448ce">getFactory</a>() { <span class="keywordflow">return</span> _factory; }</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classServer.html#a15dc7558643fe9664cca7238679b3a7b">removeClient</a>(<span class="keyword">const</span> std::string&amp; username);</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    std::shared_ptr&lt;ClientSession&gt; <a class="code hl_function" href="classServer.html#ac0318de032d2da7c2dcc25ac916b4f47">findClient</a>(<span class="keyword">const</span> std::string&amp; username);</div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="keyword">protected</span>:</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keywordtype">int</span> <a class="code hl_function" href="classServer.html#a6f679bed8f2732e37ff8bff4b6ca7dd1">main</a>(<span class="keyword">const</span> std::vector&lt;std::string&gt;&amp; args) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="classServer.html#a5125611bb999de9619ea6b746e6448ce">   38</a></span>    <a class="code hl_class" href="classPacketHandlerFactory.html">PacketHandlerFactory</a>&amp; <a class="code hl_function" href="classServer.html#a5125611bb999de9619ea6b746e6448ce">getFactory</a>() { <span class="keywordflow">return</span> _factory; }</div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keywordtype">void</span> registerHandlers();</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keywordtype">int</span> <a class="code hl_function" href="classServer.html#a6f679bed8f2732e37ff8bff4b6ca7dd1">main</a>(<span class="keyword">const</span> std::vector&lt;std::string&gt;&amp; args) <span class="keyword">override</span>;</div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    std::unordered_map&lt;std::string, std::shared_ptr&lt;ClientSession&gt;&gt; _clients;</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    std::mutex _clientsMutex;</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <a class="code hl_class" href="classPacketHandlerFactory.html">PacketHandlerFactory</a> _factory;</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>};</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keywordtype">void</span> registerHandlers();</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keywordtype">void</span> onCleanupTimer(Poco::Timer&amp; timer);</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    std::unordered_map&lt;std::string, std::shared_ptr&lt;ClientSession&gt;&gt; _clients;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    std::mutex _clientsMutex;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <a class="code hl_class" href="classPacketHandlerFactory.html">PacketHandlerFactory</a> _factory;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    Poco::Timer _cleanupTimer;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    Poco::TimerCallback&lt;Server&gt; _cleanupCallback;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>};</div>
 </div>
 <div class="ttc" id="aClientSession_8h_html"><div class="ttname"><a href="ClientSession_8h.html">ClientSession.h</a></div></div>
 <div class="ttc" id="aPacketHandlerFactory_8h_html"><div class="ttname"><a href="PacketHandlerFactory_8h.html">PacketHandlerFactory.h</a></div></div>
 <div class="ttc" id="aclassPacketHandlerFactory_html"><div class="ttname"><a href="classPacketHandlerFactory.html">PacketHandlerFactory</a></div><div class="ttdoc">Factory Method - maps PacketType to its ICommandHandler.</div><div class="ttdef"><b>Definition</b> PacketHandlerFactory.h:16</div></div>
-<div class="ttc" id="aclassServer_html"><div class="ttname"><a href="classServer.html">Server</a></div><div class="ttdoc">Main server application. Owns the client map and handler factory.</div><div class="ttdef"><b>Definition</b> Server.h:20</div></div>
-<div class="ttc" id="aclassServer_html_a15dc7558643fe9664cca7238679b3a7b"><div class="ttname"><a href="classServer.html#a15dc7558643fe9664cca7238679b3a7b">Server::removeClient</a></div><div class="ttdeci">void removeClient(const std::string &amp;username)</div><div class="ttdoc">Remove a session (on disconnect).</div><div class="ttdef"><b>Definition</b> Server.cpp:125</div></div>
-<div class="ttc" id="aclassServer_html_a192dea8c568586fe6f1cafac75a00b5b"><div class="ttname"><a href="classServer.html#a192dea8c568586fe6f1cafac75a00b5b">Server::addClient</a></div><div class="ttdeci">void addClient(const std::string &amp;username, std::shared_ptr&lt; ClientSession &gt; session)</div><div class="ttdoc">Register a connected, authenticated session.</div><div class="ttdef"><b>Definition</b> Server.cpp:120</div></div>
-<div class="ttc" id="aclassServer_html_a5125611bb999de9619ea6b746e6448ce"><div class="ttname"><a href="classServer.html#a5125611bb999de9619ea6b746e6448ce">Server::getFactory</a></div><div class="ttdeci">PacketHandlerFactory &amp; getFactory()</div><div class="ttdoc">Access the handler factory (used by ConnectionHandler).</div><div class="ttdef"><b>Definition</b> Server.h:35</div></div>
-<div class="ttc" id="aclassServer_html_a6f679bed8f2732e37ff8bff4b6ca7dd1"><div class="ttname"><a href="classServer.html#a6f679bed8f2732e37ff8bff4b6ca7dd1">Server::main</a></div><div class="ttdeci">int main(const std::vector&lt; std::string &gt; &amp;args) override</div><div class="ttdef"><b>Definition</b> Server.cpp:149</div></div>
-<div class="ttc" id="aclassServer_html_ac0318de032d2da7c2dcc25ac916b4f47"><div class="ttname"><a href="classServer.html#ac0318de032d2da7c2dcc25ac916b4f47">Server::findClient</a></div><div class="ttdeci">std::shared_ptr&lt; ClientSession &gt; findClient(const std::string &amp;username)</div><div class="ttdoc">Look up an online client by username.</div><div class="ttdef"><b>Definition</b> Server.cpp:130</div></div>
+<div class="ttc" id="aclassServer_html"><div class="ttname"><a href="classServer.html">Server</a></div><div class="ttdoc">Main server application. Owns the client map and handler factory.</div><div class="ttdef"><b>Definition</b> Server.h:21</div></div>
+<div class="ttc" id="aclassServer_html_a15dc7558643fe9664cca7238679b3a7b"><div class="ttname"><a href="classServer.html#a15dc7558643fe9664cca7238679b3a7b">Server::removeClient</a></div><div class="ttdeci">void removeClient(const std::string &amp;username)</div><div class="ttdoc">Remove a session (on disconnect).</div><div class="ttdef"><b>Definition</b> Server.cpp:158</div></div>
+<div class="ttc" id="aclassServer_html_a192dea8c568586fe6f1cafac75a00b5b"><div class="ttname"><a href="classServer.html#a192dea8c568586fe6f1cafac75a00b5b">Server::addClient</a></div><div class="ttdeci">void addClient(const std::string &amp;username, std::shared_ptr&lt; ClientSession &gt; session)</div><div class="ttdoc">Register a connected, authenticated session.</div><div class="ttdef"><b>Definition</b> Server.cpp:153</div></div>
+<div class="ttc" id="aclassServer_html_a5125611bb999de9619ea6b746e6448ce"><div class="ttname"><a href="classServer.html#a5125611bb999de9619ea6b746e6448ce">Server::getFactory</a></div><div class="ttdeci">PacketHandlerFactory &amp; getFactory()</div><div class="ttdoc">Access the handler factory (used by ConnectionHandler).</div><div class="ttdef"><b>Definition</b> Server.h:38</div></div>
+<div class="ttc" id="aclassServer_html_a6f679bed8f2732e37ff8bff4b6ca7dd1"><div class="ttname"><a href="classServer.html#a6f679bed8f2732e37ff8bff4b6ca7dd1">Server::main</a></div><div class="ttdeci">int main(const std::vector&lt; std::string &gt; &amp;args) override</div><div class="ttdef"><b>Definition</b> Server.cpp:200</div></div>
+<div class="ttc" id="aclassServer_html_ac0318de032d2da7c2dcc25ac916b4f47"><div class="ttname"><a href="classServer.html#ac0318de032d2da7c2dcc25ac916b4f47">Server::findClient</a></div><div class="ttdeci">std::shared_ptr&lt; ClientSession &gt; findClient(const std::string &amp;username)</div><div class="ttdoc">Look up an online client by username.</div><div class="ttdef"><b>Definition</b> Server.cpp:163</div></div>
+<div class="ttc" id="aclassServer_html_ad5ec9462b520e59f7ea831e157ee5e59"><div class="ttname"><a href="classServer.html#ad5ec9462b520e59f7ea831e157ee5e59">Server::Server</a></div><div class="ttdeci">Server()</div><div class="ttdef"><b>Definition</b> Server.cpp:149</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

@@ -1,5 +1,5 @@
 <map id="SessionRepository" name="SessionRepository">
-<area shape="rect" id="Node000001" title="PostgreSQL&#45;backed repository for Session records." alt="" coords="5,199,180,404"/>
+<area shape="rect" id="Node000001" title="PostgreSQL&#45;backed repository for Session records." alt="" coords="5,199,180,444"/>
 <area shape="rect" id="Node000002" href="$classIRepository.html" title=" " alt="" coords="9,5,177,151"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="95,164,95,199,90,199,90,164"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="95,165,95,198,90,198,90,165"/>
 </map>

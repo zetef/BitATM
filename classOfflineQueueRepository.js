@@ -2,6 +2,7 @@ var classOfflineQueueRepository =
 [
     [ "OfflineQueueRepository", "classOfflineQueueRepository.html#aba72fcfd797dfc58ea3f67db8635635d", null ],
     [ "~OfflineQueueRepository", "classOfflineQueueRepository.html#a053fd2e03ca523c01f0eb47e002c32fa", null ],
+    [ "cleanupDelivered", "classOfflineQueueRepository.html#a9ef12f13db4dae3a7415a05e9e55fc7c", null ],
     [ "findAll", "classOfflineQueueRepository.html#a8805a97d2ccc8f718654e63308026343", null ],
     [ "findById", "classOfflineQueueRepository.html#a0fa0e82e200bd8fda79e2b132d8ac0bf", null ],
     [ "findUndeliveredByRecipient", "classOfflineQueueRepository.html#ad3a3e520a3631a0c34ac869313b0b7fb", null ],
