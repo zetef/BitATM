@@ -17,6 +17,7 @@
 #include "LoginHandler.h"
 #include "MessageHandler.h"
 #include "RegisterHandler.h"
+#include "SyncHistoryHandler.h"
 
 // ---------------------------------------------------------------------------
 // ConnectionHandler - one per WebSocket connection, runs in Poco thread pool
@@ -137,6 +138,8 @@ void Server::registerHandlers() {
     _factory.registerHandler(PacketType::KEY_EXCHANGE,
                              [] { return std::make_unique<KeyExchangeHandler>(); });
     _factory.registerHandler(PacketType::ACK, [] { return std::make_unique<AckHandler>(); });
+    _factory.registerHandler(PacketType::SYNC_HISTORY,
+                             [] { return std::make_unique<SyncHistoryHandler>(); });
 }
 
 int Server::main(const std::vector<std::string>&) {
