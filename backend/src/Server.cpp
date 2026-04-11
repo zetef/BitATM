@@ -56,9 +56,13 @@ public:
                     auto handler = _server.getFactory().create(packet.type);
                     handler->handle(packet, *session);
 
-                    // Register in client map once authenticated
+                    // Register in client map once authenticated.
+                    // On re-login (account switch), evict the old username first.
                     if (session->isAuthenticated() && !session->getUsername().empty()) {
-                        username = session->getUsername();
+                        const std::string newUsername = session->getUsername();
+                        if (!username.empty() && username != newUsername)
+                            _server.removeClient(username);
+                        username = newUsername;
                         _server.addClient(username, session);
                     }
                 } catch (const ProtocolException& e) {

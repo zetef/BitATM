@@ -14,6 +14,7 @@ class NetworkManager : public QObject {
     Q_PROPERTY(bool isConnected READ isConnected NOTIFY connectionChanged)
     Q_PROPERTY(QString lastMessage READ lastMessage NOTIFY lastMessageChanged)
     Q_PROPERTY(bool hasError READ hasError NOTIFY lastMessageChanged)
+    Q_PROPERTY(QString currentUsername READ currentUsername NOTIFY currentUsernameChanged)
 public:
     explicit NetworkManager(QObject* parent = nullptr);
     void connectToServer(const QUrl& url);
@@ -24,6 +25,7 @@ public:
     bool isConnected() const;
     QString lastMessage() const;
     bool hasError() const;
+    QString currentUsername() const;
 
 signals:
     void messageReceived(const QString& message);
@@ -32,6 +34,7 @@ signals:
     void connected();
     void disconnected();
     void errorOcurred(const QString& errorString);
+    void currentUsernameChanged();
 
 private slots:
     void onConnected();
@@ -46,5 +49,6 @@ private:
     QWebSocket _socket;
     QUrl _serverUrl;
     QString _lastMessage;
+    QString _currentUsername;
     bool _hasError = false;
 };

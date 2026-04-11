@@ -63,6 +63,8 @@ QString NetworkManager::lastMessage() const { return _lastMessage; }
 
 bool NetworkManager::hasError() const { return _hasError; }
 
+QString NetworkManager::currentUsername() const { return _currentUsername; }
+
 void NetworkManager::onConnected() {
     qInfo() << "Connected to server";
     emit connectionChanged();
@@ -85,7 +87,15 @@ void NetworkManager::onTextMessageReceived(const QString& message) {
             _lastMessage = QString::fromStdString(p.errorMsg);
         } else if (p.type == PacketType::ACK) {
             _hasError = false;
-            _lastMessage = "OK";
+            if (!p.body.empty()) {
+                // Login ACK - body carries the session token, to carries the username
+                _currentUsername = QString::fromStdString(p.to);
+                _lastMessage = "Logged in as " + _currentUsername;
+                emit currentUsernameChanged();
+            } else {
+                // Register ACK
+                _lastMessage = "Registration successful";
+            }
         } else {
             _hasError = false;
             _lastMessage = message;
