@@ -45,10 +45,9 @@ bool verifyPassword(const std::string& password, const std::string& stored) {
     const std::string saltBytes = fromHex(stored.substr(0, sep));
     const std::string expectedHex = stored.substr(sep + 1);
 
-    uint32_t m_cost = 65536;
-    uint32_t t_cost = 3;
-    uint32_t lanes = 4;
-    uint64_t maxmem = 128ULL * 1024 * 1024;  // 128 MB - above the 64 MB m_cost
+    uint32_t memcost = 65536;  // OSSL_KDF_PARAM_ARGON2_MEMCOST, in KiB
+    uint32_t iter = 3;         // OSSL_KDF_PARAM_ITER (t_cost)
+    uint32_t lanes = 4;        // OSSL_KDF_PARAM_ARGON2_LANES
 
     EVP_KDF* kdf = EVP_KDF_fetch(nullptr, "ARGON2ID", nullptr);
     if (!kdf) throw CryptoException("LoginHandler: Argon2id not available");
@@ -60,10 +59,9 @@ bool verifyPassword(const std::string& password, const std::string& stored) {
                                "pass", const_cast<char*>(password.data()), password.size()),
                            OSSL_PARAM_construct_octet_string(
                                "salt", const_cast<char*>(saltBytes.data()), saltBytes.size()),
-                           OSSL_PARAM_construct_uint32("m_cost", &m_cost),
-                           OSSL_PARAM_construct_uint32("t_cost", &t_cost),
+                           OSSL_PARAM_construct_uint32("memcost", &memcost),
+                           OSSL_PARAM_construct_uint32("iter", &iter),
                            OSSL_PARAM_construct_uint32("lanes", &lanes),
-                           OSSL_PARAM_construct_uint64("maxmem_bytes", &maxmem),
                            OSSL_PARAM_END};
 
     unsigned char out[HASH_LEN];
