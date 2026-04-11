@@ -6,7 +6,16 @@
 constexpr int PROTOCOL_VERSION = 1;
 constexpr int MAX_PACKET_SIZE = 65536;
 
-enum class PacketType { LOGIN, REGISTER, MESSAGE, KEY_EXCHANGE, ACK, ERR };
+enum class PacketType {
+    LOGIN,
+    REGISTER,
+    MESSAGE,
+    KEY_EXCHANGE,
+    ACK,
+    ERR,
+    SYNC_HISTORY,
+    CREATE_GROUP
+};
 
 struct Packet {
     PacketType type;
