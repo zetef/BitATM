@@ -34,6 +34,7 @@ public:
                        Poco::Net::HTTPServerResponse& res) override {
         Poco::Logger& log = Poco::Logger::get("ConnectionHandler");
         std::string username;
+        std::string sessionToken;
         try {
             Poco::Net::WebSocket ws(req, res);
             auto session = std::make_shared<ClientSession>(std::move(ws));
@@ -67,6 +68,7 @@ public:
                         if (!username.empty() && username != newUsername)
                             _server.removeClient(username);
                         username = newUsername;
+                        sessionToken = session->getSessionToken();
                         _server.addClient(username, session);
                     }
                 } catch (const ProtocolException& e) {
@@ -90,35 +92,35 @@ public:
                 }
             }
 
-            // Disconnect: stamp last_seen and deactivate session token in DB.
-            // Two separate try/catch so a last_seen failure never blocks deactivation.
-            if (session->isAuthenticated()) {
-                const std::string uname = session->getUsername();
-                const std::string token = session->getSessionToken();
-                try {
-                    UserRepository userRepo;
-                    userRepo.updateLastSeen(uname);
-                    poco_information(log, "last_seen updated for: " + uname);
-                } catch (const std::exception& e) {
-                    poco_error(log,
-                               "updateLastSeen failed for " + uname + ": " + std::string(e.what()));
-                }
-                try {
-                    SessionRepository sessionRepo;
-                    sessionRepo.deactivateByToken(token);
-                    poco_information(log, "Session deactivated for: " + uname);
-                } catch (const std::exception& e) {
-                    poco_error(log, "deactivateByToken failed for " + uname + ": " +
-                                        std::string(e.what()));
-                }
-            }
         } catch (const Poco::Exception& e) {
             poco_error(log, std::string("Connection error: ") + e.message());
         } catch (const std::exception& e) {
             poco_error(log, std::string("Connection error: ") + e.what());
         }
 
-        if (!username.empty()) _server.removeClient(username);
+        // Always runs — even if the connection dropped with an exception.
+        // Two separate try/catch so a last_seen failure never blocks deactivation.
+        if (!username.empty()) {
+            _server.removeClient(username);
+            try {
+                UserRepository userRepo;
+                userRepo.updateLastSeen(username);
+                poco_information(log, "last_seen updated for: " + username);
+            } catch (const std::exception& e) {
+                poco_error(log,
+                           "updateLastSeen failed for " + username + ": " + std::string(e.what()));
+            }
+            if (!sessionToken.empty()) {
+                try {
+                    SessionRepository sessionRepo;
+                    sessionRepo.deactivateByToken(sessionToken);
+                    poco_information(log, "Session deactivated for: " + username);
+                } catch (const std::exception& e) {
+                    poco_error(log, "deactivateByToken failed for " + username + ": " +
+                                        std::string(e.what()));
+                }
+            }
+        }
     }
 
 private:
