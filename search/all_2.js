@@ -13,7 +13,8 @@ var searchData=
   ['conversationhistory_2ecpp_10',['ConversationHistory.cpp',['../ConversationHistory_8cpp.html',1,'']]],
   ['conversationhistory_2eh_11',['ConversationHistory.h',['../ConversationHistory_8h.html',1,'']]],
   ['create_12',['create',['../classPacketHandlerFactory.html#a4844e94934efe923ae7ec1357942bf7d',1,'PacketHandlerFactory']]],
-  ['createrequesthandler_13',['createRequestHandler',['../classConnectionHandlerFactory.html#a7398ae89edfd054dc0e10854a8e2f445',1,'ConnectionHandlerFactory']]],
-  ['creator_14',['Creator',['../classPacketHandlerFactory.html#ae6d040a41f22b73726728b3b6f674a3c',1,'PacketHandlerFactory']]],
-  ['cryptoexception_15',['CryptoException',['../classCryptoException.html',1,'']]]
+  ['create_5fgroup_13',['CREATE_GROUP',['../protocol_8h.html#a0a80a7bc045affcf10846075b88cbca0a068d453155144c11b52b879fa2d23726',1,'protocol.h']]],
+  ['createrequesthandler_14',['createRequestHandler',['../classConnectionHandlerFactory.html#a7398ae89edfd054dc0e10854a8e2f445',1,'ConnectionHandlerFactory']]],
+  ['creator_15',['Creator',['../classPacketHandlerFactory.html#ae6d040a41f22b73726728b3b6f674a3c',1,'PacketHandlerFactory']]],
+  ['cryptoexception_16',['CryptoException',['../classCryptoException.html',1,'']]]
 ];

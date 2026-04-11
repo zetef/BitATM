@@ -7,7 +7,9 @@ var protocol_8h =
       [ "MESSAGE", "protocol_8h.html#a0a80a7bc045affcf10846075b88cbca0a90791ed805bd5b00d78527d39d9ef7e4", null ],
       [ "KEY_EXCHANGE", "protocol_8h.html#a0a80a7bc045affcf10846075b88cbca0a0d03a900f6a4a7c5cd72e45c03dfb30c", null ],
       [ "ACK", "protocol_8h.html#a0a80a7bc045affcf10846075b88cbca0a0fc437bc317835cad5faafc12a83fad5", null ],
-      [ "ERR", "protocol_8h.html#a0a80a7bc045affcf10846075b88cbca0acd22bad976363fdd1bfbf6759fede482", null ]
+      [ "ERR", "protocol_8h.html#a0a80a7bc045affcf10846075b88cbca0acd22bad976363fdd1bfbf6759fede482", null ],
+      [ "SYNC_HISTORY", "protocol_8h.html#a0a80a7bc045affcf10846075b88cbca0a474780e98d767348d2687d0d25eba775", null ],
+      [ "CREATE_GROUP", "protocol_8h.html#a0a80a7bc045affcf10846075b88cbca0a068d453155144c11b52b879fa2d23726", null ]
     ] ],
     [ "MAX_PACKET_SIZE", "protocol_8h.html#ae4d2325390b1703d2db37ab125ef43cf", null ],
     [ "PROTOCOL_VERSION", "protocol_8h.html#a70f52007f8c2408ec768efe3c27c8849", null ]

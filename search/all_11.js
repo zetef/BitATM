@@ -21,5 +21,6 @@ var searchData=
   ['setstatus_18',['setStatus',['../classMessage.html#a5d6f20d6455c3034466a83bbfc16207e',1,'Message']]],
   ['setusername_19',['setUsername',['../classClientSession.html#afc0bf4b3bf837a65cd4e4b5c9612c963',1,'ClientSession']]],
   ['size_20',['size',['../classConversationHistory.html#aceb03380d1f19ed4b680837a3f6f8ac9',1,'ConversationHistory']]],
-  ['state_21',['State',['../classClientSession.html#a7285e048076fc75300a4becab14c6378',1,'ClientSession']]]
+  ['state_21',['State',['../classClientSession.html#a7285e048076fc75300a4becab14c6378',1,'ClientSession']]],
+  ['sync_5fhistory_22',['SYNC_HISTORY',['../protocol_8h.html#a0a80a7bc045affcf10846075b88cbca0a474780e98d767348d2687d0d25eba775',1,'protocol.h']]]
 ];
