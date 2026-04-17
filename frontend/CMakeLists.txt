@@ -22,6 +22,8 @@ qt_add_qml_module(frontend
 	QML_FILES qml/Main.qml
 	SOURCES src/AesGcmStrategy.h
 	SOURCES src/AesGcmStrategy.cpp
+	SOURCES src/RsaOaepStrategy.h
+	SOURCES src/RsaOaepStrategy.cpp
 )
 
 if(NOT DEFINED BITATM_SERVER_URL)
