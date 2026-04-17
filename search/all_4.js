@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['encrypt_0',['encrypt',['../classAesGcmStrategy.html#a1400cb6aa4a01545a1615f023dff7c5f',1,'AesGcmStrategy::encrypt()'],['../classICryptoStrategy.html#a45d047f994451a80c424cb9c08bc644b',1,'ICryptoStrategy::encrypt()']]],
-  ['encryptwithpublic_1',['encryptWithPublic',['../classIAsymmetricStrategy.html#a1980ef5a5377a0eb6bfec893eb312a8e',1,'IAsymmetricStrategy']]],
+  ['encrypt_0',['encrypt',['../classAesGcmStrategy.html#a1400cb6aa4a01545a1615f023dff7c5f',1,'AesGcmStrategy::encrypt()'],['../classICryptoStrategy.html#a45d047f994451a80c424cb9c08bc644b',1,'ICryptoStrategy::encrypt()'],['../classRsaOaepStrategy.html#aac4c21958f83bba5c448e3afafa754a6',1,'RsaOaepStrategy::encrypt()']]],
+  ['encryptwithpublic_1',['encryptwithpublic',['../classIAsymmetricStrategy.html#a1980ef5a5377a0eb6bfec893eb312a8e',1,'IAsymmetricStrategy::encryptWithPublic()'],['../classRsaOaepStrategy.html#a07be70e0db7b368b6928e757f143527e',1,'RsaOaepStrategy::encryptWithPublic()']]],
   ['err_2',['ERR',['../protocol_8h.html#a0a80a7bc045affcf10846075b88cbca0acd22bad976363fdd1bfbf6759fede482',1,'protocol.h']]],
   ['errormsg_3',['errorMsg',['../structPacket.html#aae4924b288ada0dfe58407dc91cc779a',1,'Packet']]],
   ['errorocurred_4',['errorOcurred',['../classNetworkManager.html#a6b6ee9cf02e7df2a766d5db74c4d2125',1,'NetworkManager']]],

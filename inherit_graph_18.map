@@ -1,15 +1,15 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
 <area shape="rect" id="Node000000" title=" " alt="" coords="5,80,120,105"/>
 <area shape="rect" id="Node000001" title=" " alt="" coords="168,80,307,105"/>
-<area shape="poly" id="edge25_Node000000_Node000001" title=" " alt="" coords="134,90,168,90,168,95,134,95"/>
+<area shape="poly" id="edge26_Node000000_Node000001" title=" " alt="" coords="134,90,168,90,168,95,134,95"/>
 <area shape="rect" id="Node000002" href="$classAppException.html" title=" " alt="" coords="355,80,465,105"/>
-<area shape="poly" id="edge26_Node000001_Node000002" title=" " alt="" coords="320,90,355,90,355,95,320,95"/>
+<area shape="poly" id="edge27_Node000001_Node000002" title=" " alt="" coords="320,90,355,90,355,95,320,95"/>
 <area shape="rect" id="Node000003" href="$classCryptoException.html" title=" " alt="" coords="519,5,649,31"/>
-<area shape="poly" id="edge27_Node000002_Node000003" title=" " alt="" coords="446,71,512,40,542,28,544,33,514,44,448,76"/>
+<area shape="poly" id="edge28_Node000002_Node000003" title=" " alt="" coords="446,71,512,40,542,28,544,33,514,44,448,76"/>
 <area shape="rect" id="Node000004" href="$classDbException.html" title=" " alt="" coords="532,55,636,80"/>
-<area shape="poly" id="edge28_Node000002_Node000004" title=" " alt="" coords="478,80,531,72,532,78,479,85"/>
+<area shape="poly" id="edge29_Node000002_Node000004" title=" " alt="" coords="478,80,531,72,532,78,479,85"/>
 <area shape="rect" id="Node000005" href="$classNetworkException.html" title=" " alt="" coords="513,104,655,129"/>
-<area shape="poly" id="edge29_Node000002_Node000005" title=" " alt="" coords="479,99,513,104,513,110,479,105"/>
+<area shape="poly" id="edge30_Node000002_Node000005" title=" " alt="" coords="479,99,513,104,513,110,479,105"/>
 <area shape="rect" id="Node000006" href="$classProtocolException.html" title=" " alt="" coords="515,153,653,179"/>
-<area shape="poly" id="edge30_Node000002_Node000006" title=" " alt="" coords="450,109,514,138,547,151,545,156,512,143,448,114"/>
+<area shape="poly" id="edge31_Node000002_Node000006" title=" " alt="" coords="450,109,514,138,547,151,545,156,512,143,448,114"/>
 </map>

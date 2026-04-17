@@ -33,6 +33,7 @@ var annotated_dup =
     [ "ProtocolException", "classProtocolException.html", "classProtocolException" ],
     [ "ProtocolParser", "classProtocolParser.html", "classProtocolParser" ],
     [ "RegisterHandler", "classRegisterHandler.html", "classRegisterHandler" ],
+    [ "RsaOaepStrategy", "classRsaOaepStrategy.html", "classRsaOaepStrategy" ],
     [ "Server", "classServer.html", "classServer" ],
     [ "Session", "classSession.html", "classSession" ],
     [ "SessionRepository", "classSessionRepository.html", "classSessionRepository" ],

@@ -1,8 +1,8 @@
 var searchData=
 [
-  ['generatekey_0',['generatekey',['../classAesGcmStrategy.html#a1ac7dc2a139d66af96e3ce023e3b753c',1,'AesGcmStrategy::generateKey()'],['../classISymmetricStrategy.html#a6397da80bd50ebbf9ff99088095d2c3d',1,'ISymmetricStrategy::generateKey()']]],
-  ['generatekeypair_1',['generateKeypair',['../classIAsymmetricStrategy.html#a1459cc018c9ed44ab1a5a3c42c16d414',1,'IAsymmetricStrategy']]],
-  ['getcreatedat_2',['getcreatedat',['../classSession.html#af08009a2390d5fedd855138ef139d3f3',1,'Session::getCreatedAt()'],['../classGroupMessage.html#acb3c5ee69137ce0655f4026290e6ef8e',1,'GroupMessage::getCreatedAt()'],['../classUser.html#ad5dd1754dc217815c11d6fd2bc212261',1,'User::getCreatedAt()'],['../classMessage.html#a7d1b23959f8424eb7be8f786859ed9d0',1,'Message::getCreatedAt()']]],
+  ['generatekey_0',['generatekey',['../classISymmetricStrategy.html#a6397da80bd50ebbf9ff99088095d2c3d',1,'ISymmetricStrategy::generateKey()'],['../classAesGcmStrategy.html#a1ac7dc2a139d66af96e3ce023e3b753c',1,'AesGcmStrategy::generateKey()']]],
+  ['generatekeypair_1',['generatekeypair',['../classRsaOaepStrategy.html#a22ad8ea04907f84752061f5c6e4717a0',1,'RsaOaepStrategy::generateKeypair()'],['../classIAsymmetricStrategy.html#a1459cc018c9ed44ab1a5a3c42c16d414',1,'IAsymmetricStrategy::generateKeypair()']]],
+  ['getcreatedat_2',['getcreatedat',['../classGroupMessage.html#acb3c5ee69137ce0655f4026290e6ef8e',1,'GroupMessage::getCreatedAt()'],['../classMessage.html#a7d1b23959f8424eb7be8f786859ed9d0',1,'Message::getCreatedAt()'],['../classSession.html#af08009a2390d5fedd855138ef139d3f3',1,'Session::getCreatedAt()'],['../classUser.html#ad5dd1754dc217815c11d6fd2bc212261',1,'User::getCreatedAt()']]],
   ['getdeliveryattempts_3',['getDeliveryAttempts',['../classOfflineMessage.html#abed4071cb9ec83ce1c1f18a9f1356694',1,'OfflineMessage']]],
   ['getencryptedbody_4',['getEncryptedBody',['../classMessage.html#ab8aeaca553642f24bdfd84bde3bb500f',1,'Message']]],
   ['getencryptedkey_5',['getEncryptedKey',['../classMessage.html#a155fb5cd521a737a2b039aa2df593251',1,'Message']]],

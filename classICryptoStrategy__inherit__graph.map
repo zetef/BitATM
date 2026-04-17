@@ -2,8 +2,10 @@
 <area shape="rect" id="Node000001" title="Strategy interface for encryption algorithms." alt="" coords="127,5,279,131"/>
 <area shape="rect" id="Node000002" href="$classIAsymmetricStrategy.html" title="Abstract interface for asymmetric encryption strategies." alt="" coords="5,179,193,304"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="161,144,139,180,135,177,157,141"/>
-<area shape="rect" id="Node000003" href="$classISymmetricStrategy.html" title="Abstract interface for symmetric encryption strategies." alt="" coords="217,179,397,304"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="250,141,272,177,268,180,246,144"/>
-<area shape="rect" id="Node000004" href="$classAesGcmStrategy.html" title="AES&#45;256&#45;GCM symmetric encryption strategy (L3 concrete)." alt="" coords="228,352,387,597"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="310,318,310,352,305,352,305,318"/>
+<area shape="rect" id="Node000004" href="$classISymmetricStrategy.html" title="Abstract interface for symmetric encryption strategies." alt="" coords="217,179,397,304"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="250,141,272,177,268,180,246,144"/>
+<area shape="rect" id="Node000003" href="$classRsaOaepStrategy.html" title="RSA&#45;2048&#45;OAEP asymmetric encryption strategy (L3 concrete)." alt="" coords="17,372,181,577"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="102,318,102,372,97,372,97,318"/>
+<area shape="rect" id="Node000005" href="$classAesGcmStrategy.html" title="AES&#45;256&#45;GCM symmetric encryption strategy (L3 concrete)." alt="" coords="228,352,387,597"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="310,318,310,352,305,352,305,318"/>
 </map>

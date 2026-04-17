@@ -29,7 +29,9 @@ var hierarchy =
       [ "RegisterHandler", "classRegisterHandler.html", null ]
     ] ],
     [ "ICryptoStrategy", "classICryptoStrategy.html", [
-      [ "IAsymmetricStrategy", "classIAsymmetricStrategy.html", null ],
+      [ "IAsymmetricStrategy", "classIAsymmetricStrategy.html", [
+        [ "RsaOaepStrategy", "classRsaOaepStrategy.html", null ]
+      ] ],
       [ "ISymmetricStrategy", "classISymmetricStrategy.html", [
         [ "AesGcmStrategy", "classAesGcmStrategy.html", null ]
       ] ]
