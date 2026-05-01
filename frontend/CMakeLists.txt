@@ -6,6 +6,8 @@ qt_add_executable(frontend
 	src/IAsymmetricStrategy.h
 	src/OpensslAdapter.h
 	src/OpensslAdapter.cpp
+	src/PacketBuilder.h
+	src/PacketBuilder.cpp
 )
 set_target_properties(frontend PROPERTIES AUTOMOC ON)
 
@@ -24,6 +26,10 @@ qt_add_qml_module(frontend
 	SOURCES src/AesGcmStrategy.cpp
 	SOURCES src/RsaOaepStrategy.h
 	SOURCES src/RsaOaepStrategy.cpp
+	SOURCES src/CryptoEngine.h
+	SOURCES src/CryptoEngine.cpp
+	SOURCES src/ChatModel.h
+	SOURCES src/ChatModel.cpp
 )
 
 if(NOT DEFINED BITATM_SERVER_URL)
