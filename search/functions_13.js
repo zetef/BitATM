@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['validate_0',['validate',['../classAckHandler.html#a18c7a7f9fc71c79eed54c198ea6f8d7c',1,'AckHandler::validate()'],['../classICommandHandler.html#a958ac0a8073a92c0cc17765061034482',1,'ICommandHandler::validate()'],['../classKeyExchangeHandler.html#a78f9ac2a88f8ff8fbfaefe09664f93cb',1,'KeyExchangeHandler::validate()'],['../classLoginHandler.html#a8ee19028e40e40c8dae4eb5da7893f6a',1,'LoginHandler::validate()'],['../classMessageHandler.html#a9ae3da418b8c53e56539148717897d05',1,'MessageHandler::validate()'],['../classRegisterHandler.html#a08d25d31268049839550fb69e1a68bdf',1,'RegisterHandler::validate()'],['../classSyncHistoryHandler.html#aad6d17f639ca81fff21326f86370f7ca',1,'SyncHistoryHandler::validate()']]]
+  ['updatelastseen_0',['updateLastSeen',['../classUserRepository.html#a3031cf2d6edb5409261d4103c3d622a4',1,'UserRepository']]],
+  ['user_1',['user',['../classUser.html#a4dd5fde1b81bb132994a67f27bc203d1',1,'User::User()=default'],['../classUser.html#a268f2592165f7da858a3db365ad79746',1,'User::User(int id, std::string username, std::string passwordHash, std::string publicKey={}, std::string lastSeen={}, std::string createdAt={})'],['../classUser.html#a3c20678fb9c65cdb1f27462a0d476303',1,'User::User(const User &amp;)=default'],['../classUser.html#ac8106d639827043ed02dec54917b2f69',1,'User::User(User &amp;&amp;) noexcept=default']]],
+  ['userrepository_2',['UserRepository',['../classUserRepository.html#a10fd495fa2dd82ab68c2f037467f74cf',1,'UserRepository']]]
 ];

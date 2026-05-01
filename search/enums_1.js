@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['state_0',['State',['../classClientSession.html#a7285e048076fc75300a4becab14c6378',1,'ClientSession']]]
+  ['roles_0',['Roles',['../classChatModel.html#a63e01c84f289f33e414ae789fcdc68e0',1,'ChatModel']]]
 ];

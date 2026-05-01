@@ -21,8 +21,9 @@ var searchData=
   ['isauthenticated_18',['isAuthenticated',['../classClientSession.html#af42902d8a38c41d71cb8addd15188759',1,'ClientSession']]],
   ['isconnected_19',['isconnected',['../classNetworkManager.html#af4bbe1ae11e54eb1c5a7f1ce07a51af2',1,'NetworkManager::isConnected'],['../classNetworkManager.html#a97d1fb741f609c2442efdfd92e944ed2',1,'NetworkManager::isConnected() const']]],
   ['isdelivered_20',['isDelivered',['../classOfflineMessage.html#a8865b2edc2ed672883b801658c4c232a',1,'OfflineMessage']]],
-  ['isymmetricstrategy_21',['ISymmetricStrategy',['../classISymmetricStrategy.html',1,'']]],
-  ['isymmetricstrategy_2eh_22',['ISymmetricStrategy.h',['../ISymmetricStrategy_8h.html',1,'']]],
-  ['iv_5fsize_23',['IV_SIZE',['../classAesGcmStrategy.html#ae915acac6103c93119fc59680b3aabfd',1,'AesGcmStrategy']]],
-  ['ivsize_24',['ivsize',['../classAesGcmStrategy.html#afecd5524243511a0ebd2c4debf8ff6aa',1,'AesGcmStrategy::ivSize()'],['../classISymmetricStrategy.html#a56d3748a3e8df032e5365cbfdc037574',1,'ISymmetricStrategy::ivSize()']]]
+  ['isoutgoingrole_21',['IsOutgoingRole',['../classChatModel.html#a63e01c84f289f33e414ae789fcdc68e0a94b552378be440dd0c22fd3a10ad5448',1,'ChatModel']]],
+  ['isymmetricstrategy_22',['ISymmetricStrategy',['../classISymmetricStrategy.html',1,'']]],
+  ['isymmetricstrategy_2eh_23',['ISymmetricStrategy.h',['../ISymmetricStrategy_8h.html',1,'']]],
+  ['iv_5fsize_24',['IV_SIZE',['../classAesGcmStrategy.html#ae915acac6103c93119fc59680b3aabfd',1,'AesGcmStrategy']]],
+  ['ivsize_25',['ivsize',['../classAesGcmStrategy.html#afecd5524243511a0ebd2c4debf8ff6aa',1,'AesGcmStrategy::ivSize()'],['../classISymmetricStrategy.html#a56d3748a3e8df032e5365cbfdc037574',1,'ISymmetricStrategy::ivSize()']]]
 ];

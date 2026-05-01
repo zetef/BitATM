@@ -1,0 +1,21 @@
+<map id="frontend/src/PacketBuilder.cpp" name="frontend/src/PacketBuilder.cpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="162,5,381,31"/>
+<area shape="rect" id="Node000002" href="$PacketBuilder_8h.html" title=" " alt="" coords="77,79,199,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="251,33,173,74,171,70,249,28"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="223,79,319,104"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="274,31,274,65,269,65,269,31"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="344,79,431,104"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="291,28,358,69,355,74,289,33"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,152,76,177"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="124,106,69,146,66,141,121,102"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="101,152,175,177"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="141,104,141,138,135,138,135,104"/>
+<area shape="rect" id="Node000005" href="$protocol_8h.html" title=" " alt="" coords="200,152,372,177"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="163,102,251,144,248,148,161,106"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="155,225,222,251"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="272,180,217,219,214,215,269,175"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="246,225,326,251"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="289,178,289,212,283,212,283,178"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="350,225,409,251"/>
+<area shape="poly" id="edge7_Node000005_Node000008" title=" " alt="" coords="303,175,355,215,352,219,299,179"/>
+</map>

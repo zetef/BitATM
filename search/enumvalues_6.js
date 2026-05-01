@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['message_0',['MESSAGE',['../protocol_8h.html#a0a80a7bc045affcf10846075b88cbca0a90791ed805bd5b00d78527d39d9ef7e4',1,'protocol.h']]]
+  ['login_0',['LOGIN',['../protocol_8h.html#a0a80a7bc045affcf10846075b88cbca0a4976d7ca80f2cb54c1c7d5c87fb0c7ef',1,'protocol.h']]]
 ];

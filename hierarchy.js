@@ -1,6 +1,7 @@
 var hierarchy =
 [
     [ "ClientSession", "classClientSession.html", null ],
+    [ "CryptoEngine", "classCryptoEngine.html", null ],
     [ "DbManager", "classDbManager.html", null ],
     [ "std::exception", null, [
       [ "std::runtime_error", null, [
@@ -59,8 +60,12 @@ var hierarchy =
     ] ],
     [ "OpensslAdapter", "classOpensslAdapter.html", null ],
     [ "Packet", "structPacket.html", null ],
+    [ "PacketBuilder", "classPacketBuilder.html", null ],
     [ "PacketHandlerFactory", "classPacketHandlerFactory.html", null ],
     [ "ProtocolParser", "classProtocolParser.html", null ],
+    [ "QAbstractListModel", null, [
+      [ "ChatModel", "classChatModel.html", null ]
+    ] ],
     [ "QObject", null, [
       [ "NetworkManager", "classNetworkManager.html", null ]
     ] ],

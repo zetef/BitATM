@@ -35,6 +35,7 @@ var NAVTREE =
         [ "Variables", "functions_vars.html", null ],
         [ "Typedefs", "functions_type.html", null ],
         [ "Enumerations", "functions_enum.html", null ],
+        [ "Enumerator", "functions_eval.html", null ],
         [ "Properties", "functions_prop.html", null ],
         [ "Related Symbols", "functions_rela.html", null ]
       ] ]
@@ -54,8 +55,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "AckHandler_8cpp.html",
-"classMessageHandler.html#a646fbcf1e4fe0b01a654a39c95df5bfe",
-"structPacket.html#a965a703b8b6b98c773ff398ac6d94e4e"
+"classKeyExchangeHandler.html",
+"functions_n.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
