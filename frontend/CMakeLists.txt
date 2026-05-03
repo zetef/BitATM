@@ -30,6 +30,8 @@ qt_add_qml_module(frontend
 	SOURCES src/CryptoEngine.cpp
 	SOURCES src/ChatModel.h
 	SOURCES src/ChatModel.cpp
+	SOURCES src/ConversationListModel.h
+	SOURCES src/ConversationListModel.cpp
 )
 
 if(NOT DEFINED BITATM_SERVER_URL)
