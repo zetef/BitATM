@@ -48,11 +48,22 @@ ApplicationWindow {
         function onCurrentUsernameChanged() {
             if (networkManager.currentUsername.length > 0) {
                 stack.push(chatPage)
+            } else if (stack.depth > 1) {
+                chatModel.clearHistory()
+                convListModel.clear()
+                root.activePeer = ""
+                stack.pop()
             }
         }
         function onMessageDecrypted(from, plaintext, timestamp) {
             chatModel.appendMessage(from, plaintext, timestamp, false)
             convListModel.addOrUpdate(from, plaintext, timestamp)
+        }
+        function onDisconnected() {
+            chatModel.clearHistory()
+            convListModel.clear()
+            root.activePeer = ""
+            if (stack.depth > 1) stack.pop()
         }
     }
 
@@ -209,11 +220,22 @@ ApplicationWindow {
                             color: "#181825"
 
                             Label {
-                                anchors.centerIn: parent
+                                anchors.left: parent.left
+                                anchors.leftMargin: 12
+                                anchors.verticalCenter: parent.verticalCenter
                                 text: networkManager.currentUsername
                                 color: "#cdd6f4"
                                 font.pixelSize: 14
                                 font.bold: true
+                            }
+
+                            Button {
+                                anchors.right: parent.right
+                                anchors.rightMargin: 8
+                                anchors.verticalCenter: parent.verticalCenter
+                                text: "Log out"
+                                font.pixelSize: 11
+                                onClicked: networkManager.logout()
                             }
                         }
 
