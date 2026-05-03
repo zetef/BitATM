@@ -157,6 +157,15 @@ void NetworkManager::handleKeyExchangeResponse(const Packet& p) {
     }
 }
 
+void NetworkManager::logout() {
+    _currentUsername.clear();
+    _ownPrivKey.clear();
+    _ownPubKey.clear();
+    _peerKeys.clear();
+    _pendingMessages.clear();
+    emit currentUsernameChanged();
+}
+
 void NetworkManager::sendPacket(const Packet& packet) {
     if (!isConnected()) {
         _hasError = true;

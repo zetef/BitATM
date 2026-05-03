@@ -54,6 +54,9 @@ public:
     /** @brief Ask the server to push all missed messages for current user. */
     Q_INVOKABLE void sendSyncHistory();
 
+    /** @brief Clear session state and return to login without closing the WebSocket. */
+    Q_INVOKABLE void logout();
+
     /** @brief Returns true if the WebSocket is in ConnectedState. */
     bool isConnected() const;
 
