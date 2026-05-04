@@ -3,6 +3,7 @@
 #include <QMap>
 #include <QNetworkInformation>
 #include <QObject>
+#include <QSet>
 #include <QSettings>
 #include <QSslError>
 #include <QString>
@@ -13,11 +14,11 @@
 #include "CryptoEngine.h"
 
 /**
- * @brief Proxy to the BitATM WebSocket server with integrated E2EE.
+ * @brief Proxy to the BitATM WebSocket server with integrated E2EE and local history.
  *
  * Handles connection lifecycle, packet serialization, RSA keypair
- * management (QSettings-persisted), per-peer AES key wrapping, and
- * routing of inbound packets to typed signals.
+ * management (QSettings-persisted), per-peer AES key wrapping, routing
+ * of inbound packets to typed signals, and write-through message persistence.
  *
  * Threading: all methods run on the Qt main thread via the event loop.
  * QWebSocket is async - no manual thread management needed.
@@ -88,6 +89,21 @@ signals:
     /** @brief Emitted after the server ACKs a SYNC_HISTORY request. */
     void syncComplete();
 
+    /**
+     * @brief Emitted once per stored message during local history load on login.
+     *
+     * QML handles this to populate chatModel and convListModel from local storage
+     * before the server sync arrives.
+     *
+     * @param peer      The conversation key (sender username for incoming, recipient for outgoing).
+     * @param sender    Display sender name.
+     * @param content   Plaintext message content.
+     * @param timestamp ISO 8601 timestamp string.
+     * @param isOutgoing True if the local user sent this message.
+     */
+    void historySyncMessage(const QString& peer, const QString& sender, const QString& content,
+                            const QString& timestamp, bool isOutgoing);
+
 private slots:
     void onConnected();
     void onDisconnected();
@@ -99,11 +115,12 @@ private:
     /** @brief Serialize and send a packet over the WebSocket. */
     void sendPacket(const Packet& packet);
 
-    /** @brief Handle login ACK: set username, load/generate keypair, upload pubkey, sync history.
+    /** @brief Handle login/register ACK: set username, load/generate keypair, load history, sync.
      */
     void handleLoginAck(const Packet& p);
 
-    /** @brief Decrypt an incoming MESSAGE packet and emit messageDecrypted. */
+    /** @brief Decrypt an incoming MESSAGE packet, deduplicate, persist, and emit messageDecrypted.
+     */
     void handleIncomingMessage(const Packet& p);
 
     /** @brief Cache peer public key and flush any pending message for that peer. */
@@ -112,8 +129,37 @@ private:
     /** @brief Load RSA keypair from QSettings, or generate and persist a new one. */
     void loadOrGenerateKeypair();
 
-    /** @brief Encrypt plaintext for 'to' using their cached public key and send. */
+    /** @brief Encrypt plaintext for 'to' using their cached public key, send, and persist. */
     void encryptAndSend(const QString& to, const QString& plaintext);
+
+    /**
+     * @brief Load local message history for _currentUsername from QSettings.
+     *
+     * Emits historySyncMessage for each stored entry and populates _messageKeys.
+     * Must be called after _currentUsername is set.
+     */
+    void loadLocalHistory();
+
+    /**
+     * @brief Persist one message to QSettings and track its dedup key.
+     *
+     * No-op if the dedup key is already in _messageKeys.
+     *
+     * @param peer      Conversation key (peer username).
+     * @param sender    Display sender name.
+     * @param content   Plaintext content.
+     * @param timestamp ISO 8601 timestamp.
+     * @param isOutgoing True if sent by local user.
+     */
+    void persistMessage(const QString& peer, const QString& sender, const QString& content,
+                        const QString& timestamp, bool isOutgoing);
+
+    /**
+     * @brief Returns true if this message is already tracked in _messageKeys.
+     *
+     * Key format: peer + "|" + sender + "|" + timestamp
+     */
+    bool isDuplicate(const QString& peer, const QString& sender, const QString& timestamp) const;
 
     QWebSocket _socket;
     QUrl _serverUrl;
@@ -122,9 +168,10 @@ private:
     bool _hasError = false;
 
     CryptoEngine _crypto;
-    QByteArray _ownPrivKey;               // RSA-2048 private key PEM
-    QByteArray _ownPubKey;                // RSA-2048 public key PEM
-    QMap<QString, QByteArray> _peerKeys;  // username -> RSA public key PEM bytes
-    QMap<QString, QList<QString>>
-        _pendingMessages;  // username -> plaintexts (waiting for peer key)
+    QByteArray _ownPrivKey;
+    QByteArray _ownPubKey;
+    QMap<QString, QByteArray> _peerKeys;
+    QMap<QString, QList<QString>> _pendingMessages;
+    QSet<QString> _messageKeys;
+    bool _historyLoaded = false;
 };

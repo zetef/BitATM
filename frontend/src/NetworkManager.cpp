@@ -1,7 +1,12 @@
 #include "NetworkManager.h"
 
+#include <QDateTime>
 #include <QDebug>
+#include <QLoggingCategory>
 #include <sstream>
+
+Q_LOGGING_CATEGORY(logNetwork, "app.network")
+Q_LOGGING_CATEGORY(logChat, "app.chat")
 
 NetworkManager::NetworkManager(QObject* parent) : QObject(parent) {
     connect(&_socket, &QWebSocket::connected, this, &NetworkManager::onConnected);
@@ -15,13 +20,13 @@ NetworkManager::NetworkManager(QObject* parent) : QObject(parent) {
         connect(netInfo, &QNetworkInformation::reachabilityChanged, this,
                 &NetworkManager::onReachabilityChanged);
     } else {
-        qWarning() << "Could not load QNetworkInformation backend";
+        qCWarning(logNetwork) << "Could not load QNetworkInformation backend";
     }
 }
 
 void NetworkManager::connectToServer(const QUrl& url) {
     _serverUrl = url;
-    qInfo() << "Connecting to" << url;
+    qCInfo(logNetwork) << "Connecting to" << url;
     _socket.open(url);
 }
 
@@ -78,6 +83,9 @@ void NetworkManager::encryptAndSend(const QString& to, const QString& plaintext)
         p.body = encBody.toStdString();
         p.key = wrappedKey.toBase64().toStdString();
         sendPacket(p);
+
+        const QString ts = QDateTime::currentDateTimeUtc().toString(Qt::ISODateWithMs);
+        persistMessage(to, _currentUsername, plaintext, ts, true);
     } catch (const std::exception& e) {
         _hasError = true;
         _lastMessage = "Encrypt failed: " + QString::fromUtf8(e.what());
@@ -93,15 +101,74 @@ void NetworkManager::loadOrGenerateKeypair() {
     if (!pub.isEmpty() && !priv.isEmpty()) {
         _ownPubKey = pub;
         _ownPrivKey = priv;
-        qInfo() << "Loaded existing RSA keypair";
+        qCInfo(logNetwork) << "Loaded existing RSA keypair";
     } else {
         auto [pubPem, privPem] = _crypto.generateRSAKeypair();
         _ownPubKey = pubPem;
         _ownPrivKey = privPem;
         settings.setValue("crypto/pubkey", _ownPubKey);
         settings.setValue("crypto/privkey", _ownPrivKey);
-        qInfo() << "Generated new RSA keypair";
+        qCInfo(logNetwork) << "Generated new RSA keypair";
     }
+}
+
+void NetworkManager::loadLocalHistory() {
+    _messageKeys.clear();
+    QSettings settings("BitATM", "BitATM");
+
+    settings.beginGroup("history/" + _currentUsername);
+    const QStringList peers = settings.value("peers").toStringList();
+    settings.endGroup();
+
+    for (const QString& peer : peers) {
+        settings.beginGroup("history/" + _currentUsername + "/peer/" + peer);
+        const int count = settings.value("count", 0).toInt();
+        for (int i = 0; i < count; i++) {
+            const QString sender = settings.value(QString::number(i) + "/sender").toString();
+            const QString content = settings.value(QString::number(i) + "/content").toString();
+            const QString timestamp = settings.value(QString::number(i) + "/timestamp").toString();
+            const bool isOutgoing = settings.value(QString::number(i) + "/isOutgoing").toBool();
+
+            _messageKeys.insert(peer + "|" + sender + "|" + timestamp);
+            emit historySyncMessage(peer, sender, content, timestamp, isOutgoing);
+        }
+        settings.endGroup();
+    }
+
+    qCInfo(logChat) << "Loaded local history:" << _messageKeys.size() << "messages";
+}
+
+bool NetworkManager::isDuplicate(const QString& peer, const QString& sender,
+                                 const QString& timestamp) const {
+    return _messageKeys.contains(peer + "|" + sender + "|" + timestamp);
+}
+
+void NetworkManager::persistMessage(const QString& peer, const QString& sender,
+                                    const QString& content, const QString& timestamp,
+                                    bool isOutgoing) {
+    const QString key = peer + "|" + sender + "|" + timestamp;
+    if (_messageKeys.contains(key)) return;
+    _messageKeys.insert(key);
+
+    QSettings settings("BitATM", "BitATM");
+
+    settings.beginGroup("history/" + _currentUsername);
+    QStringList peers = settings.value("peers").toStringList();
+    if (!peers.contains(peer)) {
+        peers.append(peer);
+        settings.setValue("peers", peers);
+    }
+    settings.endGroup();
+
+    settings.beginGroup("history/" + _currentUsername + "/peer/" + peer);
+    const int idx = settings.value("count", 0).toInt();
+    settings.setValue(QString::number(idx) + "/sender", sender);
+    settings.setValue(QString::number(idx) + "/content", content);
+    settings.setValue(QString::number(idx) + "/timestamp", timestamp);
+    settings.setValue(QString::number(idx) + "/isOutgoing", isOutgoing);
+    settings.setValue("count", idx + 1);
+    settings.endGroup();
+    qCInfo(logChat) << "Persisted message for peer" << peer << "(total:" << (idx + 1) << ")";
 }
 
 void NetworkManager::handleLoginAck(const Packet& p) {
@@ -123,12 +190,17 @@ void NetworkManager::handleLoginAck(const Packet& p) {
         emit lastMessageChanged();
         return;
     }
+
+    if (!_historyLoaded) {
+        loadLocalHistory();
+        _historyLoaded = true;
+    }
     sendSyncHistory();
 }
 
 void NetworkManager::handleIncomingMessage(const Packet& p) {
     if (_ownPrivKey.isEmpty()) {
-        qWarning() << "Received MESSAGE but private key not loaded - dropping";
+        qCWarning(logNetwork) << "Received MESSAGE but private key not loaded - dropping";
         return;
     }
     try {
@@ -136,10 +208,21 @@ void NetworkManager::handleIncomingMessage(const Packet& p) {
         QByteArray aesKey = _crypto.decryptRSA(wrappedKey, _ownPrivKey);
         QString plaintext = _crypto.decrypt(QString::fromStdString(p.body), aesKey);
 
-        emit messageDecrypted(QString::fromStdString(p.from), plaintext,
-                              QString::fromStdString(p.timestamp));
+        const QString from = QString::fromStdString(p.from);
+        // Fall back to a local timestamp if the server sent none, to avoid dedup key collisions.
+        const QString ts = p.timestamp.empty()
+                               ? QDateTime::currentDateTimeUtc().toString(Qt::ISODateWithMs)
+                               : QString::fromStdString(p.timestamp);
+
+        if (isDuplicate(from, from, ts)) {
+            qCInfo(logChat) << "Skipping duplicate message from" << from;
+            return;
+        }
+
+        persistMessage(from, from, plaintext, ts, false);
+        emit messageDecrypted(from, plaintext, ts);
     } catch (const std::exception& e) {
-        qWarning() << "Failed to decrypt incoming message:" << e.what();
+        qCWarning(logChat) << "Failed to decrypt incoming message:" << e.what();
     }
 }
 
@@ -163,6 +246,8 @@ void NetworkManager::logout() {
     _ownPubKey.clear();
     _peerKeys.clear();
     _pendingMessages.clear();
+    _messageKeys.clear();
+    _historyLoaded = false;
     emit currentUsernameChanged();
 }
 
@@ -191,13 +276,13 @@ bool NetworkManager::hasError() const { return _hasError; }
 QString NetworkManager::currentUsername() const { return _currentUsername; }
 
 void NetworkManager::onConnected() {
-    qInfo() << "Connected to server";
+    qCInfo(logNetwork) << "Connected to server";
     emit connectionChanged();
     emit connected();
 }
 
 void NetworkManager::onDisconnected() {
-    qInfo() << "Disconnected from server";
+    qCInfo(logNetwork) << "Disconnected from server";
     emit connectionChanged();
     emit disconnected();
 }
@@ -225,10 +310,8 @@ void NetworkManager::onTextMessageReceived(const QString& message) {
         case PacketType::ACK:
             _hasError = false;
             if (!p.body.empty()) {
-                // Login ACK - body carries session token, to carries username
                 handleLoginAck(p);
             } else if (p.to == _currentUsername.toStdString()) {
-                // SYNC_HISTORY ACK
                 emit syncComplete();
             }
             emit lastMessageChanged();
@@ -251,7 +334,7 @@ void NetworkManager::onTextMessageReceived(const QString& message) {
 
 void NetworkManager::onSslErrors(const QList<QSslError>& errors) {
     for (const QSslError& e : errors) {
-        qWarning() << "SSL error:" << e.errorString();
+        qCWarning(logNetwork) << "SSL error:" << e.errorString();
     }
     if (!errors.isEmpty()) {
         _hasError = true;
@@ -262,11 +345,11 @@ void NetworkManager::onSslErrors(const QList<QSslError>& errors) {
 }
 
 void NetworkManager::onReachabilityChanged(QNetworkInformation::Reachability reachability) {
-    qInfo() << "Network reachability changed:" << reachability;
+    qCInfo(logNetwork) << "Network reachability changed:" << reachability;
     if (reachability != QNetworkInformation::Reachability::Online) {
         _socket.close();
     } else if (!isConnected() && !_serverUrl.isEmpty()) {
-        qInfo() << "Network back online, reconnecting...";
+        qCInfo(logNetwork) << "Network back online, reconnecting...";
         _socket.open(_serverUrl);
     }
 }
