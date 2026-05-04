@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['data_0',['data',['../classChatModel.html#a62e5fb33e029b96891d4ce1167e97a89',1,'ChatModel']]],
+  ['data_0',['data',['../classConversationListModel.html#a331b4758287f72926ae9aee990a92e7a',1,'ConversationListModel::data()'],['../classChatModel.html#a62e5fb33e029b96891d4ce1167e97a89',1,'ChatModel::data()']]],
   ['dbmanager_1',['dbmanager',['../classDbManager.html#a8dd83f5043068dea2126918cff641a11',1,'DbManager::DbManager(const DbManager &amp;)=delete'],['../classDbManager.html#a5ffaa2034b2e23538486d7c2213815e6',1,'DbManager::DbManager(DbManager &amp;&amp;)=delete']]],
   ['deactivate_2',['deactivate',['../classSession.html#a5a92ee9756960f8bcde1414bdc177ebe',1,'Session']]],
   ['deactivateallforuser_3',['deactivateAllForUser',['../classSessionRepository.html#aa4aa7fdfd701c810fe86dd76a3276516',1,'SessionRepository']]],

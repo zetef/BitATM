@@ -1,0 +1,15 @@
+<map id="frontend/src/ConversationListModel.cpp" name="frontend/src/ConversationListModel.cpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="241,5,431,45"/>
+<area shape="rect" id="Node000002" href="$ConversationListModel_8h.html" title=" " alt="" coords="166,93,349,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="319,47,281,85,277,82,315,44"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="373,93,459,119"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="357,44,396,82,392,85,354,47"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,167,155,192"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="230,121,122,164,120,159,228,116"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="179,167,245,192"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="252,120,229,157,224,154,248,118"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="269,167,339,192"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="267,118,291,154,287,157,263,120"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="363,167,426,192"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="281,116,361,158,359,163,278,121"/>
+</map>

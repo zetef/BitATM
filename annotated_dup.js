@@ -9,6 +9,7 @@ var annotated_dup =
     [ "ConnectionHandler", "classConnectionHandler.html", "classConnectionHandler" ],
     [ "ConnectionHandlerFactory", "classConnectionHandlerFactory.html", "classConnectionHandlerFactory" ],
     [ "ConversationHistory", "classConversationHistory.html", "classConversationHistory" ],
+    [ "ConversationListModel", "classConversationListModel.html", "classConversationListModel" ],
     [ "CryptoEngine", "classCryptoEngine.html", "classCryptoEngine" ],
     [ "CryptoException", "classCryptoException.html", "classCryptoException" ],
     [ "DbException", "classDbException.html", "classDbException" ],

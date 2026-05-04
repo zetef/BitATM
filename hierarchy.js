@@ -64,7 +64,8 @@ var hierarchy =
     [ "PacketHandlerFactory", "classPacketHandlerFactory.html", null ],
     [ "ProtocolParser", "classProtocolParser.html", null ],
     [ "QAbstractListModel", null, [
-      [ "ChatModel", "classChatModel.html", null ]
+      [ "ChatModel", "classChatModel.html", null ],
+      [ "ConversationListModel", "classConversationListModel.html", null ]
     ] ],
     [ "QObject", null, [
       [ "NetworkManager", "classNetworkManager.html", null ]

@@ -4,6 +4,8 @@ var dir_debbd63f1d8db984f7ce6be7690dc411 =
     [ "AesGcmStrategy.h", "AesGcmStrategy_8h.html", "AesGcmStrategy_8h" ],
     [ "ChatModel.cpp", "ChatModel_8cpp.html", null ],
     [ "ChatModel.h", "ChatModel_8h.html", "ChatModel_8h" ],
+    [ "ConversationListModel.cpp", "ConversationListModel_8cpp.html", null ],
+    [ "ConversationListModel.h", "ConversationListModel_8h.html", "ConversationListModel_8h" ],
     [ "CryptoEngine.cpp", "CryptoEngine_8cpp.html", null ],
     [ "CryptoEngine.h", "CryptoEngine_8h.html", "CryptoEngine_8h" ],
     [ "IAsymmetricStrategy.h", "IAsymmetricStrategy_8h.html", "IAsymmetricStrategy_8h" ],

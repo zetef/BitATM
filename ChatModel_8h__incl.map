@@ -1,11 +1,13 @@
 <map id="frontend/src/ChatModel.h" name="frontend/src/ChatModel.h">
-<area shape="rect" id="Node000001" title=" " alt="" coords="164,5,351,31"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="205,5,392,31"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="5,79,155,104"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="230,33,122,76,120,71,228,28"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="264,33,129,77,128,72,263,28"/>
 <area shape="rect" id="Node000003" title=" " alt="" coords="179,79,245,104"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="252,32,229,69,224,66,248,30"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="269,79,339,104"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="267,30,291,66,287,69,263,32"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="363,79,426,104"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="281,28,361,70,359,75,278,33"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="286,33,238,72,235,68,283,29"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="269,79,329,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="301,31,301,65,296,65,296,31"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="353,79,423,104"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="315,29,364,68,361,72,311,33"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="447,79,510,104"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="329,28,438,71,436,76,327,33"/>
 </map>

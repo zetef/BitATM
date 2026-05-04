@@ -1,22 +1,28 @@
 <map id="frontend/src/ICryptoStrategy.h" name="frontend/src/ICryptoStrategy.h">
-<area shape="rect" id="Node000001" title=" " alt="" coords="272,5,488,31"/>
-<area shape="rect" id="Node000002" href="$IAsymmetricStrategy_8h.html" title=" " alt="" coords="167,79,353,119"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="352,41,290,81,287,76,349,36"/>
-<area shape="rect" id="Node000007" href="$ISymmetricStrategy_8h.html" title=" " alt="" coords="378,86,622,111"/>
-<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="411,36,484,84,481,88,408,41"/>
-<area shape="rect" id="Node000003" href="$CryptoEngine_8h.html" title=" " alt="" coords="280,167,483,192"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="302,124,365,164,362,169,299,128"/>
-<area shape="rect" id="Node000005" href="$RsaOaepStrategy_8h.html" title=" " alt="" coords="29,167,256,192"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="221,129,161,169,158,164,219,124"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="391,5,607,31"/>
+<area shape="rect" id="Node000002" href="$IAsymmetricStrategy_8h.html" title=" " alt="" coords="285,79,472,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="471,41,409,81,406,76,468,36"/>
+<area shape="rect" id="Node000010" href="$ISymmetricStrategy_8h.html" title=" " alt="" coords="497,86,741,111"/>
+<area shape="poly" id="edge10_Node000001_Node000010" title=" " alt="" coords="530,36,602,84,599,88,527,41"/>
+<area shape="rect" id="Node000003" href="$CryptoEngine_8h.html" title=" " alt="" coords="399,167,601,192"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="421,124,484,164,481,169,418,128"/>
+<area shape="rect" id="Node000008" href="$RsaOaepStrategy_8h.html" title=" " alt="" coords="148,167,375,192"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="340,129,280,169,277,164,337,124"/>
 <area shape="rect" id="Node000004" href="$CryptoEngine_8cpp.html" title=" " alt="" coords="272,240,491,265"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="384,206,384,240,379,240,379,206"/>
-<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="195,193,343,237,342,242,193,198"/>
-<area shape="rect" id="Node000006" href="$RsaOaepStrategy_8cpp.html" title=" " alt="" coords="5,240,248,265"/>
-<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="140,206,132,240,127,239,134,205"/>
-<area shape="poly" id="edge11_Node000007_Node000003" title=" " alt="" coords="472,121,400,169,397,164,469,117"/>
-<area shape="rect" id="Node000008" href="$AesGcmStrategy_8h.html" title=" " alt="" coords="507,167,730,192"/>
-<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="531,117,603,164,600,169,528,121"/>
-<area shape="poly" id="edge10_Node000008_Node000004" title=" " alt="" coords="568,198,421,242,419,237,567,193"/>
-<area shape="rect" id="Node000009" href="$AesGcmStrategy_8cpp.html" title=" " alt="" coords="515,240,754,265"/>
-<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="627,205,635,239,629,240,622,206"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="470,201,402,242,399,237,468,197"/>
+<area shape="rect" id="Node000005" href="$NetworkManager_8h.html" title=" " alt="" coords="515,240,741,265"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="534,196,608,237,606,242,531,201"/>
+<area shape="rect" id="Node000006" href="$NetworkManager_8cpp.html" title=" " alt="" coords="392,313,635,339"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="600,275,533,315,531,311,597,270"/>
+<area shape="rect" id="Node000007" href="$frontend_2src_2main_8cpp.html" title=" " alt="" coords="659,313,823,339"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="660,271,724,311,721,315,657,275"/>
+<area shape="poly" id="edge8_Node000008_Node000004" title=" " alt="" coords="294,197,363,237,360,242,291,201"/>
+<area shape="rect" id="Node000009" href="$RsaOaepStrategy_8cpp.html" title=" " alt="" coords="5,240,248,265"/>
+<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="229,201,150,242,147,237,226,196"/>
+<area shape="poly" id="edge14_Node000010_Node000003" title=" " alt="" coords="591,121,519,169,516,164,588,117"/>
+<area shape="rect" id="Node000011" href="$AesGcmStrategy_8h.html" title=" " alt="" coords="626,167,849,192"/>
+<area shape="poly" id="edge11_Node000010_Node000011" title=" " alt="" coords="649,117,721,164,718,169,646,121"/>
+<area shape="poly" id="edge13_Node000011_Node000004" title=" " alt="" coords="667,197,439,243,438,237,666,192"/>
+<area shape="rect" id="Node000012" href="$AesGcmStrategy_8cpp.html" title=" " alt="" coords="766,240,1005,265"/>
+<area shape="poly" id="edge12_Node000011_Node000012" title=" " alt="" coords="774,195,862,237,860,242,772,200"/>
 </map>

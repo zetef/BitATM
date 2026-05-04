@@ -7,11 +7,12 @@ var searchData=
   ['message_4',['message',['../protocol_8h.html#a0a80a7bc045affcf10846075b88cbca0a90791ed805bd5b00d78527d39d9ef7e4',1,'MESSAGE:&#160;protocol.h'],['../classMessage.html',1,'Message'],['../classMessage.html#adfa636c8765376ea38b2aec4edca5980',1,'Message::Message(Message &amp;&amp;) noexcept=default'],['../classMessage.html#a497221f3a915b3e5c2e69d4074dde5f7',1,'Message::Message(const Message &amp;)=default'],['../classMessage.html#a62cc5cb3e230a9a6e766f343ac55920c',1,'Message::Message(int id, std::string sender, std::string recipient, std::string encryptedBody, std::string encryptedKey, std::string status=&quot;sent&quot;, std::string createdAt={})'],['../classMessage.html#a4e0c3e0a2be25186519ba075d7851b71',1,'Message::Message()=default']]],
   ['message_2ecpp_5',['Message.cpp',['../Message_8cpp.html',1,'']]],
   ['message_2eh_6',['Message.h',['../Message_8h.html',1,'']]],
-  ['messagehandler_7',['messagehandler',['../classMessageHandler.html#a646fbcf1e4fe0b01a654a39c95df5bfe',1,'MessageHandler::MessageHandler()'],['../classMessageHandler.html',1,'MessageHandler']]],
-  ['messagehandler_2ecpp_8',['MessageHandler.cpp',['../MessageHandler_8cpp.html',1,'']]],
-  ['messagehandler_2eh_9',['MessageHandler.h',['../MessageHandler_8h.html',1,'']]],
-  ['messagereceived_10',['messageReceived',['../classNetworkManager.html#a603d801e6200da430707381ba39241c2',1,'NetworkManager']]],
-  ['messagerepository_11',['messagerepository',['../classMessageRepository.html#a4d98baabfe3b508fd743db2b9cfb0650',1,'MessageRepository::MessageRepository()'],['../classMessageRepository.html',1,'MessageRepository']]],
-  ['messagerepository_2ecpp_12',['MessageRepository.cpp',['../MessageRepository_8cpp.html',1,'']]],
-  ['messagerepository_2eh_13',['MessageRepository.h',['../MessageRepository_8h.html',1,'']]]
+  ['messagedecrypted_7',['messageDecrypted',['../classNetworkManager.html#ad1120665171eec720f090a61cb7eedb3',1,'NetworkManager']]],
+  ['messagehandler_8',['messagehandler',['../classMessageHandler.html#a646fbcf1e4fe0b01a654a39c95df5bfe',1,'MessageHandler::MessageHandler()'],['../classMessageHandler.html',1,'MessageHandler']]],
+  ['messagehandler_2ecpp_9',['MessageHandler.cpp',['../MessageHandler_8cpp.html',1,'']]],
+  ['messagehandler_2eh_10',['MessageHandler.h',['../MessageHandler_8h.html',1,'']]],
+  ['messagereceived_11',['messageReceived',['../classNetworkManager.html#a603d801e6200da430707381ba39241c2',1,'NetworkManager']]],
+  ['messagerepository_12',['messagerepository',['../classMessageRepository.html#a4d98baabfe3b508fd743db2b9cfb0650',1,'MessageRepository::MessageRepository()'],['../classMessageRepository.html',1,'MessageRepository']]],
+  ['messagerepository_2ecpp_13',['MessageRepository.cpp',['../MessageRepository_8cpp.html',1,'']]],
+  ['messagerepository_2eh_14',['MessageRepository.h',['../MessageRepository_8h.html',1,'']]]
 ];

@@ -107,9 +107,9 @@ Inheritance diagram for ChatModel:</div>
 <div class="dyncontent">
 <div class="center"><img src="classChatModel__inherit__graph.png" border="0" usemap="#aChatModel_inherit__map" alt="Inheritance graph"/></div>
 <map name="aChatModel_inherit__map" id="aChatModel_inherit__map">
-<area shape="rect" title="QAbstractListModel holding chat messages for one conversation." alt="" coords="5,119,151,284"/>
-<area shape="rect" title=" " alt="" coords="7,5,149,71"/>
-<area shape="poly" title=" " alt="" coords="81,84,81,118,75,118,75,84"/>
+<area shape="rect" title="QAbstractListModel holding chat messages for one conversation." alt="" coords="5,119,172,344"/>
+<area shape="rect" title=" " alt="" coords="18,5,159,71"/>
+<area shape="poly" title=" " alt="" coords="91,84,91,119,86,119,86,84"/>
 </map>
 </div>
 <div class="dynheader">
@@ -117,9 +117,9 @@ Collaboration diagram for ChatModel:</div>
 <div class="dyncontent">
 <div class="center"><img src="classChatModel__coll__graph.png" border="0" usemap="#aChatModel_coll__map" alt="Collaboration graph"/></div>
 <map name="aChatModel_coll__map" id="aChatModel_coll__map">
-<area shape="rect" title="QAbstractListModel holding chat messages for one conversation." alt="" coords="5,119,151,284"/>
-<area shape="rect" title=" " alt="" coords="7,5,149,71"/>
-<area shape="poly" title=" " alt="" coords="81,84,81,118,75,118,75,84"/>
+<area shape="rect" title="QAbstractListModel holding chat messages for one conversation." alt="" coords="5,119,172,344"/>
+<area shape="rect" title=" " alt="" coords="18,5,159,71"/>
+<area shape="poly" title=" " alt="" coords="91,84,91,119,86,119,86,84"/>
 </map>
 </div>
 <table class="memberdecls">
@@ -137,11 +137,20 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a597d11bc706c54b9ee471ca7e46c2478" id="r_a597d11bc706c54b9ee471ca7e46c2478"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classChatModel.html#a597d11bc706c54b9ee471ca7e46c2478">ChatModel</a> (QObject *parent=nullptr)</td></tr>
 <tr class="separator:a597d11bc706c54b9ee471ca7e46c2478"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1ba983184f7035e4e433ab4136ef1307" id="r_a1ba983184f7035e4e433ab4136ef1307"><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classChatModel.html#a1ba983184f7035e4e433ab4136ef1307">appendMessage</a> (const QString &amp;sender, const QString &amp;content, const QString &amp;timestamp, bool isOutgoing)</td></tr>
-<tr class="memdesc:a1ba983184f7035e4e433ab4136ef1307"><td class="mdescLeft">&#160;</td><td class="mdescRight">Append one message. Emits rowsInserted.  <br /></td></tr>
+<tr class="memdesc:a1ba983184f7035e4e433ab4136ef1307"><td class="mdescLeft">&#160;</td><td class="mdescRight">Append one message to the flat display list only (existing API, tests use this).  <br /></td></tr>
 <tr class="separator:a1ba983184f7035e4e433ab4136ef1307"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e84eabeba74b05732ed0ab8b3f75124" id="r_a5e84eabeba74b05732ed0ab8b3f75124"><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classChatModel.html#a5e84eabeba74b05732ed0ab8b3f75124">appendAndCache</a> (const QString &amp;peer, const QString &amp;sender, const QString &amp;content, const QString &amp;timestamp, bool isOutgoing)</td></tr>
+<tr class="memdesc:a5e84eabeba74b05732ed0ab8b3f75124"><td class="mdescLeft">&#160;</td><td class="mdescRight">Append a message to the per-peer cache and to the flat list if peer is active.  <br /></td></tr>
+<tr class="separator:a5e84eabeba74b05732ed0ab8b3f75124"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a51b5a473b65b086c6cfcee6b9918da54" id="r_a51b5a473b65b086c6cfcee6b9918da54"><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classChatModel.html#a51b5a473b65b086c6cfcee6b9918da54">switchConversation</a> (const QString &amp;peer)</td></tr>
+<tr class="memdesc:a51b5a473b65b086c6cfcee6b9918da54"><td class="mdescLeft">&#160;</td><td class="mdescRight">Switch to a different conversation, replaying its cached messages.  <br /></td></tr>
+<tr class="separator:a51b5a473b65b086c6cfcee6b9918da54"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a942690cc304d1c6e83f41cfe07d9c2be" id="r_a942690cc304d1c6e83f41cfe07d9c2be"><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classChatModel.html#a942690cc304d1c6e83f41cfe07d9c2be">clearHistory</a> ()</td></tr>
-<tr class="memdesc:a942690cc304d1c6e83f41cfe07d9c2be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove all messages. Emits modelReset.  <br /></td></tr>
+<tr class="memdesc:a942690cc304d1c6e83f41cfe07d9c2be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove all messages from the flat display list. Does not touch the cache.  <br /></td></tr>
 <tr class="separator:a942690cc304d1c6e83f41cfe07d9c2be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af7c789ab9a5a53b3907a130da70991a4" id="r_af7c789ab9a5a53b3907a130da70991a4"><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classChatModel.html#af7c789ab9a5a53b3907a130da70991a4">clearAll</a> ()</td></tr>
+<tr class="memdesc:af7c789ab9a5a53b3907a130da70991a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear both the flat display list and the entire per-peer cache.  <br /></td></tr>
+<tr class="separator:af7c789ab9a5a53b3907a130da70991a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa597aa46f94dba90ba14a990562bd9f1" id="r_aa597aa46f94dba90ba14a990562bd9f1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classChatModel.html#aa597aa46f94dba90ba14a990562bd9f1">rowCount</a> (const QModelIndex &amp;parent=QModelIndex()) const override</td></tr>
 <tr class="separator:aa597aa46f94dba90ba14a990562bd9f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a62e5fb33e029b96891d4ce1167e97a89" id="r_a62e5fb33e029b96891d4ce1167e97a89"><td class="memItemLeft" align="right" valign="top">QVariant&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classChatModel.html#a62e5fb33e029b96891d4ce1167e97a89">data</a> (const QModelIndex &amp;index, int role=Qt::DisplayRole) const override</td></tr>
@@ -151,7 +160,7 @@ Public Member Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>QAbstractListModel holding chat messages for one conversation. </p>
-<p>Always use <a class="el" href="classChatModel.html#a1ba983184f7035e4e433ab4136ef1307" title="Append one message. Emits rowsInserted.">appendMessage()</a> and <a class="el" href="classChatModel.html#a942690cc304d1c6e83f41cfe07d9c2be" title="Remove all messages. Emits modelReset.">clearHistory()</a> — never mutate entries_ directly. Both methods call the required begin/end model change guards. </p>
+<p>Always use <a class="el" href="classChatModel.html#a1ba983184f7035e4e433ab4136ef1307" title="Append one message to the flat display list only (existing API, tests use this).">appendMessage()</a> / <a class="el" href="classChatModel.html#a5e84eabeba74b05732ed0ab8b3f75124" title="Append a message to the per-peer cache and to the flat list if peer is active.">appendAndCache()</a> / <a class="el" href="classChatModel.html#a942690cc304d1c6e83f41cfe07d9c2be" title="Remove all messages from the flat display list. Does not touch the cache.">clearHistory()</a> / <a class="el" href="classChatModel.html#a51b5a473b65b086c6cfcee6b9918da54" title="Switch to a different conversation, replaying its cached messages.">switchConversation()</a> to mutate state - never touch entries_ or cache_ directly. All mutating methods call the required begin/end model change guards. </p>
 </div><h2 class="groupheader">Member Enumeration Documentation</h2>
 <a id="a63e01c84f289f33e414ae789fcdc68e0" name="a63e01c84f289f33e414ae789fcdc68e0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a63e01c84f289f33e414ae789fcdc68e0">&#9670;&#160;</a></span>Roles</h2>
@@ -201,6 +210,64 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a5e84eabeba74b05732ed0ab8b3f75124" name="a5e84eabeba74b05732ed0ab8b3f75124"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5e84eabeba74b05732ed0ab8b3f75124">&#9670;&#160;</a></span>appendAndCache()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ChatModel::appendAndCache </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>peer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>sender</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>content</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>timestamp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>isOutgoing</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Append a message to the per-peer cache and to the flat list if peer is active. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">peer</td><td>The conversation key (recipient username for outgoing, sender for incoming). </td></tr>
+    <tr><td class="paramname">sender</td><td>Display sender name. </td></tr>
+    <tr><td class="paramname">content</td><td>Plaintext content. </td></tr>
+    <tr><td class="paramname">timestamp</td><td>ISO timestamp string. </td></tr>
+    <tr><td class="paramname">isOutgoing</td><td>True for messages the local user sent. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a1ba983184f7035e4e433ab4136ef1307" name="a1ba983184f7035e4e433ab4136ef1307"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1ba983184f7035e4e433ab4136ef1307">&#9670;&#160;</a></span>appendMessage()</h2>
 
@@ -239,7 +306,26 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Append one message. Emits rowsInserted. </p>
+<p>Append one message to the flat display list only (existing API, tests use this). </p>
+
+</div>
+</div>
+<a id="af7c789ab9a5a53b3907a130da70991a4" name="af7c789ab9a5a53b3907a130da70991a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af7c789ab9a5a53b3907a130da70991a4">&#9670;&#160;</a></span>clearAll()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ChatModel::clearAll </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Clear both the flat display list and the entire per-peer cache. </p>
 
 </div>
 </div>
@@ -258,7 +344,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Remove all messages. Emits modelReset. </p>
+<p>Remove all messages from the flat display list. Does not touch the cache. </p>
 
 </div>
 </div>
@@ -346,6 +432,27 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a id="a51b5a473b65b086c6cfcee6b9918da54" name="a51b5a473b65b086c6cfcee6b9918da54"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a51b5a473b65b086c6cfcee6b9918da54">&#9670;&#160;</a></span>switchConversation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ChatModel::switchConversation </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>peer</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Switch to a different conversation, replaying its cached messages. </p>
+<p>Clears the flat list and repopulates it from the cache for peer. If no cache exists for peer, the list is cleared and stays empty. </p>
 
 </div>
 </div>

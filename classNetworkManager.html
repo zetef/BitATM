@@ -98,15 +98,18 @@ $(document).ready(function(){initNavTree('classNetworkManager.html',''); initRes
 </div><!--header-->
 <div class="contents">
 
+<p>Proxy to the BitATM WebSocket server with integrated E2EE and local history.  
+ <a href="classNetworkManager.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="NetworkManager_8h_source.html">NetworkManager.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for NetworkManager:</div>
 <div class="dyncontent">
 <div class="center"><img src="classNetworkManager__inherit__graph.png" border="0" usemap="#aNetworkManager_inherit__map" alt="Inheritance graph"/></div>
 <map name="aNetworkManager_inherit__map" id="aNetworkManager_inherit__map">
-<area shape="rect" title=" " alt="" coords="5,119,157,384"/>
+<area shape="rect" title="Proxy to the BitATM WebSocket server with integrated E2EE and local history." alt="" coords="5,119,157,464"/>
 <area shape="rect" title=" " alt="" coords="48,5,115,71"/>
-<area shape="poly" title=" " alt="" coords="84,84,84,119,79,119,79,84"/>
+<area shape="poly" title=" " alt="" coords="84,85,84,118,79,118,79,85"/>
 </map>
 </div>
 <div class="dynheader">
@@ -114,15 +117,16 @@ Collaboration diagram for NetworkManager:</div>
 <div class="dyncontent">
 <div class="center"><img src="classNetworkManager__coll__graph.png" border="0" usemap="#aNetworkManager_coll__map" alt="Collaboration graph"/></div>
 <map name="aNetworkManager_coll__map" id="aNetworkManager_coll__map">
-<area shape="rect" title=" " alt="" coords="5,119,157,384"/>
+<area shape="rect" title="Proxy to the BitATM WebSocket server with integrated E2EE and local history." alt="" coords="5,119,157,464"/>
 <area shape="rect" title=" " alt="" coords="48,5,115,71"/>
-<area shape="poly" title=" " alt="" coords="84,84,84,119,79,119,79,84"/>
+<area shape="poly" title=" " alt="" coords="84,85,84,118,79,118,79,85"/>
 </map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="signals" name="signals"></a>
 Signals</h2></td></tr>
 <tr class="memitem:a603d801e6200da430707381ba39241c2" id="r_a603d801e6200da430707381ba39241c2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkManager.html#a603d801e6200da430707381ba39241c2">messageReceived</a> (const QString &amp;message)</td></tr>
+<tr class="memdesc:a603d801e6200da430707381ba39241c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Raw inbound wire message forwarded to QML.  <br /></td></tr>
 <tr class="separator:a603d801e6200da430707381ba39241c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae433b408a3a5b19bc4155008aa2f93ea" id="r_ae433b408a3a5b19bc4155008aa2f93ea"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkManager.html#ae433b408a3a5b19bc4155008aa2f93ea">lastMessageChanged</a> ()</td></tr>
 <tr class="separator:ae433b408a3a5b19bc4155008aa2f93ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -136,24 +140,55 @@ Signals</h2></td></tr>
 <tr class="separator:a6b6ee9cf02e7df2a766d5db74c4d2125"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5a95bfdbdf91e47e8341ef89bae23b9d" id="r_a5a95bfdbdf91e47e8341ef89bae23b9d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkManager.html#a5a95bfdbdf91e47e8341ef89bae23b9d">currentUsernameChanged</a> ()</td></tr>
 <tr class="separator:a5a95bfdbdf91e47e8341ef89bae23b9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1120665171eec720f090a61cb7eedb3" id="r_ad1120665171eec720f090a61cb7eedb3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkManager.html#ad1120665171eec720f090a61cb7eedb3">messageDecrypted</a> (const QString &amp;from, const QString &amp;plaintext, const QString &amp;timestamp)</td></tr>
+<tr class="memdesc:ad1120665171eec720f090a61cb7eedb3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Emitted when an incoming MESSAGE packet is successfully decrypted.  <br /></td></tr>
+<tr class="separator:ad1120665171eec720f090a61cb7eedb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0d5ac1ac81e96aa4c99b5399122c887" id="r_ad0d5ac1ac81e96aa4c99b5399122c887"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkManager.html#ad0d5ac1ac81e96aa4c99b5399122c887">peerKeyReceived</a> (const QString &amp;username, const QString &amp;publicKey)</td></tr>
+<tr class="memdesc:ad0d5ac1ac81e96aa4c99b5399122c887"><td class="mdescLeft">&#160;</td><td class="mdescRight">Emitted when a KEY_EXCHANGE response delivers a peer's public key.  <br /></td></tr>
+<tr class="separator:ad0d5ac1ac81e96aa4c99b5399122c887"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91ed9c1374f6c18b78c66aec883da39a" id="r_a91ed9c1374f6c18b78c66aec883da39a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkManager.html#a91ed9c1374f6c18b78c66aec883da39a">syncComplete</a> ()</td></tr>
+<tr class="memdesc:a91ed9c1374f6c18b78c66aec883da39a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Emitted after the server ACKs a SYNC_HISTORY request.  <br /></td></tr>
+<tr class="separator:a91ed9c1374f6c18b78c66aec883da39a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e431ffe571e89103864c08eaea12488" id="r_a1e431ffe571e89103864c08eaea12488"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkManager.html#a1e431ffe571e89103864c08eaea12488">historySyncMessage</a> (const QString &amp;peer, const QString &amp;sender, const QString &amp;content, const QString &amp;timestamp, bool isOutgoing)</td></tr>
+<tr class="memdesc:a1e431ffe571e89103864c08eaea12488"><td class="mdescLeft">&#160;</td><td class="mdescRight">Emitted once per stored message during local history load on login.  <br /></td></tr>
+<tr class="separator:a1e431ffe571e89103864c08eaea12488"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a25e5a69c0dba31cc028050c2b6eea855" id="r_a25e5a69c0dba31cc028050c2b6eea855"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkManager.html#a25e5a69c0dba31cc028050c2b6eea855">NetworkManager</a> (QObject *parent=nullptr)</td></tr>
 <tr class="separator:a25e5a69c0dba31cc028050c2b6eea855"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa5e7b25d9a603077169f10aa9bc0485d" id="r_aa5e7b25d9a603077169f10aa9bc0485d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkManager.html#aa5e7b25d9a603077169f10aa9bc0485d">connectToServer</a> (const QUrl &amp;url)</td></tr>
+<tr class="memdesc:aa5e7b25d9a603077169f10aa9bc0485d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Open a WebSocket connection to the given URL.  <br /></td></tr>
 <tr class="separator:aa5e7b25d9a603077169f10aa9bc0485d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a04e128630115ed7fa113451dc745f1d7" id="r_a04e128630115ed7fa113451dc745f1d7"><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkManager.html#a04e128630115ed7fa113451dc745f1d7">sendRegister</a> (const QString &amp;username, const QString &amp;password)</td></tr>
+<tr class="memdesc:a04e128630115ed7fa113451dc745f1d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send a REGISTER packet with username and password.  <br /></td></tr>
 <tr class="separator:a04e128630115ed7fa113451dc745f1d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2f815193125adfb0eb520665d8a87f5c" id="r_a2f815193125adfb0eb520665d8a87f5c"><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkManager.html#a2f815193125adfb0eb520665d8a87f5c">sendLogin</a> (const QString &amp;username, const QString &amp;password)</td></tr>
+<tr class="memdesc:a2f815193125adfb0eb520665d8a87f5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send a LOGIN packet with username and password.  <br /></td></tr>
 <tr class="separator:a2f815193125adfb0eb520665d8a87f5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8377e89880291b6bcf22de13e90712f" id="r_ac8377e89880291b6bcf22de13e90712f"><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkManager.html#ac8377e89880291b6bcf22de13e90712f">sendMessage</a> (const QString &amp;to, const QString &amp;plaintext)</td></tr>
+<tr class="memdesc:ac8377e89880291b6bcf22de13e90712f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encrypt plaintext and send a MESSAGE packet to 'to'.  <br /></td></tr>
+<tr class="separator:ac8377e89880291b6bcf22de13e90712f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa9be8fd0f61070537dcda37964be6986" id="r_aa9be8fd0f61070537dcda37964be6986"><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkManager.html#aa9be8fd0f61070537dcda37964be6986">fetchPeerKey</a> (const QString &amp;username)</td></tr>
+<tr class="memdesc:aa9be8fd0f61070537dcda37964be6986"><td class="mdescLeft">&#160;</td><td class="mdescRight">Request peer's RSA public key from the server.  <br /></td></tr>
+<tr class="separator:aa9be8fd0f61070537dcda37964be6986"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1a01cd412a0dde3f4e1dc77ad46e253" id="r_ad1a01cd412a0dde3f4e1dc77ad46e253"><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkManager.html#ad1a01cd412a0dde3f4e1dc77ad46e253">sendSyncHistory</a> ()</td></tr>
+<tr class="memdesc:ad1a01cd412a0dde3f4e1dc77ad46e253"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ask the server to push all missed messages for current user.  <br /></td></tr>
+<tr class="separator:ad1a01cd412a0dde3f4e1dc77ad46e253"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e9f2e60df7673bec45af42c104d4f72" id="r_a2e9f2e60df7673bec45af42c104d4f72"><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkManager.html#a2e9f2e60df7673bec45af42c104d4f72">logout</a> ()</td></tr>
+<tr class="memdesc:a2e9f2e60df7673bec45af42c104d4f72"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear session state and return to login without closing the WebSocket.  <br /></td></tr>
+<tr class="separator:a2e9f2e60df7673bec45af42c104d4f72"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a97d1fb741f609c2442efdfd92e944ed2" id="r_a97d1fb741f609c2442efdfd92e944ed2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkManager.html#a97d1fb741f609c2442efdfd92e944ed2">isConnected</a> () const</td></tr>
+<tr class="memdesc:a97d1fb741f609c2442efdfd92e944ed2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if the WebSocket is in ConnectedState.  <br /></td></tr>
 <tr class="separator:a97d1fb741f609c2442efdfd92e944ed2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6ee3929635e27c7b801a2a3d61279ce1" id="r_a6ee3929635e27c7b801a2a3d61279ce1"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkManager.html#a6ee3929635e27c7b801a2a3d61279ce1">lastMessage</a> () const</td></tr>
+<tr class="memdesc:a6ee3929635e27c7b801a2a3d61279ce1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the last status or error message.  <br /></td></tr>
 <tr class="separator:a6ee3929635e27c7b801a2a3d61279ce1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a81c14937cc630aa9accb44c2a65b9cde" id="r_a81c14937cc630aa9accb44c2a65b9cde"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkManager.html#a81c14937cc630aa9accb44c2a65b9cde">hasError</a> () const</td></tr>
+<tr class="memdesc:a81c14937cc630aa9accb44c2a65b9cde"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if the last operation resulted in an error.  <br /></td></tr>
 <tr class="separator:a81c14937cc630aa9accb44c2a65b9cde"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaa96a3d16f45cafb80c8242d5a1f7216" id="r_aaa96a3d16f45cafb80c8242d5a1f7216"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkManager.html#aaa96a3d16f45cafb80c8242d5a1f7216">currentUsername</a> () const</td></tr>
+<tr class="memdesc:aaa96a3d16f45cafb80c8242d5a1f7216"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the currently authenticated username.  <br /></td></tr>
 <tr class="separator:aaa96a3d16f45cafb80c8242d5a1f7216"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="properties" name="properties"></a>
@@ -167,7 +202,11 @@ Properties</h2></td></tr>
 <tr class="memitem:a0acbd202200bebaed8c909e28b770f29" id="r_a0acbd202200bebaed8c909e28b770f29"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkManager.html#a0acbd202200bebaed8c909e28b770f29">currentUsername</a></td></tr>
 <tr class="separator:a0acbd202200bebaed8c909e28b770f29"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Proxy to the BitATM WebSocket server with integrated E2EE and local history. </p>
+<p>Handles connection lifecycle, packet serialization, RSA keypair management (QSettings-persisted), per-peer AES key wrapping, routing of inbound packets to typed signals, and write-through message persistence.</p>
+<p>Threading: all methods run on the Qt main thread via the event loop. QWebSocket is async - no manual thread management needed. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a25e5a69c0dba31cc028050c2b6eea855" name="a25e5a69c0dba31cc028050c2b6eea855"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a25e5a69c0dba31cc028050c2b6eea855">&#9670;&#160;</a></span>NetworkManager()</h2>
 
@@ -261,6 +300,8 @@ Properties</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Open a WebSocket connection to the given URL. </p>
+
 </div>
 </div>
 <a id="aaa96a3d16f45cafb80c8242d5a1f7216" name="aaa96a3d16f45cafb80c8242d5a1f7216"></a>
@@ -277,6 +318,8 @@ Properties</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Returns the currently authenticated username. </p>
 
 </div>
 </div>
@@ -356,6 +399,26 @@ Properties</h2></td></tr>
 
 </div>
 </div>
+<a id="aa9be8fd0f61070537dcda37964be6986" name="aa9be8fd0f61070537dcda37964be6986"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa9be8fd0f61070537dcda37964be6986">&#9670;&#160;</a></span>fetchPeerKey()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NetworkManager::fetchPeerKey </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>username</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Request peer's RSA public key from the server. </p>
+
+</div>
+</div>
 <a id="a81c14937cc630aa9accb44c2a65b9cde" name="a81c14937cc630aa9accb44c2a65b9cde"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a81c14937cc630aa9accb44c2a65b9cde">&#9670;&#160;</a></span>hasError()</h2>
 
@@ -370,6 +433,75 @@ Properties</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Returns true if the last operation resulted in an error. </p>
+
+</div>
+</div>
+<a id="a1e431ffe571e89103864c08eaea12488" name="a1e431ffe571e89103864c08eaea12488"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e431ffe571e89103864c08eaea12488">&#9670;&#160;</a></span>historySyncMessage</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NetworkManager::historySyncMessage </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>peer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>sender</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>content</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>timestamp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>isOutgoing</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">signal</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Emitted once per stored message during local history load on login. </p>
+<p>QML handles this to populate chatModel and convListModel from local storage before the server sync arrives.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">peer</td><td>The conversation key (sender username for incoming, recipient for outgoing). </td></tr>
+    <tr><td class="paramname">sender</td><td>Display sender name. </td></tr>
+    <tr><td class="paramname">content</td><td>Plaintext message content. </td></tr>
+    <tr><td class="paramname">timestamp</td><td>ISO 8601 timestamp string. </td></tr>
+    <tr><td class="paramname">isOutgoing</td><td>True if the local user sent this message. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -388,6 +520,8 @@ Properties</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Returns true if the WebSocket is in ConnectedState. </p>
+
 </div>
 </div>
 <a id="a6ee3929635e27c7b801a2a3d61279ce1" name="a6ee3929635e27c7b801a2a3d61279ce1"></a>
@@ -404,6 +538,8 @@ Properties</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Returns the last status or error message. </p>
 
 </div>
 </div>
@@ -432,6 +568,69 @@ Properties</h2></td></tr>
 
 </div>
 </div>
+<a id="a2e9f2e60df7673bec45af42c104d4f72" name="a2e9f2e60df7673bec45af42c104d4f72"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2e9f2e60df7673bec45af42c104d4f72">&#9670;&#160;</a></span>logout()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NetworkManager::logout </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Clear session state and return to login without closing the WebSocket. </p>
+
+</div>
+</div>
+<a id="ad1120665171eec720f090a61cb7eedb3" name="ad1120665171eec720f090a61cb7eedb3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad1120665171eec720f090a61cb7eedb3">&#9670;&#160;</a></span>messageDecrypted</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NetworkManager::messageDecrypted </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>from</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>plaintext</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>timestamp</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">signal</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Emitted when an incoming MESSAGE packet is successfully decrypted. </p>
+
+</div>
+</div>
 <a id="a603d801e6200da430707381ba39241c2" name="a603d801e6200da430707381ba39241c2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a603d801e6200da430707381ba39241c2">&#9670;&#160;</a></span>messageReceived</h2>
 
@@ -455,6 +654,46 @@ Properties</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Raw inbound wire message forwarded to QML. </p>
+
+</div>
+</div>
+<a id="ad0d5ac1ac81e96aa4c99b5399122c887" name="ad0d5ac1ac81e96aa4c99b5399122c887"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad0d5ac1ac81e96aa4c99b5399122c887">&#9670;&#160;</a></span>peerKeyReceived</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NetworkManager::peerKeyReceived </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>username</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>publicKey</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">signal</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Emitted when a KEY_EXCHANGE response delivers a peer's public key. </p>
 
 </div>
 </div>
@@ -484,6 +723,39 @@ Properties</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Send a LOGIN packet with username and password. </p>
+
+</div>
+</div>
+<a id="ac8377e89880291b6bcf22de13e90712f" name="ac8377e89880291b6bcf22de13e90712f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac8377e89880291b6bcf22de13e90712f">&#9670;&#160;</a></span>sendMessage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NetworkManager::sendMessage </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>to</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>plaintext</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Encrypt plaintext and send a MESSAGE packet to 'to'. </p>
+<p>If 'to' has no cached public key, the send is deferred until peerKeyReceived is emitted for that username. </p>
+
 </div>
 </div>
 <a id="a04e128630115ed7fa113451dc745f1d7" name="a04e128630115ed7fa113451dc745f1d7"></a>
@@ -511,6 +783,54 @@ Properties</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Send a REGISTER packet with username and password. </p>
+
+</div>
+</div>
+<a id="ad1a01cd412a0dde3f4e1dc77ad46e253" name="ad1a01cd412a0dde3f4e1dc77ad46e253"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad1a01cd412a0dde3f4e1dc77ad46e253">&#9670;&#160;</a></span>sendSyncHistory()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NetworkManager::sendSyncHistory </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Ask the server to push all missed messages for current user. </p>
+
+</div>
+</div>
+<a id="a91ed9c1374f6c18b78c66aec883da39a" name="a91ed9c1374f6c18b78c66aec883da39a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a91ed9c1374f6c18b78c66aec883da39a">&#9670;&#160;</a></span>syncComplete</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NetworkManager::syncComplete </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">signal</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Emitted after the server ACKs a SYNC_HISTORY request. </p>
 
 </div>
 </div>
