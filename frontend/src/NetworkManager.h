@@ -56,6 +56,14 @@ public:
     /** @brief Ask the server to push all missed messages for current user. */
     Q_INVOKABLE void sendSyncHistory();
 
+    /**
+     * @brief Send READ_RECEIPT packets for all unread messages from peer.
+     *
+     * Drains the internal unread-timestamp list for peer, sending one
+     * READ_RECEIPT per message. No-op if not authenticated or no unread messages.
+     */
+    Q_INVOKABLE void markConversationRead(const QString& peer);
+
     /** @brief Clear session state and return to login without closing the WebSocket. */
     Q_INVOKABLE void logout();
 
@@ -98,6 +106,12 @@ signals:
     void messageDelivered(const QString& timestamp);
 
     /**
+     * @brief Emitted when the recipient confirms they have read a specific message.
+     * @param timestamp ISO timestamp of the message that was read.
+     */
+    void messageSeen(const QString& timestamp);
+
+    /**
      * @brief Emitted once per stored message during local history load on login.
      *
      * QML handles this to populate chatModel and convListModel from local storage
@@ -133,6 +147,9 @@ private:
 
     /** @brief Cache peer public key and flush any pending message for that peer. */
     void handleKeyExchangeResponse(const Packet& p);
+
+    /** @brief Handle an incoming READ_RECEIPT packet and emit messageSeen. */
+    void handleReadReceipt(const Packet& p);
 
     /** @brief Load RSA keypair from QSettings, or generate and persist a new one. */
     void loadOrGenerateKeypair();
@@ -182,4 +199,5 @@ private:
     QMap<QString, QList<QPair<QString, QString>>> _pendingMessages;
     QSet<QString> _messageKeys;
     bool _historyLoaded = false;
+    QMap<QString, QStringList> _unreadTimestamps;
 };

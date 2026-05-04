@@ -72,6 +72,19 @@ void NetworkManager::sendSyncHistory() {
     sendPacket(p);
 }
 
+void NetworkManager::markConversationRead(const QString& peer) {
+    if (_currentUsername.isEmpty() || !isConnected() || !_unreadTimestamps.contains(peer)) return;
+    const QStringList timestamps = _unreadTimestamps.take(peer);
+    for (const QString& ts : timestamps) {
+        Packet p;
+        p.type = PacketType::READ_RECEIPT;
+        p.from = _currentUsername.toStdString();
+        p.to = peer.toStdString();
+        p.body = ts.toStdString();
+        sendPacket(p);
+    }
+}
+
 void NetworkManager::encryptAndSend(const QString& to, const QString& plaintext,
                                     const QString& timestamp) {
     try {
@@ -228,9 +241,14 @@ void NetworkManager::handleIncomingMessage(const Packet& p) {
 
         persistMessage(from, from, plaintext, ts, false);
         emit messageDecrypted(from, plaintext, ts);
+        _unreadTimestamps[from].append(ts);
     } catch (const std::exception& e) {
         qCWarning(logChat) << "Failed to decrypt incoming message:" << e.what();
     }
+}
+
+void NetworkManager::handleReadReceipt(const Packet& p) {
+    emit messageSeen(QString::fromStdString(p.body));
 }
 
 void NetworkManager::handleKeyExchangeResponse(const Packet& p) {
@@ -255,6 +273,7 @@ void NetworkManager::logout() {
     _pendingMessages.clear();
     _messageKeys.clear();
     _historyLoaded = false;
+    _unreadTimestamps.clear();
     emit currentUsernameChanged();
 }
 
@@ -341,6 +360,10 @@ void NetworkManager::onTextMessageReceived(const QString& message) {
 
         case PacketType::KEY_EXCHANGE:
             handleKeyExchangeResponse(p);
+            break;
+
+        case PacketType::READ_RECEIPT:
+            handleReadReceipt(p);
             break;
 
         default:
