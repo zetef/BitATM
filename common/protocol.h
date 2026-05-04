@@ -14,7 +14,8 @@ enum class PacketType {
     ACK,
     ERR,
     SYNC_HISTORY,
-    CREATE_GROUP
+    CREATE_GROUP,
+    READ_RECEIPT
 };
 
 struct Packet {
