@@ -67,6 +67,11 @@ ApplicationWindow {
             root.activePeer = ""
             if (stack.depth > 1) stack.pop()
         }
+
+        function onHistorySyncMessage(peer, sender, content, timestamp, isOutgoing) {
+            chatModel.appendAndCache(peer, sender, content, timestamp, isOutgoing)
+            convListModel.addOrUpdate(peer, content, timestamp)
+        }
     }
 
     StackView {
@@ -227,7 +232,7 @@ ApplicationWindow {
                                 anchors.right: parent.right
                                 anchors.rightMargin: 8
                                 anchors.verticalCenter: parent.verticalCenter
-                                text: "Out"
+                                text: "Log out"
                                 font.pixelSize: 11
                                 onClicked: networkManager.logout()
                                 contentItem: Text {
