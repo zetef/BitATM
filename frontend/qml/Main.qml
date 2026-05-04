@@ -13,16 +13,16 @@ ApplicationWindow {
 
     property string activePeer: ""
 
-    // Error banner
+    // Error/status banner
     Rectangle {
         id: errorBanner
         anchors.top: parent.top
         anchors.left: parent.left
         anchors.right: parent.right
         height: visible ? 36 : 0
-        color: "#f44336"
+        color: networkManager.hasError ? "#f44336" : "#313244"
         z: 10
-        visible: networkManager.hasError
+        visible: networkManager.lastMessage.length > 0
 
         Label {
             anchors.centerIn: parent
@@ -33,7 +33,7 @@ ApplicationWindow {
 
         Timer {
             id: bannerTimer
-            interval: 5000
+            interval: 4000
             onTriggered: errorBanner.visible = false
         }
 
@@ -42,25 +42,27 @@ ApplicationWindow {
         }
     }
 
-    // Navigation to chat on login
     Connections {
         target: networkManager
+
         function onCurrentUsernameChanged() {
             if (networkManager.currentUsername.length > 0) {
                 stack.push(chatPage)
             } else if (stack.depth > 1) {
-                chatModel.clearHistory()
+                chatModel.clearAll()
                 convListModel.clear()
                 root.activePeer = ""
                 stack.pop()
             }
         }
+
         function onMessageDecrypted(from, plaintext, timestamp) {
-            chatModel.appendMessage(from, plaintext, timestamp, false)
+            chatModel.appendAndCache(from, from, plaintext, timestamp, false)
             convListModel.addOrUpdate(from, plaintext, timestamp)
         }
+
         function onDisconnected() {
-            chatModel.clearHistory()
+            chatModel.clearAll()
             convListModel.clear()
             root.activePeer = ""
             if (stack.depth > 1) stack.pop()
@@ -102,10 +104,7 @@ ApplicationWindow {
                     width: parent.width
                     color: "#cdd6f4"
                     placeholderTextColor: "#6c7086"
-                    background: Rectangle {
-                        color: "#313244"
-                        radius: 4
-                    }
+                    background: Rectangle { color: "#313244"; radius: 4 }
                     padding: 10
                 }
 
@@ -116,10 +115,7 @@ ApplicationWindow {
                     width: parent.width
                     color: "#cdd6f4"
                     placeholderTextColor: "#6c7086"
-                    background: Rectangle {
-                        color: "#313244"
-                        radius: 4
-                    }
+                    background: Rectangle { color: "#313244"; radius: 4 }
                     padding: 10
                     onAccepted: {
                         if (usernameInput.text.length > 0 && passwordInput.text.length > 0)
@@ -133,11 +129,10 @@ ApplicationWindow {
 
                     Button {
                         text: "Register"
-                        enabled: networkManager.isConnected && usernameInput.text.length > 0 && passwordInput.text.length > 0
-                        onClicked: {
-                            if (usernameInput.text.length > 0 && passwordInput.text.length > 0)
-                                networkManager.sendRegister(usernameInput.text, passwordInput.text)
-                        }
+                        enabled: networkManager.isConnected &&
+                                 usernameInput.text.length >= 3 &&
+                                 passwordInput.text.length >= 8
+                        onClicked: networkManager.sendRegister(usernameInput.text, passwordInput.text)
                         contentItem: Text {
                             text: parent.text
                             color: "#cdd6f4"
@@ -145,26 +140,25 @@ ApplicationWindow {
                             verticalAlignment: Text.AlignVCenter
                         }
                         background: Rectangle {
-                            color: parent.down ? "#45475a" : "#313244"
+                            color: parent.enabled ? (parent.down ? "#45475a" : "#313244") : "#252535"
                             radius: 4
                         }
                     }
 
                     Button {
                         text: "Login"
-                        enabled: networkManager.isConnected && usernameInput.text.length > 0 && passwordInput.text.length > 0
-                        onClicked: {
-                            if (usernameInput.text.length > 0 && passwordInput.text.length > 0)
-                                networkManager.sendLogin(usernameInput.text, passwordInput.text)
-                        }
+                        enabled: networkManager.isConnected &&
+                                 usernameInput.text.length > 0 &&
+                                 passwordInput.text.length > 0
+                        onClicked: networkManager.sendLogin(usernameInput.text, passwordInput.text)
                         contentItem: Text {
                             text: parent.text
-                            color: "#cdd6f4"
+                            color: "#1e1e2e"
                             horizontalAlignment: Text.AlignHCenter
                             verticalAlignment: Text.AlignVCenter
                         }
                         background: Rectangle {
-                            color: parent.down ? "#45475a" : "#89b4fa"
+                            color: parent.enabled ? (parent.down ? "#74a0e8" : "#89b4fa") : "#45475a"
                             radius: 4
                         }
                     }
@@ -175,17 +169,17 @@ ApplicationWindow {
                     spacing: 8
 
                     Rectangle {
-                        width: 12
-                        height: 12
-                        radius: 6
+                        width: 10
+                        height: 10
+                        radius: 5
                         anchors.verticalCenter: parent.verticalCenter
-                        color: networkManager.isConnected ? "#4caf50" : "#f44336"
+                        color: networkManager.isConnected ? "#a6e3a1" : "#f38ba8"
                     }
 
                     Label {
                         text: networkManager.isConnected ? "Connected" : "Disconnected"
-                        color: networkManager.isConnected ? "#4caf50" : "#f44336"
-                        font.pixelSize: 13
+                        color: networkManager.isConnected ? "#a6e3a1" : "#f38ba8"
+                        font.pixelSize: 12
                     }
                 }
             }
@@ -207,17 +201,17 @@ ApplicationWindow {
                 Rectangle {
                     width: 220
                     Layout.fillHeight: true
-                    color: "#1e1e2e"
+                    color: "#181825"
 
                     ColumnLayout {
                         anchors.fill: parent
                         spacing: 0
 
-                        // Sidebar header
+                        // Sidebar header - username + logout
                         Rectangle {
                             Layout.fillWidth: true
                             height: 48
-                            color: "#181825"
+                            color: "#11111b"
 
                             Label {
                                 anchors.left: parent.left
@@ -233,13 +227,26 @@ ApplicationWindow {
                                 anchors.right: parent.right
                                 anchors.rightMargin: 8
                                 anchors.verticalCenter: parent.verticalCenter
-                                text: "Log out"
+                                text: "Out"
                                 font.pixelSize: 11
                                 onClicked: networkManager.logout()
+                                contentItem: Text {
+                                    text: parent.text
+                                    color: "#f38ba8"
+                                    font.pixelSize: 11
+                                    horizontalAlignment: Text.AlignHCenter
+                                    verticalAlignment: Text.AlignVCenter
+                                }
+                                background: Rectangle {
+                                    color: parent.down ? "#3b1e1e" : "transparent"
+                                    radius: 4
+                                    border.color: "#f38ba8"
+                                    border.width: 1
+                                }
                             }
                         }
 
-                        // New chat input
+                        // New chat input row
                         Row {
                             Layout.fillWidth: true
                             Layout.margins: 8
@@ -248,20 +255,18 @@ ApplicationWindow {
                             TextField {
                                 id: newChatInput
                                 width: parent.width - goButton.width - parent.spacing
-                                placeholderText: "Username..."
+                                placeholderText: "Start chat..."
                                 color: "#cdd6f4"
-                                placeholderTextColor: "#6c7086"
+                                placeholderTextColor: "#585b70"
                                 font.pixelSize: 12
-                                background: Rectangle {
-                                    color: "#313244"
-                                    radius: 4
-                                }
+                                background: Rectangle { color: "#313244"; radius: 4 }
                                 padding: 8
                                 onAccepted: {
                                     if (newChatInput.text.length > 0) {
                                         root.activePeer = newChatInput.text
-                                        chatModel.clearHistory()
+                                        chatModel.switchConversation(newChatInput.text)
                                         networkManager.fetchPeerKey(newChatInput.text)
+                                        newChatInput.text = ""
                                     }
                                 }
                             }
@@ -274,8 +279,9 @@ ApplicationWindow {
                                 onClicked: {
                                     if (newChatInput.text.length > 0) {
                                         root.activePeer = newChatInput.text
-                                        chatModel.clearHistory()
+                                        chatModel.switchConversation(newChatInput.text)
                                         networkManager.fetchPeerKey(newChatInput.text)
+                                        newChatInput.text = ""
                                     }
                                 }
                                 contentItem: Text {
@@ -301,7 +307,7 @@ ApplicationWindow {
 
                             delegate: ItemDelegate {
                                 width: ListView.view.width
-                                height: 56
+                                height: 60
                                 highlighted: root.activePeer === model.username
 
                                 background: Rectangle {
@@ -336,7 +342,7 @@ ApplicationWindow {
 
                                 onClicked: {
                                     root.activePeer = model.username
-                                    chatModel.clearHistory()
+                                    chatModel.switchConversation(model.username)
                                 }
                             }
                         }
@@ -365,13 +371,13 @@ ApplicationWindow {
                         Label {
                             anchors.centerIn: parent
                             text: root.activePeer.length > 0 ? root.activePeer : "Select a conversation"
-                            color: "#cdd6f4"
+                            color: root.activePeer.length > 0 ? "#cdd6f4" : "#585b70"
                             font.pixelSize: 14
-                            font.bold: true
+                            font.bold: root.activePeer.length > 0
                         }
                     }
 
-                    // Message list
+                    // Message list - newest at bottom
                     ListView {
                         id: messageList
                         Layout.fillWidth: true
@@ -379,7 +385,7 @@ ApplicationWindow {
                         model: chatModel
                         clip: true
                         verticalLayoutDirection: ListView.BottomToTop
-                        spacing: 6
+                        spacing: 4
 
                         topMargin: 8
                         bottomMargin: 8
@@ -388,30 +394,54 @@ ApplicationWindow {
 
                         delegate: Item {
                             width: messageList.width - messageList.leftMargin - messageList.rightMargin
-                            height: bubbleRow.implicitHeight + 4
+                            height: bubbleCol.implicitHeight + 6
 
-                            Row {
-                                id: bubbleRow
+                            Column {
+                                id: bubbleCol
                                 width: parent.width
-                                layoutDirection: model.isOutgoing ? Qt.RightToLeft : Qt.LeftToRight
+                                spacing: 2
 
-                                Rectangle {
-                                    width: Math.min(bubbleLabel.implicitWidth + 20, bubbleRow.width * 0.72)
-                                    height: bubbleLabel.implicitHeight + 12
-                                    radius: 10
-                                    color: model.isOutgoing ? "#89b4fa" : "#313244"
+                                Item {
+                                    width: parent.width
+                                    height: bubble.height
 
-                                    Label {
-                                        id: bubbleLabel
-                                        anchors.left: parent.left
-                                        anchors.right: parent.right
-                                        anchors.top: parent.top
-                                        anchors.margins: 10
-                                        text: model.content
-                                        color: model.isOutgoing ? "#1e1e2e" : "#cdd6f4"
-                                        font.pixelSize: 13
-                                        wrapMode: Text.Wrap
+                                    Rectangle {
+                                        id: bubble
+                                        width: Math.min(bubbleLabel.implicitWidth + 24, parent.width * 0.72)
+                                        height: bubbleLabel.implicitHeight + 14
+                                        radius: 12
+                                        color: model.isOutgoing ? "#89b4fa" : "#313244"
+                                        anchors.right: model.isOutgoing ? parent.right : undefined
+                                        anchors.left:  model.isOutgoing ? undefined : parent.left
+
+                                        Label {
+                                            id: bubbleLabel
+                                            anchors.left: parent.left
+                                            anchors.right: parent.right
+                                            anchors.top: parent.top
+                                            anchors.margins: 12
+                                            text: model.content
+                                            color: model.isOutgoing ? "#1e1e2e" : "#cdd6f4"
+                                            font.pixelSize: 13
+                                            wrapMode: Text.Wrap
+                                        }
                                     }
+                                }
+
+                                // HH:MM timestamp below bubble
+                                Label {
+                                    width: parent.width
+                                    text: {
+                                        var ts = model.timestamp
+                                        if (!ts || ts.length === 0) return ""
+                                        var t = ts.indexOf("T")
+                                        if (t >= 0 && ts.length > t + 5)
+                                            return ts.substring(t + 1, t + 6)
+                                        return ts.length >= 16 ? ts.substring(0, 16) : ts
+                                    }
+                                    color: "#585b70"
+                                    font.pixelSize: 10
+                                    horizontalAlignment: model.isOutgoing ? Text.AlignRight : Text.AlignLeft
                                 }
                             }
                         }
@@ -432,13 +462,12 @@ ApplicationWindow {
                                 id: msgInput
                                 width: parent.width - sendButton.width - parent.spacing
                                 height: parent.height
-                                placeholderText: "Message..."
+                                placeholderText: root.activePeer.length > 0
+                                    ? "Message " + root.activePeer + "..."
+                                    : "Select a conversation first"
                                 color: "#cdd6f4"
-                                placeholderTextColor: "#6c7086"
-                                background: Rectangle {
-                                    color: "#313244"
-                                    radius: 4
-                                }
+                                placeholderTextColor: "#585b70"
+                                background: Rectangle { color: "#313244"; radius: 4 }
                                 padding: 10
                                 enabled: root.activePeer.length > 0
                                 onAccepted: sendButton.clicked()
@@ -455,7 +484,9 @@ ApplicationWindow {
                                     if (txt.length === 0 || root.activePeer.length === 0) return
                                     msgInput.text = ""
                                     var ts = new Date().toISOString()
-                                    chatModel.appendMessage(networkManager.currentUsername, txt, ts, true)
+                                    chatModel.appendAndCache(root.activePeer,
+                                                            networkManager.currentUsername,
+                                                            txt, ts, true)
                                     convListModel.addOrUpdate(root.activePeer, txt, ts)
                                     networkManager.sendMessage(root.activePeer, txt)
                                 }
