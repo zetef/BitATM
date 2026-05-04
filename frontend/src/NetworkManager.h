@@ -47,7 +47,8 @@ public:
      * If 'to' has no cached public key, the send is deferred until
      * peerKeyReceived is emitted for that username.
      */
-    Q_INVOKABLE void sendMessage(const QString& to, const QString& plaintext);
+    Q_INVOKABLE void sendMessage(const QString& to, const QString& plaintext,
+                                 const QString& timestamp = QString());
 
     /** @brief Request peer's RSA public key from the server. */
     Q_INVOKABLE void fetchPeerKey(const QString& username);
@@ -137,7 +138,7 @@ private:
     void loadOrGenerateKeypair();
 
     /** @brief Encrypt plaintext for 'to' using their cached public key, send, and persist. */
-    void encryptAndSend(const QString& to, const QString& plaintext);
+    void encryptAndSend(const QString& to, const QString& plaintext, const QString& timestamp);
 
     /**
      * @brief Load local message history for _currentUsername from QSettings.
@@ -178,7 +179,7 @@ private:
     QByteArray _ownPrivKey;
     QByteArray _ownPubKey;
     QMap<QString, QByteArray> _peerKeys;
-    QMap<QString, QList<QString>> _pendingMessages;
+    QMap<QString, QList<QPair<QString, QString>>> _pendingMessages;
     QSet<QString> _messageKeys;
     bool _historyLoaded = false;
 };

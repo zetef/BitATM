@@ -3,6 +3,7 @@
 #include <QDateTime>
 #include <QDebug>
 #include <QLoggingCategory>
+#include <QTimer>
 #include <sstream>
 
 Q_LOGGING_CATEGORY(logNetwork, "app.network")
@@ -46,13 +47,14 @@ void NetworkManager::sendLogin(const QString& username, const QString& password)
     sendPacket(p);
 }
 
-void NetworkManager::sendMessage(const QString& to, const QString& plaintext) {
+void NetworkManager::sendMessage(const QString& to, const QString& plaintext,
+                                 const QString& timestamp) {
     if (!_peerKeys.contains(to)) {
-        _pendingMessages[to].append(plaintext);
+        _pendingMessages[to].append(qMakePair(plaintext, timestamp));
         fetchPeerKey(to);
         return;
     }
-    encryptAndSend(to, plaintext);
+    encryptAndSend(to, plaintext, timestamp);
 }
 
 void NetworkManager::fetchPeerKey(const QString& username) {
@@ -70,11 +72,16 @@ void NetworkManager::sendSyncHistory() {
     sendPacket(p);
 }
 
-void NetworkManager::encryptAndSend(const QString& to, const QString& plaintext) {
+void NetworkManager::encryptAndSend(const QString& to, const QString& plaintext,
+                                    const QString& timestamp) {
     try {
         QByteArray aesKey = _crypto.generateAESKey();
         QString encBody = _crypto.encrypt(plaintext, aesKey);
         QByteArray wrappedKey = _crypto.encryptRSA(aesKey, _peerKeys[to]);
+
+        const QString ts = timestamp.isEmpty()
+                               ? QDateTime::currentDateTimeUtc().toString(Qt::ISODateWithMs)
+                               : timestamp;
 
         Packet p;
         p.type = PacketType::MESSAGE;
@@ -82,9 +89,9 @@ void NetworkManager::encryptAndSend(const QString& to, const QString& plaintext)
         p.to = to.toStdString();
         p.body = encBody.toStdString();
         p.key = wrappedKey.toBase64().toStdString();
+        p.timestamp = ts.toStdString();
         sendPacket(p);
 
-        const QString ts = QDateTime::currentDateTimeUtc().toString(Qt::ISODateWithMs);
         persistMessage(to, _currentUsername, plaintext, ts, true);
     } catch (const std::exception& e) {
         _hasError = true;
@@ -233,9 +240,9 @@ void NetworkManager::handleKeyExchangeResponse(const Packet& p) {
     emit peerKeyReceived(peerUsername, QString::fromUtf8(pubKey));
 
     if (_pendingMessages.contains(peerUsername)) {
-        const QList<QString> pending = _pendingMessages.take(peerUsername);
-        for (const QString& msg : pending) {
-            encryptAndSend(peerUsername, msg);
+        const QList<QPair<QString, QString>> pending = _pendingMessages.take(peerUsername);
+        for (const auto& [msg, ts] : pending) {
+            encryptAndSend(peerUsername, msg, ts);
         }
     }
 }
@@ -285,6 +292,15 @@ void NetworkManager::onDisconnected() {
     qCInfo(logNetwork) << "Disconnected from server";
     emit connectionChanged();
     emit disconnected();
+
+    if (!_serverUrl.isEmpty()) {
+        QTimer::singleShot(2000, this, [this]() {
+            if (!isConnected()) {
+                qCInfo(logNetwork) << "Attempting reconnect to" << _serverUrl;
+                _socket.open(_serverUrl);
+            }
+        });
+    }
 }
 
 void NetworkManager::onTextMessageReceived(const QString& message) {

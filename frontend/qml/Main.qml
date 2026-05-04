@@ -531,7 +531,7 @@ ApplicationWindow {
                                                                 networkManager.currentUsername,
                                                                 txt, ts, true)
                                         convListModel.addOrUpdate(root.activePeer, txt, ts)
-                                        networkManager.sendMessage(root.activePeer, txt)
+                                        networkManager.sendMessage(root.activePeer, txt, ts)
                                     }
                                     contentItem: Text {
                                         text: parent.text
