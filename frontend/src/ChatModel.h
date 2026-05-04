@@ -15,7 +15,13 @@
 class ChatModel : public QAbstractListModel {
     Q_OBJECT
 public:
-    enum Roles { SenderRole = Qt::UserRole + 1, ContentRole, TimestampRole, IsOutgoingRole };
+    enum Roles {
+        SenderRole = Qt::UserRole + 1,
+        ContentRole,
+        TimestampRole,
+        IsOutgoingRole,
+        StatusRole
+    };
 
     explicit ChatModel(QObject* parent = nullptr);
 
@@ -50,6 +56,17 @@ public:
     /** @brief Clear both the flat display list and the entire per-peer cache. */
     Q_INVOKABLE void clearAll();
 
+    /**
+     * @brief Update the status of the outgoing message matching the given timestamp.
+     *
+     * Updates both the active view (emits dataChanged) and the per-peer cache
+     * so status survives conversation switches.
+     *
+     * @param timestamp ISO timestamp matching the original sent message.
+     * @param status    New status: "sent" | "delivered".
+     */
+    Q_INVOKABLE void updateStatus(const QString& timestamp, const QString& status);
+
     int rowCount(const QModelIndex& parent = QModelIndex()) const override;
     QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
     QHash<int, QByteArray> roleNames() const override;
@@ -60,6 +77,7 @@ private:
         QString content;
         QString timestamp;
         bool isOutgoing;
+        QString status{"sent"};
     };
 
     std::vector<ChatEntry> entries_;
