@@ -10,8 +10,40 @@ void ChatModel::appendMessage(const QString& sender, const QString& content,
     endInsertRows();
 }
 
+void ChatModel::appendAndCache(const QString& peer, const QString& sender, const QString& content,
+                               const QString& timestamp, bool isOutgoing) {
+    ChatEntry entry{sender, content, timestamp, isOutgoing};
+    cache_[peer].push_back(entry);
+
+    if (activePeer_ == peer || activePeer_.isEmpty()) {
+        if (activePeer_.isEmpty()) activePeer_ = peer;
+        const int row = static_cast<int>(entries_.size());
+        beginInsertRows(QModelIndex(), row, row);
+        entries_.push_back(entry);
+        endInsertRows();
+    }
+}
+
+void ChatModel::switchConversation(const QString& peer) {
+    activePeer_ = peer;
+    beginResetModel();
+    entries_.clear();
+    if (cache_.contains(peer)) {
+        entries_ = cache_[peer];
+    }
+    endResetModel();
+}
+
 void ChatModel::clearHistory() {
     beginResetModel();
+    entries_.clear();
+    endResetModel();
+}
+
+void ChatModel::clearAll() {
+    beginResetModel();
+    activePeer_.clear();
+    cache_.clear();
     entries_.clear();
     endResetModel();
 }
