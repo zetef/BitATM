@@ -57,15 +57,19 @@ public:
     Q_INVOKABLE void clearAll();
 
     /**
-     * @brief Update the status of the outgoing message matching the given timestamp.
+     * @brief Update the status of the outgoing message matching the given timestamp within a peer
+     * conversation.
      *
      * Updates both the active view (emits dataChanged) and the per-peer cache
-     * so status survives conversation switches.
+     * so status survives conversation switches. Scoped to the given peer to
+     * avoid false matches when two conversations share a timestamp.
      *
+     * @param peer      The conversation key (peer username).
      * @param timestamp ISO timestamp matching the original sent message.
      * @param status    New status: "sent" | "delivered" | "seen".
      */
-    Q_INVOKABLE void updateStatus(const QString& timestamp, const QString& status);
+    Q_INVOKABLE void updateStatus(const QString& peer, const QString& timestamp,
+                                  const QString& status);
 
     int rowCount(const QModelIndex& parent = QModelIndex()) const override;
     QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;

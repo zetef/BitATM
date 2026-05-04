@@ -240,15 +240,15 @@ void NetworkManager::handleIncomingMessage(const Packet& p) {
         }
 
         persistMessage(from, from, plaintext, ts, false);
-        emit messageDecrypted(from, plaintext, ts);
         _unreadTimestamps[from].append(ts);
+        emit messageDecrypted(from, plaintext, ts);
     } catch (const std::exception& e) {
         qCWarning(logChat) << "Failed to decrypt incoming message:" << e.what();
     }
 }
 
 void NetworkManager::handleReadReceipt(const Packet& p) {
-    emit messageSeen(QString::fromStdString(p.body));
+    emit messageSeen(QString::fromStdString(p.from), QString::fromStdString(p.body));
 }
 
 void NetworkManager::handleKeyExchangeResponse(const Packet& p) {

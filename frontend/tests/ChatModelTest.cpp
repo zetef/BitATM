@@ -84,7 +84,7 @@ void ChatModelTest::updateStatusChangesRole() {
     const QModelIndex idx = model.index(0);
     QCOMPARE(model.data(idx, ChatModel::StatusRole).toString(), QString("sent"));
 
-    model.updateStatus("2025-01-01T10:00:00", "delivered");
+    model.updateStatus("alice", "2025-01-01T10:00:00", "delivered");
     QCOMPARE(model.data(idx, ChatModel::StatusRole).toString(), QString("delivered"));
 }
 

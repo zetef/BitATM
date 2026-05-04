@@ -80,16 +80,20 @@ QHash<int, QByteArray> ChatModel::roleNames() const {
     };
 }
 
-void ChatModel::updateStatus(const QString& timestamp, const QString& status) {
-    for (int i = 0; i < static_cast<int>(entries_.size()); ++i) {
-        if (entries_[static_cast<std::size_t>(i)].timestamp == timestamp) {
-            entries_[static_cast<std::size_t>(i)].status = status;
-            const QModelIndex idx = index(i);
-            emit dataChanged(idx, idx, {StatusRole});
+void ChatModel::updateStatus(const QString& peer, const QString& timestamp, const QString& status) {
+    // Update active view if the peer is currently displayed
+    if (activePeer_ == peer) {
+        for (int i = 0; i < static_cast<int>(entries_.size()); ++i) {
+            if (entries_[static_cast<std::size_t>(i)].timestamp == timestamp) {
+                entries_[static_cast<std::size_t>(i)].status = status;
+                const QModelIndex idx = index(i);
+                emit dataChanged(idx, idx, {StatusRole});
+            }
         }
     }
-    for (auto& msgs : cache_) {
-        for (auto& entry : msgs) {
+    // Update cache for the specific peer
+    if (cache_.contains(peer)) {
+        for (auto& entry : cache_[peer]) {
             if (entry.timestamp == timestamp) {
                 entry.status = status;
             }

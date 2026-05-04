@@ -107,9 +107,10 @@ signals:
 
     /**
      * @brief Emitted when the recipient confirms they have read a specific message.
+     * @param peer      The conversation peer (recipient who sent the receipt).
      * @param timestamp ISO timestamp of the message that was read.
      */
-    void messageSeen(const QString& timestamp);
+    void messageSeen(const QString& peer, const QString& timestamp);
 
     /**
      * @brief Emitted once per stored message during local history load on login.

@@ -77,11 +77,11 @@ ApplicationWindow {
         }
 
         function onMessageDelivered(timestamp) {
-            chatModel.updateStatus(timestamp, "delivered")
+            chatModel.updateStatus(root.activePeer, timestamp, "delivered")
         }
 
-        function onMessageSeen(timestamp) {
-            chatModel.updateStatus(timestamp, "seen")
+        function onMessageSeen(peer, timestamp) {
+            chatModel.updateStatus(peer, timestamp, "seen")
         }
     }
 
