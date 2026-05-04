@@ -34,9 +34,10 @@ void MessageHandler::execute(Packet& packet, ClientSession& session) {
         }
     }
 
-    // ACK back to sender
+    // ACK back to sender - echo timestamp so frontend can match delivery status
     Packet ack;
     ack.type = PacketType::ACK;
     ack.to = packet.from;
+    ack.timestamp = packet.timestamp;
     session.send(ack);
 }
