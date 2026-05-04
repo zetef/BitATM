@@ -90,6 +90,13 @@ signals:
     void syncComplete();
 
     /**
+     * @brief Emitted when the server confirms receipt of an outgoing message.
+     *
+     * @param timestamp ISO timestamp of the original sent message, used to update its status.
+     */
+    void messageDelivered(const QString& timestamp);
+
+    /**
      * @brief Emitted once per stored message during local history load on login.
      *
      * QML handles this to populate chatModel and convListModel from local storage

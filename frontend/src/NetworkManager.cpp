@@ -311,6 +311,8 @@ void NetworkManager::onTextMessageReceived(const QString& message) {
             _hasError = false;
             if (!p.body.empty()) {
                 handleLoginAck(p);
+            } else if (!p.timestamp.empty()) {
+                emit messageDelivered(QString::fromStdString(p.timestamp));
             } else if (p.to == _currentUsername.toStdString()) {
                 emit syncComplete();
             }
