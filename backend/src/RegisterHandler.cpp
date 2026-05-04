@@ -11,6 +11,11 @@
 
 #include "../../common/AppException.h"
 #include "ClientSession.h"
+#include "Message.h"
+#include "MessageRepository.h"
+#include "OfflineQueueRepository.h"
+#include "Session.h"
+#include "SessionRepository.h"
 #include "UserRepository.h"
 
 namespace {
@@ -60,6 +65,14 @@ std::string hashPassword(const std::string& password) {
     return toHex(salt, SALT_LEN) + ":" + toHex(out, HASH_LEN);
 }
 
+std::string generateToken() {
+    constexpr int TOKEN_BYTES = 32;
+    unsigned char buf[TOKEN_BYTES];
+    if (RAND_bytes(buf, TOKEN_BYTES) != 1)
+        throw CryptoException("RegisterHandler: RAND_bytes for token failed");
+    return toHex(buf, TOKEN_BYTES);
+}
+
 }  // namespace
 
 void RegisterHandler::validate(const Packet& packet) {
@@ -67,6 +80,8 @@ void RegisterHandler::validate(const Packet& packet) {
     if (packet.body.empty()) throw ProtocolException("REGISTER: password (body) is required");
     if (packet.from.size() > 64)
         throw ProtocolException("REGISTER: username exceeds 64 characters");
+    if (packet.body.size() < 8)
+        throw ProtocolException("REGISTER: password must be at least 8 characters");
 }
 
 void RegisterHandler::authorize(const ClientSession& /*session*/) {
@@ -83,8 +98,43 @@ void RegisterHandler::execute(Packet& packet, ClientSession& session) {
     User newUser{0, packet.from, passwordHash};
     repo.save(newUser);
 
+    // save() does not update the ID on the object (no RETURNING clause), so look up
+    // the freshly inserted row to obtain the DB-generated ID.
+    auto saved = repo.findByUsername(packet.from);
+    int userId = saved ? saved->getId() : 0;
+
+    // Issue a session token so the client auto-transitions to chat (mirrors LoginHandler).
+    const std::string token = generateToken();
+    SessionRepository sessionRepo;
+    ::Session newSession{0, userId, token, {}, {}};
+    sessionRepo.save(newSession);
+
+    session.setUsername(packet.from);
+    session.setSessionToken(token);
+    session.setState(ClientSession::State::Authenticated);
+
+    // Offline queue is always empty for a brand-new user, but flush for consistency.
+    OfflineQueueRepository offlineRepo;
+    MessageRepository msgRepo;
+    auto pending = offlineRepo.findUndeliveredByRecipient(packet.from);
+    for (auto& entry : pending) {
+        auto msgOpt = msgRepo.findById(entry.getMessageId());
+        if (msgOpt) {
+            Packet fwd;
+            fwd.type = PacketType::MESSAGE;
+            fwd.from = msgOpt->getSender();
+            fwd.to = packet.from;
+            fwd.body = msgOpt->getEncryptedBody();
+            fwd.key = msgOpt->getEncryptedKey();
+            fwd.timestamp = msgOpt->getCreatedAt();
+            session.send(fwd);
+            offlineRepo.markDelivered(entry.getId());
+        }
+    }
+
     Packet ack;
     ack.type = PacketType::ACK;
     ack.to = packet.from;
+    ack.body = token;
     session.send(ack);
 }
