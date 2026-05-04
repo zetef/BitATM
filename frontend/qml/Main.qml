@@ -482,12 +482,24 @@ ApplicationWindow {
 
                                     // Status indicator for outgoing messages
                                     Label {
+                                        id: statusLabel
                                         visible: model.isOutgoing
                                         width: parent.width
-                                        text: model.status === "delivered" ? "✓✓" : "✓"
-                                        color: model.status === "delivered" ? "#89b4fa" : "#585b70"
+                                        text: model.status === "seen"      ? "✓✓"
+                                            : model.status === "delivered" ? "✓✓"
+                                            :                                "✓"
+                                        // Blue only for "seen"; grey for sent/delivered
+                                        color: model.status === "seen" ? "#89b4fa" : "#585b70"
                                         font.pixelSize: 10
                                         horizontalAlignment: Text.AlignRight
+
+                                        HoverHandler { id: statusHover }
+
+                                        ToolTip.visible: statusHover.hovered
+                                        ToolTip.delay: 400
+                                        ToolTip.text: model.status === "seen"      ? "Seen"
+                                                    : model.status === "delivered" ? "Delivered"
+                                                    :                                "Sent"
                                     }
                                 }
                             }
