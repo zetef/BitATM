@@ -63,7 +63,7 @@ public:
      * so status survives conversation switches.
      *
      * @param timestamp ISO timestamp matching the original sent message.
-     * @param status    New status: "sent" | "delivered".
+     * @param status    New status: "sent" | "delivered" | "seen".
      */
     Q_INVOKABLE void updateStatus(const QString& timestamp, const QString& status);
 

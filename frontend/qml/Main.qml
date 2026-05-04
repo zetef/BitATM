@@ -59,6 +59,9 @@ ApplicationWindow {
         function onMessageDecrypted(from, plaintext, timestamp) {
             chatModel.appendAndCache(from, from, plaintext, timestamp, false)
             convListModel.addOrUpdate(from, plaintext, timestamp)
+            if (from === root.activePeer) {
+                networkManager.markConversationRead(from)
+            }
         }
 
         function onDisconnected() {
@@ -75,6 +78,10 @@ ApplicationWindow {
 
         function onMessageDelivered(timestamp) {
             chatModel.updateStatus(timestamp, "delivered")
+        }
+
+        function onMessageSeen(timestamp) {
+            chatModel.updateStatus(timestamp, "seen")
         }
     }
 
@@ -274,6 +281,7 @@ ApplicationWindow {
                                     if (newChatInput.text.length > 0) {
                                         root.activePeer = newChatInput.text
                                         chatModel.switchConversation(newChatInput.text)
+                                        networkManager.markConversationRead(newChatInput.text)
                                         networkManager.fetchPeerKey(newChatInput.text)
                                         newChatInput.text = ""
                                     }
@@ -289,6 +297,7 @@ ApplicationWindow {
                                     if (newChatInput.text.length > 0) {
                                         root.activePeer = newChatInput.text
                                         chatModel.switchConversation(newChatInput.text)
+                                        networkManager.markConversationRead(newChatInput.text)
                                         networkManager.fetchPeerKey(newChatInput.text)
                                         newChatInput.text = ""
                                     }
@@ -352,6 +361,7 @@ ApplicationWindow {
                                 onClicked: {
                                     root.activePeer = model.username
                                     chatModel.switchConversation(model.username)
+                                    networkManager.markConversationRead(model.username)
                                 }
                             }
                         }
