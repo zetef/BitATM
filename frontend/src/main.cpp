@@ -13,13 +13,6 @@ int main(int argc, char* argv[]) {
     ChatModel chatModel;
     ConversationListModel convListModel;
 
-    // Incoming decrypted messages go into both the chat view and the sidebar.
-    QObject::connect(&net, &NetworkManager::messageDecrypted,
-                     [&](const QString& from, const QString& plaintext, const QString& timestamp) {
-                         chatModel.appendMessage(from, plaintext, timestamp, false);
-                         convListModel.addOrUpdate(from, plaintext, timestamp);
-                     });
-
     net.connectToServer(QUrl(QStringLiteral(BITATM_SERVER_URL)));
 
     QQmlApplicationEngine engine;
