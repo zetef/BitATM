@@ -34,6 +34,8 @@ var dir_27747142951285b09bacafa002e92b5f =
     [ "PacketHandlerFactory.h", "PacketHandlerFactory_8h.html", "PacketHandlerFactory_8h" ],
     [ "ProtocolParser.cpp", "ProtocolParser_8cpp.html", null ],
     [ "ProtocolParser.h", "ProtocolParser_8h.html", "ProtocolParser_8h" ],
+    [ "ReadReceiptHandler.cpp", "ReadReceiptHandler_8cpp.html", null ],
+    [ "ReadReceiptHandler.h", "ReadReceiptHandler_8h.html", "ReadReceiptHandler_8h" ],
     [ "RegisterHandler.cpp", "RegisterHandler_8cpp.html", null ],
     [ "RegisterHandler.h", "RegisterHandler_8h.html", "RegisterHandler_8h" ],
     [ "Server.cpp", "Server_8cpp.html", "Server_8cpp" ],

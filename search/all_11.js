@@ -4,7 +4,7 @@ var searchData=
   ['send_1',['send',['../classClientSession.html#abd07a940e0ae4b6b6114f24c07db14fa',1,'ClientSession']]],
   ['senderrole_2',['SenderRole',['../classChatModel.html#a63e01c84f289f33e414ae789fcdc68e0a2255cda03d2aa034639ebf98b37a6c0f',1,'ChatModel']]],
   ['sendlogin_3',['sendLogin',['../classNetworkManager.html#a2f815193125adfb0eb520665d8a87f5c',1,'NetworkManager']]],
-  ['sendmessage_4',['sendMessage',['../classNetworkManager.html#ac8377e89880291b6bcf22de13e90712f',1,'NetworkManager']]],
+  ['sendmessage_4',['sendMessage',['../classNetworkManager.html#aa077749a5aa5408084811f07643df6a9',1,'NetworkManager']]],
   ['sendregister_5',['sendRegister',['../classNetworkManager.html#a04e128630115ed7fa113451dc745f1d7',1,'NetworkManager']]],
   ['sendsynchistory_6',['sendSyncHistory',['../classNetworkManager.html#ad1a01cd412a0dde3f4e1dc77ad46e253',1,'NetworkManager']]],
   ['serialize_7',['serialize',['../classProtocolParser.html#a66aa123286a517050e78d42392fa25c8',1,'ProtocolParser::serialize()'],['../classConversationHistory.html#aa240591a59cd80e3befd143d55b4b6eb',1,'ConversationHistory::serialize()'],['../classGroupMessage.html#a4d7aef244cda461fe101cf4287b12d4b',1,'GroupMessage::serialize()'],['../classIEntity.html#aa4f30cea93685d58373c142620a074bf',1,'IEntity::serialize()'],['../classMessage.html#a272597d642944dfe3179d892955faa07',1,'Message::serialize()'],['../classOfflineMessage.html#aed55991b02f1722b1b1a6ee57dca8589',1,'OfflineMessage::serialize()'],['../classSession.html#a0c1defbd5c7f10c36170588eff88e235',1,'Session::serialize()'],['../classUser.html#aa088b17b4435938acf9bb0faa62cc28e',1,'User::serialize()']]],
@@ -30,10 +30,11 @@ var searchData=
   ['setusername_27',['setUsername',['../classClientSession.html#afc0bf4b3bf837a65cd4e4b5c9612c963',1,'ClientSession']]],
   ['size_28',['size',['../classConversationHistory.html#aceb03380d1f19ed4b680837a3f6f8ac9',1,'ConversationHistory']]],
   ['state_29',['State',['../classClientSession.html#a7285e048076fc75300a4becab14c6378',1,'ClientSession']]],
-  ['switchconversation_30',['switchConversation',['../classChatModel.html#a51b5a473b65b086c6cfcee6b9918da54',1,'ChatModel']]],
-  ['sync_5fhistory_31',['SYNC_HISTORY',['../protocol_8h.html#a0a80a7bc045affcf10846075b88cbca0a474780e98d767348d2687d0d25eba775',1,'protocol.h']]],
-  ['synccomplete_32',['syncComplete',['../classNetworkManager.html#a91ed9c1374f6c18b78c66aec883da39a',1,'NetworkManager']]],
-  ['synchistoryhandler_33',['SyncHistoryHandler',['../classSyncHistoryHandler.html',1,'']]],
-  ['synchistoryhandler_2ecpp_34',['SyncHistoryHandler.cpp',['../SyncHistoryHandler_8cpp.html',1,'']]],
-  ['synchistoryhandler_2eh_35',['SyncHistoryHandler.h',['../SyncHistoryHandler_8h.html',1,'']]]
+  ['statusrole_30',['StatusRole',['../classChatModel.html#a63e01c84f289f33e414ae789fcdc68e0ac9016d7dbba8f5c6b35a87d4209f1f5c',1,'ChatModel']]],
+  ['switchconversation_31',['switchConversation',['../classChatModel.html#a51b5a473b65b086c6cfcee6b9918da54',1,'ChatModel']]],
+  ['sync_5fhistory_32',['SYNC_HISTORY',['../protocol_8h.html#a0a80a7bc045affcf10846075b88cbca0a474780e98d767348d2687d0d25eba775',1,'protocol.h']]],
+  ['synccomplete_33',['syncComplete',['../classNetworkManager.html#a91ed9c1374f6c18b78c66aec883da39a',1,'NetworkManager']]],
+  ['synchistoryhandler_34',['SyncHistoryHandler',['../classSyncHistoryHandler.html',1,'']]],
+  ['synchistoryhandler_2ecpp_35',['SyncHistoryHandler.cpp',['../SyncHistoryHandler_8cpp.html',1,'']]],
+  ['synchistoryhandler_2eh_36',['SyncHistoryHandler.h',['../SyncHistoryHandler_8h.html',1,'']]]
 ];

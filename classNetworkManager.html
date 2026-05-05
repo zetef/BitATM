@@ -107,9 +107,9 @@ Inheritance diagram for NetworkManager:</div>
 <div class="dyncontent">
 <div class="center"><img src="classNetworkManager__inherit__graph.png" border="0" usemap="#aNetworkManager_inherit__map" alt="Inheritance graph"/></div>
 <map name="aNetworkManager_inherit__map" id="aNetworkManager_inherit__map">
-<area shape="rect" title="Proxy to the BitATM WebSocket server with integrated E2EE and local history." alt="" coords="5,119,157,464"/>
-<area shape="rect" title=" " alt="" coords="48,5,115,71"/>
-<area shape="poly" title=" " alt="" coords="84,85,84,118,79,118,79,85"/>
+<area shape="rect" title="Proxy to the BitATM WebSocket server with integrated E2EE and local history." alt="" coords="5,119,197,484"/>
+<area shape="rect" title=" " alt="" coords="68,5,135,71"/>
+<area shape="poly" title=" " alt="" coords="104,84,104,118,99,118,99,84"/>
 </map>
 </div>
 <div class="dynheader">
@@ -117,9 +117,9 @@ Collaboration diagram for NetworkManager:</div>
 <div class="dyncontent">
 <div class="center"><img src="classNetworkManager__coll__graph.png" border="0" usemap="#aNetworkManager_coll__map" alt="Collaboration graph"/></div>
 <map name="aNetworkManager_coll__map" id="aNetworkManager_coll__map">
-<area shape="rect" title="Proxy to the BitATM WebSocket server with integrated E2EE and local history." alt="" coords="5,119,157,464"/>
-<area shape="rect" title=" " alt="" coords="48,5,115,71"/>
-<area shape="poly" title=" " alt="" coords="84,85,84,118,79,118,79,85"/>
+<area shape="rect" title="Proxy to the BitATM WebSocket server with integrated E2EE and local history." alt="" coords="5,119,197,484"/>
+<area shape="rect" title=" " alt="" coords="68,5,135,71"/>
+<area shape="poly" title=" " alt="" coords="104,84,104,118,99,118,99,84"/>
 </map>
 </div>
 <table class="memberdecls">
@@ -149,6 +149,12 @@ Signals</h2></td></tr>
 <tr class="memitem:a91ed9c1374f6c18b78c66aec883da39a" id="r_a91ed9c1374f6c18b78c66aec883da39a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkManager.html#a91ed9c1374f6c18b78c66aec883da39a">syncComplete</a> ()</td></tr>
 <tr class="memdesc:a91ed9c1374f6c18b78c66aec883da39a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Emitted after the server ACKs a SYNC_HISTORY request.  <br /></td></tr>
 <tr class="separator:a91ed9c1374f6c18b78c66aec883da39a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af4a48bde3701cd396dc455b413b3e8f6" id="r_af4a48bde3701cd396dc455b413b3e8f6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkManager.html#af4a48bde3701cd396dc455b413b3e8f6">messageDelivered</a> (const QString &amp;timestamp)</td></tr>
+<tr class="memdesc:af4a48bde3701cd396dc455b413b3e8f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Emitted when the server confirms receipt of an outgoing message.  <br /></td></tr>
+<tr class="separator:af4a48bde3701cd396dc455b413b3e8f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e470cae21687ac465bd3ded727f5c88" id="r_a5e470cae21687ac465bd3ded727f5c88"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkManager.html#a5e470cae21687ac465bd3ded727f5c88">messageSeen</a> (const QString &amp;peer, const QString &amp;timestamp)</td></tr>
+<tr class="memdesc:a5e470cae21687ac465bd3ded727f5c88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Emitted when the recipient confirms they have read a specific message.  <br /></td></tr>
+<tr class="separator:a5e470cae21687ac465bd3ded727f5c88"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1e431ffe571e89103864c08eaea12488" id="r_a1e431ffe571e89103864c08eaea12488"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkManager.html#a1e431ffe571e89103864c08eaea12488">historySyncMessage</a> (const QString &amp;peer, const QString &amp;sender, const QString &amp;content, const QString &amp;timestamp, bool isOutgoing)</td></tr>
 <tr class="memdesc:a1e431ffe571e89103864c08eaea12488"><td class="mdescLeft">&#160;</td><td class="mdescRight">Emitted once per stored message during local history load on login.  <br /></td></tr>
 <tr class="separator:a1e431ffe571e89103864c08eaea12488"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -166,15 +172,18 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a2f815193125adfb0eb520665d8a87f5c" id="r_a2f815193125adfb0eb520665d8a87f5c"><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkManager.html#a2f815193125adfb0eb520665d8a87f5c">sendLogin</a> (const QString &amp;username, const QString &amp;password)</td></tr>
 <tr class="memdesc:a2f815193125adfb0eb520665d8a87f5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send a LOGIN packet with username and password.  <br /></td></tr>
 <tr class="separator:a2f815193125adfb0eb520665d8a87f5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac8377e89880291b6bcf22de13e90712f" id="r_ac8377e89880291b6bcf22de13e90712f"><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkManager.html#ac8377e89880291b6bcf22de13e90712f">sendMessage</a> (const QString &amp;to, const QString &amp;plaintext)</td></tr>
-<tr class="memdesc:ac8377e89880291b6bcf22de13e90712f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encrypt plaintext and send a MESSAGE packet to 'to'.  <br /></td></tr>
-<tr class="separator:ac8377e89880291b6bcf22de13e90712f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa077749a5aa5408084811f07643df6a9" id="r_aa077749a5aa5408084811f07643df6a9"><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkManager.html#aa077749a5aa5408084811f07643df6a9">sendMessage</a> (const QString &amp;to, const QString &amp;plaintext, const QString &amp;timestamp=QString())</td></tr>
+<tr class="memdesc:aa077749a5aa5408084811f07643df6a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encrypt plaintext and send a MESSAGE packet to 'to'.  <br /></td></tr>
+<tr class="separator:aa077749a5aa5408084811f07643df6a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa9be8fd0f61070537dcda37964be6986" id="r_aa9be8fd0f61070537dcda37964be6986"><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkManager.html#aa9be8fd0f61070537dcda37964be6986">fetchPeerKey</a> (const QString &amp;username)</td></tr>
 <tr class="memdesc:aa9be8fd0f61070537dcda37964be6986"><td class="mdescLeft">&#160;</td><td class="mdescRight">Request peer's RSA public key from the server.  <br /></td></tr>
 <tr class="separator:aa9be8fd0f61070537dcda37964be6986"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad1a01cd412a0dde3f4e1dc77ad46e253" id="r_ad1a01cd412a0dde3f4e1dc77ad46e253"><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkManager.html#ad1a01cd412a0dde3f4e1dc77ad46e253">sendSyncHistory</a> ()</td></tr>
 <tr class="memdesc:ad1a01cd412a0dde3f4e1dc77ad46e253"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ask the server to push all missed messages for current user.  <br /></td></tr>
 <tr class="separator:ad1a01cd412a0dde3f4e1dc77ad46e253"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9bc6679afab43814e185aecb262cedaa" id="r_a9bc6679afab43814e185aecb262cedaa"><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkManager.html#a9bc6679afab43814e185aecb262cedaa">markConversationRead</a> (const QString &amp;peer)</td></tr>
+<tr class="memdesc:a9bc6679afab43814e185aecb262cedaa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send READ_RECEIPT packets for all unread messages from peer.  <br /></td></tr>
+<tr class="separator:a9bc6679afab43814e185aecb262cedaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2e9f2e60df7673bec45af42c104d4f72" id="r_a2e9f2e60df7673bec45af42c104d4f72"><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkManager.html#a2e9f2e60df7673bec45af42c104d4f72">logout</a> ()</td></tr>
 <tr class="memdesc:a2e9f2e60df7673bec45af42c104d4f72"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear session state and return to login without closing the WebSocket.  <br /></td></tr>
 <tr class="separator:a2e9f2e60df7673bec45af42c104d4f72"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -587,6 +596,27 @@ Properties</h2></td></tr>
 
 </div>
 </div>
+<a id="a9bc6679afab43814e185aecb262cedaa" name="a9bc6679afab43814e185aecb262cedaa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9bc6679afab43814e185aecb262cedaa">&#9670;&#160;</a></span>markConversationRead()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NetworkManager::markConversationRead </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>peer</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Send READ_RECEIPT packets for all unread messages from peer. </p>
+<p>Drains the internal unread-timestamp list for peer, sending one READ_RECEIPT per message. No-op if not authenticated or no unread messages. </p>
+
+</div>
+</div>
 <a id="ad1120665171eec720f090a61cb7eedb3" name="ad1120665171eec720f090a61cb7eedb3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad1120665171eec720f090a61cb7eedb3">&#9670;&#160;</a></span>messageDecrypted</h2>
 
@@ -631,6 +661,40 @@ Properties</h2></td></tr>
 
 </div>
 </div>
+<a id="af4a48bde3701cd396dc455b413b3e8f6" name="af4a48bde3701cd396dc455b413b3e8f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af4a48bde3701cd396dc455b413b3e8f6">&#9670;&#160;</a></span>messageDelivered</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NetworkManager::messageDelivered </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>timestamp</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">signal</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Emitted when the server confirms receipt of an outgoing message. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">timestamp</td><td>ISO timestamp of the original sent message, used to update its status. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a603d801e6200da430707381ba39241c2" name="a603d801e6200da430707381ba39241c2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a603d801e6200da430707381ba39241c2">&#9670;&#160;</a></span>messageReceived</h2>
 
@@ -656,6 +720,51 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Raw inbound wire message forwarded to QML. </p>
+
+</div>
+</div>
+<a id="a5e470cae21687ac465bd3ded727f5c88" name="a5e470cae21687ac465bd3ded727f5c88"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5e470cae21687ac465bd3ded727f5c88">&#9670;&#160;</a></span>messageSeen</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NetworkManager::messageSeen </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>peer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>timestamp</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">signal</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Emitted when the recipient confirms they have read a specific message. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">peer</td><td>The conversation peer (recipient who sent the receipt). </td></tr>
+    <tr><td class="paramname">timestamp</td><td>ISO timestamp of the message that was read. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -727,8 +836,8 @@ Properties</h2></td></tr>
 
 </div>
 </div>
-<a id="ac8377e89880291b6bcf22de13e90712f" name="ac8377e89880291b6bcf22de13e90712f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac8377e89880291b6bcf22de13e90712f">&#9670;&#160;</a></span>sendMessage()</h2>
+<a id="aa077749a5aa5408084811f07643df6a9" name="aa077749a5aa5408084811f07643df6a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa077749a5aa5408084811f07643df6a9">&#9670;&#160;</a></span>sendMessage()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -743,7 +852,13 @@ Properties</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const QString &amp;&#160;</td>
-          <td class="paramname"><em>plaintext</em>&#160;</td>
+          <td class="paramname"><em>plaintext</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>timestamp</em> = <code>QString()</code>&#160;</td>
         </tr>
         <tr>
           <td></td>

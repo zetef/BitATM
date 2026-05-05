@@ -36,6 +36,7 @@ var annotated_dup =
     [ "PacketHandlerFactory", "classPacketHandlerFactory.html", "classPacketHandlerFactory" ],
     [ "ProtocolException", "classProtocolException.html", "classProtocolException" ],
     [ "ProtocolParser", "classProtocolParser.html", "classProtocolParser" ],
+    [ "ReadReceiptHandler", "classReadReceiptHandler.html", "classReadReceiptHandler" ],
     [ "RegisterHandler", "classRegisterHandler.html", "classRegisterHandler" ],
     [ "RsaOaepStrategy", "classRsaOaepStrategy.html", "classRsaOaepStrategy" ],
     [ "Server", "classServer.html", "classServer" ],

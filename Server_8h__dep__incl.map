@@ -1,9 +1,11 @@
 <map id="backend/src/Server.h" name="backend/src/Server.h">
-<area shape="rect" id="Node000001" title=" " alt="" coords="276,5,432,31"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="441,5,597,31"/>
 <area shape="rect" id="Node000002" href="$MessageHandler_8cpp.html" title=" " alt="" coords="5,79,244,104"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="305,37,163,81,161,76,303,32"/>
-<area shape="rect" id="Node000003" href="$Server_8cpp.html" title=" " alt="" coords="269,79,439,104"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="357,44,357,79,351,79,351,44"/>
-<area shape="rect" id="Node000004" href="$backend_2src_2main_8cpp.html" title=" " alt="" coords="463,79,626,104"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="398,33,514,76,513,81,397,38"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="443,36,189,81,188,76,442,30"/>
+<area shape="rect" id="Node000003" href="$ReadReceiptHandler_8cpp.html" title=" " alt="" coords="268,79,531,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="489,40,420,81,418,76,487,35"/>
+<area shape="rect" id="Node000004" href="$Server_8cpp.html" title=" " alt="" coords="555,79,726,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="552,35,622,76,619,81,550,40"/>
+<area shape="rect" id="Node000005" href="$backend_2src_2main_8cpp.html" title=" " alt="" coords="750,79,913,104"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="583,31,781,76,780,81,582,36"/>
 </map>
