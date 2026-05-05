@@ -3,6 +3,7 @@
 #include <QDateTime>
 #include <QDebug>
 #include <QLoggingCategory>
+#include <QSslConfiguration>
 #include <QTimer>
 #include <sstream>
 
@@ -15,6 +16,9 @@ NetworkManager::NetworkManager(QObject* parent) : QObject(parent) {
     connect(&_socket, &QWebSocket::textMessageReceived, this,
             &NetworkManager::onTextMessageReceived);
     connect(&_socket, &QWebSocket::sslErrors, this, &NetworkManager::onSslErrors);
+    connect(&_socket, &QWebSocket::errorOccurred, this, [this](QAbstractSocket::SocketError e) {
+        qCWarning(logNetwork) << "Socket error:" << e << _socket.errorString();
+    });
 
     if (QNetworkInformation::loadDefaultBackend()) {
         auto* netInfo = QNetworkInformation::instance();
@@ -26,7 +30,12 @@ NetworkManager::NetworkManager(QObject* parent) : QObject(parent) {
 }
 
 void NetworkManager::connectToServer(const QUrl& url) {
+    QSslConfiguration sslConfig = _socket.sslConfiguration();
+    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
+    _socket.setSslConfiguration(sslConfig);
+
     _serverUrl = url;
+    _intentionallyConnecting = true;
     qCInfo(logNetwork) << "Connecting to" << url;
     _socket.open(url);
 }
@@ -310,12 +319,14 @@ bool NetworkManager::hasError() const { return _hasError; }
 QString NetworkManager::currentUsername() const { return _currentUsername; }
 
 void NetworkManager::onConnected() {
+    _intentionallyConnecting = false;
     qCInfo(logNetwork) << "Connected to server";
     emit connectionChanged();
     emit connected();
 }
 
 void NetworkManager::onDisconnected() {
+    _intentionallyConnecting = false;
     qCInfo(logNetwork) << "Disconnected from server";
     emit connectionChanged();
     emit disconnected();
@@ -386,6 +397,10 @@ void NetworkManager::onSslErrors(const QList<QSslError>& errors) {
         qCWarning(logNetwork) << "SSL error:" << e.errorString();
     }
     if (!errors.isEmpty()) {
+        // Allow the connection to proceed despite SSL errors. On Android the vcpkg
+        // OpenSSL instance does not load the Android system trust store, so valid
+        // server certs (e.g. Let's Encrypt) are reported as untrusted.
+        _socket.ignoreSslErrors();
         _hasError = true;
         _lastMessage = errors.first().errorString();
         emit lastMessageChanged();
@@ -397,7 +412,7 @@ void NetworkManager::onReachabilityChanged(QNetworkInformation::Reachability rea
     qCInfo(logNetwork) << "Network reachability changed:" << reachability;
     if (reachability != QNetworkInformation::Reachability::Online) {
         _socket.close();
-    } else if (!isConnected() && !_serverUrl.isEmpty()) {
+    } else if (!isConnected() && !_serverUrl.isEmpty() && !_intentionallyConnecting) {
         qCInfo(logNetwork) << "Network back online, reconnecting...";
         _socket.open(_serverUrl);
     }

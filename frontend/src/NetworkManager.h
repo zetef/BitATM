@@ -201,5 +201,6 @@ private:
     QSet<QString> _messageKeys;
     bool _historyLoaded = false;
     bool _pendingRegister = false;
+    bool _intentionallyConnecting = false;
     QMap<QString, QStringList> _unreadTimestamps;
 };

@@ -46,4 +46,11 @@ target_link_libraries(frontend PRIVATE
 )
 target_include_directories(frontend PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src)
 
+if(ANDROID)
+    set_property(TARGET frontend APPEND PROPERTY QT_ANDROID_EXTRA_LIBS
+        "$ENV{HOME}/android_openssl/ssl_3/${ANDROID_ABI}/libssl_3.so"
+        "$ENV{HOME}/android_openssl/ssl_3/${ANDROID_ABI}/libcrypto_3.so"
+    )
+endif()
+
 add_subdirectory(tests)
