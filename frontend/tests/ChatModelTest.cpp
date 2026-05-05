@@ -8,6 +8,8 @@ private slots:
     void appendMessageIncrementsRowCount();   // UT-FE-05
     void clearHistoryResetsModel();           // UT-FE-06
     void perPeerCacheSwitchesConversation();  // UT-FE-09
+    void noAutoActivationOnEmptyPeer();       // UT-FE-10
+    void updateStatusChangesRole();           // UT-FE-11
 };
 
 // UT-FE-05: appendMessage -> rowCount increments, role data is correct
@@ -71,6 +73,28 @@ void ChatModelTest::perPeerCacheSwitchesConversation() {
     QCOMPARE(model.rowCount(), 0);
     model.switchConversation("alice");
     QCOMPARE(model.rowCount(), 0);  // cache was cleared, no messages
+}
+
+// UT-FE-11: updateStatus changes StatusRole for a matching timestamp
+void ChatModelTest::updateStatusChangesRole() {
+    ChatModel model;
+    model.switchConversation("alice");
+    model.appendAndCache("alice", "me", "Hello!", "2025-01-01T10:00:00", true);
+
+    const QModelIndex idx = model.index(0);
+    QCOMPARE(model.data(idx, ChatModel::StatusRole).toString(), QString("sent"));
+
+    model.updateStatus("alice", "2025-01-01T10:00:00", "delivered");
+    QCOMPARE(model.data(idx, ChatModel::StatusRole).toString(), QString("delivered"));
+}
+
+// UT-FE-10: appendAndCache must NOT auto-activate a peer when activePeer_ is empty
+void ChatModelTest::noAutoActivationOnEmptyPeer() {
+    ChatModel model;
+    // No switchConversation call - activePeer_ is empty
+    model.appendAndCache("alice", "alice", "Hello!", "2025-01-01T10:00:00", false);
+    // Must NOT appear in view because no peer was activated
+    QCOMPARE(model.rowCount(), 0);
 }
 
 QTEST_MAIN(ChatModelTest)

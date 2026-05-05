@@ -3,6 +3,8 @@
 #include <QDateTime>
 #include <QDebug>
 #include <QLoggingCategory>
+#include <QSslConfiguration>
+#include <QTimer>
 #include <sstream>
 
 Q_LOGGING_CATEGORY(logNetwork, "app.network")
@@ -14,6 +16,9 @@ NetworkManager::NetworkManager(QObject* parent) : QObject(parent) {
     connect(&_socket, &QWebSocket::textMessageReceived, this,
             &NetworkManager::onTextMessageReceived);
     connect(&_socket, &QWebSocket::sslErrors, this, &NetworkManager::onSslErrors);
+    connect(&_socket, &QWebSocket::errorOccurred, this, [this](QAbstractSocket::SocketError e) {
+        qCWarning(logNetwork) << "Socket error:" << e << _socket.errorString();
+    });
 
     if (QNetworkInformation::loadDefaultBackend()) {
         auto* netInfo = QNetworkInformation::instance();
@@ -25,12 +30,18 @@ NetworkManager::NetworkManager(QObject* parent) : QObject(parent) {
 }
 
 void NetworkManager::connectToServer(const QUrl& url) {
+    QSslConfiguration sslConfig = _socket.sslConfiguration();
+    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
+    _socket.setSslConfiguration(sslConfig);
+
     _serverUrl = url;
+    _intentionallyConnecting = true;
     qCInfo(logNetwork) << "Connecting to" << url;
     _socket.open(url);
 }
 
 void NetworkManager::sendRegister(const QString& username, const QString& password) {
+    _pendingRegister = true;
     Packet p;
     p.type = PacketType::REGISTER;
     p.from = username.toStdString();
@@ -39,6 +50,7 @@ void NetworkManager::sendRegister(const QString& username, const QString& passwo
 }
 
 void NetworkManager::sendLogin(const QString& username, const QString& password) {
+    _pendingRegister = false;
     Packet p;
     p.type = PacketType::LOGIN;
     p.from = username.toStdString();
@@ -46,13 +58,14 @@ void NetworkManager::sendLogin(const QString& username, const QString& password)
     sendPacket(p);
 }
 
-void NetworkManager::sendMessage(const QString& to, const QString& plaintext) {
+void NetworkManager::sendMessage(const QString& to, const QString& plaintext,
+                                 const QString& timestamp) {
     if (!_peerKeys.contains(to)) {
-        _pendingMessages[to].append(plaintext);
+        _pendingMessages[to].append(qMakePair(plaintext, timestamp));
         fetchPeerKey(to);
         return;
     }
-    encryptAndSend(to, plaintext);
+    encryptAndSend(to, plaintext, timestamp);
 }
 
 void NetworkManager::fetchPeerKey(const QString& username) {
@@ -70,11 +83,29 @@ void NetworkManager::sendSyncHistory() {
     sendPacket(p);
 }
 
-void NetworkManager::encryptAndSend(const QString& to, const QString& plaintext) {
+void NetworkManager::markConversationRead(const QString& peer) {
+    if (_currentUsername.isEmpty() || !isConnected() || !_unreadTimestamps.contains(peer)) return;
+    const QStringList timestamps = _unreadTimestamps.take(peer);
+    for (const QString& ts : timestamps) {
+        Packet p;
+        p.type = PacketType::READ_RECEIPT;
+        p.from = _currentUsername.toStdString();
+        p.to = peer.toStdString();
+        p.body = ts.toStdString();
+        sendPacket(p);
+    }
+}
+
+void NetworkManager::encryptAndSend(const QString& to, const QString& plaintext,
+                                    const QString& timestamp) {
     try {
         QByteArray aesKey = _crypto.generateAESKey();
         QString encBody = _crypto.encrypt(plaintext, aesKey);
         QByteArray wrappedKey = _crypto.encryptRSA(aesKey, _peerKeys[to]);
+
+        const QString ts = timestamp.isEmpty()
+                               ? QDateTime::currentDateTimeUtc().toString(Qt::ISODateWithMs)
+                               : timestamp;
 
         Packet p;
         p.type = PacketType::MESSAGE;
@@ -82,9 +113,9 @@ void NetworkManager::encryptAndSend(const QString& to, const QString& plaintext)
         p.to = to.toStdString();
         p.body = encBody.toStdString();
         p.key = wrappedKey.toBase64().toStdString();
+        p.timestamp = ts.toStdString();
         sendPacket(p);
 
-        const QString ts = QDateTime::currentDateTimeUtc().toString(Qt::ISODateWithMs);
         persistMessage(to, _currentUsername, plaintext, ts, true);
     } catch (const std::exception& e) {
         _hasError = true;
@@ -177,6 +208,12 @@ void NetworkManager::handleLoginAck(const Packet& p) {
     _lastMessage = "Logged in as " + _currentUsername;
     emit currentUsernameChanged();
 
+    if (_pendingRegister) {
+        QSettings settings("BitATM", "BitATM");
+        settings.remove("history/" + _currentUsername);
+        _pendingRegister = false;
+    }
+
     try {
         loadOrGenerateKeypair();
         Packet keyUp;
@@ -220,10 +257,15 @@ void NetworkManager::handleIncomingMessage(const Packet& p) {
         }
 
         persistMessage(from, from, plaintext, ts, false);
+        _unreadTimestamps[from].append(ts);
         emit messageDecrypted(from, plaintext, ts);
     } catch (const std::exception& e) {
         qCWarning(logChat) << "Failed to decrypt incoming message:" << e.what();
     }
+}
+
+void NetworkManager::handleReadReceipt(const Packet& p) {
+    emit messageSeen(QString::fromStdString(p.from), QString::fromStdString(p.body));
 }
 
 void NetworkManager::handleKeyExchangeResponse(const Packet& p) {
@@ -233,9 +275,9 @@ void NetworkManager::handleKeyExchangeResponse(const Packet& p) {
     emit peerKeyReceived(peerUsername, QString::fromUtf8(pubKey));
 
     if (_pendingMessages.contains(peerUsername)) {
-        const QList<QString> pending = _pendingMessages.take(peerUsername);
-        for (const QString& msg : pending) {
-            encryptAndSend(peerUsername, msg);
+        const QList<QPair<QString, QString>> pending = _pendingMessages.take(peerUsername);
+        for (const auto& [msg, ts] : pending) {
+            encryptAndSend(peerUsername, msg, ts);
         }
     }
 }
@@ -248,6 +290,7 @@ void NetworkManager::logout() {
     _pendingMessages.clear();
     _messageKeys.clear();
     _historyLoaded = false;
+    _unreadTimestamps.clear();
     emit currentUsernameChanged();
 }
 
@@ -276,15 +319,26 @@ bool NetworkManager::hasError() const { return _hasError; }
 QString NetworkManager::currentUsername() const { return _currentUsername; }
 
 void NetworkManager::onConnected() {
+    _intentionallyConnecting = false;
     qCInfo(logNetwork) << "Connected to server";
     emit connectionChanged();
     emit connected();
 }
 
 void NetworkManager::onDisconnected() {
+    _intentionallyConnecting = false;
     qCInfo(logNetwork) << "Disconnected from server";
     emit connectionChanged();
     emit disconnected();
+
+    if (!_serverUrl.isEmpty()) {
+        QTimer::singleShot(2000, this, [this]() {
+            if (!isConnected()) {
+                qCInfo(logNetwork) << "Attempting reconnect to" << _serverUrl;
+                _socket.open(_serverUrl);
+            }
+        });
+    }
 }
 
 void NetworkManager::onTextMessageReceived(const QString& message) {
@@ -311,6 +365,8 @@ void NetworkManager::onTextMessageReceived(const QString& message) {
             _hasError = false;
             if (!p.body.empty()) {
                 handleLoginAck(p);
+            } else if (!p.timestamp.empty()) {
+                emit messageDelivered(QString::fromStdString(p.timestamp));
             } else if (p.to == _currentUsername.toStdString()) {
                 emit syncComplete();
             }
@@ -325,6 +381,10 @@ void NetworkManager::onTextMessageReceived(const QString& message) {
             handleKeyExchangeResponse(p);
             break;
 
+        case PacketType::READ_RECEIPT:
+            handleReadReceipt(p);
+            break;
+
         default:
             break;
     }
@@ -337,6 +397,10 @@ void NetworkManager::onSslErrors(const QList<QSslError>& errors) {
         qCWarning(logNetwork) << "SSL error:" << e.errorString();
     }
     if (!errors.isEmpty()) {
+        // Allow the connection to proceed despite SSL errors. On Android the vcpkg
+        // OpenSSL instance does not load the Android system trust store, so valid
+        // server certs (e.g. Let's Encrypt) are reported as untrusted.
+        _socket.ignoreSslErrors();
         _hasError = true;
         _lastMessage = errors.first().errorString();
         emit lastMessageChanged();
@@ -348,7 +412,7 @@ void NetworkManager::onReachabilityChanged(QNetworkInformation::Reachability rea
     qCInfo(logNetwork) << "Network reachability changed:" << reachability;
     if (reachability != QNetworkInformation::Reachability::Online) {
         _socket.close();
-    } else if (!isConnected() && !_serverUrl.isEmpty()) {
+    } else if (!isConnected() && !_serverUrl.isEmpty() && !_intentionallyConnecting) {
         qCInfo(logNetwork) << "Network back online, reconnecting...";
         _socket.open(_serverUrl);
     }

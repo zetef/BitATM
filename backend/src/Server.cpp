@@ -18,6 +18,7 @@
 #include "LoginHandler.h"
 #include "MessageHandler.h"
 #include "OfflineQueueRepository.h"
+#include "ReadReceiptHandler.h"
 #include "RegisterHandler.h"
 #include "SessionRepository.h"
 #include "SyncHistoryHandler.h"
@@ -195,6 +196,8 @@ void Server::registerHandlers() {
     _factory.registerHandler(PacketType::ACK, [] { return std::make_unique<AckHandler>(); });
     _factory.registerHandler(PacketType::SYNC_HISTORY,
                              [] { return std::make_unique<SyncHistoryHandler>(); });
+    _factory.registerHandler(PacketType::READ_RECEIPT,
+                             [this] { return std::make_unique<ReadReceiptHandler>(*this); });
 }
 
 int Server::main(const std::vector<std::string>&) {

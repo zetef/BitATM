@@ -15,8 +15,7 @@ void ChatModel::appendAndCache(const QString& peer, const QString& sender, const
     ChatEntry entry{sender, content, timestamp, isOutgoing};
     cache_[peer].push_back(entry);
 
-    if (activePeer_ == peer || activePeer_.isEmpty()) {
-        if (activePeer_.isEmpty()) activePeer_ = peer;
+    if (activePeer_ == peer) {
         const int row = static_cast<int>(entries_.size());
         beginInsertRows(QModelIndex(), row, row);
         entries_.push_back(entry);
@@ -67,6 +66,8 @@ QVariant ChatModel::data(const QModelIndex& index, int role) const {
             return e.timestamp;
         case IsOutgoingRole:
             return e.isOutgoing;
+        case StatusRole:
+            return e.status;
         default:
             return {};
     }
@@ -74,9 +75,28 @@ QVariant ChatModel::data(const QModelIndex& index, int role) const {
 
 QHash<int, QByteArray> ChatModel::roleNames() const {
     return {
-        {SenderRole, "sender"},
-        {ContentRole, "content"},
-        {TimestampRole, "timestamp"},
-        {IsOutgoingRole, "isOutgoing"},
+        {SenderRole, "sender"},         {ContentRole, "content"}, {TimestampRole, "timestamp"},
+        {IsOutgoingRole, "isOutgoing"}, {StatusRole, "status"},
     };
+}
+
+void ChatModel::updateStatus(const QString& peer, const QString& timestamp, const QString& status) {
+    // Update active view if the peer is currently displayed
+    if (activePeer_ == peer) {
+        for (int i = 0; i < static_cast<int>(entries_.size()); ++i) {
+            if (entries_[static_cast<std::size_t>(i)].timestamp == timestamp) {
+                entries_[static_cast<std::size_t>(i)].status = status;
+                const QModelIndex idx = index(i);
+                emit dataChanged(idx, idx, {StatusRole});
+            }
+        }
+    }
+    // Update cache for the specific peer
+    if (cache_.contains(peer)) {
+        for (auto& entry : cache_[peer]) {
+            if (entry.timestamp == timestamp) {
+                entry.status = status;
+            }
+        }
+    }
 }

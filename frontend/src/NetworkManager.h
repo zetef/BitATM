@@ -47,13 +47,22 @@ public:
      * If 'to' has no cached public key, the send is deferred until
      * peerKeyReceived is emitted for that username.
      */
-    Q_INVOKABLE void sendMessage(const QString& to, const QString& plaintext);
+    Q_INVOKABLE void sendMessage(const QString& to, const QString& plaintext,
+                                 const QString& timestamp = QString());
 
     /** @brief Request peer's RSA public key from the server. */
     Q_INVOKABLE void fetchPeerKey(const QString& username);
 
     /** @brief Ask the server to push all missed messages for current user. */
     Q_INVOKABLE void sendSyncHistory();
+
+    /**
+     * @brief Send READ_RECEIPT packets for all unread messages from peer.
+     *
+     * Drains the internal unread-timestamp list for peer, sending one
+     * READ_RECEIPT per message. No-op if not authenticated or no unread messages.
+     */
+    Q_INVOKABLE void markConversationRead(const QString& peer);
 
     /** @brief Clear session state and return to login without closing the WebSocket. */
     Q_INVOKABLE void logout();
@@ -88,6 +97,20 @@ signals:
 
     /** @brief Emitted after the server ACKs a SYNC_HISTORY request. */
     void syncComplete();
+
+    /**
+     * @brief Emitted when the server confirms receipt of an outgoing message.
+     *
+     * @param timestamp ISO timestamp of the original sent message, used to update its status.
+     */
+    void messageDelivered(const QString& timestamp);
+
+    /**
+     * @brief Emitted when the recipient confirms they have read a specific message.
+     * @param peer      The conversation peer (recipient who sent the receipt).
+     * @param timestamp ISO timestamp of the message that was read.
+     */
+    void messageSeen(const QString& peer, const QString& timestamp);
 
     /**
      * @brief Emitted once per stored message during local history load on login.
@@ -126,11 +149,14 @@ private:
     /** @brief Cache peer public key and flush any pending message for that peer. */
     void handleKeyExchangeResponse(const Packet& p);
 
+    /** @brief Handle an incoming READ_RECEIPT packet and emit messageSeen. */
+    void handleReadReceipt(const Packet& p);
+
     /** @brief Load RSA keypair from QSettings, or generate and persist a new one. */
     void loadOrGenerateKeypair();
 
     /** @brief Encrypt plaintext for 'to' using their cached public key, send, and persist. */
-    void encryptAndSend(const QString& to, const QString& plaintext);
+    void encryptAndSend(const QString& to, const QString& plaintext, const QString& timestamp);
 
     /**
      * @brief Load local message history for _currentUsername from QSettings.
@@ -171,7 +197,10 @@ private:
     QByteArray _ownPrivKey;
     QByteArray _ownPubKey;
     QMap<QString, QByteArray> _peerKeys;
-    QMap<QString, QList<QString>> _pendingMessages;
+    QMap<QString, QList<QPair<QString, QString>>> _pendingMessages;
     QSet<QString> _messageKeys;
     bool _historyLoaded = false;
+    bool _pendingRegister = false;
+    bool _intentionallyConnecting = false;
+    QMap<QString, QStringList> _unreadTimestamps;
 };

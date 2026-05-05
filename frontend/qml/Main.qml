@@ -59,6 +59,9 @@ ApplicationWindow {
         function onMessageDecrypted(from, plaintext, timestamp) {
             chatModel.appendAndCache(from, from, plaintext, timestamp, false)
             convListModel.addOrUpdate(from, plaintext, timestamp)
+            if (from === root.activePeer) {
+                networkManager.markConversationRead(from)
+            }
         }
 
         function onDisconnected() {
@@ -71,6 +74,14 @@ ApplicationWindow {
         function onHistorySyncMessage(peer, sender, content, timestamp, isOutgoing) {
             chatModel.appendAndCache(peer, sender, content, timestamp, isOutgoing)
             convListModel.addOrUpdate(peer, content, timestamp)
+        }
+
+        function onMessageDelivered(timestamp) {
+            chatModel.updateStatus(root.activePeer, timestamp, "delivered")
+        }
+
+        function onMessageSeen(peer, timestamp) {
+            chatModel.updateStatus(peer, timestamp, "seen")
         }
     }
 
@@ -113,6 +124,14 @@ ApplicationWindow {
                     padding: 10
                 }
 
+                Label {
+                    width: parent.width
+                    visible: usernameInput.text.length > 0
+                    text: usernameInput.text.length >= 3 ? "Username ok" : "Min 3 characters required"
+                    color: usernameInput.text.length >= 3 ? "#a6e3a1" : "#f38ba8"
+                    font.pixelSize: 10
+                }
+
                 TextField {
                     id: passwordInput
                     placeholderText: "Password"
@@ -126,6 +145,14 @@ ApplicationWindow {
                         if (usernameInput.text.length > 0 && passwordInput.text.length > 0)
                             networkManager.sendLogin(usernameInput.text, passwordInput.text)
                     }
+                }
+
+                Label {
+                    width: parent.width
+                    visible: passwordInput.text.length > 0
+                    text: passwordInput.text.length >= 8 ? "Password ok" : "Min 8 characters for Register"
+                    color: passwordInput.text.length >= 8 ? "#a6e3a1" : "#f38ba8"
+                    font.pixelSize: 10
                 }
 
                 Row {
@@ -270,6 +297,7 @@ ApplicationWindow {
                                     if (newChatInput.text.length > 0) {
                                         root.activePeer = newChatInput.text
                                         chatModel.switchConversation(newChatInput.text)
+                                        networkManager.markConversationRead(newChatInput.text)
                                         networkManager.fetchPeerKey(newChatInput.text)
                                         newChatInput.text = ""
                                     }
@@ -285,6 +313,7 @@ ApplicationWindow {
                                     if (newChatInput.text.length > 0) {
                                         root.activePeer = newChatInput.text
                                         chatModel.switchConversation(newChatInput.text)
+                                        networkManager.markConversationRead(newChatInput.text)
                                         networkManager.fetchPeerKey(newChatInput.text)
                                         newChatInput.text = ""
                                     }
@@ -348,6 +377,7 @@ ApplicationWindow {
                                 onClicked: {
                                     root.activePeer = model.username
                                     chatModel.switchConversation(model.username)
+                                    networkManager.markConversationRead(model.username)
                                 }
                             }
                         }
@@ -361,150 +391,197 @@ ApplicationWindow {
                     color: "#313244"
                 }
 
-                // Chat area
-                ColumnLayout {
+                // Chat area - welcome screen or active conversation
+                Item {
                     Layout.fillWidth: true
                     Layout.fillHeight: true
-                    spacing: 0
 
-                    // Chat header
-                    Rectangle {
-                        Layout.fillWidth: true
-                        height: 48
-                        color: "#181825"
+                    // Welcome screen: shown when no conversation is selected
+                    Column {
+                        visible: root.activePeer.length === 0
+                        anchors.centerIn: parent
+                        spacing: 12
 
                         Label {
-                            anchors.centerIn: parent
-                            text: root.activePeer.length > 0 ? root.activePeer : "Select a conversation"
-                            color: root.activePeer.length > 0 ? "#cdd6f4" : "#585b70"
+                            anchors.horizontalCenter: parent.horizontalCenter
+                            text: "Welcome to BitATM"
+                            color: "#cdd6f4"
+                            font.pixelSize: 22
+                            font.bold: true
+                        }
+
+                        Label {
+                            anchors.horizontalCenter: parent.horizontalCenter
+                            text: "Select a conversation or start a new one"
+                            color: "#6c7086"
                             font.pixelSize: 14
-                            font.bold: root.activePeer.length > 0
                         }
                     }
 
-                    // Message list - newest at bottom
-                    ListView {
-                        id: messageList
-                        Layout.fillWidth: true
-                        Layout.fillHeight: true
-                        model: chatModel
-                        clip: true
-                        verticalLayoutDirection: ListView.BottomToTop
-                        spacing: 4
+                    // Active conversation view
+                    ColumnLayout {
+                        visible: root.activePeer.length > 0
+                        anchors.fill: parent
+                        spacing: 0
 
-                        topMargin: 8
-                        bottomMargin: 8
-                        leftMargin: 12
-                        rightMargin: 12
+                        // Chat header
+                        Rectangle {
+                            Layout.fillWidth: true
+                            height: 48
+                            color: "#181825"
 
-                        delegate: Item {
-                            width: messageList.width - messageList.leftMargin - messageList.rightMargin
-                            height: bubbleCol.implicitHeight + 6
+                            Label {
+                                anchors.centerIn: parent
+                                text: root.activePeer
+                                color: "#cdd6f4"
+                                font.pixelSize: 14
+                                font.bold: true
+                            }
+                        }
 
-                            Column {
-                                id: bubbleCol
-                                width: parent.width
-                                spacing: 2
+                        // Message list - newest at bottom
+                        ListView {
+                            id: messageList
+                            Layout.fillWidth: true
+                            Layout.fillHeight: true
+                            model: chatModel
+                            clip: true
+                            spacing: 4
+                            onCountChanged: Qt.callLater(positionViewAtEnd)
 
-                                Item {
+                            topMargin: 8
+                            bottomMargin: 8
+                            leftMargin: 12
+                            rightMargin: 12
+
+                            delegate: Item {
+                                width: messageList.width - messageList.leftMargin - messageList.rightMargin
+                                height: bubbleCol.implicitHeight + 6
+
+                                Column {
+                                    id: bubbleCol
                                     width: parent.width
-                                    height: bubble.height
+                                    spacing: 2
 
-                                    Rectangle {
-                                        id: bubble
-                                        width: Math.min(bubbleLabel.implicitWidth + 24, parent.width * 0.72)
-                                        height: bubbleLabel.implicitHeight + 14
-                                        radius: 12
-                                        color: model.isOutgoing ? "#89b4fa" : "#313244"
-                                        anchors.right: model.isOutgoing ? parent.right : undefined
-                                        anchors.left:  model.isOutgoing ? undefined : parent.left
+                                    Item {
+                                        width: parent.width
+                                        height: bubble.height
 
-                                        Label {
-                                            id: bubbleLabel
-                                            anchors.left: parent.left
-                                            anchors.right: parent.right
-                                            anchors.top: parent.top
-                                            anchors.margins: 12
-                                            text: model.content
-                                            color: model.isOutgoing ? "#1e1e2e" : "#cdd6f4"
-                                            font.pixelSize: 13
-                                            wrapMode: Text.Wrap
+                                        Rectangle {
+                                            id: bubble
+                                            width: Math.min(bubbleLabel.implicitWidth + 24, parent.width * 0.72)
+                                            height: bubbleLabel.implicitHeight + 14
+                                            radius: 12
+                                            color: model.isOutgoing ? "#89b4fa" : "#313244"
+                                            anchors.right: model.isOutgoing ? parent.right : undefined
+                                            anchors.left:  model.isOutgoing ? undefined : parent.left
+
+                                            Label {
+                                                id: bubbleLabel
+                                                anchors.left: parent.left
+                                                anchors.right: parent.right
+                                                anchors.top: parent.top
+                                                anchors.margins: 12
+                                                text: model.content
+                                                color: model.isOutgoing ? "#1e1e2e" : "#cdd6f4"
+                                                font.pixelSize: 13
+                                                wrapMode: Text.Wrap
+                                            }
                                         }
                                     }
-                                }
 
-                                // HH:MM timestamp below bubble
-                                Label {
-                                    width: parent.width
-                                    text: {
-                                        var ts = model.timestamp
-                                        if (!ts || ts.length === 0) return ""
-                                        var t = ts.indexOf("T")
-                                        if (t >= 0 && ts.length > t + 5)
-                                            return ts.substring(t + 1, t + 6)
-                                        return ts.length >= 16 ? ts.substring(0, 16) : ts
+                                    // HH:MM timestamp below bubble
+                                    Label {
+                                        width: parent.width
+                                        text: {
+                                            var ts = model.timestamp
+                                            if (!ts || ts.length === 0) return ""
+                                            var t = ts.indexOf("T")
+                                            if (t >= 0 && ts.length > t + 5)
+                                                return ts.substring(t + 1, t + 6)
+                                            return ts.length >= 16 ? ts.substring(0, 16) : ts
+                                        }
+                                        color: "#585b70"
+                                        font.pixelSize: 10
+                                        horizontalAlignment: model.isOutgoing ? Text.AlignRight : Text.AlignLeft
                                     }
-                                    color: "#585b70"
-                                    font.pixelSize: 10
-                                    horizontalAlignment: model.isOutgoing ? Text.AlignRight : Text.AlignLeft
+
+                                    // Status indicator for outgoing messages
+                                    Label {
+                                        id: statusLabel
+                                        visible: model.isOutgoing
+                                        width: parent.width
+                                        text: model.status === "seen"      ? "✓✓"
+                                            : model.status === "delivered" ? "✓✓"
+                                            :                                "✓"
+                                        // Blue only for "seen"; grey for sent/delivered
+                                        color: model.status === "seen" ? "#89b4fa" : "#585b70"
+                                        font.pixelSize: 10
+                                        horizontalAlignment: Text.AlignRight
+
+                                        HoverHandler { id: statusHover }
+
+                                        ToolTip.visible: statusHover.hovered
+                                        ToolTip.delay: 400
+                                        ToolTip.text: model.status === "seen"      ? "Seen"
+                                                    : model.status === "delivered" ? "Delivered"
+                                                    :                                "Sent"
+                                    }
                                 }
                             }
                         }
-                    }
 
-                    // Input bar
-                    Rectangle {
-                        Layout.fillWidth: true
-                        height: 56
-                        color: "#181825"
+                        // Input bar
+                        Rectangle {
+                            Layout.fillWidth: true
+                            height: 56
+                            color: "#181825"
 
-                        Row {
-                            anchors.fill: parent
-                            anchors.margins: 8
-                            spacing: 8
+                            Row {
+                                anchors.fill: parent
+                                anchors.margins: 8
+                                spacing: 8
 
-                            TextField {
-                                id: msgInput
-                                width: parent.width - sendButton.width - parent.spacing
-                                height: parent.height
-                                placeholderText: root.activePeer.length > 0
-                                    ? "Message " + root.activePeer + "..."
-                                    : "Select a conversation first"
-                                color: "#cdd6f4"
-                                placeholderTextColor: "#585b70"
-                                background: Rectangle { color: "#313244"; radius: 4 }
-                                padding: 10
-                                enabled: root.activePeer.length > 0
-                                onAccepted: sendButton.clicked()
-                            }
-
-                            Button {
-                                id: sendButton
-                                text: "Send"
-                                width: 70
-                                height: parent.height
-                                enabled: root.activePeer.length > 0 && msgInput.text.length > 0
-                                onClicked: {
-                                    var txt = msgInput.text
-                                    if (txt.length === 0 || root.activePeer.length === 0) return
-                                    msgInput.text = ""
-                                    var ts = new Date().toISOString()
-                                    chatModel.appendAndCache(root.activePeer,
-                                                            networkManager.currentUsername,
-                                                            txt, ts, true)
-                                    convListModel.addOrUpdate(root.activePeer, txt, ts)
-                                    networkManager.sendMessage(root.activePeer, txt)
+                                TextField {
+                                    id: msgInput
+                                    width: parent.width - sendButton.width - parent.spacing
+                                    height: parent.height
+                                    placeholderText: "Message " + root.activePeer + "..."
+                                    color: "#cdd6f4"
+                                    placeholderTextColor: "#585b70"
+                                    background: Rectangle { color: "#313244"; radius: 4 }
+                                    padding: 10
+                                    onAccepted: sendButton.clicked()
                                 }
-                                contentItem: Text {
-                                    text: parent.text
-                                    color: "#1e1e2e"
-                                    font.pixelSize: 13
-                                    horizontalAlignment: Text.AlignHCenter
-                                    verticalAlignment: Text.AlignVCenter
-                                }
-                                background: Rectangle {
-                                    color: parent.enabled ? (parent.down ? "#74a0e8" : "#89b4fa") : "#45475a"
-                                    radius: 4
+
+                                Button {
+                                    id: sendButton
+                                    text: "Send"
+                                    width: 70
+                                    height: parent.height
+                                    enabled: msgInput.text.length > 0
+                                    onClicked: {
+                                        var txt = msgInput.text
+                                        if (txt.length === 0) return
+                                        msgInput.text = ""
+                                        var ts = new Date().toISOString()
+                                        chatModel.appendAndCache(root.activePeer,
+                                                                networkManager.currentUsername,
+                                                                txt, ts, true)
+                                        convListModel.addOrUpdate(root.activePeer, txt, ts)
+                                        networkManager.sendMessage(root.activePeer, txt, ts)
+                                    }
+                                    contentItem: Text {
+                                        text: parent.text
+                                        color: "#1e1e2e"
+                                        font.pixelSize: 13
+                                        horizontalAlignment: Text.AlignHCenter
+                                        verticalAlignment: Text.AlignVCenter
+                                    }
+                                    background: Rectangle {
+                                        color: parent.enabled ? (parent.down ? "#74a0e8" : "#89b4fa") : "#45475a"
+                                        radius: 4
+                                    }
                                 }
                             }
                         }
