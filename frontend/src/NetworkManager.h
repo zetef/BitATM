@@ -200,5 +200,6 @@ private:
     QMap<QString, QList<QPair<QString, QString>>> _pendingMessages;
     QSet<QString> _messageKeys;
     bool _historyLoaded = false;
+    bool _pendingRegister = false;
     QMap<QString, QStringList> _unreadTimestamps;
 };

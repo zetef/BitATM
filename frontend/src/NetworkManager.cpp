@@ -32,6 +32,7 @@ void NetworkManager::connectToServer(const QUrl& url) {
 }
 
 void NetworkManager::sendRegister(const QString& username, const QString& password) {
+    _pendingRegister = true;
     Packet p;
     p.type = PacketType::REGISTER;
     p.from = username.toStdString();
@@ -40,6 +41,7 @@ void NetworkManager::sendRegister(const QString& username, const QString& passwo
 }
 
 void NetworkManager::sendLogin(const QString& username, const QString& password) {
+    _pendingRegister = false;
     Packet p;
     p.type = PacketType::LOGIN;
     p.from = username.toStdString();
@@ -196,6 +198,12 @@ void NetworkManager::handleLoginAck(const Packet& p) {
     _currentUsername = QString::fromStdString(p.to);
     _lastMessage = "Logged in as " + _currentUsername;
     emit currentUsernameChanged();
+
+    if (_pendingRegister) {
+        QSettings settings("BitATM", "BitATM");
+        settings.remove("history/" + _currentUsername);
+        _pendingRegister = false;
+    }
 
     try {
         loadOrGenerateKeypair();

@@ -124,6 +124,14 @@ ApplicationWindow {
                     padding: 10
                 }
 
+                Label {
+                    width: parent.width
+                    visible: usernameInput.text.length > 0
+                    text: usernameInput.text.length >= 3 ? "Username ok" : "Min 3 characters required"
+                    color: usernameInput.text.length >= 3 ? "#a6e3a1" : "#f38ba8"
+                    font.pixelSize: 10
+                }
+
                 TextField {
                     id: passwordInput
                     placeholderText: "Password"
@@ -137,6 +145,14 @@ ApplicationWindow {
                         if (usernameInput.text.length > 0 && passwordInput.text.length > 0)
                             networkManager.sendLogin(usernameInput.text, passwordInput.text)
                     }
+                }
+
+                Label {
+                    width: parent.width
+                    visible: passwordInput.text.length > 0
+                    text: passwordInput.text.length >= 8 ? "Password ok" : "Min 8 characters for Register"
+                    color: passwordInput.text.length >= 8 ? "#a6e3a1" : "#f38ba8"
+                    font.pixelSize: 10
                 }
 
                 Row {
