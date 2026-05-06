@@ -12,8 +12,12 @@ void SyncHistoryHandler::validate(const Packet& packet) {
 }
 
 void SyncHistoryHandler::execute(Packet& packet, ClientSession& session) {
+    const std::string& username = session.getUsername();
+    // client sends newest known timestamp in body as cursor; empty = all history
+    const std::string cursor = packet.body;
+
     MessageRepository repo;
-    auto messages = repo.findByRecipient(session.getUsername());
+    auto messages = repo.findAllForUser(username, cursor);
 
     // send in chronological order (operator< compares by created_at)
     std::sort(messages.begin(), messages.end());
@@ -22,15 +26,17 @@ void SyncHistoryHandler::execute(Packet& packet, ClientSession& session) {
         Packet fwd;
         fwd.type = PacketType::MESSAGE;
         fwd.from = msg.getSender();
-        fwd.to = session.getUsername();
+        fwd.to = msg.getRecipient();
         fwd.body = msg.getEncryptedBody();
         fwd.key = msg.getEncryptedKey();
         fwd.timestamp = msg.getCreatedAt();
+        // errorMsg repurposed as isOutgoing flag on MESSAGE packets during sync
+        fwd.errorMsg = (msg.getSender() == username) ? "1" : "0";
         session.send(fwd);
     }
 
     Packet ack;
     ack.type = PacketType::ACK;
-    ack.to = session.getUsername();
+    ack.to = username;
     session.send(ack);
 }

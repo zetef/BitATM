@@ -23,3 +23,9 @@ add_executable(message_handler_test MessageHandlerTest.cpp)
 set_target_properties(message_handler_test PROPERTIES AUTOMOC ON)
 target_link_libraries(message_handler_test PRIVATE Qt6::Test bitatm-backend-lib)
 add_test(NAME MessageHandlerTest COMMAND message_handler_test)
+
+# UT-BE-07, UT-BE-08 - SyncHistoryHandler / MessageRepository multi-device
+add_executable(sync_history_handler_test SyncHistoryHandlerTest.cpp)
+set_target_properties(sync_history_handler_test PROPERTIES AUTOMOC ON)
+target_link_libraries(sync_history_handler_test PRIVATE Qt6::Test bitatm-backend-lib)
+add_test(NAME SyncHistoryHandlerTest COMMAND sync_history_handler_test)

@@ -20,4 +20,16 @@ void ReadReceiptHandler::execute(Packet& packet, ClientSession& session) {
         sender->send(packet);
     }
     // Sender offline: silently drop - read receipts are best-effort
+
+    // Fan-out READ_RECEIPT to all sibling sessions of the reader (multi-device sync)
+    auto readerSessions = _server.getSessionsForUser(packet.from);
+    for (auto& sibling : readerSessions) {
+        if (sibling.get() != &session) {
+            try {
+                sibling->send(packet);
+            } catch (const NetworkException&) {
+                // sibling disconnected between session copy and send
+            }
+        }
+    }
 }

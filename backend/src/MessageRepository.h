@@ -28,4 +28,12 @@ public:
 
     /** @brief Find all messages sent by a given sender. */
     std::vector<Message> findBySender(const std::string& sender);
+
+    /**
+     * @brief Find all messages where user is sender or recipient,
+     *        with created_at strictly after the given ISO 8601 cursor.
+     *        If cursor is empty, returns all messages for the user.
+     */
+    std::vector<Message> findAllForUser(const std::string& username,
+                                        const std::string& afterTimestamp = "");
 };

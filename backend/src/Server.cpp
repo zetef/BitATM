@@ -9,6 +9,7 @@
 #include <Poco/Net/WebSocket.h>
 #include <Poco/Timer.h>
 
+#include <algorithm>
 #include <cstdlib>
 
 #include "../../common/AppException.h"
@@ -36,9 +37,11 @@ public:
         Poco::Logger& log = Poco::Logger::get("ConnectionHandler");
         std::string username;
         std::string sessionToken;
+        ClientSession* sessionPtr = nullptr;
         try {
             Poco::Net::WebSocket ws(req, res);
             auto session = std::make_shared<ClientSession>(std::move(ws));
+            sessionPtr = session.get();
 
             Packet packet;
             while (true) {
@@ -67,7 +70,7 @@ public:
                     if (session->isAuthenticated() && !session->getUsername().empty()) {
                         const std::string newUsername = session->getUsername();
                         if (!username.empty() && username != newUsername)
-                            _server.removeClient(username);
+                            _server.removeClient(username, session.get());
                         username = newUsername;
                         sessionToken = session->getSessionToken();
                         _server.addClient(username, session);
@@ -102,7 +105,7 @@ public:
         // Always runs — even if the connection dropped with an exception.
         // Two separate try/catch so a last_seen failure never blocks deactivation.
         if (!username.empty()) {
-            _server.removeClient(username);
+            _server.removeClient(username, sessionPtr);
             try {
                 UserRepository userRepo;
                 userRepo.updateLastSeen(username);
@@ -153,18 +156,35 @@ Server::Server()
 
 void Server::addClient(const std::string& username, std::shared_ptr<ClientSession> session) {
     std::lock_guard<std::mutex> lock(_clientsMutex);
-    _clients[username] = std::move(session);
+    _clients[username].push_back(std::move(session));
 }
 
-void Server::removeClient(const std::string& username) {
+void Server::removeClient(const std::string& username, ClientSession* sessionPtr) {
     std::lock_guard<std::mutex> lock(_clientsMutex);
-    _clients.erase(username);
+    auto it = _clients.find(username);
+    if (it == _clients.end()) return;
+    auto& vec = it->second;
+    vec.erase(std::remove_if(vec.begin(), vec.end(),
+                             [sessionPtr](const std::shared_ptr<ClientSession>& s) {
+                                 return s.get() == sessionPtr;
+                             }),
+              vec.end());
+    if (vec.empty()) _clients.erase(it);
 }
 
 std::shared_ptr<ClientSession> Server::findClient(const std::string& username) {
     std::lock_guard<std::mutex> lock(_clientsMutex);
     auto it = _clients.find(username);
-    return it != _clients.end() ? it->second : nullptr;
+    if (it == _clients.end() || it->second.empty()) return nullptr;
+    return it->second.front();
+}
+
+std::vector<std::shared_ptr<ClientSession>> Server::getSessionsForUser(
+    const std::string& username) {
+    std::lock_guard<std::mutex> lock(_clientsMutex);
+    auto it = _clients.find(username);
+    if (it == _clients.end()) return {};
+    return it->second;
 }
 
 void Server::onCleanupTimer(Poco::Timer& /*timer*/) {

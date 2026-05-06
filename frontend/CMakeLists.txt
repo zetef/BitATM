@@ -21,7 +21,10 @@ endif()
 qt_add_qml_module(frontend
 	URI BitATM
 	VERSION 1.0
-	QML_FILES qml/Main.qml
+	QML_FILES
+		qml/Main.qml
+		qml/ConversationListPage.qml
+		qml/ChatPage.qml
 	SOURCES src/AesGcmStrategy.h
 	SOURCES src/AesGcmStrategy.cpp
 	SOURCES src/RsaOaepStrategy.h
