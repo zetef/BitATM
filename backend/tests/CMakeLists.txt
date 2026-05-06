@@ -29,3 +29,9 @@ add_executable(sync_history_handler_test SyncHistoryHandlerTest.cpp)
 set_target_properties(sync_history_handler_test PROPERTIES AUTOMOC ON)
 target_link_libraries(sync_history_handler_test PRIVATE Qt6::Test bitatm-backend-lib)
 add_test(NAME SyncHistoryHandlerTest COMMAND sync_history_handler_test)
+
+# UT-BE-09..11 - Group handler tests
+add_executable(create_group_handler_test CreateGroupHandlerTest.cpp)
+set_target_properties(create_group_handler_test PROPERTIES AUTOMOC ON)
+target_link_libraries(create_group_handler_test PRIVATE Qt6::Test bitatm-backend-lib)
+add_test(NAME CreateGroupHandlerTest COMMAND create_group_handler_test)

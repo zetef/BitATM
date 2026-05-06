@@ -14,7 +14,12 @@
 
 #include "../../common/AppException.h"
 #include "AckHandler.h"
+#include "CreateGroupHandler.h"
 #include "DbManager.h"
+#include "GroupInfoHandler.h"
+#include "GroupKeyExchangeHandler.h"
+#include "GroupLeaveHandler.h"
+#include "GroupMessageHandler.h"
 #include "KeyExchangeHandler.h"
 #include "LoginHandler.h"
 #include "MessageHandler.h"
@@ -218,6 +223,16 @@ void Server::registerHandlers() {
                              [] { return std::make_unique<SyncHistoryHandler>(); });
     _factory.registerHandler(PacketType::READ_RECEIPT,
                              [this] { return std::make_unique<ReadReceiptHandler>(*this); });
+    _factory.registerHandler(PacketType::CREATE_GROUP,
+                             [this] { return std::make_unique<CreateGroupHandler>(*this); });
+    _factory.registerHandler(PacketType::GROUP_MESSAGE,
+                             [this] { return std::make_unique<GroupMessageHandler>(*this); });
+    _factory.registerHandler(PacketType::GROUP_KEY_EXCHANGE,
+                             [this] { return std::make_unique<GroupKeyExchangeHandler>(*this); });
+    _factory.registerHandler(PacketType::GROUP_INFO,
+                             [] { return std::make_unique<GroupInfoHandler>(); });
+    _factory.registerHandler(PacketType::GROUP_LEAVE,
+                             [this] { return std::make_unique<GroupLeaveHandler>(*this); });
 }
 
 int Server::main(const std::vector<std::string>&) {
