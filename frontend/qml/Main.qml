@@ -219,7 +219,7 @@ ApplicationWindow {
                 visible: !root.isMobile
 
                 ConversationListPage {
-                    width: 220
+                    Layout.preferredWidth: 220
                     Layout.fillHeight: true
                     activePeer: root.activePeer
                     isMobile: root.isMobile
