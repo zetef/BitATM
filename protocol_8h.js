@@ -10,7 +10,12 @@ var protocol_8h =
       [ "ERR", "protocol_8h.html#a0a80a7bc045affcf10846075b88cbca0acd22bad976363fdd1bfbf6759fede482", null ],
       [ "SYNC_HISTORY", "protocol_8h.html#a0a80a7bc045affcf10846075b88cbca0a474780e98d767348d2687d0d25eba775", null ],
       [ "CREATE_GROUP", "protocol_8h.html#a0a80a7bc045affcf10846075b88cbca0a068d453155144c11b52b879fa2d23726", null ],
-      [ "READ_RECEIPT", "protocol_8h.html#a0a80a7bc045affcf10846075b88cbca0a2467da7d6e6ddf01e2ccb45148865df0", null ]
+      [ "READ_RECEIPT", "protocol_8h.html#a0a80a7bc045affcf10846075b88cbca0a2467da7d6e6ddf01e2ccb45148865df0", null ],
+      [ "GROUP_MESSAGE", "protocol_8h.html#a0a80a7bc045affcf10846075b88cbca0aa29a96eeca47628c66ebb5db4dd8bab3", null ],
+      [ "GROUP_KEY_EXCHANGE", "protocol_8h.html#a0a80a7bc045affcf10846075b88cbca0a56d46fd0bd77fea11f1e1d12fb401966", null ],
+      [ "GROUP_INVITE", "protocol_8h.html#a0a80a7bc045affcf10846075b88cbca0a71e00f1f4080ab3934f687c452894e02", null ],
+      [ "GROUP_LEAVE", "protocol_8h.html#a0a80a7bc045affcf10846075b88cbca0a58cd701fa74ff4fa649ae70d1c4539d5", null ],
+      [ "GROUP_INFO", "protocol_8h.html#a0a80a7bc045affcf10846075b88cbca0a95c5ce5e01569afc91da3eca654eddb6", null ]
     ] ],
     [ "MAX_PACKET_SIZE", "protocol_8h.html#ae4d2325390b1703d2db37ab125ef43cf", null ],
     [ "PROTOCOL_VERSION", "protocol_8h.html#a70f52007f8c2408ec768efe3c27c8849", null ]
