@@ -4,7 +4,7 @@ import QtQuick.Layouts
 
 Rectangle {
     id: chatPage
-    color: "#1e1e2e"
+    color: "#0a0a0a"
 
     property string activePeer: ""
     property bool isMobile: false
@@ -17,17 +17,19 @@ Rectangle {
 
         Label {
             anchors.horizontalCenter: parent.horizontalCenter
-            text: "Welcome to BitATM"
-            color: "#cdd6f4"
+            text: "BitATM - secure channel"
+            color: "#00ff41"
             font.pixelSize: 22
             font.bold: true
+            font.family: "Monospace"
         }
 
         Label {
             anchors.horizontalCenter: parent.horizontalCenter
-            text: "Select a conversation or start a new one"
-            color: "#6c7086"
+            text: "no active session. select target."
+            color: "#505050"
             font.pixelSize: 14
+            font.family: "Monospace"
         }
     }
 
@@ -39,7 +41,7 @@ Rectangle {
         Rectangle {
             Layout.fillWidth: true
             height: 48
-            color: "#181825"
+            color: "#0f0f0f"
 
             Button {
                 id: backButton
@@ -47,7 +49,7 @@ Rectangle {
                 anchors.left: parent.left
                 anchors.leftMargin: 4
                 anchors.verticalCenter: parent.verticalCenter
-                text: "<"
+                text: "<<"
                 width: 36
                 height: 36
                 onClicked: {
@@ -56,23 +58,25 @@ Rectangle {
                 }
                 contentItem: Text {
                     text: parent.text
-                    color: "#cdd6f4"
+                    color: "#c8c8c8"
                     font.pixelSize: 18
+                    font.family: "Monospace"
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
                 }
                 background: Rectangle {
-                    color: parent.down ? "#313244" : "transparent"
-                    radius: 4
+                    color: parent.down ? "#1a1a1a" : "transparent"
+                    radius: 0
                 }
             }
 
             Label {
                 anchors.centerIn: parent
-                text: chatPage.activePeer
-                color: "#cdd6f4"
+                text: "[ " + chatPage.activePeer + " ]"
+                color: "#c8c8c8"
                 font.pixelSize: 14
                 font.bold: true
+                font.family: "Monospace"
             }
         }
 
@@ -106,8 +110,8 @@ Rectangle {
                             id: bubble
                             width: Math.min(bubbleLabel.implicitWidth + 24, parent.width * 0.72)
                             height: bubbleLabel.implicitHeight + 14
-                            radius: 12
-                            color: model.isOutgoing ? "#89b4fa" : "#313244"
+                            radius: 0
+                            color: model.isOutgoing ? "#00ff41" : "#1a1a1a"
                             anchors.right: model.isOutgoing ? parent.right : undefined
                             anchors.left:  model.isOutgoing ? undefined : parent.left
 
@@ -118,8 +122,9 @@ Rectangle {
                                 anchors.top: parent.top
                                 anchors.margins: 12
                                 text: model.content
-                                color: model.isOutgoing ? "#1e1e2e" : "#cdd6f4"
+                                color: model.isOutgoing ? "#0a0a0a" : "#c8c8c8"
                                 font.pixelSize: 13
+                                font.family: "Monospace"
                                 wrapMode: Text.Wrap
                             }
                         }
@@ -135,8 +140,9 @@ Rectangle {
                                 return ts.substring(t + 1, t + 6)
                             return ts.length >= 16 ? ts.substring(0, 16) : ts
                         }
-                        color: "#585b70"
+                        color: "#404040"
                         font.pixelSize: 10
+                        font.family: "Monospace"
                         horizontalAlignment: model.isOutgoing ? Text.AlignRight : Text.AlignLeft
                     }
 
@@ -147,8 +153,9 @@ Rectangle {
                         text: model.status === "seen"      ? "✓✓"
                             : model.status === "delivered" ? "✓✓"
                             :                                "✓"
-                        color: model.status === "seen" ? "#89b4fa" : "#585b70"
+                        color: model.status === "seen" ? "#00ff41" : "#404040"
                         font.pixelSize: 10
+                        font.family: "Monospace"
                         horizontalAlignment: Text.AlignRight
 
                         HoverHandler { id: statusHover }
@@ -165,7 +172,7 @@ Rectangle {
         Rectangle {
             Layout.fillWidth: true
             height: 56
-            color: "#181825"
+            color: "#0f0f0f"
 
             Row {
                 anchors.fill: parent
@@ -176,18 +183,19 @@ Rectangle {
                     id: msgInput
                     width: parent.width - sendButton.width - parent.spacing
                     height: parent.height
-                    placeholderText: "Message " + chatPage.activePeer + "..."
-                    color: "#cdd6f4"
-                    placeholderTextColor: "#585b70"
-                    background: Rectangle { color: "#313244"; radius: 4 }
+                    placeholderText: "> msg " + chatPage.activePeer + "..."
+                    color: "#c8c8c8"
+                    placeholderTextColor: "#505050"
+                    font.family: "Monospace"
+                    background: Rectangle { color: "#1a1a1a"; radius: 0 }
                     padding: 10
                     onAccepted: sendButton.clicked()
                 }
 
                 Button {
                     id: sendButton
-                    text: "Send"
-                    width: 70
+                    text: ">> send"
+                    width: 80
                     height: parent.height
                     enabled: msgInput.text.length > 0
                     onClicked: {
@@ -203,14 +211,15 @@ Rectangle {
                     }
                     contentItem: Text {
                         text: parent.text
-                        color: "#1e1e2e"
+                        color: "#0a0a0a"
                         font.pixelSize: 13
+                        font.family: "Monospace"
                         horizontalAlignment: Text.AlignHCenter
                         verticalAlignment: Text.AlignVCenter
                     }
                     background: Rectangle {
-                        color: parent.enabled ? (parent.down ? "#74a0e8" : "#89b4fa") : "#45475a"
-                        radius: 4
+                        color: parent.enabled ? (parent.down ? "#00cc33" : "#00ff41") : "#222222"
+                        radius: 0
                     }
                 }
             }
