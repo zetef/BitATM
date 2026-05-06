@@ -3,7 +3,7 @@ project(BitATM CXX)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(Qt6 REQUIRED COMPONENTS Core Quick Network WebSockets Test)
+find_package(Qt6 REQUIRED COMPONENTS Core Quick Network WebSockets Test Sql)
 find_package(PostgreSQL REQUIRED)
 set(CMAKE_MESSAGE_LOG_LEVEL ERROR) ## suppress vcpkg warnings
 find_package(Poco REQUIRED COMPONENTS Net Data DataPostgreSQL Util)

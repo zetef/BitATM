@@ -80,6 +80,7 @@ void NetworkManager::sendSyncHistory() {
     Packet p;
     p.type = PacketType::SYNC_HISTORY;
     p.from = _currentUsername.toStdString();
+    p.body = LocalStorage::instance().newestTimestamp().toStdString();
     sendPacket(p);
 }
 
@@ -144,62 +145,22 @@ void NetworkManager::loadOrGenerateKeypair() {
 }
 
 void NetworkManager::loadLocalHistory() {
-    _messageKeys.clear();
-    QSettings settings("BitATM", "BitATM");
-
-    settings.beginGroup("history/" + _currentUsername);
-    const QStringList peers = settings.value("peers").toStringList();
-    settings.endGroup();
-
-    for (const QString& peer : peers) {
-        settings.beginGroup("history/" + _currentUsername + "/peer/" + peer);
-        const int count = settings.value("count", 0).toInt();
-        for (int i = 0; i < count; i++) {
-            const QString sender = settings.value(QString::number(i) + "/sender").toString();
-            const QString content = settings.value(QString::number(i) + "/content").toString();
-            const QString timestamp = settings.value(QString::number(i) + "/timestamp").toString();
-            const bool isOutgoing = settings.value(QString::number(i) + "/isOutgoing").toBool();
-
-            _messageKeys.insert(peer + "|" + sender + "|" + timestamp);
-            emit historySyncMessage(peer, sender, content, timestamp, isOutgoing);
+    auto convs = LocalStorage::instance().loadConversations();
+    for (auto& c : convs) {
+        auto msgs = LocalStorage::instance().loadMessages(c.peer);
+        for (auto& m : msgs) {
+            emit historySyncMessage(m.peer, m.sender, m.content, m.timestamp, m.isOutgoing);
         }
-        settings.endGroup();
+        emit convListUpdated(c.peer, c.lastMessage, c.lastTimestamp);
     }
-
-    qCInfo(logChat) << "Loaded local history:" << _messageKeys.size() << "messages";
-}
-
-bool NetworkManager::isDuplicate(const QString& peer, const QString& sender,
-                                 const QString& timestamp) const {
-    return _messageKeys.contains(peer + "|" + sender + "|" + timestamp);
+    qCInfo(logChat) << "Loaded local history:" << convs.size() << "conversations";
 }
 
 void NetworkManager::persistMessage(const QString& peer, const QString& sender,
                                     const QString& content, const QString& timestamp,
                                     bool isOutgoing) {
-    const QString key = peer + "|" + sender + "|" + timestamp;
-    if (_messageKeys.contains(key)) return;
-    _messageKeys.insert(key);
-
-    QSettings settings("BitATM", "BitATM");
-
-    settings.beginGroup("history/" + _currentUsername);
-    QStringList peers = settings.value("peers").toStringList();
-    if (!peers.contains(peer)) {
-        peers.append(peer);
-        settings.setValue("peers", peers);
-    }
-    settings.endGroup();
-
-    settings.beginGroup("history/" + _currentUsername + "/peer/" + peer);
-    const int idx = settings.value("count", 0).toInt();
-    settings.setValue(QString::number(idx) + "/sender", sender);
-    settings.setValue(QString::number(idx) + "/content", content);
-    settings.setValue(QString::number(idx) + "/timestamp", timestamp);
-    settings.setValue(QString::number(idx) + "/isOutgoing", isOutgoing);
-    settings.setValue("count", idx + 1);
-    settings.endGroup();
-    qCInfo(logChat) << "Persisted message for peer" << peer << "(total:" << (idx + 1) << ")";
+    LocalStorage::instance().saveMessage(peer, sender, content, timestamp, isOutgoing);
+    LocalStorage::instance().saveConversation(peer, content, timestamp);
 }
 
 void NetworkManager::handleLoginAck(const Packet& p) {
@@ -228,14 +189,28 @@ void NetworkManager::handleLoginAck(const Packet& p) {
         return;
     }
 
-    if (!_historyLoaded) {
-        loadLocalHistory();
-        _historyLoaded = true;
-    }
+    loadLocalHistory();
     sendSyncHistory();
 }
 
 void NetworkManager::handleIncomingMessage(const Packet& p) {
+    const bool isOutgoingEcho = (p.errorMsg == "1");
+
+    const QString ts = p.timestamp.empty()
+                           ? QDateTime::currentDateTimeUtc().toString(Qt::ISODateWithMs)
+                           : QString::fromStdString(p.timestamp);
+
+    if (isOutgoingEcho) {
+        // Cannot decrypt - AES key is wrapped with recipient's public key, not ours.
+        // Check local cache first (message may already be stored if sent from this device).
+        const QString peer = QString::fromStdString(p.to);
+        if (LocalStorage::instance().isDuplicate(peer, _currentUsername, ts)) return;
+        // Cross-device outgoing: store as a placeholder since we cannot decrypt.
+        persistMessage(peer, _currentUsername, "[Sent]", ts, true);
+        emit historySyncMessage(peer, _currentUsername, "[Sent]", ts, true);
+        return;
+    }
+
     if (_ownPrivKey.isEmpty()) {
         qCWarning(logNetwork) << "Received MESSAGE but private key not loaded - dropping";
         return;
@@ -246,12 +221,7 @@ void NetworkManager::handleIncomingMessage(const Packet& p) {
         QString plaintext = _crypto.decrypt(QString::fromStdString(p.body), aesKey);
 
         const QString from = QString::fromStdString(p.from);
-        // Fall back to a local timestamp if the server sent none, to avoid dedup key collisions.
-        const QString ts = p.timestamp.empty()
-                               ? QDateTime::currentDateTimeUtc().toString(Qt::ISODateWithMs)
-                               : QString::fromStdString(p.timestamp);
-
-        if (isDuplicate(from, from, ts)) {
+        if (LocalStorage::instance().isDuplicate(from, from, ts)) {
             qCInfo(logChat) << "Skipping duplicate message from" << from;
             return;
         }
@@ -288,8 +258,6 @@ void NetworkManager::logout() {
     _ownPubKey.clear();
     _peerKeys.clear();
     _pendingMessages.clear();
-    _messageKeys.clear();
-    _historyLoaded = false;
     _unreadTimestamps.clear();
     emit currentUsernameChanged();
 }

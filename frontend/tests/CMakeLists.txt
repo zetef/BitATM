@@ -1,4 +1,4 @@
-find_package(Qt6 REQUIRED COMPONENTS Test Core)
+find_package(Qt6 REQUIRED COMPONENTS Test Core Sql)
 find_package(OpenSSL REQUIRED)
 
 # UT-FE-01..04: CryptoEngine (Facade) tests
@@ -43,3 +43,15 @@ target_link_libraries(chat_model_test PRIVATE
     common
 )
 add_test(NAME ChatModelTest COMMAND chat_model_test)
+
+# UT-FE-12, UT-FE-13 - LocalStorage SQLite cache
+add_executable(local_storage_test
+    LocalStorageTest.cpp
+    ../src/LocalStorage.cpp
+)
+set_target_properties(local_storage_test PROPERTIES AUTOMOC ON)
+target_include_directories(local_storage_test PRIVATE ../src)
+target_link_libraries(local_storage_test PRIVATE
+    Qt6::Test Qt6::Core Qt6::Sql
+)
+add_test(NAME LocalStorageTest COMMAND local_storage_test)
