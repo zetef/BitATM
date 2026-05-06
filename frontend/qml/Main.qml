@@ -82,6 +82,10 @@ ApplicationWindow {
         function onMessageSeen(peer, timestamp) {
             chatModel.updateStatus(peer, timestamp, "seen")
         }
+
+        function onConvListUpdated(peer, lastMessage, lastTimestamp) {
+            convListModel.addOrUpdate(peer, lastMessage, lastTimestamp)
+        }
     }
 
     Component {

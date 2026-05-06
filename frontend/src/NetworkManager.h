@@ -3,7 +3,6 @@
 #include <QMap>
 #include <QNetworkInformation>
 #include <QObject>
-#include <QSet>
 #include <QSettings>
 #include <QSslError>
 #include <QString>
@@ -12,6 +11,7 @@
 
 #include "../../common/protocol.h"
 #include "CryptoEngine.h"
+#include "LocalStorage.h"
 
 /**
  * @brief Proxy to the BitATM WebSocket server with integrated E2EE and local history.
@@ -127,6 +127,16 @@ signals:
     void historySyncMessage(const QString& peer, const QString& sender, const QString& content,
                             const QString& timestamp, bool isOutgoing);
 
+    /**
+     * @brief Emitted after loading local history and on new messages - updates conversation list.
+     *
+     * @param peer          The peer username.
+     * @param lastMessage   Latest message content.
+     * @param lastTimestamp ISO 8601 timestamp of the latest message.
+     */
+    void convListUpdated(const QString& peer, const QString& lastMessage,
+                         const QString& lastTimestamp);
+
 private slots:
     void onConnected();
     void onDisconnected();
@@ -167,9 +177,7 @@ private:
     void loadLocalHistory();
 
     /**
-     * @brief Persist one message to QSettings and track its dedup key.
-     *
-     * No-op if the dedup key is already in _messageKeys.
+     * @brief Persist one message to LocalStorage SQLite cache.
      *
      * @param peer      Conversation key (peer username).
      * @param sender    Display sender name.
@@ -179,13 +187,6 @@ private:
      */
     void persistMessage(const QString& peer, const QString& sender, const QString& content,
                         const QString& timestamp, bool isOutgoing);
-
-    /**
-     * @brief Returns true if this message is already tracked in _messageKeys.
-     *
-     * Key format: peer + "|" + sender + "|" + timestamp
-     */
-    bool isDuplicate(const QString& peer, const QString& sender, const QString& timestamp) const;
 
     QWebSocket _socket;
     QUrl _serverUrl;
@@ -198,8 +199,6 @@ private:
     QByteArray _ownPubKey;
     QMap<QString, QByteArray> _peerKeys;
     QMap<QString, QList<QPair<QString, QString>>> _pendingMessages;
-    QSet<QString> _messageKeys;
-    bool _historyLoaded = false;
     bool _pendingRegister = false;
     bool _intentionallyConnecting = false;
     QMap<QString, QStringList> _unreadTimestamps;

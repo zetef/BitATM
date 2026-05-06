@@ -2,6 +2,8 @@ qt_add_executable(frontend
 	src/main.cpp
 	src/NetworkManager.h
 	src/NetworkManager.cpp
+	src/LocalStorage.h
+	src/LocalStorage.cpp
 	src/ISymmetricStrategy.h
 	src/IAsymmetricStrategy.h
 	src/OpensslAdapter.h
@@ -44,7 +46,7 @@ target_compile_definitions(frontend PRIVATE BITATM_SERVER_URL="${BITATM_SERVER_U
 
 target_link_libraries(frontend PRIVATE
 	common
-	Qt6::Core Qt6::Quick Qt6::Network Qt6::WebSockets
+	Qt6::Core Qt6::Quick Qt6::Network Qt6::WebSockets Qt6::Sql
 	OpenSSL::SSL OpenSSL::Crypto
 )
 target_include_directories(frontend PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src)
