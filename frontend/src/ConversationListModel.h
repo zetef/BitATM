@@ -17,7 +17,13 @@ class ConversationListModel : public QAbstractListModel {
 
 public:
     /** @brief Role identifiers exposed to QML. */
-    enum Roles { UsernameRole = Qt::UserRole + 1, LastMessageRole, TimestampRole };
+    enum Roles {
+        UsernameRole = Qt::UserRole + 1,
+        LastMessageRole,
+        TimestampRole,
+        IsGroupRole = Qt::UserRole + 4,
+        GroupIdRole = Qt::UserRole + 5
+    };
 
     /** @brief Constructs the model with an optional parent. */
     explicit ConversationListModel(QObject* parent = nullptr);
@@ -35,6 +41,10 @@ public:
      */
     Q_INVOKABLE void addOrUpdate(const QString& username, const QString& lastMessage,
                                  const QString& timestamp);
+
+    /** @brief Add or update a group conversation by groupId. */
+    Q_INVOKABLE void addOrUpdateGroup(const QString& groupId, const QString& groupName,
+                                      const QString& lastMessage, const QString& lastTimestamp);
 
     /** @brief Removes all entries from the model. */
     Q_INVOKABLE void clear();
@@ -54,6 +64,8 @@ private:
         QString username;
         QString lastMessage;
         QString timestamp;
+        bool isGroup{false};
+        QString groupId;
     };
 
     std::vector<ConvEntry> entries_;

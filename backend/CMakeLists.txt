@@ -24,6 +24,12 @@ add_library(bitatm-backend-lib STATIC
     src/AckHandler.h              src/AckHandler.cpp
     src/SyncHistoryHandler.h      src/SyncHistoryHandler.cpp
     src/ReadReceiptHandler.h      src/ReadReceiptHandler.cpp
+    src/GroupRepository.h         src/GroupRepository.cpp
+    src/CreateGroupHandler.h      src/CreateGroupHandler.cpp
+    src/GroupMessageHandler.h     src/GroupMessageHandler.cpp
+    src/GroupKeyExchangeHandler.h src/GroupKeyExchangeHandler.cpp
+    src/GroupInfoHandler.h        src/GroupInfoHandler.cpp
+    src/GroupLeaveHandler.h       src/GroupLeaveHandler.cpp
 )
 target_include_directories(bitatm-backend-lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src)
 target_link_libraries(bitatm-backend-lib PUBLIC

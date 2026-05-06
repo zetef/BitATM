@@ -67,6 +67,28 @@ public:
     /** @brief Clear session state and return to login without closing the WebSocket. */
     Q_INVOKABLE void logout();
 
+    /** @brief Create a new group. Encrypts AES key for each member via RSA. */
+    Q_INVOKABLE void createGroup(const QString& name, const QStringList& members);
+
+    /** @brief Encrypt and send a group message. */
+    Q_INVOKABLE void sendGroupMessage(const QString& groupId, const QString& plaintext,
+                                      const QString& timestamp);
+
+    /** @brief Admin: kick a member from a group. */
+    Q_INVOKABLE void kickMember(const QString& groupId, const QString& username);
+
+    /** @brief Admin: add a new member to a group. */
+    Q_INVOKABLE void addGroupMember(const QString& groupId, const QString& username);
+
+    /** @brief Creator: grant admin role to a member. */
+    Q_INVOKABLE void grantAdmin(const QString& groupId, const QString& username);
+
+    /** @brief Leave a group voluntarily. */
+    Q_INVOKABLE void leaveGroup(const QString& groupId);
+
+    /** @brief Request updated group info (member list, roles). */
+    Q_INVOKABLE void fetchGroupInfo(const QString& groupId);
+
     /** @brief Returns true if the WebSocket is in ConnectedState. */
     bool isConnected() const;
 
@@ -137,6 +159,23 @@ signals:
     void convListUpdated(const QString& peer, const QString& lastMessage,
                          const QString& lastTimestamp);
 
+    /** @brief Emitted when the server sends a GROUP_INVITE packet for the current user. */
+    void groupInviteReceived(const QString& groupId, const QString& groupName);
+
+    /** @brief Emitted when an incoming group message is successfully decrypted. */
+    void groupMessageDecrypted(const QString& groupId, const QString& sender,
+                               const QString& plaintext, const QString& timestamp, bool isOutgoing);
+
+    /** @brief Emitted when the group AES key is updated after a key rotation. */
+    void groupKeyUpdated(const QString& groupId);
+
+    /** @brief Emitted when group info (member list, roles) is received from the server. */
+    void groupInfoReceived(const QString& groupId, const QString& groupName,
+                           const QVariantList& members);
+
+    /** @brief Emitted when the current user has successfully left a group. */
+    void groupLeft(const QString& groupId);
+
 private slots:
     void onConnected();
     void onDisconnected();
@@ -202,4 +241,25 @@ private:
     bool _pendingRegister = false;
     bool _intentionallyConnecting = false;
     QMap<QString, QStringList> _unreadTimestamps;
+
+    /** @brief In-memory map from groupId to decrypted AES key bytes. */
+    QMap<QString, QByteArray> _groupKeys;
+
+    /** @brief Handle an incoming GROUP_INVITE packet. */
+    void handleGroupInvite(const Packet& p);
+
+    /** @brief Decrypt and emit an incoming GROUP_MESSAGE packet. */
+    void handleGroupMessage(const Packet& p);
+
+    /** @brief Update the stored AES key after a GROUP_KEY_EXCHANGE. */
+    void handleGroupKeyExchange(const Packet& p);
+
+    /** @brief Parse and emit group member list from a GROUP_INFO response. */
+    void handleGroupInfo(const Packet& p);
+
+    /** @brief Handle GROUP_LEAVE - either key rotation notice or self-leave confirmation. */
+    void handleGroupLeave(const Packet& p);
+
+    /** @brief Generate a new AES key for a group and request member list for redistribution. */
+    void rotateGroupKey(const QString& groupId);
 };

@@ -55,3 +55,20 @@ target_link_libraries(local_storage_test PRIVATE
     Qt6::Test Qt6::Core Qt6::Sql
 )
 add_test(NAME LocalStorageTest COMMAND local_storage_test)
+
+# UT-FE-14, UT-FE-15 - Group crypto tests
+add_executable(group_crypto_test
+    GroupCryptoTest.cpp
+    ../src/CryptoEngine.cpp
+    ../src/AesGcmStrategy.cpp
+    ../src/RsaOaepStrategy.cpp
+    ../src/OpensslAdapter.cpp
+)
+set_target_properties(group_crypto_test PROPERTIES AUTOMOC ON)
+target_include_directories(group_crypto_test PRIVATE ../src)
+target_link_libraries(group_crypto_test PRIVATE
+    Qt6::Test Qt6::Core
+    OpenSSL::SSL OpenSSL::Crypto
+    common
+)
+add_test(NAME GroupCryptoTest COMMAND group_crypto_test)
