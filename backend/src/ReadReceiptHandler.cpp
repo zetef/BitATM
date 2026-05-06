@@ -25,7 +25,11 @@ void ReadReceiptHandler::execute(Packet& packet, ClientSession& session) {
     auto readerSessions = _server.getSessionsForUser(packet.from);
     for (auto& sibling : readerSessions) {
         if (sibling.get() != &session) {
-            sibling->send(packet);
+            try {
+                sibling->send(packet);
+            } catch (const NetworkException&) {
+                // sibling disconnected between session copy and send
+            }
         }
     }
 }
