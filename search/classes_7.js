@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['loginhandler_0',['LoginHandler',['../classLoginHandler.html',1,'']]]
+  ['localstorage_0',['LocalStorage',['../classLocalStorage.html',1,'']]],
+  ['loginhandler_1',['LoginHandler',['../classLoginHandler.html',1,'']]]
 ];

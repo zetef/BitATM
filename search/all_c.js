@@ -4,5 +4,6 @@ var searchData=
   ['networkexception_1',['NetworkException',['../classNetworkException.html',1,'']]],
   ['networkmanager_2',['networkmanager',['../classNetworkManager.html',1,'NetworkManager'],['../classNetworkManager.html#a25e5a69c0dba31cc028050c2b6eea855',1,'NetworkManager::NetworkManager()']]],
   ['networkmanager_2ecpp_3',['NetworkManager.cpp',['../NetworkManager_8cpp.html',1,'']]],
-  ['networkmanager_2eh_4',['NetworkManager.h',['../NetworkManager_8h.html',1,'']]]
+  ['networkmanager_2eh_4',['NetworkManager.h',['../NetworkManager_8h.html',1,'']]],
+  ['newesttimestamp_5',['newestTimestamp',['../classLocalStorage.html#a1da495871df90969dcdfdb848b0e7b27',1,'LocalStorage']]]
 ];

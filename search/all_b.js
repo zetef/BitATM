@@ -14,8 +14,9 @@ var searchData=
   ['messagehandler_2ecpp_11',['MessageHandler.cpp',['../MessageHandler_8cpp.html',1,'']]],
   ['messagehandler_2eh_12',['MessageHandler.h',['../MessageHandler_8h.html',1,'']]],
   ['messagereceived_13',['messageReceived',['../classNetworkManager.html#a603d801e6200da430707381ba39241c2',1,'NetworkManager']]],
-  ['messagerepository_14',['messagerepository',['../classMessageRepository.html#a4d98baabfe3b508fd743db2b9cfb0650',1,'MessageRepository::MessageRepository()'],['../classMessageRepository.html',1,'MessageRepository']]],
-  ['messagerepository_2ecpp_15',['MessageRepository.cpp',['../MessageRepository_8cpp.html',1,'']]],
-  ['messagerepository_2eh_16',['MessageRepository.h',['../MessageRepository_8h.html',1,'']]],
-  ['messageseen_17',['messageSeen',['../classNetworkManager.html#a5e470cae21687ac465bd3ded727f5c88',1,'NetworkManager']]]
+  ['messagerecord_14',['MessageRecord',['../structMessageRecord.html',1,'']]],
+  ['messagerepository_15',['messagerepository',['../classMessageRepository.html#a4d98baabfe3b508fd743db2b9cfb0650',1,'MessageRepository::MessageRepository()'],['../classMessageRepository.html',1,'MessageRepository']]],
+  ['messagerepository_2ecpp_16',['MessageRepository.cpp',['../MessageRepository_8cpp.html',1,'']]],
+  ['messagerepository_2eh_17',['MessageRepository.h',['../MessageRepository_8h.html',1,'']]],
+  ['messageseen_18',['messageSeen',['../classNetworkManager.html#a5e470cae21687ac465bd3ded727f5c88',1,'NetworkManager']]]
 ];

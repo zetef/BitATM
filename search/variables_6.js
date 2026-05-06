@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['protocol_5fversion_0',['PROTOCOL_VERSION',['../protocol_8h.html#a70f52007f8c2408ec768efe3c27c8849',1,'protocol.h']]]
+  ['lastmessage_0',['lastMessage',['../structConversationRecord.html#aebf318f01d76254306e8aca4c0f445e0',1,'ConversationRecord']]],
+  ['lasttimestamp_1',['lastTimestamp',['../structConversationRecord.html#a2342a5880f62236a244f9d219aaefc2d',1,'ConversationRecord']]]
 ];

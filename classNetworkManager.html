@@ -158,6 +158,9 @@ Signals</h2></td></tr>
 <tr class="memitem:a1e431ffe571e89103864c08eaea12488" id="r_a1e431ffe571e89103864c08eaea12488"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkManager.html#a1e431ffe571e89103864c08eaea12488">historySyncMessage</a> (const QString &amp;peer, const QString &amp;sender, const QString &amp;content, const QString &amp;timestamp, bool isOutgoing)</td></tr>
 <tr class="memdesc:a1e431ffe571e89103864c08eaea12488"><td class="mdescLeft">&#160;</td><td class="mdescRight">Emitted once per stored message during local history load on login.  <br /></td></tr>
 <tr class="separator:a1e431ffe571e89103864c08eaea12488"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a257318584ac0bf9569d5873314ad5d82" id="r_a257318584ac0bf9569d5873314ad5d82"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkManager.html#a257318584ac0bf9569d5873314ad5d82">convListUpdated</a> (const QString &amp;peer, const QString &amp;<a class="el" href="classNetworkManager.html#acb5092184a7b088b3fa60f61106320cb">lastMessage</a>, const QString &amp;lastTimestamp)</td></tr>
+<tr class="memdesc:a257318584ac0bf9569d5873314ad5d82"><td class="mdescLeft">&#160;</td><td class="mdescRight">Emitted after loading local history and on new messages - updates conversation list.  <br /></td></tr>
+<tr class="separator:a257318584ac0bf9569d5873314ad5d82"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -310,6 +313,58 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Open a WebSocket connection to the given URL. </p>
+
+</div>
+</div>
+<a id="a257318584ac0bf9569d5873314ad5d82" name="a257318584ac0bf9569d5873314ad5d82"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a257318584ac0bf9569d5873314ad5d82">&#9670;&#160;</a></span>convListUpdated</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NetworkManager::convListUpdated </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>peer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>lastMessage</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>lastTimestamp</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">signal</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Emitted after loading local history and on new messages - updates conversation list. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">peer</td><td>The peer username. </td></tr>
+    <tr><td class="paramname">lastMessage</td><td>Latest message content. </td></tr>
+    <tr><td class="paramname">lastTimestamp</td><td>ISO 8601 timestamp of the latest message. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

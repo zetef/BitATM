@@ -6,6 +6,7 @@ var searchData=
   ['connectionhandlerfactory_3',['ConnectionHandlerFactory',['../classConnectionHandlerFactory.html',1,'']]],
   ['conversationhistory_4',['ConversationHistory',['../classConversationHistory.html',1,'']]],
   ['conversationlistmodel_5',['ConversationListModel',['../classConversationListModel.html',1,'']]],
-  ['cryptoengine_6',['CryptoEngine',['../classCryptoEngine.html',1,'']]],
-  ['cryptoexception_7',['CryptoException',['../classCryptoException.html',1,'']]]
+  ['conversationrecord_6',['ConversationRecord',['../structConversationRecord.html',1,'']]],
+  ['cryptoengine_7',['CryptoEngine',['../classCryptoEngine.html',1,'']]],
+  ['cryptoexception_8',['CryptoException',['../classCryptoException.html',1,'']]]
 ];

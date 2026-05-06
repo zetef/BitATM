@@ -1,6 +1,7 @@
 var hierarchy =
 [
     [ "ClientSession", "classClientSession.html", null ],
+    [ "ConversationRecord", "structConversationRecord.html", null ],
     [ "CryptoEngine", "classCryptoEngine.html", null ],
     [ "DbManager", "classDbManager.html", null ],
     [ "std::exception", null, [
@@ -59,6 +60,8 @@ var hierarchy =
     [ "IRepository< User >", "classIRepository.html", [
       [ "UserRepository", "classUserRepository.html", null ]
     ] ],
+    [ "LocalStorage", "classLocalStorage.html", null ],
+    [ "MessageRecord", "structMessageRecord.html", null ],
     [ "OpensslAdapter", "classOpensslAdapter.html", null ],
     [ "Packet", "structPacket.html", null ],
     [ "PacketBuilder", "classPacketBuilder.html", null ],

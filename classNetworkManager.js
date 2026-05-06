@@ -4,6 +4,7 @@ var classNetworkManager =
     [ "connected", "classNetworkManager.html#aa2d7233230f2d609c31d9fd064c2f461", null ],
     [ "connectionChanged", "classNetworkManager.html#a63f17e322ae0d09f6c0c1d8b9c54a0b5", null ],
     [ "connectToServer", "classNetworkManager.html#aa5e7b25d9a603077169f10aa9bc0485d", null ],
+    [ "convListUpdated", "classNetworkManager.html#a257318584ac0bf9569d5873314ad5d82", null ],
     [ "currentUsername", "classNetworkManager.html#aaa96a3d16f45cafb80c8242d5a1f7216", null ],
     [ "currentUsernameChanged", "classNetworkManager.html#a5a95bfdbdf91e47e8341ef89bae23b9d", null ],
     [ "disconnected", "classNetworkManager.html#a3c9d18963e77a155faf338b86927e2e5", null ],

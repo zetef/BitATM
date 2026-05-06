@@ -55,8 +55,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "AckHandler_8cpp.html",
-"classICryptoStrategy.html",
-"frontend_2src_2main_8cpp.html"
+"classICommandHandler.html#a2c2d11b6bd94d4bd721935b793fcd33d",
+"classUserRepository.html#a3031cf2d6edb5409261d4103c3d622a4"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
