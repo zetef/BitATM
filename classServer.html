@@ -106,9 +106,9 @@ Inheritance diagram for Server:</div>
 <div class="dyncontent">
 <div class="center"><img src="classServer__inherit__graph.png" border="0" usemap="#aServer_inherit__map" alt="Inheritance graph"/></div>
 <map name="aServer_inherit__map" id="aServer_inherit__map">
-<area shape="rect" title="Main server application. Owns the client map and handler factory." alt="" coords="41,119,168,284"/>
+<area shape="rect" title="Main server application. Owns the client map and handler factory." alt="" coords="21,119,188,304"/>
 <area shape="rect" title=" " alt="" coords="5,5,204,71"/>
-<area shape="poly" title=" " alt="" coords="107,84,107,118,102,118,102,84"/>
+<area shape="poly" title=" " alt="" coords="107,85,107,119,102,119,102,85"/>
 </map>
 </div>
 <div class="dynheader">
@@ -116,9 +116,9 @@ Collaboration diagram for Server:</div>
 <div class="dyncontent">
 <div class="center"><img src="classServer__coll__graph.png" border="0" usemap="#aServer_coll__map" alt="Collaboration graph"/></div>
 <map name="aServer_coll__map" id="aServer_coll__map">
-<area shape="rect" title="Main server application. Owns the client map and handler factory." alt="" coords="41,119,168,284"/>
+<area shape="rect" title="Main server application. Owns the client map and handler factory." alt="" coords="21,119,188,304"/>
 <area shape="rect" title=" " alt="" coords="5,5,204,71"/>
-<area shape="poly" title=" " alt="" coords="107,84,107,118,102,118,102,84"/>
+<area shape="poly" title=" " alt="" coords="107,85,107,119,102,119,102,85"/>
 </map>
 </div>
 <table class="memberdecls">
@@ -129,12 +129,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a192dea8c568586fe6f1cafac75a00b5b" id="r_a192dea8c568586fe6f1cafac75a00b5b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServer.html#a192dea8c568586fe6f1cafac75a00b5b">addClient</a> (const std::string &amp;username, std::shared_ptr&lt; <a class="el" href="classClientSession.html">ClientSession</a> &gt; session)</td></tr>
 <tr class="memdesc:a192dea8c568586fe6f1cafac75a00b5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Register a connected, authenticated session.  <br /></td></tr>
 <tr class="separator:a192dea8c568586fe6f1cafac75a00b5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a15dc7558643fe9664cca7238679b3a7b" id="r_a15dc7558643fe9664cca7238679b3a7b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServer.html#a15dc7558643fe9664cca7238679b3a7b">removeClient</a> (const std::string &amp;username)</td></tr>
-<tr class="memdesc:a15dc7558643fe9664cca7238679b3a7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove a session (on disconnect).  <br /></td></tr>
-<tr class="separator:a15dc7558643fe9664cca7238679b3a7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e7ed80da888379bbe3ec346e1210dbf" id="r_a7e7ed80da888379bbe3ec346e1210dbf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServer.html#a7e7ed80da888379bbe3ec346e1210dbf">removeClient</a> (const std::string &amp;username, <a class="el" href="classClientSession.html">ClientSession</a> *sessionPtr)</td></tr>
+<tr class="memdesc:a7e7ed80da888379bbe3ec346e1210dbf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove a specific session on disconnect.  <br /></td></tr>
+<tr class="separator:a7e7ed80da888379bbe3ec346e1210dbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac0318de032d2da7c2dcc25ac916b4f47" id="r_ac0318de032d2da7c2dcc25ac916b4f47"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classClientSession.html">ClientSession</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServer.html#ac0318de032d2da7c2dcc25ac916b4f47">findClient</a> (const std::string &amp;username)</td></tr>
-<tr class="memdesc:ac0318de032d2da7c2dcc25ac916b4f47"><td class="mdescLeft">&#160;</td><td class="mdescRight">Look up an online client by username.  <br /></td></tr>
+<tr class="memdesc:ac0318de032d2da7c2dcc25ac916b4f47"><td class="mdescLeft">&#160;</td><td class="mdescRight">Look up the first active session for a user (for routing to online users).  <br /></td></tr>
 <tr class="separator:ac0318de032d2da7c2dcc25ac916b4f47"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae97ff589de8eb00ce1cb43b913ee2a1d" id="r_ae97ff589de8eb00ce1cb43b913ee2a1d"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::shared_ptr&lt; <a class="el" href="classClientSession.html">ClientSession</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServer.html#ae97ff589de8eb00ce1cb43b913ee2a1d">getSessionsForUser</a> (const std::string &amp;username)</td></tr>
+<tr class="memdesc:ae97ff589de8eb00ce1cb43b913ee2a1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return all active sessions for a user (for multi-device fan-out).  <br /></td></tr>
+<tr class="separator:ae97ff589de8eb00ce1cb43b913ee2a1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5125611bb999de9619ea6b746e6448ce" id="r_a5125611bb999de9619ea6b746e6448ce"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPacketHandlerFactory.html">PacketHandlerFactory</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServer.html#a5125611bb999de9619ea6b746e6448ce">getFactory</a> ()</td></tr>
 <tr class="memdesc:a5125611bb999de9619ea6b746e6448ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access the handler factory (used by <a class="el" href="classConnectionHandler.html">ConnectionHandler</a>).  <br /></td></tr>
 <tr class="separator:a5125611bb999de9619ea6b746e6448ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -146,7 +149,7 @@ Protected Member Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Main server application. Owns the client map and handler factory. </p>
-<p>Inherits Poco::Util::ServerApplication - entry point via POCO_SERVER_MAIN. One thread per client (Poco thread pool). All access to _clients is guarded by _clientsMutex. </p>
+<p>Inherits Poco::Util::ServerApplication - entry point via POCO_SERVER_MAIN. One thread per client (Poco thread pool). All access to _clients is guarded by _clientsMutex. _clients maps username -&gt; all active sessions (multi-device support). </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ad5ec9462b520e59f7ea831e157ee5e59" name="ad5ec9462b520e59f7ea831e157ee5e59"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad5ec9462b520e59f7ea831e157ee5e59">&#9670;&#160;</a></span>Server()</h2>
@@ -212,8 +215,8 @@ Protected Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Look up an online client by username. </p>
-<dl class="section return"><dt>Returns</dt><dd>nullptr if the user is not currently connected. </dd></dl>
+<p>Look up the first active session for a user (for routing to online users). </p>
+<dl class="section return"><dt>Returns</dt><dd>nullptr if the user has no active sessions. </dd></dl>
 
 </div>
 </div>
@@ -244,6 +247,27 @@ Protected Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="ae97ff589de8eb00ce1cb43b913ee2a1d" name="ae97ff589de8eb00ce1cb43b913ee2a1d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae97ff589de8eb00ce1cb43b913ee2a1d">&#9670;&#160;</a></span>getSessionsForUser()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; std::shared_ptr&lt; <a class="el" href="classClientSession.html">ClientSession</a> &gt; &gt; Server::getSessionsForUser </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>username</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return all active sessions for a user (for multi-device fan-out). </p>
+<dl class="section return"><dt>Returns</dt><dd>Empty vector if user is not connected. </dd></dl>
+
+</div>
+</div>
 <a id="a6f679bed8f2732e37ff8bff4b6ca7dd1" name="a6f679bed8f2732e37ff8bff4b6ca7dd1"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6f679bed8f2732e37ff8bff4b6ca7dd1">&#9670;&#160;</a></span>main()</h2>
 
@@ -270,8 +294,8 @@ Protected Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a15dc7558643fe9664cca7238679b3a7b" name="a15dc7558643fe9664cca7238679b3a7b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a15dc7558643fe9664cca7238679b3a7b">&#9670;&#160;</a></span>removeClient()</h2>
+<a id="a7e7ed80da888379bbe3ec346e1210dbf" name="a7e7ed80da888379bbe3ec346e1210dbf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e7ed80da888379bbe3ec346e1210dbf">&#9670;&#160;</a></span>removeClient()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -280,13 +304,23 @@ Protected Member Functions</h2></td></tr>
           <td class="memname">void Server::removeClient </td>
           <td>(</td>
           <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>username</em></td><td>)</td>
+          <td class="paramname"><em>username</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype"><a class="el" href="classClientSession.html">ClientSession</a> *&#160;</td>
+          <td class="paramname"><em>sessionPtr</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Remove a session (on disconnect). </p>
+<p>Remove a specific session on disconnect. </p>
 
 </div>
 </div>

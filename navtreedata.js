@@ -56,7 +56,7 @@ var NAVTREEINDEX =
 [
 "AckHandler_8cpp.html",
 "classICryptoStrategy.html",
-"functions.html"
+"frontend_2src_2main_8cpp.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
