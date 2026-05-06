@@ -16,6 +16,8 @@ var hierarchy =
     ] ],
     [ "GroupInfo", "structGroupInfo.html", null ],
     [ "GroupMember", "structGroupMember.html", null ],
+    [ "GroupMessageRecord", "structGroupMessageRecord.html", null ],
+    [ "GroupRecord", "structGroupRecord.html", null ],
     [ "GroupRepository", "classGroupRepository.html", null ],
     [ "Poco::Net::HTTPRequestHandler", null, [
       [ "ConnectionHandler", "classConnectionHandler.html", null ]

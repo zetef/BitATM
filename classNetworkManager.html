@@ -107,7 +107,7 @@ Inheritance diagram for NetworkManager:</div>
 <div class="dyncontent">
 <div class="center"><img src="classNetworkManager__inherit__graph.png" border="0" usemap="#aNetworkManager_inherit__map" alt="Inheritance graph"/></div>
 <map name="aNetworkManager_inherit__map" id="aNetworkManager_inherit__map">
-<area shape="rect" title="Proxy to the BitATM WebSocket server with integrated E2EE and local history." alt="" coords="5,119,197,484"/>
+<area shape="rect" title="Proxy to the BitATM WebSocket server with integrated E2EE and local history." alt="" coords="5,119,197,444"/>
 <area shape="rect" title=" " alt="" coords="68,5,135,71"/>
 <area shape="poly" title=" " alt="" coords="104,84,104,118,99,118,99,84"/>
 </map>
@@ -117,7 +117,7 @@ Collaboration diagram for NetworkManager:</div>
 <div class="dyncontent">
 <div class="center"><img src="classNetworkManager__coll__graph.png" border="0" usemap="#aNetworkManager_coll__map" alt="Collaboration graph"/></div>
 <map name="aNetworkManager_coll__map" id="aNetworkManager_coll__map">
-<area shape="rect" title="Proxy to the BitATM WebSocket server with integrated E2EE and local history." alt="" coords="5,119,197,484"/>
+<area shape="rect" title="Proxy to the BitATM WebSocket server with integrated E2EE and local history." alt="" coords="5,119,197,444"/>
 <area shape="rect" title=" " alt="" coords="68,5,135,71"/>
 <area shape="poly" title=" " alt="" coords="104,84,104,118,99,118,99,84"/>
 </map>
@@ -161,6 +161,21 @@ Signals</h2></td></tr>
 <tr class="memitem:a257318584ac0bf9569d5873314ad5d82" id="r_a257318584ac0bf9569d5873314ad5d82"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkManager.html#a257318584ac0bf9569d5873314ad5d82">convListUpdated</a> (const QString &amp;peer, const QString &amp;<a class="el" href="classNetworkManager.html#acb5092184a7b088b3fa60f61106320cb">lastMessage</a>, const QString &amp;lastTimestamp)</td></tr>
 <tr class="memdesc:a257318584ac0bf9569d5873314ad5d82"><td class="mdescLeft">&#160;</td><td class="mdescRight">Emitted after loading local history and on new messages - updates conversation list.  <br /></td></tr>
 <tr class="separator:a257318584ac0bf9569d5873314ad5d82"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab7c6e64b70fa96f558f026d263f1424b" id="r_ab7c6e64b70fa96f558f026d263f1424b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkManager.html#ab7c6e64b70fa96f558f026d263f1424b">groupInviteReceived</a> (const QString &amp;groupId, const QString &amp;groupName)</td></tr>
+<tr class="memdesc:ab7c6e64b70fa96f558f026d263f1424b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Emitted when the server sends a GROUP_INVITE packet for the current user.  <br /></td></tr>
+<tr class="separator:ab7c6e64b70fa96f558f026d263f1424b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ebefc3b8b1ad69040decb2ed1f3cb57" id="r_a1ebefc3b8b1ad69040decb2ed1f3cb57"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkManager.html#a1ebefc3b8b1ad69040decb2ed1f3cb57">groupMessageDecrypted</a> (const QString &amp;groupId, const QString &amp;sender, const QString &amp;plaintext, const QString &amp;timestamp, bool isOutgoing)</td></tr>
+<tr class="memdesc:a1ebefc3b8b1ad69040decb2ed1f3cb57"><td class="mdescLeft">&#160;</td><td class="mdescRight">Emitted when an incoming group message is successfully decrypted.  <br /></td></tr>
+<tr class="separator:a1ebefc3b8b1ad69040decb2ed1f3cb57"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1be3096d9f6e5b0fd5faeb7f16dc3c7b" id="r_a1be3096d9f6e5b0fd5faeb7f16dc3c7b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkManager.html#a1be3096d9f6e5b0fd5faeb7f16dc3c7b">groupKeyUpdated</a> (const QString &amp;groupId)</td></tr>
+<tr class="memdesc:a1be3096d9f6e5b0fd5faeb7f16dc3c7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Emitted when the group AES key is updated after a key rotation.  <br /></td></tr>
+<tr class="separator:a1be3096d9f6e5b0fd5faeb7f16dc3c7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd6c36aa7591e7b20dcf761b90e718fa" id="r_abd6c36aa7591e7b20dcf761b90e718fa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkManager.html#abd6c36aa7591e7b20dcf761b90e718fa">groupInfoReceived</a> (const QString &amp;groupId, const QString &amp;groupName, const QVariantList &amp;members)</td></tr>
+<tr class="memdesc:abd6c36aa7591e7b20dcf761b90e718fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Emitted when group info (member list, roles) is received from the server.  <br /></td></tr>
+<tr class="separator:abd6c36aa7591e7b20dcf761b90e718fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0902bd618f601ae0c472243a8a3e9bc" id="r_af0902bd618f601ae0c472243a8a3e9bc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkManager.html#af0902bd618f601ae0c472243a8a3e9bc">groupLeft</a> (const QString &amp;groupId)</td></tr>
+<tr class="memdesc:af0902bd618f601ae0c472243a8a3e9bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Emitted when the current user has successfully left a group.  <br /></td></tr>
+<tr class="separator:af0902bd618f601ae0c472243a8a3e9bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -190,6 +205,27 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a2e9f2e60df7673bec45af42c104d4f72" id="r_a2e9f2e60df7673bec45af42c104d4f72"><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkManager.html#a2e9f2e60df7673bec45af42c104d4f72">logout</a> ()</td></tr>
 <tr class="memdesc:a2e9f2e60df7673bec45af42c104d4f72"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear session state and return to login without closing the WebSocket.  <br /></td></tr>
 <tr class="separator:a2e9f2e60df7673bec45af42c104d4f72"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a755b08070053e360640b1b9caa4d737d" id="r_a755b08070053e360640b1b9caa4d737d"><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkManager.html#a755b08070053e360640b1b9caa4d737d">createGroup</a> (const QString &amp;name, const QStringList &amp;members)</td></tr>
+<tr class="memdesc:a755b08070053e360640b1b9caa4d737d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a new group. Encrypts AES key for each member via RSA.  <br /></td></tr>
+<tr class="separator:a755b08070053e360640b1b9caa4d737d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4cbb3b8a327c5af1f67b65a8cfe0ab8d" id="r_a4cbb3b8a327c5af1f67b65a8cfe0ab8d"><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkManager.html#a4cbb3b8a327c5af1f67b65a8cfe0ab8d">sendGroupMessage</a> (const QString &amp;groupId, const QString &amp;plaintext, const QString &amp;timestamp)</td></tr>
+<tr class="memdesc:a4cbb3b8a327c5af1f67b65a8cfe0ab8d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encrypt and send a group message.  <br /></td></tr>
+<tr class="separator:a4cbb3b8a327c5af1f67b65a8cfe0ab8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af19a5e79c92bb2c5beb0e4bcd2f8c2a2" id="r_af19a5e79c92bb2c5beb0e4bcd2f8c2a2"><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkManager.html#af19a5e79c92bb2c5beb0e4bcd2f8c2a2">kickMember</a> (const QString &amp;groupId, const QString &amp;username)</td></tr>
+<tr class="memdesc:af19a5e79c92bb2c5beb0e4bcd2f8c2a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Admin: kick a member from a group.  <br /></td></tr>
+<tr class="separator:af19a5e79c92bb2c5beb0e4bcd2f8c2a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0e4e845f992abd7842feb9ef8a83ae3" id="r_ab0e4e845f992abd7842feb9ef8a83ae3"><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkManager.html#ab0e4e845f992abd7842feb9ef8a83ae3">addGroupMember</a> (const QString &amp;groupId, const QString &amp;username)</td></tr>
+<tr class="memdesc:ab0e4e845f992abd7842feb9ef8a83ae3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Admin: add a new member to a group.  <br /></td></tr>
+<tr class="separator:ab0e4e845f992abd7842feb9ef8a83ae3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a487b7f0a5ef2af0dfd9e2b53959d308c" id="r_a487b7f0a5ef2af0dfd9e2b53959d308c"><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkManager.html#a487b7f0a5ef2af0dfd9e2b53959d308c">grantAdmin</a> (const QString &amp;groupId, const QString &amp;username)</td></tr>
+<tr class="memdesc:a487b7f0a5ef2af0dfd9e2b53959d308c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creator: grant admin role to a member.  <br /></td></tr>
+<tr class="separator:a487b7f0a5ef2af0dfd9e2b53959d308c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a42fd9a51d9f3036d7156a0d64bdbd08d" id="r_a42fd9a51d9f3036d7156a0d64bdbd08d"><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkManager.html#a42fd9a51d9f3036d7156a0d64bdbd08d">leaveGroup</a> (const QString &amp;groupId)</td></tr>
+<tr class="memdesc:a42fd9a51d9f3036d7156a0d64bdbd08d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Leave a group voluntarily.  <br /></td></tr>
+<tr class="separator:a42fd9a51d9f3036d7156a0d64bdbd08d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8e6cd3d31f5d221cabad85e21ddc009" id="r_ae8e6cd3d31f5d221cabad85e21ddc009"><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkManager.html#ae8e6cd3d31f5d221cabad85e21ddc009">fetchGroupInfo</a> (const QString &amp;groupId)</td></tr>
+<tr class="memdesc:ae8e6cd3d31f5d221cabad85e21ddc009"><td class="mdescLeft">&#160;</td><td class="mdescRight">Request updated group info (member list, roles).  <br /></td></tr>
+<tr class="separator:ae8e6cd3d31f5d221cabad85e21ddc009"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a97d1fb741f609c2442efdfd92e944ed2" id="r_a97d1fb741f609c2442efdfd92e944ed2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkManager.html#a97d1fb741f609c2442efdfd92e944ed2">isConnected</a> () const</td></tr>
 <tr class="memdesc:a97d1fb741f609c2442efdfd92e944ed2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if the WebSocket is in ConnectedState.  <br /></td></tr>
 <tr class="separator:a97d1fb741f609c2442efdfd92e944ed2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -246,6 +282,36 @@ Properties</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="ab0e4e845f992abd7842feb9ef8a83ae3" name="ab0e4e845f992abd7842feb9ef8a83ae3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab0e4e845f992abd7842feb9ef8a83ae3">&#9670;&#160;</a></span>addGroupMember()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NetworkManager::addGroupMember </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>groupId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>username</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Admin: add a new member to a group. </p>
+
+</div>
+</div>
 <a id="aa2d7233230f2d609c31d9fd064c2f461" name="aa2d7233230f2d609c31d9fd064c2f461"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa2d7233230f2d609c31d9fd064c2f461">&#9670;&#160;</a></span>connected</h2>
 
@@ -368,6 +434,36 @@ Properties</h2></td></tr>
 
 </div>
 </div>
+<a id="a755b08070053e360640b1b9caa4d737d" name="a755b08070053e360640b1b9caa4d737d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a755b08070053e360640b1b9caa4d737d">&#9670;&#160;</a></span>createGroup()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NetworkManager::createGroup </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QStringList &amp;&#160;</td>
+          <td class="paramname"><em>members</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Create a new group. Encrypts AES key for each member via RSA. </p>
+
+</div>
+</div>
 <a id="aaa96a3d16f45cafb80c8242d5a1f7216" name="aaa96a3d16f45cafb80c8242d5a1f7216"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aaa96a3d16f45cafb80c8242d5a1f7216">&#9670;&#160;</a></span>currentUsername()</h2>
 
@@ -463,6 +559,26 @@ Properties</h2></td></tr>
 
 </div>
 </div>
+<a id="ae8e6cd3d31f5d221cabad85e21ddc009" name="ae8e6cd3d31f5d221cabad85e21ddc009"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae8e6cd3d31f5d221cabad85e21ddc009">&#9670;&#160;</a></span>fetchGroupInfo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NetworkManager::fetchGroupInfo </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>groupId</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Request updated group info (member list, roles). </p>
+
+</div>
+</div>
 <a id="aa9be8fd0f61070537dcda37964be6986" name="aa9be8fd0f61070537dcda37964be6986"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa9be8fd0f61070537dcda37964be6986">&#9670;&#160;</a></span>fetchPeerKey()</h2>
 
@@ -480,6 +596,230 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Request peer's RSA public key from the server. </p>
+
+</div>
+</div>
+<a id="a487b7f0a5ef2af0dfd9e2b53959d308c" name="a487b7f0a5ef2af0dfd9e2b53959d308c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a487b7f0a5ef2af0dfd9e2b53959d308c">&#9670;&#160;</a></span>grantAdmin()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NetworkManager::grantAdmin </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>groupId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>username</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Creator: grant admin role to a member. </p>
+
+</div>
+</div>
+<a id="abd6c36aa7591e7b20dcf761b90e718fa" name="abd6c36aa7591e7b20dcf761b90e718fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd6c36aa7591e7b20dcf761b90e718fa">&#9670;&#160;</a></span>groupInfoReceived</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NetworkManager::groupInfoReceived </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>groupId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>groupName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QVariantList &amp;&#160;</td>
+          <td class="paramname"><em>members</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">signal</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Emitted when group info (member list, roles) is received from the server. </p>
+
+</div>
+</div>
+<a id="ab7c6e64b70fa96f558f026d263f1424b" name="ab7c6e64b70fa96f558f026d263f1424b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab7c6e64b70fa96f558f026d263f1424b">&#9670;&#160;</a></span>groupInviteReceived</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NetworkManager::groupInviteReceived </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>groupId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>groupName</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">signal</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Emitted when the server sends a GROUP_INVITE packet for the current user. </p>
+
+</div>
+</div>
+<a id="a1be3096d9f6e5b0fd5faeb7f16dc3c7b" name="a1be3096d9f6e5b0fd5faeb7f16dc3c7b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1be3096d9f6e5b0fd5faeb7f16dc3c7b">&#9670;&#160;</a></span>groupKeyUpdated</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NetworkManager::groupKeyUpdated </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>groupId</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">signal</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Emitted when the group AES key is updated after a key rotation. </p>
+
+</div>
+</div>
+<a id="af0902bd618f601ae0c472243a8a3e9bc" name="af0902bd618f601ae0c472243a8a3e9bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af0902bd618f601ae0c472243a8a3e9bc">&#9670;&#160;</a></span>groupLeft</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NetworkManager::groupLeft </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>groupId</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">signal</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Emitted when the current user has successfully left a group. </p>
+
+</div>
+</div>
+<a id="a1ebefc3b8b1ad69040decb2ed1f3cb57" name="a1ebefc3b8b1ad69040decb2ed1f3cb57"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ebefc3b8b1ad69040decb2ed1f3cb57">&#9670;&#160;</a></span>groupMessageDecrypted</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NetworkManager::groupMessageDecrypted </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>groupId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>sender</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>plaintext</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>timestamp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>isOutgoing</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">signal</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Emitted when an incoming group message is successfully decrypted. </p>
 
 </div>
 </div>
@@ -588,6 +928,36 @@ Properties</h2></td></tr>
 
 </div>
 </div>
+<a id="af19a5e79c92bb2c5beb0e4bcd2f8c2a2" name="af19a5e79c92bb2c5beb0e4bcd2f8c2a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af19a5e79c92bb2c5beb0e4bcd2f8c2a2">&#9670;&#160;</a></span>kickMember()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NetworkManager::kickMember </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>groupId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>username</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Admin: kick a member from a group. </p>
+
+</div>
+</div>
 <a id="a6ee3929635e27c7b801a2a3d61279ce1" name="a6ee3929635e27c7b801a2a3d61279ce1"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6ee3929635e27c7b801a2a3d61279ce1">&#9670;&#160;</a></span>lastMessage()</h2>
 
@@ -629,6 +999,26 @@ Properties</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a id="a42fd9a51d9f3036d7156a0d64bdbd08d" name="a42fd9a51d9f3036d7156a0d64bdbd08d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a42fd9a51d9f3036d7156a0d64bdbd08d">&#9670;&#160;</a></span>leaveGroup()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NetworkManager::leaveGroup </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>groupId</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Leave a group voluntarily. </p>
 
 </div>
 </div>
@@ -858,6 +1248,42 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Emitted when a KEY_EXCHANGE response delivers a peer's public key. </p>
+
+</div>
+</div>
+<a id="a4cbb3b8a327c5af1f67b65a8cfe0ab8d" name="a4cbb3b8a327c5af1f67b65a8cfe0ab8d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4cbb3b8a327c5af1f67b65a8cfe0ab8d">&#9670;&#160;</a></span>sendGroupMessage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NetworkManager::sendGroupMessage </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>groupId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>plaintext</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>timestamp</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Encrypt and send a group message. </p>
 
 </div>
 </div>

@@ -17,7 +17,7 @@ var searchData=
   ['conversationlistmodel_14',['ConversationListModel',['../classConversationListModel.html#a0583358476b94b1569013eaea18e0561',1,'ConversationListModel']]],
   ['convlistupdated_15',['convListUpdated',['../classNetworkManager.html#a257318584ac0bf9569d5873314ad5d82',1,'NetworkManager']]],
   ['create_16',['create',['../classPacketHandlerFactory.html#a4844e94934efe923ae7ec1357942bf7d',1,'PacketHandlerFactory']]],
-  ['creategroup_17',['createGroup',['../classGroupRepository.html#ab6756c8118c036d8d64133c705b52ef0',1,'GroupRepository']]],
+  ['creategroup_17',['creategroup',['../classGroupRepository.html#ab6756c8118c036d8d64133c705b52ef0',1,'GroupRepository::createGroup()'],['../classNetworkManager.html#a755b08070053e360640b1b9caa4d737d',1,'NetworkManager::createGroup()']]],
   ['creategrouphandler_18',['CreateGroupHandler',['../classCreateGroupHandler.html#af2877973df9e87f950c8abcc818db729',1,'CreateGroupHandler']]],
   ['createrequesthandler_19',['createRequestHandler',['../classConnectionHandlerFactory.html#a7398ae89edfd054dc0e10854a8e2f445',1,'ConnectionHandlerFactory']]],
   ['cryptoengine_20',['CryptoEngine',['../classCryptoEngine.html#a38e7f32fbee86ec9b3e396f8db5c7c62',1,'CryptoEngine']]],

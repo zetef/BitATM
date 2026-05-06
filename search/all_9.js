@@ -7,5 +7,6 @@ var searchData=
   ['keyexchangehandler_4',['KeyExchangeHandler',['../classKeyExchangeHandler.html',1,'']]],
   ['keyexchangehandler_2ecpp_5',['KeyExchangeHandler.cpp',['../KeyExchangeHandler_8cpp.html',1,'']]],
   ['keyexchangehandler_2eh_6',['KeyExchangeHandler.h',['../KeyExchangeHandler_8h.html',1,'']]],
-  ['keysize_7',['keysize',['../classAesGcmStrategy.html#a880c9c062c72bdea7c8bed98ebab0e85',1,'AesGcmStrategy::keySize()'],['../classISymmetricStrategy.html#a54f098f4f719673e8538f0edd710741a',1,'ISymmetricStrategy::keySize()']]]
+  ['keysize_7',['keysize',['../classAesGcmStrategy.html#a880c9c062c72bdea7c8bed98ebab0e85',1,'AesGcmStrategy::keySize()'],['../classISymmetricStrategy.html#a54f098f4f719673e8538f0edd710741a',1,'ISymmetricStrategy::keySize()']]],
+  ['kickmember_8',['kickMember',['../classNetworkManager.html#af19a5e79c92bb2c5beb0e4bcd2f8c2a2',1,'NetworkManager']]]
 ];

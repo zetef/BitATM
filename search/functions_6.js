@@ -31,10 +31,16 @@ var searchData=
   ['getuser1_28',['getUser1',['../classConversationHistory.html#a8a465e2fa12da20ba3c890b5b2e19537',1,'ConversationHistory']]],
   ['getuser2_29',['getUser2',['../classConversationHistory.html#a0cf69f716af31a1c930fa36c5ace8126',1,'ConversationHistory']]],
   ['getuserid_30',['getUserId',['../classSession.html#a74d0189d01b34041d228c3a7808f6a8f',1,'Session']]],
-  ['getusername_31',['getusername',['../classClientSession.html#a497f0583a40dbf793d01c6ce646f3054',1,'ClientSession::getUsername()'],['../classUser.html#a0bdca63ed72fc8ffcee690a0119c2104',1,'User::getUsername()']]],
-  ['groupkeyexchangehandler_32',['GroupKeyExchangeHandler',['../classGroupKeyExchangeHandler.html#a41835b2f8665821cd293814a31e88373',1,'GroupKeyExchangeHandler']]],
-  ['groupleavehandler_33',['GroupLeaveHandler',['../classGroupLeaveHandler.html#a95f3f26682f38dd2f568f527f46c5f50',1,'GroupLeaveHandler']]],
-  ['groupmessage_34',['groupmessage',['../classGroupMessage.html#a1366277e42ed1552ce50b6be409f9eaa',1,'GroupMessage::GroupMessage()=default'],['../classGroupMessage.html#aa556a2f2bb63b5c7831a9355bf9fdc64',1,'GroupMessage::GroupMessage(int id, std::string groupName, std::string sender, std::string encryptedBody, std::string encryptedKeys, std::string createdAt={})'],['../classGroupMessage.html#a05fcd509823fcd2fa73cebc849ed494f',1,'GroupMessage::GroupMessage(const GroupMessage &amp;)=default'],['../classGroupMessage.html#ae926c644e6d52904af2bc7a7174b08e5',1,'GroupMessage::GroupMessage(GroupMessage &amp;&amp;) noexcept=default']]],
-  ['groupmessagehandler_35',['GroupMessageHandler',['../classGroupMessageHandler.html#afcbbf5062a84f2f064701a94fedc62ee',1,'GroupMessageHandler']]],
-  ['grouprepository_36',['GroupRepository',['../classGroupRepository.html#a40a74b65a9eac1404fea482aaf2cae5a',1,'GroupRepository']]]
+  ['getusername_31',['getusername',['../classUser.html#a0bdca63ed72fc8ffcee690a0119c2104',1,'User::getUsername()'],['../classClientSession.html#a497f0583a40dbf793d01c6ce646f3054',1,'ClientSession::getUsername()']]],
+  ['grantadmin_32',['grantAdmin',['../classNetworkManager.html#a487b7f0a5ef2af0dfd9e2b53959d308c',1,'NetworkManager']]],
+  ['groupinforeceived_33',['groupInfoReceived',['../classNetworkManager.html#abd6c36aa7591e7b20dcf761b90e718fa',1,'NetworkManager']]],
+  ['groupinvitereceived_34',['groupInviteReceived',['../classNetworkManager.html#ab7c6e64b70fa96f558f026d263f1424b',1,'NetworkManager']]],
+  ['groupkeyexchangehandler_35',['GroupKeyExchangeHandler',['../classGroupKeyExchangeHandler.html#a41835b2f8665821cd293814a31e88373',1,'GroupKeyExchangeHandler']]],
+  ['groupkeyupdated_36',['groupKeyUpdated',['../classNetworkManager.html#a1be3096d9f6e5b0fd5faeb7f16dc3c7b',1,'NetworkManager']]],
+  ['groupleavehandler_37',['GroupLeaveHandler',['../classGroupLeaveHandler.html#a95f3f26682f38dd2f568f527f46c5f50',1,'GroupLeaveHandler']]],
+  ['groupleft_38',['groupLeft',['../classNetworkManager.html#af0902bd618f601ae0c472243a8a3e9bc',1,'NetworkManager']]],
+  ['groupmessage_39',['groupmessage',['../classGroupMessage.html#a1366277e42ed1552ce50b6be409f9eaa',1,'GroupMessage::GroupMessage()=default'],['../classGroupMessage.html#aa556a2f2bb63b5c7831a9355bf9fdc64',1,'GroupMessage::GroupMessage(int id, std::string groupName, std::string sender, std::string encryptedBody, std::string encryptedKeys, std::string createdAt={})'],['../classGroupMessage.html#a05fcd509823fcd2fa73cebc849ed494f',1,'GroupMessage::GroupMessage(const GroupMessage &amp;)=default'],['../classGroupMessage.html#ae926c644e6d52904af2bc7a7174b08e5',1,'GroupMessage::GroupMessage(GroupMessage &amp;&amp;) noexcept=default']]],
+  ['groupmessagedecrypted_40',['groupMessageDecrypted',['../classNetworkManager.html#a1ebefc3b8b1ad69040decb2ed1f3cb57',1,'NetworkManager']]],
+  ['groupmessagehandler_41',['GroupMessageHandler',['../classGroupMessageHandler.html#afcbbf5062a84f2f064701a94fedc62ee',1,'GroupMessageHandler']]],
+  ['grouprepository_42',['GroupRepository',['../classGroupRepository.html#a40a74b65a9eac1404fea482aaf2cae5a',1,'GroupRepository']]]
 ];

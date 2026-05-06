@@ -11,7 +11,7 @@ var searchData=
   ['ientity_2eh_8',['IEntity.h',['../IEntity_8h.html',1,'']]],
   ['incrementattempts_9',['incrementAttempts',['../classOfflineMessage.html#ac88881836596507992d09654432ad8f9',1,'OfflineMessage']]],
   ['init_10',['init',['../classDbManager.html#a112def70f7921315f1f99124e8b08be3',1,'DbManager']]],
-  ['instance_11',['instance',['../classLocalStorage.html#aad06d82197c07e9117930366b9fa0e72',1,'LocalStorage::instance()'],['../classDbManager.html#ab854b7eecf33502334ec042e1f45431d',1,'DbManager::instance()']]],
+  ['instance_11',['instance',['../classDbManager.html#ab854b7eecf33502334ec042e1f45431d',1,'DbManager::instance()'],['../classLocalStorage.html#aad06d82197c07e9117930366b9fa0e72',1,'LocalStorage::instance()']]],
   ['irepository_12',['IRepository',['../classIRepository.html',1,'']]],
   ['irepository_2eh_13',['IRepository.h',['../IRepository_8h.html',1,'']]],
   ['irepository_3c_20message_20_3e_14',['IRepository&lt; Message &gt;',['../classIRepository.html',1,'']]],
@@ -23,10 +23,12 @@ var searchData=
   ['isconnected_20',['isconnected',['../classNetworkManager.html#af4bbe1ae11e54eb1c5a7f1ce07a51af2',1,'NetworkManager::isConnected'],['../classNetworkManager.html#a97d1fb741f609c2442efdfd92e944ed2',1,'NetworkManager::isConnected() const']]],
   ['isdelivered_21',['isDelivered',['../classOfflineMessage.html#a8865b2edc2ed672883b801658c4c232a',1,'OfflineMessage']]],
   ['isduplicate_22',['isDuplicate',['../classLocalStorage.html#a06b06ecfeae022a3bbe37bfc9c8d29bf',1,'LocalStorage']]],
-  ['isoutgoing_23',['isOutgoing',['../structMessageRecord.html#a3e8433cfd3a33e3f16da52504d6c194a',1,'MessageRecord']]],
-  ['isoutgoingrole_24',['IsOutgoingRole',['../classChatModel.html#a63e01c84f289f33e414ae789fcdc68e0a94b552378be440dd0c22fd3a10ad5448',1,'ChatModel']]],
-  ['isymmetricstrategy_25',['ISymmetricStrategy',['../classISymmetricStrategy.html',1,'']]],
-  ['isymmetricstrategy_2eh_26',['ISymmetricStrategy.h',['../ISymmetricStrategy_8h.html',1,'']]],
-  ['iv_5fsize_27',['IV_SIZE',['../classAesGcmStrategy.html#ae915acac6103c93119fc59680b3aabfd',1,'AesGcmStrategy']]],
-  ['ivsize_28',['ivsize',['../classAesGcmStrategy.html#afecd5524243511a0ebd2c4debf8ff6aa',1,'AesGcmStrategy::ivSize()'],['../classISymmetricStrategy.html#a56d3748a3e8df032e5365cbfdc037574',1,'ISymmetricStrategy::ivSize()']]]
+  ['isgroupmessageduplicate_23',['isGroupMessageDuplicate',['../classLocalStorage.html#ab60f6bb97d6255b8b0eba6edf3b9d2d8',1,'LocalStorage']]],
+  ['isgrouprole_24',['IsGroupRole',['../classConversationListModel.html#ac6c4a9feb3a203d342de583ca01bc38ea8b7a838d1823ca83bed8148e8c598ee8',1,'ConversationListModel']]],
+  ['isoutgoing_25',['isoutgoing',['../structMessageRecord.html#a3e8433cfd3a33e3f16da52504d6c194a',1,'MessageRecord::isOutgoing'],['../structGroupMessageRecord.html#ad9c417f8be6c7c37f8dc6badb5f5d98f',1,'GroupMessageRecord::isOutgoing']]],
+  ['isoutgoingrole_26',['IsOutgoingRole',['../classChatModel.html#a63e01c84f289f33e414ae789fcdc68e0a94b552378be440dd0c22fd3a10ad5448',1,'ChatModel']]],
+  ['isymmetricstrategy_27',['ISymmetricStrategy',['../classISymmetricStrategy.html',1,'']]],
+  ['isymmetricstrategy_2eh_28',['ISymmetricStrategy.h',['../ISymmetricStrategy_8h.html',1,'']]],
+  ['iv_5fsize_29',['IV_SIZE',['../classAesGcmStrategy.html#ae915acac6103c93119fc59680b3aabfd',1,'AesGcmStrategy']]],
+  ['ivsize_30',['ivsize',['../classAesGcmStrategy.html#afecd5524243511a0ebd2c4debf8ff6aa',1,'AesGcmStrategy::ivSize()'],['../classISymmetricStrategy.html#a56d3748a3e8df032e5365cbfdc037574',1,'ISymmetricStrategy::ivSize()']]]
 ];

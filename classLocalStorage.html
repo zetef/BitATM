@@ -106,7 +106,7 @@ Collaboration diagram for LocalStorage:</div>
 <div class="dyncontent">
 <div class="center"><img src="classLocalStorage__coll__graph.png" border="0" usemap="#aLocalStorage_coll__map" alt="Collaboration graph"/></div>
 <map name="aLocalStorage_coll__map" id="aLocalStorage_coll__map">
-<area shape="rect" title="Singleton SQLite cache for messages and conversations." alt="" coords="5,5,188,251"/>
+<area shape="rect" title="Singleton SQLite cache for messages and conversations." alt="" coords="5,5,188,291"/>
 </map>
 </div>
 <table class="memberdecls">
@@ -139,6 +139,27 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a06b06ecfeae022a3bbe37bfc9c8d29bf" id="r_a06b06ecfeae022a3bbe37bfc9c8d29bf"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLocalStorage.html#a06b06ecfeae022a3bbe37bfc9c8d29bf">isDuplicate</a> (const QString &amp;peer, const QString &amp;sender, const QString &amp;timestamp)</td></tr>
 <tr class="memdesc:a06b06ecfeae022a3bbe37bfc9c8d29bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if a message with this peer+sender+timestamp already exists.  <br /></td></tr>
 <tr class="separator:a06b06ecfeae022a3bbe37bfc9c8d29bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af273e27619cb4057f0c4796825a8cbe2" id="r_af273e27619cb4057f0c4796825a8cbe2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLocalStorage.html#af273e27619cb4057f0c4796825a8cbe2">saveGroupMessage</a> (const QString &amp;groupId, const QString &amp;sender, const QString &amp;content, const QString &amp;timestamp, bool isOutgoing)</td></tr>
+<tr class="memdesc:af273e27619cb4057f0c4796825a8cbe2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save a group message. Silently ignores duplicates via UNIQUE index.  <br /></td></tr>
+<tr class="separator:af273e27619cb4057f0c4796825a8cbe2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99cc43bdd9c07b8927ce22df28074cff" id="r_a99cc43bdd9c07b8927ce22df28074cff"><td class="memItemLeft" align="right" valign="top">QList&lt; <a class="el" href="structGroupMessageRecord.html">GroupMessageRecord</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLocalStorage.html#a99cc43bdd9c07b8927ce22df28074cff">loadGroupMessages</a> (const QString &amp;groupId)</td></tr>
+<tr class="memdesc:a99cc43bdd9c07b8927ce22df28074cff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load all messages for a group in ascending timestamp order.  <br /></td></tr>
+<tr class="separator:a99cc43bdd9c07b8927ce22df28074cff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a72f411de93c42872583500def6b7564d" id="r_a72f411de93c42872583500def6b7564d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLocalStorage.html#a72f411de93c42872583500def6b7564d">saveGroupKey</a> (const QString &amp;groupId, const QString &amp;aesKeyBase64)</td></tr>
+<tr class="memdesc:a72f411de93c42872583500def6b7564d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Persist the AES key (base64) for a group. Overwrites existing entry.  <br /></td></tr>
+<tr class="separator:a72f411de93c42872583500def6b7564d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af03586df80bb4e4598e504135d230864" id="r_af03586df80bb4e4598e504135d230864"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLocalStorage.html#af03586df80bb4e4598e504135d230864">loadGroupKey</a> (const QString &amp;groupId)</td></tr>
+<tr class="memdesc:af03586df80bb4e4598e504135d230864"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load the stored AES key (base64) for a group, or empty string if absent.  <br /></td></tr>
+<tr class="separator:af03586df80bb4e4598e504135d230864"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa687237b59bc3516cbdd95478bd341b7" id="r_aa687237b59bc3516cbdd95478bd341b7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLocalStorage.html#aa687237b59bc3516cbdd95478bd341b7">saveGroup</a> (const QString &amp;groupId, const QString &amp;name, const QString &amp;role)</td></tr>
+<tr class="memdesc:aa687237b59bc3516cbdd95478bd341b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Upsert a group row (id, name, role).  <br /></td></tr>
+<tr class="separator:aa687237b59bc3516cbdd95478bd341b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada663a005a01cd9dba3af7f84460ac0d" id="r_ada663a005a01cd9dba3af7f84460ac0d"><td class="memItemLeft" align="right" valign="top">QList&lt; <a class="el" href="structGroupRecord.html">GroupRecord</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLocalStorage.html#ada663a005a01cd9dba3af7f84460ac0d">loadGroups</a> ()</td></tr>
+<tr class="memdesc:ada663a005a01cd9dba3af7f84460ac0d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load all groups ordered by last_timestamp DESC.  <br /></td></tr>
+<tr class="separator:ada663a005a01cd9dba3af7f84460ac0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab60f6bb97d6255b8b0eba6edf3b9d2d8" id="r_ab60f6bb97d6255b8b0eba6edf3b9d2d8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLocalStorage.html#ab60f6bb97d6255b8b0eba6edf3b9d2d8">isGroupMessageDuplicate</a> (const QString &amp;groupId, const QString &amp;sender, const QString &amp;timestamp)</td></tr>
+<tr class="memdesc:ab60f6bb97d6255b8b0eba6edf3b9d2d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if a group message with this groupId+sender+timestamp already exists.  <br /></td></tr>
+<tr class="separator:ab60f6bb97d6255b8b0eba6edf3b9d2d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -232,6 +253,42 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="ab60f6bb97d6255b8b0eba6edf3b9d2d8" name="ab60f6bb97d6255b8b0eba6edf3b9d2d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab60f6bb97d6255b8b0eba6edf3b9d2d8">&#9670;&#160;</a></span>isGroupMessageDuplicate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool LocalStorage::isGroupMessageDuplicate </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>groupId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>sender</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>timestamp</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns true if a group message with this groupId+sender+timestamp already exists. </p>
+
+</div>
+</div>
 <a id="a9776c3af4db5e7c4b20076291a95348b" name="a9776c3af4db5e7c4b20076291a95348b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9776c3af4db5e7c4b20076291a95348b">&#9670;&#160;</a></span>loadConversations()</h2>
 
@@ -248,6 +305,65 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Load all conversation summaries. </p>
+
+</div>
+</div>
+<a id="af03586df80bb4e4598e504135d230864" name="af03586df80bb4e4598e504135d230864"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af03586df80bb4e4598e504135d230864">&#9670;&#160;</a></span>loadGroupKey()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString LocalStorage::loadGroupKey </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>groupId</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Load the stored AES key (base64) for a group, or empty string if absent. </p>
+
+</div>
+</div>
+<a id="a99cc43bdd9c07b8927ce22df28074cff" name="a99cc43bdd9c07b8927ce22df28074cff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a99cc43bdd9c07b8927ce22df28074cff">&#9670;&#160;</a></span>loadGroupMessages()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QList&lt; <a class="el" href="structGroupMessageRecord.html">GroupMessageRecord</a> &gt; LocalStorage::loadGroupMessages </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>groupId</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Load all messages for a group in ascending timestamp order. </p>
+
+</div>
+</div>
+<a id="ada663a005a01cd9dba3af7f84460ac0d" name="ada663a005a01cd9dba3af7f84460ac0d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada663a005a01cd9dba3af7f84460ac0d">&#9670;&#160;</a></span>loadGroups()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QList&lt; <a class="el" href="structGroupRecord.html">GroupRecord</a> &gt; LocalStorage::loadGroups </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Load all groups ordered by last_timestamp DESC. </p>
 
 </div>
 </div>
@@ -342,6 +458,120 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Upsert a conversation summary row. </p>
+
+</div>
+</div>
+<a id="aa687237b59bc3516cbdd95478bd341b7" name="aa687237b59bc3516cbdd95478bd341b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa687237b59bc3516cbdd95478bd341b7">&#9670;&#160;</a></span>saveGroup()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LocalStorage::saveGroup </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>groupId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>role</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Upsert a group row (id, name, role). </p>
+
+</div>
+</div>
+<a id="a72f411de93c42872583500def6b7564d" name="a72f411de93c42872583500def6b7564d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a72f411de93c42872583500def6b7564d">&#9670;&#160;</a></span>saveGroupKey()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LocalStorage::saveGroupKey </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>groupId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>aesKeyBase64</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Persist the AES key (base64) for a group. Overwrites existing entry. </p>
+
+</div>
+</div>
+<a id="af273e27619cb4057f0c4796825a8cbe2" name="af273e27619cb4057f0c4796825a8cbe2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af273e27619cb4057f0c4796825a8cbe2">&#9670;&#160;</a></span>saveGroupMessage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LocalStorage::saveGroupMessage </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>groupId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>sender</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>content</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>timestamp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>isOutgoing</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Save a group message. Silently ignores duplicates via UNIQUE index. </p>
 
 </div>
 </div>

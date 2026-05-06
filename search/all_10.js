@@ -13,7 +13,7 @@ var searchData=
   ['removeclient_10',['removeClient',['../classServer.html#a7e7ed80da888379bbe3ec346e1210dbf',1,'Server']]],
   ['removemember_11',['removeMember',['../classGroupRepository.html#a0639709942f521cf2d115b8d256debb5',1,'GroupRepository']]],
   ['replaceallkeys_12',['replaceAllKeys',['../classGroupRepository.html#a7be0fdd4fd7487d49f7e17eda8db2618',1,'GroupRepository']]],
-  ['role_13',['role',['../structGroupMember.html#a93ff775d08f660d9281a2ed4c1297111',1,'GroupMember']]],
+  ['role_13',['role',['../structGroupMember.html#a93ff775d08f660d9281a2ed4c1297111',1,'GroupMember::role'],['../structGroupRecord.html#aa242ef916c1f0d5736728247661db642',1,'GroupRecord::role']]],
   ['rolenames_14',['rolenames',['../classChatModel.html#ad0973978d5d2c49262577d5442a5afbb',1,'ChatModel::roleNames()'],['../classConversationListModel.html#ab2bcf9c321f917452d4f788bbff41ed7',1,'ConversationListModel::roleNames()']]],
   ['roles_15',['roles',['../classChatModel.html#a63e01c84f289f33e414ae789fcdc68e0',1,'ChatModel::Roles'],['../classConversationListModel.html#ac6c4a9feb3a203d342de583ca01bc38e',1,'ConversationListModel::Roles']]],
   ['rowcount_16',['rowcount',['../classChatModel.html#aa597aa46f94dba90ba14a990562bd9f1',1,'ChatModel::rowCount()'],['../classConversationListModel.html#acacc560a21df4b3dc006432a85cc8ee2',1,'ConversationListModel::rowCount()']]],
