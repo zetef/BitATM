@@ -7,6 +7,7 @@ var searchData=
   ['conversationhistory_4',['ConversationHistory',['../classConversationHistory.html',1,'']]],
   ['conversationlistmodel_5',['ConversationListModel',['../classConversationListModel.html',1,'']]],
   ['conversationrecord_6',['ConversationRecord',['../structConversationRecord.html',1,'']]],
-  ['cryptoengine_7',['CryptoEngine',['../classCryptoEngine.html',1,'']]],
-  ['cryptoexception_8',['CryptoException',['../classCryptoException.html',1,'']]]
+  ['creategrouphandler_7',['CreateGroupHandler',['../classCreateGroupHandler.html',1,'']]],
+  ['cryptoengine_8',['CryptoEngine',['../classCryptoEngine.html',1,'']]],
+  ['cryptoexception_9',['CryptoException',['../classCryptoException.html',1,'']]]
 ];

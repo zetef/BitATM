@@ -1,0 +1,20 @@
+<map id="backend/src/GroupLeaveHandler.h" name="backend/src/GroupLeaveHandler.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="53,5,296,31"/>
+<area shape="rect" id="Node000002" href="$BaseAuthHandler_8h.html" title=" " alt="" coords="101,79,248,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="177,31,177,65,172,65,172,31"/>
+<area shape="rect" id="Node000003" href="$ICommandHandler_8h.html" title=" " alt="" coords="97,152,252,177"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="177,104,177,138,172,138,172,104"/>
+<area shape="rect" id="Node000004" href="$protocol_8h.html" title=" " alt="" coords="89,225,261,251"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="177,178,177,212,172,212,172,178"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="5,299,72,324"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="154,253,74,295,72,290,152,248"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="96,299,176,324"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="171,252,151,288,146,285,166,250"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="185,372,244,397"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="181,250,210,358,205,359,175,252"/>
+<area shape="rect" id="Node000008" href="$AppException_8h.html" title=" " alt="" coords="251,299,373,324"/>
+<area shape="poly" id="edge7_Node000004_Node000008" title=" " alt="" coords="198,248,279,290,276,295,196,253"/>
+<area shape="poly" id="edge9_Node000008_Node000007" title=" " alt="" coords="298,326,243,366,240,361,295,322"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="269,372,355,397"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="315,324,315,358,309,358,309,324"/>
+</map>

@@ -17,8 +17,10 @@ var searchData=
   ['conversationlistmodel_14',['ConversationListModel',['../classConversationListModel.html#a0583358476b94b1569013eaea18e0561',1,'ConversationListModel']]],
   ['convlistupdated_15',['convListUpdated',['../classNetworkManager.html#a257318584ac0bf9569d5873314ad5d82',1,'NetworkManager']]],
   ['create_16',['create',['../classPacketHandlerFactory.html#a4844e94934efe923ae7ec1357942bf7d',1,'PacketHandlerFactory']]],
-  ['createrequesthandler_17',['createRequestHandler',['../classConnectionHandlerFactory.html#a7398ae89edfd054dc0e10854a8e2f445',1,'ConnectionHandlerFactory']]],
-  ['cryptoengine_18',['CryptoEngine',['../classCryptoEngine.html#a38e7f32fbee86ec9b3e396f8db5c7c62',1,'CryptoEngine']]],
-  ['currentusername_19',['currentUsername',['../classNetworkManager.html#aaa96a3d16f45cafb80c8242d5a1f7216',1,'NetworkManager']]],
-  ['currentusernamechanged_20',['currentUsernameChanged',['../classNetworkManager.html#a5a95bfdbdf91e47e8341ef89bae23b9d',1,'NetworkManager']]]
+  ['creategroup_17',['createGroup',['../classGroupRepository.html#ab6756c8118c036d8d64133c705b52ef0',1,'GroupRepository']]],
+  ['creategrouphandler_18',['CreateGroupHandler',['../classCreateGroupHandler.html#af2877973df9e87f950c8abcc818db729',1,'CreateGroupHandler']]],
+  ['createrequesthandler_19',['createRequestHandler',['../classConnectionHandlerFactory.html#a7398ae89edfd054dc0e10854a8e2f445',1,'ConnectionHandlerFactory']]],
+  ['cryptoengine_20',['CryptoEngine',['../classCryptoEngine.html#a38e7f32fbee86ec9b3e396f8db5c7c62',1,'CryptoEngine']]],
+  ['currentusername_21',['currentUsername',['../classNetworkManager.html#aaa96a3d16f45cafb80c8242d5a1f7216',1,'NetworkManager']]],
+  ['currentusernamechanged_22',['currentUsernameChanged',['../classNetworkManager.html#a5a95bfdbdf91e47e8341ef89bae23b9d',1,'NetworkManager']]]
 ];

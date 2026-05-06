@@ -14,6 +14,9 @@ var hierarchy =
         ] ]
       ] ]
     ] ],
+    [ "GroupInfo", "structGroupInfo.html", null ],
+    [ "GroupMember", "structGroupMember.html", null ],
+    [ "GroupRepository", "classGroupRepository.html", null ],
     [ "Poco::Net::HTTPRequestHandler", null, [
       [ "ConnectionHandler", "classConnectionHandler.html", null ]
     ] ],
@@ -23,6 +26,11 @@ var hierarchy =
     [ "ICommandHandler", "classICommandHandler.html", [
       [ "BaseAuthHandler", "classBaseAuthHandler.html", [
         [ "AckHandler", "classAckHandler.html", null ],
+        [ "CreateGroupHandler", "classCreateGroupHandler.html", null ],
+        [ "GroupInfoHandler", "classGroupInfoHandler.html", null ],
+        [ "GroupKeyExchangeHandler", "classGroupKeyExchangeHandler.html", null ],
+        [ "GroupLeaveHandler", "classGroupLeaveHandler.html", null ],
+        [ "GroupMessageHandler", "classGroupMessageHandler.html", null ],
         [ "KeyExchangeHandler", "classKeyExchangeHandler.html", null ],
         [ "LoginHandler", "classLoginHandler.html", null ],
         [ "MessageHandler", "classMessageHandler.html", null ],

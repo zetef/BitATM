@@ -55,8 +55,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "AckHandler_8cpp.html",
-"classICommandHandler.html#a2c2d11b6bd94d4bd721935b793fcd33d",
-"classUserRepository.html#a3031cf2d6edb5409261d4103c3d622a4"
+"classGroupInfoHandler.html#af2853edfc87965c5f4a8a50d951ea2e3",
+"classSession.html#a373fc8d50fca97a245c8eeea3bc8d066"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

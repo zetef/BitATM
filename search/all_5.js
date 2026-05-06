@@ -9,7 +9,8 @@ var searchData=
   ['findbytoken_6',['findByToken',['../classSessionRepository.html#a4808982cbeb5653e080fdeddeda91829',1,'SessionRepository']]],
   ['findbyusername_7',['findByUsername',['../classUserRepository.html#a75e636d043d3ea326ecf5d297fb16e18',1,'UserRepository']]],
   ['findclient_8',['findClient',['../classServer.html#ac0318de032d2da7c2dcc25ac916b4f47',1,'Server']]],
-  ['findundeliveredbyrecipient_9',['findUndeliveredByRecipient',['../classOfflineQueueRepository.html#ad3a3e520a3631a0c34ac869313b0b7fb',1,'OfflineQueueRepository']]],
-  ['from_10',['from',['../structPacket.html#a965a703b8b6b98c773ff398ac6d94e4e',1,'Packet']]],
-  ['fromuchar_11',['fromUChar',['../classOpensslAdapter.html#af0fa42c50a84051a2102573e66e0696a',1,'OpensslAdapter']]]
+  ['findgroupbyid_9',['findGroupById',['../classGroupRepository.html#ad2e77b670cda032065be426595de442f',1,'GroupRepository']]],
+  ['findundeliveredbyrecipient_10',['findUndeliveredByRecipient',['../classOfflineQueueRepository.html#ad3a3e520a3631a0c34ac869313b0b7fb',1,'OfflineQueueRepository']]],
+  ['from_11',['from',['../structPacket.html#a965a703b8b6b98c773ff398ac6d94e4e',1,'Packet']]],
+  ['fromuchar_12',['fromUChar',['../classOpensslAdapter.html#af0fa42c50a84051a2102573e66e0696a',1,'OpensslAdapter']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['version_0',['version',['../structPacket.html#ad13846cda7db38fd2cba1f63049bb4c2',1,'Packet']]]
+  ['role_0',['role',['../structGroupMember.html#a93ff775d08f660d9281a2ed4c1297111',1,'GroupMember']]]
 ];
