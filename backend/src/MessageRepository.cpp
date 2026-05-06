@@ -119,6 +119,40 @@ std::vector<Message> MessageRepository::findByRecipient(const std::string& recip
     }
 }
 
+std::vector<Message> MessageRepository::findAllForUser(const std::string& username,
+                                                       const std::string& afterTimestamp) {
+    try {
+        auto ses = DbManager::instance().session();
+        std::vector<Message> msgs;
+        int mid;
+        std::string sender, recipient, body, key, status, createdAt;
+        Poco::Data::Statement sel(ses);
+        // clang-format off
+        std::string u1 = username;
+        std::string u2 = username;
+        std::string c1 = afterTimestamp;
+        std::string c2 = afterTimestamp;
+        sel << "SELECT id, sender, recipient, body, encrypted_key, status, created_at "
+               "FROM messages "
+               "WHERE (sender = $1 OR recipient = $2) "
+               "AND ($3 = '' OR created_at > $4) "
+               "ORDER BY created_at ASC",
+            into(mid), into(sender), into(recipient), into(body),
+            into(key), into(status), into(createdAt),
+            use(u1), use(u2), use(c1), use(c2),
+            range(0, 1);
+        // clang-format on
+        while (!sel.done()) {
+            sel.execute();
+            if (!sender.empty())
+                msgs.push_back(rowToMessage(mid, sender, recipient, body, key, status, createdAt));
+        }
+        return msgs;
+    } catch (const Poco::Exception& e) {
+        throw DbException("MessageRepository::findAllForUser: " + e.message());
+    }
+}
+
 std::vector<Message> MessageRepository::findBySender(const std::string& sender) {
     try {
         auto ses = DbManager::instance().session();

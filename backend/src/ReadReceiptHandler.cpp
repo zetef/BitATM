@@ -20,4 +20,12 @@ void ReadReceiptHandler::execute(Packet& packet, ClientSession& session) {
         sender->send(packet);
     }
     // Sender offline: silently drop - read receipts are best-effort
+
+    // Fan-out READ_RECEIPT to all sibling sessions of the reader (multi-device sync)
+    auto readerSessions = _server.getSessionsForUser(packet.from);
+    for (auto& sibling : readerSessions) {
+        if (sibling.get() != &session) {
+            sibling->send(packet);
+        }
+    }
 }

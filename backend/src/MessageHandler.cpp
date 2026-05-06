@@ -34,6 +34,17 @@ void MessageHandler::execute(Packet& packet, ClientSession& session) {
         }
     }
 
+    // Fan-out to sender's other active sessions (multi-device echo)
+    // errorMsg="1" signals to sibling that this is an outgoing message copy
+    auto senderSessions = _server.getSessionsForUser(packet.from);
+    for (auto& sibling : senderSessions) {
+        if (sibling.get() != &session) {
+            Packet echo = packet;
+            echo.errorMsg = "1";
+            sibling->send(echo);
+        }
+    }
+
     // ACK back to sender - echo timestamp so frontend can match delivery status
     Packet ack;
     ack.type = PacketType::ACK;
