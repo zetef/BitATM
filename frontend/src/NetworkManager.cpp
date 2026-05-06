@@ -259,7 +259,233 @@ void NetworkManager::logout() {
     _peerKeys.clear();
     _pendingMessages.clear();
     _unreadTimestamps.clear();
+    _groupKeys.clear();
     emit currentUsernameChanged();
+}
+
+void NetworkManager::createGroup(const QString& name, const QStringList& members) {
+    try {
+        QByteArray aesKey = _crypto.generateAESKey();
+        // Temp-store under sentinel key until server assigns a real group id
+        _groupKeys["0"] = aesKey;
+
+        QStringList keyParts;
+        // Encrypt key for self
+        if (!_ownPubKey.isEmpty()) {
+            QByteArray enc = _crypto.encryptRSA(aesKey, _ownPubKey);
+            keyParts.append(_currentUsername + ":" + QString::fromLatin1(enc.toBase64()));
+        }
+        // Encrypt key for each member
+        for (const QString& m : members) {
+            if (!_peerKeys.contains(m)) {
+                qWarning() << "createGroup: no public key for" << m << "- skipping";
+                continue;
+            }
+            QByteArray enc = _crypto.encryptRSA(aesKey, _peerKeys[m]);
+            keyParts.append(m + ":" + QString::fromLatin1(enc.toBase64()));
+        }
+
+        Packet p;
+        p.type = PacketType::CREATE_GROUP;
+        p.from = _currentUsername.toStdString();
+        p.errorMsg = name.toStdString();
+        p.body = members.join(",").toStdString();
+        p.key = keyParts.join("|").toStdString();
+        sendPacket(p);
+    } catch (const std::exception& e) {
+        _hasError = true;
+        _lastMessage = "createGroup failed: " + QString::fromUtf8(e.what());
+        emit lastMessageChanged();
+    }
+}
+
+void NetworkManager::sendGroupMessage(const QString& groupId, const QString& plaintext,
+                                      const QString& timestamp) {
+    if (!_groupKeys.contains(groupId)) {
+        qWarning() << "sendGroupMessage: no AES key for group" << groupId;
+        return;
+    }
+    try {
+        QByteArray aesKey = _groupKeys[groupId];
+        QString ciphertext = _crypto.encrypt(plaintext, aesKey);
+        const QString ts = timestamp.isEmpty()
+                               ? QDateTime::currentDateTimeUtc().toString(Qt::ISODateWithMs)
+                               : timestamp;
+        Packet p;
+        p.type = PacketType::GROUP_MESSAGE;
+        p.from = _currentUsername.toStdString();
+        p.to = groupId.toStdString();
+        p.body = ciphertext.toStdString();
+        p.timestamp = ts.toStdString();
+        sendPacket(p);
+        LocalStorage::instance().saveGroupMessage(groupId, _currentUsername, plaintext, ts, true);
+    } catch (const std::exception& e) {
+        _hasError = true;
+        _lastMessage = "sendGroupMessage failed: " + QString::fromUtf8(e.what());
+        emit lastMessageChanged();
+    }
+}
+
+void NetworkManager::kickMember(const QString& groupId, const QString& username) {
+    Packet p;
+    p.type = PacketType::GROUP_LEAVE;
+    p.from = _currentUsername.toStdString();
+    p.to = groupId.toStdString();
+    p.body = username.toStdString();
+    sendPacket(p);
+}
+
+void NetworkManager::addGroupMember(const QString& groupId, const QString& username) {
+    if (!_groupKeys.contains(groupId) || !_peerKeys.contains(username)) {
+        fetchPeerKey(username);
+        return;
+    }
+    try {
+        QByteArray aesKey = _groupKeys[groupId];
+        QByteArray enc = _crypto.encryptRSA(aesKey, _peerKeys[username]);
+        Packet p;
+        p.type = PacketType::GROUP_KEY_EXCHANGE;
+        p.from = _currentUsername.toStdString();
+        p.to = groupId.toStdString();
+        p.key = (username + ":" + QString::fromLatin1(enc.toBase64())).toStdString();
+        sendPacket(p);
+    } catch (const std::exception& e) {
+        qWarning() << "addGroupMember failed:" << e.what();
+    }
+}
+
+void NetworkManager::grantAdmin(const QString& groupId, const QString& username) {
+    Packet p;
+    p.type = PacketType::GROUP_INFO;
+    p.from = _currentUsername.toStdString();
+    p.to = groupId.toStdString();
+    p.body = "grant_admin";
+    p.key = username.toStdString();
+    sendPacket(p);
+}
+
+void NetworkManager::leaveGroup(const QString& groupId) {
+    Packet p;
+    p.type = PacketType::GROUP_LEAVE;
+    p.from = _currentUsername.toStdString();
+    p.to = groupId.toStdString();
+    sendPacket(p);
+}
+
+void NetworkManager::fetchGroupInfo(const QString& groupId) {
+    Packet p;
+    p.type = PacketType::GROUP_INFO;
+    p.from = _currentUsername.toStdString();
+    p.to = groupId.toStdString();
+    sendPacket(p);
+}
+
+void NetworkManager::handleGroupInvite(const Packet& p) {
+    const QString groupId = QString::fromStdString(p.body);
+    const QString groupName = QString::fromStdString(p.errorMsg);
+    const QString encKey = QString::fromStdString(p.key);
+    try {
+        QByteArray aesKey =
+            _crypto.decryptRSA(QByteArray::fromBase64(encKey.toLatin1()), _ownPrivKey);
+        _groupKeys[groupId] = aesKey;
+        LocalStorage::instance().saveGroup(groupId, groupName, "member");
+        LocalStorage::instance().saveGroupKey(groupId, QString::fromLatin1(aesKey.toBase64()));
+        emit groupInviteReceived(groupId, groupName);
+    } catch (const std::exception& e) {
+        qWarning() << "handleGroupInvite: decrypt failed:" << e.what();
+    }
+}
+
+void NetworkManager::handleGroupMessage(const Packet& p) {
+    const QString groupId = QString::fromStdString(p.to);
+    const QString sender = QString::fromStdString(p.from);
+    const QString ts = p.timestamp.empty()
+                           ? QDateTime::currentDateTimeUtc().toString(Qt::ISODateWithMs)
+                           : QString::fromStdString(p.timestamp);
+    try {
+        QByteArray aesKey;
+        if (_groupKeys.contains(groupId)) {
+            aesKey = _groupKeys[groupId];
+        } else {
+            QString stored = LocalStorage::instance().loadGroupKey(groupId);
+            if (stored.isEmpty()) {
+                qWarning() << "handleGroupMessage: no key for group" << groupId;
+                return;
+            }
+            aesKey = QByteArray::fromBase64(stored.toLatin1());
+            _groupKeys[groupId] = aesKey;
+        }
+        if (LocalStorage::instance().isGroupMessageDuplicate(groupId, sender, ts)) return;
+        QString plaintext = _crypto.decrypt(QString::fromStdString(p.body), aesKey);
+        bool isOutgoing = (sender == _currentUsername);
+        LocalStorage::instance().saveGroupMessage(groupId, sender, plaintext, ts, isOutgoing);
+        emit groupMessageDecrypted(groupId, sender, plaintext, ts, isOutgoing);
+    } catch (const std::exception& e) {
+        qWarning() << "handleGroupMessage: decrypt failed:" << e.what();
+    }
+}
+
+void NetworkManager::handleGroupKeyExchange(const Packet& p) {
+    const QString groupId = QString::fromStdString(p.to);
+    const QString encKey = QString::fromStdString(p.key);
+    try {
+        QByteArray aesKey =
+            _crypto.decryptRSA(QByteArray::fromBase64(encKey.toLatin1()), _ownPrivKey);
+        _groupKeys[groupId] = aesKey;
+        LocalStorage::instance().saveGroupKey(groupId, QString::fromLatin1(aesKey.toBase64()));
+        emit groupKeyUpdated(groupId);
+    } catch (const std::exception& e) {
+        qWarning() << "handleGroupKeyExchange: decrypt failed:" << e.what();
+    }
+}
+
+void NetworkManager::handleGroupInfo(const Packet& p) {
+    const QString groupId = QString::fromStdString(p.body);
+    const QString groupName = QString::fromStdString(p.errorMsg);
+    const QString memberStr = QString::fromStdString(p.key);
+
+    // If sentinel key exists, a CREATE_GROUP was just acked - remap to the real group id
+    if (_groupKeys.contains("0")) {
+        _groupKeys[groupId] = _groupKeys.take("0");
+    }
+
+    LocalStorage::instance().saveGroup(groupId, groupName, "creator");
+
+    QVariantList members;
+    const QStringList entries = memberStr.split("|", Qt::SkipEmptyParts);
+    for (const QString& entry : entries) {
+        const int sep = entry.indexOf(":");
+        if (sep < 0) continue;
+        QVariantMap m;
+        m["username"] = entry.left(sep);
+        m["role"] = entry.mid(sep + 1);
+        members.append(m);
+    }
+
+    emit groupInfoReceived(groupId, groupName, members);
+}
+
+void NetworkManager::handleGroupLeave(const Packet& p) {
+    if (p.body == "rotate") {
+        // Server asks us to rotate the key - groupId is in p.key field
+        rotateGroupKey(QString::fromStdString(p.key));
+    } else {
+        const QString groupId = QString::fromStdString(p.body);
+        _groupKeys.remove(groupId);
+        emit groupLeft(groupId);
+    }
+}
+
+void NetworkManager::rotateGroupKey(const QString& groupId) {
+    try {
+        QByteArray newKey = _crypto.generateAESKey();
+        _groupKeys[groupId] = newKey;
+        LocalStorage::instance().saveGroupKey(groupId, QString::fromLatin1(newKey.toBase64()));
+        // Fetch member list so QML can redistribute the new key via addGroupMember
+        fetchGroupInfo(groupId);
+    } catch (const std::exception& e) {
+        qWarning() << "rotateGroupKey failed:" << e.what();
+    }
 }
 
 void NetworkManager::sendPacket(const Packet& packet) {
@@ -351,6 +577,26 @@ void NetworkManager::onTextMessageReceived(const QString& message) {
 
         case PacketType::READ_RECEIPT:
             handleReadReceipt(p);
+            break;
+
+        case PacketType::GROUP_INVITE:
+            handleGroupInvite(p);
+            break;
+
+        case PacketType::GROUP_MESSAGE:
+            handleGroupMessage(p);
+            break;
+
+        case PacketType::GROUP_KEY_EXCHANGE:
+            handleGroupKeyExchange(p);
+            break;
+
+        case PacketType::GROUP_INFO:
+            handleGroupInfo(p);
+            break;
+
+        case PacketType::GROUP_LEAVE:
+            handleGroupLeave(p);
             break;
 
         default:

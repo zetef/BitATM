@@ -53,6 +53,10 @@ QVariant ConversationListModel::data(const QModelIndex& index, int role) const {
             return entry.lastMessage;
         case TimestampRole:
             return entry.timestamp;
+        case IsGroupRole:
+            return entry.isGroup;
+        case GroupIdRole:
+            return entry.groupId;
         default:
             return {};
     }
@@ -60,8 +64,34 @@ QVariant ConversationListModel::data(const QModelIndex& index, int role) const {
 
 QHash<int, QByteArray> ConversationListModel::roleNames() const {
     return {
-        {UsernameRole, "username"},
-        {LastMessageRole, "lastMessage"},
-        {TimestampRole, "timestamp"},
+        {UsernameRole, "username"}, {LastMessageRole, "lastMessage"}, {TimestampRole, "timestamp"},
+        {IsGroupRole, "is_group"},  {GroupIdRole, "group_id"},
     };
+}
+
+void ConversationListModel::addOrUpdateGroup(const QString& groupId, const QString& groupName,
+                                             const QString& lastMessage,
+                                             const QString& lastTimestamp) {
+    for (int i = 0; i < static_cast<int>(entries_.size()); ++i) {
+        if (entries_[static_cast<std::size_t>(i)].isGroup &&
+            entries_[static_cast<std::size_t>(i)].groupId == groupId) {
+            if (!lastMessage.isEmpty())
+                entries_[static_cast<std::size_t>(i)].lastMessage = lastMessage;
+            if (!lastTimestamp.isEmpty())
+                entries_[static_cast<std::size_t>(i)].timestamp = lastTimestamp;
+            QModelIndex idx = index(i);
+            emit dataChanged(idx, idx, {LastMessageRole, TimestampRole});
+            return;
+        }
+    }
+    int row = static_cast<int>(entries_.size());
+    beginInsertRows(QModelIndex(), row, row);
+    ConvEntry e;
+    e.username = groupName;
+    e.groupId = groupId;
+    e.isGroup = true;
+    e.lastMessage = lastMessage;
+    e.timestamp = lastTimestamp;
+    entries_.push_back(e);
+    endInsertRows();
 }
