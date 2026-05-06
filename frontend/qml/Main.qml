@@ -86,6 +86,20 @@ ApplicationWindow {
         function onConvListUpdated(peer, lastMessage, lastTimestamp) {
             convListModel.addOrUpdate(peer, lastMessage, lastTimestamp)
         }
+
+        function onGroupInviteReceived(groupId, groupName) {
+            convListModel.addOrUpdateGroup(groupId, groupName, "Group invite received", "")
+        }
+
+        function onGroupMessageDecrypted(groupId, sender, plaintext, timestamp, isOutgoing) {
+            chatModel.appendAndCache(groupId, sender, plaintext, timestamp, isOutgoing)
+            convListModel.addOrUpdateGroup(groupId, "", plaintext, timestamp)
+        }
+
+        function onGroupLeft(groupId) {
+            if (root.activePeer === groupId) root.activePeer = ""
+            convListModel.clear()
+        }
     }
 
     Component {

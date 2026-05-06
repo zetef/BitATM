@@ -21,6 +21,24 @@ struct ConversationRecord {
     QString lastTimestamp;
 };
 
+/** @brief One group message from the group_messages SQLite table. */
+struct GroupMessageRecord {
+    QString groupId;
+    QString sender;
+    QString content;
+    QString timestamp;
+    bool isOutgoing{false};
+};
+
+/** @brief One group entry from the groups SQLite table. */
+struct GroupRecord {
+    QString groupId;
+    QString name;
+    QString role;
+    QString lastMessage;
+    QString lastTimestamp;
+};
+
 /**
  * @brief Singleton SQLite cache for messages and conversations.
  *
@@ -60,6 +78,29 @@ public:
 
     /** @brief Returns true if a message with this peer+sender+timestamp already exists. */
     bool isDuplicate(const QString& peer, const QString& sender, const QString& timestamp);
+
+    /** @brief Save a group message. Silently ignores duplicates via UNIQUE index. */
+    void saveGroupMessage(const QString& groupId, const QString& sender, const QString& content,
+                          const QString& timestamp, bool isOutgoing);
+
+    /** @brief Load all messages for a group in ascending timestamp order. */
+    QList<GroupMessageRecord> loadGroupMessages(const QString& groupId);
+
+    /** @brief Persist the AES key (base64) for a group. Overwrites existing entry. */
+    void saveGroupKey(const QString& groupId, const QString& aesKeyBase64);
+
+    /** @brief Load the stored AES key (base64) for a group, or empty string if absent. */
+    QString loadGroupKey(const QString& groupId);
+
+    /** @brief Upsert a group row (id, name, role). */
+    void saveGroup(const QString& groupId, const QString& name, const QString& role);
+
+    /** @brief Load all groups ordered by last_timestamp DESC. */
+    QList<GroupRecord> loadGroups();
+
+    /** @brief Returns true if a group message with this groupId+sender+timestamp already exists. */
+    bool isGroupMessageDuplicate(const QString& groupId, const QString& sender,
+                                 const QString& timestamp);
 
 private:
     LocalStorage() = default;

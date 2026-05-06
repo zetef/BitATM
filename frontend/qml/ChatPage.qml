@@ -9,6 +9,33 @@ Rectangle {
     property string activePeer: ""
     property bool isMobile: false
     property var stackView: null
+    property bool _isGroup: /^\d+$/.test(chatPage.activePeer)
+
+    GroupInfoSheet {
+        id: groupInfoSheet
+        visible: false
+        anchors.right: parent.right
+        anchors.top: parent.top
+        anchors.bottom: parent.bottom
+        z: 10
+        groupId: chatPage.activePeer
+        onClosed: groupInfoSheet.visible = false
+
+        Connections {
+            target: networkManager
+            function onGroupInfoReceived(gid, name, members) {
+                if (gid !== chatPage.activePeer) return
+                groupInfoSheet.groupName = name
+                groupInfoSheet.members = members
+                for (var i = 0; i < members.length; ++i) {
+                    if (members[i].username === networkManager.currentUsername) {
+                        groupInfoSheet.currentUserRole = members[i].role
+                        break
+                    }
+                }
+            }
+        }
+    }
 
     Column {
         visible: chatPage.activePeer.length === 0
@@ -77,6 +104,26 @@ Rectangle {
                 font.pixelSize: 14
                 font.bold: true
                 font.family: "Monospace"
+            }
+
+            Button {
+                visible: chatPage._isGroup
+                anchors.right: parent.right
+                anchors.rightMargin: 8
+                anchors.verticalCenter: parent.verticalCenter
+                text: "[info]"
+                width: 52
+                height: 28
+                onClicked: {
+                    networkManager.fetchGroupInfo(chatPage.activePeer)
+                    groupInfoSheet.visible = true
+                }
+                contentItem: Text {
+                    text: parent.text; color: "#00ff41"; font.pixelSize: 11
+                    font.family: "Monospace"
+                    horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter
+                }
+                background: Rectangle { color: parent.down ? "#1a1a1a" : "transparent"; radius: 0 }
             }
         }
 
@@ -203,11 +250,15 @@ Rectangle {
                         if (txt.length === 0) return
                         msgInput.text = ""
                         var ts = new Date().toISOString()
-                        chatModel.appendAndCache(chatPage.activePeer,
-                                                networkManager.currentUsername,
-                                                txt, ts, true)
-                        convListModel.addOrUpdate(chatPage.activePeer, txt, ts)
-                        networkManager.sendMessage(chatPage.activePeer, txt, ts)
+                        var peer = chatPage.activePeer
+                        chatModel.appendAndCache(peer, networkManager.currentUsername, txt, ts, true)
+                        if (chatPage._isGroup) {
+                            convListModel.addOrUpdateGroup(peer, "", txt, ts)
+                            networkManager.sendGroupMessage(peer, txt, ts)
+                        } else {
+                            convListModel.addOrUpdate(peer, txt, ts)
+                            networkManager.sendMessage(peer, txt, ts)
+                        }
                     }
                     contentItem: Text {
                         text: parent.text
