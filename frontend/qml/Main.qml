@@ -8,7 +8,7 @@ ApplicationWindow {
     width: 900
     height: 600
     title: "BitATM"
-    color: "#1e1e2e"
+    color: "#0a0a0a"
 
     property string activePeer: ""
     property bool isMobile: root.width < 600
@@ -19,14 +19,14 @@ ApplicationWindow {
         anchors.left: parent.left
         anchors.right: parent.right
         height: visible ? 36 : 0
-        color: networkManager.hasError ? "#f44336" : "#313244"
+        color: networkManager.hasError ? "#ff3333" : "#1a1a1a"
         z: 10
         visible: networkManager.lastMessage.length > 0
 
         Label {
             anchors.centerIn: parent
             text: networkManager.lastMessage
-            color: "#ffffff"
+            color: "#c8c8c8"
             font.pixelSize: 13
         }
 
@@ -92,7 +92,7 @@ ApplicationWindow {
         id: loginPageComponent
 
         Rectangle {
-            color: "#1e1e2e"
+            color: "#0a0a0a"
 
             Column {
                 anchors.centerIn: parent
@@ -101,19 +101,21 @@ ApplicationWindow {
 
                 Label {
                     anchors.horizontalCenter: parent.horizontalCenter
-                    text: "BitATM"
+                    text: "BitATM v1.0"
                     font.pixelSize: 28
                     font.bold: true
-                    color: "#cdd6f4"
+                    font.family: "Monospace"
+                    color: "#00ff41"
                 }
 
                 TextField {
                     id: usernameInput
-                    placeholderText: "Username"
+                    placeholderText: "> username"
                     width: parent.width
-                    color: "#cdd6f4"
-                    placeholderTextColor: "#6c7086"
-                    background: Rectangle { color: "#313244"; radius: 4 }
+                    color: "#c8c8c8"
+                    placeholderTextColor: "#505050"
+                    font.family: "Monospace"
+                    background: Rectangle { color: "#1a1a1a"; radius: 0 }
                     padding: 10
                 }
 
@@ -121,18 +123,20 @@ ApplicationWindow {
                     width: parent.width
                     visible: usernameInput.text.length > 0
                     text: usernameInput.text.length >= 3 ? "Username ok" : "Min 3 characters required"
-                    color: usernameInput.text.length >= 3 ? "#a6e3a1" : "#f38ba8"
+                    color: usernameInput.text.length >= 3 ? "#00ff41" : "#ff3333"
                     font.pixelSize: 10
+                    font.family: "Monospace"
                 }
 
                 TextField {
                     id: passwordInput
-                    placeholderText: "Password"
+                    placeholderText: "> password"
                     echoMode: TextInput.Password
                     width: parent.width
-                    color: "#cdd6f4"
-                    placeholderTextColor: "#6c7086"
-                    background: Rectangle { color: "#313244"; radius: 4 }
+                    color: "#c8c8c8"
+                    placeholderTextColor: "#505050"
+                    font.family: "Monospace"
+                    background: Rectangle { color: "#1a1a1a"; radius: 0 }
                     padding: 10
                     onAccepted: {
                         if (usernameInput.text.length > 0 && passwordInput.text.length > 0)
@@ -144,8 +148,9 @@ ApplicationWindow {
                     width: parent.width
                     visible: passwordInput.text.length > 0
                     text: passwordInput.text.length >= 8 ? "Password ok" : "Min 8 characters for Register"
-                    color: passwordInput.text.length >= 8 ? "#a6e3a1" : "#f38ba8"
+                    color: passwordInput.text.length >= 8 ? "#00ff41" : "#ff3333"
                     font.pixelSize: 10
+                    font.family: "Monospace"
                 }
 
                 Row {
@@ -153,59 +158,52 @@ ApplicationWindow {
                     spacing: 10
 
                     Button {
-                        text: "Register"
+                        text: "register"
                         enabled: networkManager.isConnected &&
                                  usernameInput.text.length >= 3 &&
                                  passwordInput.text.length >= 8
                         onClicked: networkManager.sendRegister(usernameInput.text, passwordInput.text)
                         contentItem: Text {
                             text: parent.text
-                            color: "#cdd6f4"
+                            color: "#c8c8c8"
+                            font.family: "Monospace"
                             horizontalAlignment: Text.AlignHCenter
                             verticalAlignment: Text.AlignVCenter
                         }
                         background: Rectangle {
-                            color: parent.enabled ? (parent.down ? "#45475a" : "#313244") : "#252535"
-                            radius: 4
+                            color: parent.enabled ? (parent.down ? "#222222" : "#1a1a1a") : "#111111"
+                            radius: 0
+                            border.color: "#404040"
+                            border.width: 1
                         }
                     }
 
                     Button {
-                        text: "Login"
+                        text: ">> login"
                         enabled: networkManager.isConnected &&
                                  usernameInput.text.length > 0 &&
                                  passwordInput.text.length > 0
                         onClicked: networkManager.sendLogin(usernameInput.text, passwordInput.text)
                         contentItem: Text {
                             text: parent.text
-                            color: "#1e1e2e"
+                            color: "#0a0a0a"
+                            font.family: "Monospace"
                             horizontalAlignment: Text.AlignHCenter
                             verticalAlignment: Text.AlignVCenter
                         }
                         background: Rectangle {
-                            color: parent.enabled ? (parent.down ? "#74a0e8" : "#89b4fa") : "#45475a"
-                            radius: 4
+                            color: parent.enabled ? (parent.down ? "#00cc33" : "#00ff41") : "#222222"
+                            radius: 0
                         }
                     }
                 }
 
-                Row {
+                Label {
                     anchors.horizontalCenter: parent.horizontalCenter
-                    spacing: 8
-
-                    Rectangle {
-                        width: 10
-                        height: 10
-                        radius: 5
-                        anchors.verticalCenter: parent.verticalCenter
-                        color: networkManager.isConnected ? "#a6e3a1" : "#f38ba8"
-                    }
-
-                    Label {
-                        text: networkManager.isConnected ? "Connected" : "Disconnected"
-                        color: networkManager.isConnected ? "#a6e3a1" : "#f38ba8"
-                        font.pixelSize: 12
-                    }
+                    text: networkManager.isConnected ? "[ONLINE]" : "[OFFLINE]"
+                    color: networkManager.isConnected ? "#00ff41" : "#ff3333"
+                    font.pixelSize: 12
+                    font.family: "Monospace"
                 }
             }
         }
@@ -215,7 +213,7 @@ ApplicationWindow {
         id: chatPageComponent
 
         Rectangle {
-            color: "#1e1e2e"
+            color: "#0a0a0a"
 
             RowLayout {
                 anchors.fill: parent
@@ -233,7 +231,7 @@ ApplicationWindow {
                 Rectangle {
                     width: 1
                     Layout.fillHeight: true
-                    color: "#313244"
+                    color: "#1a1a1a"
                 }
 
                 ChatPage {
