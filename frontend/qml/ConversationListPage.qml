@@ -145,44 +145,14 @@ Rectangle {
             }
         }
 
-        Button {
-            Layout.fillWidth: true
-            Layout.leftMargin: 8
-            Layout.rightMargin: 8
-            Layout.bottomMargin: 8
-            height: 32
-            text: "+ New Group"
-            onClicked: createGroupDialog.visible = true
-            contentItem: Text {
-                text: parent.text; color: "#89b4fa"; font.pixelSize: 12
-                horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter
-            }
-            background: Rectangle {
-                color: parent.down ? "#313244" : "transparent"
-                radius: 4; border.color: "#313244"; border.width: 1
-            }
-        }
-    }
-
-    CreateGroupDialog {
-        id: createGroupDialog
-        anchors.centerIn: parent
-        visible: false
-        z: 10
-        onClosed: createGroupDialog.visible = false
     }
 
     function openChat(peer) {
         if (peer.length === 0) return
         convListPage.peerSelected(peer)
         chatModel.switchConversation(peer)
-        var isGroup = /^\d+$/.test(peer)
-        if (!isGroup) {
-            networkManager.markConversationRead(peer)
-            networkManager.fetchPeerKey(peer)
-        } else {
-            networkManager.fetchGroupInfo(peer)
-        }
+        networkManager.markConversationRead(peer)
+        networkManager.fetchPeerKey(peer)
         newChatInput.text = ""
         if (convListPage.isMobile && convListPage.stackView !== null) {
             convListPage.stackView.push(convListPage.chatPageComponent)
