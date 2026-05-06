@@ -222,7 +222,7 @@ ApplicationWindow {
                     width: 220
                     Layout.fillHeight: true
                     activePeer: root.activePeer
-                    isMobile: false
+                    isMobile: root.isMobile
                     onPeerSelected: function(peer) { root.activePeer = peer }
                 }
 
@@ -236,7 +236,7 @@ ApplicationWindow {
                     Layout.fillWidth: true
                     Layout.fillHeight: true
                     activePeer: root.activePeer
-                    isMobile: false
+                    isMobile: root.isMobile
                 }
             }
 
@@ -247,7 +247,7 @@ ApplicationWindow {
 
                 initialItem: ConversationListPage {
                     activePeer: root.activePeer
-                    isMobile: true
+                    isMobile: root.isMobile
                     stackView: mobileStack
                     chatPageComponent: mobileChatComponent
                     onPeerSelected: function(peer) { root.activePeer = peer }
@@ -258,7 +258,7 @@ ApplicationWindow {
                 id: mobileChatComponent
                 ChatPage {
                     activePeer: root.activePeer
-                    isMobile: true
+                    isMobile: root.isMobile
                     stackView: mobileStack
                 }
             }
