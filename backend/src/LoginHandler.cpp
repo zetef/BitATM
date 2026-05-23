@@ -115,7 +115,14 @@ void LoginHandler::execute(Packet& packet, ClientSession& session) {
         // Non-fatal: stale last_seen is cosmetic, login must not fail over it.
     }
 
-    // flush pending offline messages
+    Packet ack;
+    ack.type = PacketType::ACK;
+    ack.to = packet.from;
+    ack.body = token;
+    session.send(ack);
+
+    // flush pending offline messages after ACK so the client has loaded its
+    // private key before the first MESSAGE packet arrives
     OfflineQueueRepository offlineRepo;
     MessageRepository msgRepo;
     auto pending = offlineRepo.findUndeliveredByRecipient(packet.from);
@@ -133,10 +140,4 @@ void LoginHandler::execute(Packet& packet, ClientSession& session) {
             offlineRepo.markDelivered(entry.getId());
         }
     }
-
-    Packet ack;
-    ack.type = PacketType::ACK;
-    ack.to = packet.from;
-    ack.body = token;
-    session.send(ack);
 }
