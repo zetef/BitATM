@@ -80,7 +80,11 @@ void NetworkManager::sendSyncHistory() {
     Packet p;
     p.type = PacketType::SYNC_HISTORY;
     p.from = _currentUsername.toStdString();
-    p.body = LocalStorage::instance().newestTimestamp().toStdString();
+    const QString ts = LocalStorage::instance().newestTimestamp();
+    if (QDateTime::fromString(ts, Qt::ISODateWithMs).isValid() ||
+        QDateTime::fromString(ts, Qt::ISODate).isValid()) {
+        p.body = ts.toStdString();
+    }
     sendPacket(p);
 }
 

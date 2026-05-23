@@ -17,7 +17,13 @@ void SyncHistoryHandler::execute(Packet& packet, ClientSession& session) {
     const std::string cursor = packet.body;
 
     MessageRepository repo;
-    auto messages = repo.findAllForUser(username, cursor);
+    std::vector<Message> messages;
+    try {
+        messages = repo.findAllForUser(username, cursor);
+    } catch (const DbException&) {
+        // cursor was not a valid timestamp - fall back to full history
+        messages = repo.findAllForUser(username, "");
+    }
 
     // send in chronological order (operator< compares by created_at)
     std::sort(messages.begin(), messages.end());
