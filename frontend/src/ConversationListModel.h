@@ -49,6 +49,10 @@ public:
     /** @brief Removes all entries from the model. */
     Q_INVOKABLE void clear();
 
+    /** @brief Remove the entry whose username (or groupId for groups) matches peer. No-op if not
+     * found. */
+    Q_INVOKABLE void remove(const QString& peer);
+
     /** @brief Returns the number of entries in the model. */
     int rowCount(const QModelIndex& parent = QModelIndex()) const override;
 

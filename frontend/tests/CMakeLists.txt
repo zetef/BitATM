@@ -72,3 +72,15 @@ target_link_libraries(group_crypto_test PRIVATE
     common
 )
 add_test(NAME GroupCryptoTest COMMAND group_crypto_test)
+
+# ConversationListModel tests
+add_executable(conv_list_model_test
+    ConversationListModelTest.cpp
+    ../src/ConversationListModel.cpp
+)
+set_target_properties(conv_list_model_test PROPERTIES AUTOMOC ON)
+target_include_directories(conv_list_model_test PRIVATE ../src)
+target_link_libraries(conv_list_model_test PRIVATE
+    Qt6::Test Qt6::Core
+)
+add_test(NAME ConversationListModelTest COMMAND conv_list_model_test)

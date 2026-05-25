@@ -254,6 +254,34 @@ void NetworkManager::handleKeyExchangeResponse(const Packet& p) {
             encryptAndSend(peerUsername, msg, ts);
         }
     }
+
+    if (_pendingGroupMemberAdds.contains(peerUsername)) {
+        const QStringList groupIds = _pendingGroupMemberAdds.take(peerUsername);
+        for (const QString& gid : groupIds) {
+            addGroupMember(gid, peerUsername);
+        }
+    }
+
+    for (auto& pg : _pendingGroupCreations) {
+        if (pg.waitingFor.contains(peerUsername)) {
+            pg.waitingFor.removeOne(peerUsername);
+            try {
+                pg.collectedKeys[peerUsername] = _crypto.encryptRSA(pg.aesKey, pubKey);
+            } catch (const std::exception& e) {
+                qWarning() << "createGroup key encrypt failed for" << peerUsername << e.what();
+            }
+        }
+    }
+    _pendingGroupCreations.erase(
+        std::remove_if(_pendingGroupCreations.begin(), _pendingGroupCreations.end(),
+                       [this](const PendingGroupCreate& pg) {
+                           if (pg.waitingFor.isEmpty()) {
+                               sendCreateGroupPacket(pg);
+                               return true;
+                           }
+                           return false;
+                       }),
+        _pendingGroupCreations.end());
 }
 
 void NetworkManager::logout() {
@@ -267,35 +295,48 @@ void NetworkManager::logout() {
     emit currentUsernameChanged();
 }
 
+void NetworkManager::sendCreateGroupPacket(const PendingGroupCreate& pending) {
+    QStringList keyParts;
+    for (auto it = pending.collectedKeys.constBegin(); it != pending.collectedKeys.constEnd();
+         ++it) {
+        keyParts.append(it.key() + ":" + QString::fromLatin1(it.value().toBase64()));
+    }
+    Packet p;
+    p.type = PacketType::CREATE_GROUP;
+    p.from = _currentUsername.toStdString();
+    p.errorMsg = pending.name.toStdString();
+    p.body = pending.members.join(",").toStdString();
+    p.key = keyParts.join("|").toStdString();
+    sendPacket(p);
+}
+
 void NetworkManager::createGroup(const QString& name, const QStringList& members) {
     try {
         QByteArray aesKey = _crypto.generateAESKey();
-        // Temp-store under sentinel key until server assigns a real group id
         _groupKeys["0"] = aesKey;
 
-        QStringList keyParts;
-        // Encrypt key for self
+        PendingGroupCreate pending;
+        pending.name = name;
+        pending.members = members;
+        pending.aesKey = aesKey;
+
         if (!_ownPubKey.isEmpty()) {
-            QByteArray enc = _crypto.encryptRSA(aesKey, _ownPubKey);
-            keyParts.append(_currentUsername + ":" + QString::fromLatin1(enc.toBase64()));
+            pending.collectedKeys[_currentUsername] = _crypto.encryptRSA(aesKey, _ownPubKey);
         }
-        // Encrypt key for each member
         for (const QString& m : members) {
-            if (!_peerKeys.contains(m)) {
-                qWarning() << "createGroup: no public key for" << m << "- skipping";
-                continue;
+            if (_peerKeys.contains(m)) {
+                pending.collectedKeys[m] = _crypto.encryptRSA(aesKey, _peerKeys[m]);
+            } else {
+                pending.waitingFor.append(m);
+                fetchPeerKey(m);
             }
-            QByteArray enc = _crypto.encryptRSA(aesKey, _peerKeys[m]);
-            keyParts.append(m + ":" + QString::fromLatin1(enc.toBase64()));
         }
 
-        Packet p;
-        p.type = PacketType::CREATE_GROUP;
-        p.from = _currentUsername.toStdString();
-        p.errorMsg = name.toStdString();
-        p.body = members.join(",").toStdString();
-        p.key = keyParts.join("|").toStdString();
-        sendPacket(p);
+        if (pending.waitingFor.isEmpty()) {
+            sendCreateGroupPacket(pending);
+        } else {
+            _pendingGroupCreations.append(std::move(pending));
+        }
     } catch (const std::exception& e) {
         _hasError = true;
         _lastMessage = "createGroup failed: " + QString::fromUtf8(e.what());
@@ -340,8 +381,13 @@ void NetworkManager::kickMember(const QString& groupId, const QString& username)
 }
 
 void NetworkManager::addGroupMember(const QString& groupId, const QString& username) {
-    if (!_groupKeys.contains(groupId) || !_peerKeys.contains(username)) {
+    if (!_peerKeys.contains(username)) {
+        _pendingGroupMemberAdds[username].append(groupId);
         fetchPeerKey(username);
+        return;
+    }
+    if (!_groupKeys.contains(groupId)) {
+        qWarning() << "addGroupMember: no AES key for group" << groupId;
         return;
     }
     try {
