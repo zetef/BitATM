@@ -242,6 +242,18 @@ private:
     bool _intentionallyConnecting = false;
     QMap<QString, QStringList> _unreadTimestamps;
 
+    /** @brief Pending group member adds: username -> list of groupIds waiting for that key. */
+    QMap<QString, QStringList> _pendingGroupMemberAdds;
+
+    struct PendingGroupCreate {
+        QString name;
+        QStringList members;
+        QByteArray aesKey;
+        QMap<QString, QByteArray> collectedKeys;  // username -> RSA-encrypted AES key bytes
+        QStringList waitingFor;
+    };
+    QList<PendingGroupCreate> _pendingGroupCreations;
+
     /** @brief In-memory map from groupId to decrypted AES key bytes. */
     QMap<QString, QByteArray> _groupKeys;
 
@@ -262,4 +274,7 @@ private:
 
     /** @brief Generate a new AES key for a group and request member list for redistribution. */
     void rotateGroupKey(const QString& groupId);
+
+    /** @brief Build and send a CREATE_GROUP packet from a fully-resolved pending creation. */
+    void sendCreateGroupPacket(const PendingGroupCreate& pending);
 };

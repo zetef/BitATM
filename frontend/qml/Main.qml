@@ -98,7 +98,7 @@ ApplicationWindow {
 
         function onGroupLeft(groupId) {
             if (root.activePeer === groupId) root.activePeer = ""
-            convListModel.clear()
+            convListModel.remove(groupId)
         }
     }
 

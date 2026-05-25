@@ -23,6 +23,19 @@ void ConversationListModel::addOrUpdate(const QString& username, const QString& 
     }
 }
 
+void ConversationListModel::remove(const QString& peer) {
+    for (int i = 0; i < static_cast<int>(entries_.size()); ++i) {
+        const ConvEntry& e = entries_[static_cast<std::size_t>(i)];
+        const bool matches = e.isGroup ? (e.groupId == peer) : (e.username == peer);
+        if (matches) {
+            beginRemoveRows(QModelIndex(), i, i);
+            entries_.erase(entries_.begin() + i);
+            endRemoveRows();
+            return;
+        }
+    }
+}
+
 void ConversationListModel::clear() {
     if (entries_.empty()) {
         return;
