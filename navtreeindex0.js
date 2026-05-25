@@ -217,15 +217,16 @@ var NAVTREEINDEX0 =
 "classConversationListModel.html#a0583358476b94b1569013eaea18e0561":[0,0,9,1],
 "classConversationListModel.html#a23f1502bd41d34f3b1461120962ce9b7":[0,0,9,4],
 "classConversationListModel.html#a331b4758287f72926ae9aee990a92e7a":[0,0,9,5],
+"classConversationListModel.html#a37f0ccaab1caa4fb45977c98256e8705":[0,0,9,6],
 "classConversationListModel.html#a93d4759883f8df68c20757ead27c6868":[0,0,9,3],
-"classConversationListModel.html#ab2bcf9c321f917452d4f788bbff41ed7":[0,0,9,6],
+"classConversationListModel.html#ab2bcf9c321f917452d4f788bbff41ed7":[0,0,9,7],
 "classConversationListModel.html#ac6c4a9feb3a203d342de583ca01bc38e":[0,0,9,0],
 "classConversationListModel.html#ac6c4a9feb3a203d342de583ca01bc38ea1ac943673dbb92fa545ca59443f30877":[0,0,9,0,2],
 "classConversationListModel.html#ac6c4a9feb3a203d342de583ca01bc38ea6556cf00fa5a62fefc4b89a375b40968":[0,0,9,0,1],
 "classConversationListModel.html#ac6c4a9feb3a203d342de583ca01bc38ea6f48e554b0cc08530b6219115353919f":[0,0,9,0,0],
 "classConversationListModel.html#ac6c4a9feb3a203d342de583ca01bc38ea8b7a838d1823ca83bed8148e8c598ee8":[0,0,9,0,3],
 "classConversationListModel.html#ac6c4a9feb3a203d342de583ca01bc38eaf0e58025765c985dde2f37f89322fb2c":[0,0,9,0,4],
-"classConversationListModel.html#acacc560a21df4b3dc006432a85cc8ee2":[0,0,9,7],
+"classConversationListModel.html#acacc560a21df4b3dc006432a85cc8ee2":[0,0,9,8],
 "classConversationListModel.html#acf023bbcd5d16dac0619d909a3280565":[0,0,9,2],
 "classCreateGroupHandler.html":[0,0,11],
 "classCreateGroupHandler.html#a59e48b72e9be724724fa94e5ce344268":[0,0,11,2],
@@ -248,6 +249,5 @@ var NAVTREEINDEX0 =
 "classDbManager.html#a112def70f7921315f1f99124e8b08be3":[0,0,15,2],
 "classDbManager.html#a5ffaa2034b2e23538486d7c2213815e6":[0,0,15,1],
 "classDbManager.html#a6a962843ca48a8a42135a1a08dbec84f":[0,0,15,3],
-"classDbManager.html#a7189d68827f9406f47f3e2add699d9d2":[0,0,15,4],
-"classDbManager.html#a8dd83f5043068dea2126918cff641a11":[0,0,15,0]
+"classDbManager.html#a7189d68827f9406f47f3e2add699d9d2":[0,0,15,4]
 };

@@ -107,9 +107,9 @@ Inheritance diagram for ConversationListModel:</div>
 <div class="dyncontent">
 <div class="center"><img src="classConversationListModel__inherit__graph.png" border="0" usemap="#aConversationListModel_inherit__map" alt="Inheritance graph"/></div>
 <map name="aConversationListModel_inherit__map" id="aConversationListModel_inherit__map">
-<area shape="rect" title="QAbstractListModel for the conversation sidebar." alt="" coords="5,119,193,304"/>
+<area shape="rect" title="QAbstractListModel for the conversation sidebar." alt="" coords="5,119,193,324"/>
 <area shape="rect" title=" " alt="" coords="29,5,170,71"/>
-<area shape="poly" title=" " alt="" coords="102,85,102,119,97,119,97,85"/>
+<area shape="poly" title=" " alt="" coords="102,84,102,119,97,119,97,84"/>
 </map>
 </div>
 <div class="dynheader">
@@ -117,9 +117,9 @@ Collaboration diagram for ConversationListModel:</div>
 <div class="dyncontent">
 <div class="center"><img src="classConversationListModel__coll__graph.png" border="0" usemap="#aConversationListModel_coll__map" alt="Collaboration graph"/></div>
 <map name="aConversationListModel_coll__map" id="aConversationListModel_coll__map">
-<area shape="rect" title="QAbstractListModel for the conversation sidebar." alt="" coords="5,119,193,304"/>
+<area shape="rect" title="QAbstractListModel for the conversation sidebar." alt="" coords="5,119,193,324"/>
 <area shape="rect" title=" " alt="" coords="29,5,170,71"/>
-<area shape="poly" title=" " alt="" coords="102,85,102,119,97,119,97,85"/>
+<area shape="poly" title=" " alt="" coords="102,84,102,119,97,119,97,84"/>
 </map>
 </div>
 <table class="memberdecls">
@@ -151,6 +151,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a23f1502bd41d34f3b1461120962ce9b7" id="r_a23f1502bd41d34f3b1461120962ce9b7"><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConversationListModel.html#a23f1502bd41d34f3b1461120962ce9b7">clear</a> ()</td></tr>
 <tr class="memdesc:a23f1502bd41d34f3b1461120962ce9b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes all entries from the model.  <br /></td></tr>
 <tr class="separator:a23f1502bd41d34f3b1461120962ce9b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37f0ccaab1caa4fb45977c98256e8705" id="r_a37f0ccaab1caa4fb45977c98256e8705"><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConversationListModel.html#a37f0ccaab1caa4fb45977c98256e8705">remove</a> (const QString &amp;peer)</td></tr>
+<tr class="memdesc:a37f0ccaab1caa4fb45977c98256e8705"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove the entry whose username (or groupId for groups) matches peer. No-op if not found.  <br /></td></tr>
+<tr class="separator:a37f0ccaab1caa4fb45977c98256e8705"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acacc560a21df4b3dc006432a85cc8ee2" id="r_acacc560a21df4b3dc006432a85cc8ee2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConversationListModel.html#acacc560a21df4b3dc006432a85cc8ee2">rowCount</a> (const QModelIndex &amp;parent=QModelIndex()) const override</td></tr>
 <tr class="memdesc:acacc560a21df4b3dc006432a85cc8ee2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of entries in the model.  <br /></td></tr>
 <tr class="separator:acacc560a21df4b3dc006432a85cc8ee2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -359,6 +362,26 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns the data for a given index and role. </p>
+
+</div>
+</div>
+<a id="a37f0ccaab1caa4fb45977c98256e8705" name="a37f0ccaab1caa4fb45977c98256e8705"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37f0ccaab1caa4fb45977c98256e8705">&#9670;&#160;</a></span>remove()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ConversationListModel::remove </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>peer</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Remove the entry whose username (or groupId for groups) matches peer. No-op if not found. </p>
 
 </div>
 </div>

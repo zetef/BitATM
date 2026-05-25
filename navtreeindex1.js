@@ -1,5 +1,6 @@
 var NAVTREEINDEX1 =
 {
+"classDbManager.html#a8dd83f5043068dea2126918cff641a11":[0,0,15,0],
 "classDbManager.html#a94ec9e8855d7e633f2a2fcdb5e96f51c":[0,0,15,5],
 "classGroupInfoHandler.html":[0,0,17],
 "classGroupInfoHandler.html#a1a8b22e2ac80123788cee4b37a29230e":[0,0,17,0],
@@ -248,6 +249,5 @@ var NAVTREEINDEX1 =
 "classReadReceiptHandler.html#aa6ddc714cb5adea5aa743a5c87ae0411":[0,0,49,0],
 "classReadReceiptHandler.html#ab979ce934a371f20eb27db87b7f9fe1d":[0,0,49,1],
 "classReadReceiptHandler.html#afcd7e4248f60a13b419a7ece01dcadb4":[0,0,49,2],
-"classRegisterHandler.html":[0,0,50],
-"classRegisterHandler.html#a08d25d31268049839550fb69e1a68bdf":[0,0,50,2]
+"classRegisterHandler.html":[0,0,50]
 };

@@ -12,6 +12,7 @@ var classConversationListModel =
     [ "addOrUpdateGroup", "classConversationListModel.html#a93d4759883f8df68c20757ead27c6868", null ],
     [ "clear", "classConversationListModel.html#a23f1502bd41d34f3b1461120962ce9b7", null ],
     [ "data", "classConversationListModel.html#a331b4758287f72926ae9aee990a92e7a", null ],
+    [ "remove", "classConversationListModel.html#a37f0ccaab1caa4fb45977c98256e8705", null ],
     [ "roleNames", "classConversationListModel.html#ab2bcf9c321f917452d4f788bbff41ed7", null ],
     [ "rowCount", "classConversationListModel.html#acacc560a21df4b3dc006432a85cc8ee2", null ]
 ];

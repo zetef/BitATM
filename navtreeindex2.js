@@ -1,5 +1,6 @@
 var NAVTREEINDEX2 =
 {
+"classRegisterHandler.html#a08d25d31268049839550fb69e1a68bdf":[0,0,50,2],
 "classRegisterHandler.html#ad34c688d1684ef0629ca9cce10a13b3d":[0,0,50,0],
 "classRegisterHandler.html#afea030552983100a54a025568707c33b":[0,0,50,1],
 "classRsaOaepStrategy.html":[0,0,51],
