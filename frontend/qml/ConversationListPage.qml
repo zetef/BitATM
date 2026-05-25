@@ -13,6 +13,14 @@ Rectangle {
 
     signal peerSelected(string peer)
 
+    CreateGroupDialog {
+        id: createGroupDialog
+        visible: false
+        anchors.centerIn: parent
+        z: 20
+        onClosed: createGroupDialog.visible = false
+    }
+
     ColumnLayout {
         anchors.fill: parent
         spacing: 0
@@ -64,7 +72,7 @@ Rectangle {
 
             TextField {
                 id: newChatInput
-                width: parent.width - goButton.width - parent.spacing
+                width: parent.width - goButton.width - newGroupButton.width - parent.spacing * 2
                 placeholderText: "> new session..."
                 color: "#c8c8c8"
                 placeholderTextColor: "#505050"
@@ -94,6 +102,28 @@ Rectangle {
                     radius: 0
                 }
             }
+
+            Button {
+                id: newGroupButton
+                text: "[+G]"
+                width: 42
+                height: newChatInput.height
+                onClicked: createGroupDialog.visible = true
+                contentItem: Text {
+                    text: parent.text
+                    color: "#c8c8c8"
+                    font.pixelSize: 11
+                    font.family: "Monospace"
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                }
+                background: Rectangle {
+                    color: parent.down ? "#1a1a1a" : "transparent"
+                    radius: 0
+                    border.color: "#505050"
+                    border.width: 1
+                }
+            }
         }
 
         ListView {
@@ -105,7 +135,7 @@ Rectangle {
             delegate: ItemDelegate {
                 width: ListView.view.width
                 height: 60
-                highlighted: convListPage.activePeer === model.username
+                highlighted: convListPage.activePeer === (model.is_group ? model.group_id : model.username)
 
                 background: Rectangle {
                     color: parent.highlighted ? "#1a1a1a" : (parent.hovered ? "#111111" : "transparent")
@@ -123,8 +153,8 @@ Rectangle {
 
                     Label {
                         width: parent.width
-                        text: model.username
-                        color: "#c8c8c8"
+                        text: model.is_group ? ("[G] " + model.username) : model.username
+                        color: model.is_group ? "#89b4fa" : "#c8c8c8"
                         font.pixelSize: 13
                         font.bold: true
                         font.family: "Monospace"
@@ -141,7 +171,10 @@ Rectangle {
                     }
                 }
 
-                onClicked: openChat(model.username)
+                onClicked: {
+                    if (model.is_group) openGroupChat(model.group_id)
+                    else openChat(model.username)
+                }
             }
         }
 
@@ -154,6 +187,16 @@ Rectangle {
         networkManager.markConversationRead(peer)
         networkManager.fetchPeerKey(peer)
         newChatInput.text = ""
+        if (convListPage.isMobile && convListPage.stackView !== null) {
+            convListPage.stackView.push(convListPage.chatPageComponent)
+        }
+    }
+
+    function openGroupChat(groupId) {
+        if (groupId.length === 0) return
+        convListPage.peerSelected(groupId)
+        chatModel.switchConversation(groupId)
+        networkManager.fetchGroupInfo(groupId)
         if (convListPage.isMobile && convListPage.stackView !== null) {
             convListPage.stackView.push(convListPage.chatPageComponent)
         }
