@@ -100,6 +100,14 @@ ApplicationWindow {
             if (root.activePeer === groupId) root.activePeer = ""
             convListModel.remove(groupId)
         }
+
+        function onGroupHistorySyncMessage(groupId, sender, content, timestamp, isOutgoing) {
+            chatModel.appendAndCache(groupId, sender, content, timestamp, isOutgoing)
+        }
+
+        function onGroupConvUpdated(groupId, groupName, lastMessage, lastTimestamp) {
+            convListModel.addOrUpdateGroup(groupId, groupName, lastMessage, lastTimestamp)
+        }
     }
 
     Component {

@@ -99,7 +99,9 @@ Rectangle {
 
             Label {
                 anchors.centerIn: parent
-                text: "[ " + chatPage.activePeer + " ]"
+                text: chatPage._isGroup
+                    ? "[ " + networkManager.getGroupName(chatPage.activePeer) + " ]"
+                    : "[ " + chatPage.activePeer + " ]"
                 color: "#c8c8c8"
                 font.pixelSize: 14
                 font.bold: true
@@ -148,6 +150,15 @@ Rectangle {
                     id: bubbleCol
                     width: parent.width
                     spacing: 2
+
+                    Label {
+                        visible: chatPage._isGroup && !model.isOutgoing
+                        text: model.sender
+                        color: "#585b70"
+                        font.pixelSize: 10
+                        font.family: "Monospace"
+                        width: parent.width
+                    }
 
                     Item {
                         width: parent.width

@@ -89,6 +89,9 @@ public:
     /** @brief Request updated group info (member list, roles). */
     Q_INVOKABLE void fetchGroupInfo(const QString& groupId);
 
+    /** @brief Return the stored display name for a group, or groupId if unknown. */
+    Q_INVOKABLE QString getGroupName(const QString& groupId) const;
+
     /** @brief Returns true if the WebSocket is in ConnectedState. */
     bool isConnected() const;
 
@@ -176,6 +179,14 @@ signals:
     /** @brief Emitted when the current user has successfully left a group. */
     void groupLeft(const QString& groupId);
 
+    /** @brief Emitted once per group message during local history load. */
+    void groupHistorySyncMessage(const QString& groupId, const QString& sender,
+                                 const QString& content, const QString& timestamp, bool isOutgoing);
+
+    /** @brief Emitted once per group during local history load for sidebar population. */
+    void groupConvUpdated(const QString& groupId, const QString& groupName,
+                          const QString& lastMessage, const QString& lastTimestamp);
+
 private slots:
     void onConnected();
     void onDisconnected();
@@ -256,6 +267,9 @@ private:
 
     /** @brief In-memory map from groupId to decrypted AES key bytes. */
     QMap<QString, QByteArray> _groupKeys;
+
+    /** @brief In-memory map from groupId to group display name. */
+    QMap<QString, QString> _groupNames;
 
     /** @brief Handle an incoming GROUP_INVITE packet. */
     void handleGroupInvite(const Packet& p);

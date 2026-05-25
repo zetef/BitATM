@@ -158,6 +158,21 @@ void NetworkManager::loadLocalHistory() {
         emit convListUpdated(c.peer, c.lastMessage, c.lastTimestamp);
     }
     qCInfo(logChat) << "Loaded local history:" << convs.size() << "conversations";
+
+    auto groups = LocalStorage::instance().loadGroups();
+    for (auto& g : groups) {
+        _groupNames[g.groupId] = g.name;
+        const QString storedKey = LocalStorage::instance().loadGroupKey(g.groupId);
+        if (!storedKey.isEmpty()) {
+            _groupKeys[g.groupId] = QByteArray::fromBase64(storedKey.toLatin1());
+        }
+        auto msgs = LocalStorage::instance().loadGroupMessages(g.groupId);
+        for (auto& m : msgs) {
+            emit groupHistorySyncMessage(m.groupId, m.sender, m.content, m.timestamp, m.isOutgoing);
+        }
+        emit groupConvUpdated(g.groupId, g.name, g.lastMessage, g.lastTimestamp);
+    }
+    qCInfo(logChat) << "Loaded local group history:" << groups.size() << "groups";
 }
 
 void NetworkManager::persistMessage(const QString& peer, const QString& sender,
@@ -438,6 +453,7 @@ void NetworkManager::handleGroupInvite(const Packet& p) {
         QByteArray aesKey =
             _crypto.decryptRSA(QByteArray::fromBase64(encKey.toLatin1()), _ownPrivKey);
         _groupKeys[groupId] = aesKey;
+        _groupNames[groupId] = groupName;
         LocalStorage::instance().saveGroup(groupId, groupName, "member");
         LocalStorage::instance().saveGroupKey(groupId, QString::fromLatin1(aesKey.toBase64()));
         emit groupInviteReceived(groupId, groupName);
@@ -500,6 +516,7 @@ void NetworkManager::handleGroupInfo(const Packet& p) {
     }
 
     LocalStorage::instance().saveGroup(groupId, groupName, "creator");
+    _groupNames[groupId] = groupName;
 
     QVariantList members;
     const QStringList entries = memberStr.split("|", Qt::SkipEmptyParts);
@@ -536,6 +553,10 @@ void NetworkManager::rotateGroupKey(const QString& groupId) {
     } catch (const std::exception& e) {
         qWarning() << "rotateGroupKey failed:" << e.what();
     }
+}
+
+QString NetworkManager::getGroupName(const QString& groupId) const {
+    return _groupNames.value(groupId, groupId);
 }
 
 void NetworkManager::sendPacket(const Packet& packet) {
