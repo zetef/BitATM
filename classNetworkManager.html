@@ -177,6 +177,12 @@ Signals</h2></td></tr>
 <tr class="memitem:af0902bd618f601ae0c472243a8a3e9bc" id="r_af0902bd618f601ae0c472243a8a3e9bc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkManager.html#af0902bd618f601ae0c472243a8a3e9bc">groupLeft</a> (const QString &amp;groupId)</td></tr>
 <tr class="memdesc:af0902bd618f601ae0c472243a8a3e9bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Emitted when the current user has successfully left a group.  <br /></td></tr>
 <tr class="separator:af0902bd618f601ae0c472243a8a3e9bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a57295b0fe8b8dcb07c51e40e3b7f01c5" id="r_a57295b0fe8b8dcb07c51e40e3b7f01c5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkManager.html#a57295b0fe8b8dcb07c51e40e3b7f01c5">groupHistorySyncMessage</a> (const QString &amp;groupId, const QString &amp;sender, const QString &amp;content, const QString &amp;timestamp, bool isOutgoing)</td></tr>
+<tr class="memdesc:a57295b0fe8b8dcb07c51e40e3b7f01c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Emitted once per group message during local history load.  <br /></td></tr>
+<tr class="separator:a57295b0fe8b8dcb07c51e40e3b7f01c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7c5fa5545a263b2e75c41b9aaa6f2ba" id="r_ae7c5fa5545a263b2e75c41b9aaa6f2ba"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkManager.html#ae7c5fa5545a263b2e75c41b9aaa6f2ba">groupConvUpdated</a> (const QString &amp;groupId, const QString &amp;groupName, const QString &amp;<a class="el" href="classNetworkManager.html#acb5092184a7b088b3fa60f61106320cb">lastMessage</a>, const QString &amp;lastTimestamp)</td></tr>
+<tr class="memdesc:ae7c5fa5545a263b2e75c41b9aaa6f2ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Emitted once per group during local history load for sidebar population.  <br /></td></tr>
+<tr class="separator:ae7c5fa5545a263b2e75c41b9aaa6f2ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -227,6 +233,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ae8e6cd3d31f5d221cabad85e21ddc009" id="r_ae8e6cd3d31f5d221cabad85e21ddc009"><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkManager.html#ae8e6cd3d31f5d221cabad85e21ddc009">fetchGroupInfo</a> (const QString &amp;groupId)</td></tr>
 <tr class="memdesc:ae8e6cd3d31f5d221cabad85e21ddc009"><td class="mdescLeft">&#160;</td><td class="mdescRight">Request updated group info (member list, roles).  <br /></td></tr>
 <tr class="separator:ae8e6cd3d31f5d221cabad85e21ddc009"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9fddd966911296b4a40f1fda0362f57a" id="r_a9fddd966911296b4a40f1fda0362f57a"><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkManager.html#a9fddd966911296b4a40f1fda0362f57a">getGroupName</a> (const QString &amp;groupId) const</td></tr>
+<tr class="memdesc:a9fddd966911296b4a40f1fda0362f57a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the stored display name for a group, or groupId if unknown.  <br /></td></tr>
+<tr class="separator:a9fddd966911296b4a40f1fda0362f57a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a97d1fb741f609c2442efdfd92e944ed2" id="r_a97d1fb741f609c2442efdfd92e944ed2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkManager.html#a97d1fb741f609c2442efdfd92e944ed2">isConnected</a> () const</td></tr>
 <tr class="memdesc:a97d1fb741f609c2442efdfd92e944ed2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if the WebSocket is in ConnectedState.  <br /></td></tr>
 <tr class="separator:a97d1fb741f609c2442efdfd92e944ed2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -600,6 +609,26 @@ Properties</h2></td></tr>
 
 </div>
 </div>
+<a id="a9fddd966911296b4a40f1fda0362f57a" name="a9fddd966911296b4a40f1fda0362f57a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9fddd966911296b4a40f1fda0362f57a">&#9670;&#160;</a></span>getGroupName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString NetworkManager::getGroupName </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>groupId</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return the stored display name for a group, or groupId if unknown. </p>
+
+</div>
+</div>
 <a id="a487b7f0a5ef2af0dfd9e2b53959d308c" name="a487b7f0a5ef2af0dfd9e2b53959d308c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a487b7f0a5ef2af0dfd9e2b53959d308c">&#9670;&#160;</a></span>grantAdmin()</h2>
 
@@ -627,6 +656,112 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Creator: grant admin role to a member. </p>
+
+</div>
+</div>
+<a id="ae7c5fa5545a263b2e75c41b9aaa6f2ba" name="ae7c5fa5545a263b2e75c41b9aaa6f2ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae7c5fa5545a263b2e75c41b9aaa6f2ba">&#9670;&#160;</a></span>groupConvUpdated</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NetworkManager::groupConvUpdated </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>groupId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>groupName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>lastMessage</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>lastTimestamp</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">signal</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Emitted once per group during local history load for sidebar population. </p>
+
+</div>
+</div>
+<a id="a57295b0fe8b8dcb07c51e40e3b7f01c5" name="a57295b0fe8b8dcb07c51e40e3b7f01c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a57295b0fe8b8dcb07c51e40e3b7f01c5">&#9670;&#160;</a></span>groupHistorySyncMessage</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NetworkManager::groupHistorySyncMessage </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>groupId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>sender</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>content</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>timestamp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>isOutgoing</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">signal</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Emitted once per group message during local history load. </p>
 
 </div>
 </div>

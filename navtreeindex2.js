@@ -1,5 +1,8 @@
 var NAVTREEINDEX2 =
 {
+"classReadReceiptHandler.html#ab979ce934a371f20eb27db87b7f9fe1d":[0,0,49,1],
+"classReadReceiptHandler.html#afcd7e4248f60a13b419a7ece01dcadb4":[0,0,49,2],
+"classRegisterHandler.html":[0,0,50],
 "classRegisterHandler.html#a08d25d31268049839550fb69e1a68bdf":[0,0,50,2],
 "classRegisterHandler.html#ad34c688d1684ef0629ca9cce10a13b3d":[0,0,50,0],
 "classRegisterHandler.html#afea030552983100a54a025568707c33b":[0,0,50,1],
