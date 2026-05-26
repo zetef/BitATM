@@ -130,6 +130,7 @@ Rectangle {
             clip: true
 
             delegate: ItemDelegate {
+                id: convDelegate
                 width: ListView.view.width
                 height: 60
                 highlighted: convListPage.activePeer === (model.is_group ? model.group_id : model.username)
@@ -142,10 +143,10 @@ Rectangle {
 
                 Column {
                     anchors.left: parent.left
-                    anchors.right: parent.right
+                    anchors.right: deleteBtn.left
                     anchors.verticalCenter: parent.verticalCenter
                     anchors.leftMargin: 12
-                    anchors.rightMargin: 12
+                    anchors.rightMargin: 6
                     spacing: 2
 
                     Label {
@@ -165,6 +166,37 @@ Rectangle {
                         font.pixelSize: 11
                         font.family: "Monospace"
                         elide: Text.ElideRight
+                    }
+                }
+
+                Button {
+                    id: deleteBtn
+                    anchors.right: parent.right
+                    anchors.rightMargin: 8
+                    anchors.verticalCenter: parent.verticalCenter
+                    visible: convDelegate.hovered
+                    width: 28
+                    height: 28
+                    text: "×"
+                    onClicked: {
+                        if (model.is_group)
+                            networkManager.deleteGroup(model.group_id)
+                        else
+                            networkManager.deleteConversation(model.username)
+                    }
+                    contentItem: Text {
+                        text: parent.text
+                        color: "#ff3333"
+                        font.pixelSize: 16
+                        font.family: "Monospace"
+                        horizontalAlignment: Text.AlignHCenter
+                        verticalAlignment: Text.AlignVCenter
+                    }
+                    background: Rectangle {
+                        color: parent.down ? "#1a0000" : "transparent"
+                        radius: 0
+                        border.color: parent.hovered ? "#ff3333" : "transparent"
+                        border.width: 1
                     }
                 }
 

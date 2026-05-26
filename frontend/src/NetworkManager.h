@@ -95,6 +95,9 @@ public:
     /** @brief Return the stored display name for a group, or groupId if unknown. */
     Q_INVOKABLE QString getGroupName(const QString& groupId) const;
 
+    /** @brief Delete a conversation from local cache. Messages stay on the server. */
+    Q_INVOKABLE void deleteConversation(const QString& peer);
+
     /** @brief Returns true if the WebSocket is in ConnectedState. */
     bool isConnected() const;
 
@@ -119,6 +122,9 @@ signals:
 
     /** @brief Emitted when an incoming MESSAGE packet is successfully decrypted. */
     void messageDecrypted(const QString& from, const QString& plaintext, const QString& timestamp);
+
+    /** @brief Emitted after a conversation is deleted from local cache. */
+    void conversationDeleted(const QString& peer);
 
     /** @brief Emitted when a KEY_EXCHANGE response delivers a peer's public key. */
     void peerKeyReceived(const QString& username, const QString& publicKey);

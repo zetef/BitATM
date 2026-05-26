@@ -87,6 +87,14 @@ ApplicationWindow {
             convListModel.addOrUpdate(peer, lastMessage, lastTimestamp)
         }
 
+        function onConversationDeleted(peer) {
+            convListModel.remove(peer)
+            if (root.activePeer === peer) {
+                chatModel.clearAll()
+                root.activePeer = ""
+            }
+        }
+
         function onGroupInviteReceived(groupId, groupName) {
             convListModel.addOrUpdateGroup(groupId, groupName, "Group invite received", "")
         }

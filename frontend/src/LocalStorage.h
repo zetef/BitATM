@@ -105,6 +105,9 @@ public:
     /** @brief Remove a group and all related records (messages, key) from the local cache. */
     void removeGroup(const QString& groupId);
 
+    /** @brief Delete all messages and the conversation summary row for a single peer. */
+    void deleteConversation(const QString& peer);
+
     /** @brief Delete all rows from every table. Called when a different user logs in. */
     void clearAllData();
 

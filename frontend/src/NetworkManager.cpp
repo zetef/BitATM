@@ -494,6 +494,11 @@ void NetworkManager::deleteGroup(const QString& groupId) {
     sendPacket(p);
 }
 
+void NetworkManager::deleteConversation(const QString& peer) {
+    LocalStorage::instance().deleteConversation(peer);
+    emit conversationDeleted(peer);
+}
+
 void NetworkManager::fetchGroupInfo(const QString& groupId) {
     Packet p;
     p.type = PacketType::GROUP_INFO;

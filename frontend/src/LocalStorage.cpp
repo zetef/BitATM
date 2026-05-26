@@ -329,6 +329,19 @@ bool LocalStorage::isGroupMessageDuplicate(const QString& groupId, const QString
     return q.exec() && q.next();
 }
 
+void LocalStorage::deleteConversation(const QString& peer) {
+    QSqlQuery q(_db);
+    q.prepare("DELETE FROM messages WHERE peer=?");
+    q.addBindValue(peer);
+    if (!q.exec())
+        qCWarning(logStorage) << "deleteConversation (messages):" << q.lastError().text();
+    q.prepare("DELETE FROM conversations WHERE peer=?");
+    q.addBindValue(peer);
+    if (!q.exec())
+        qCWarning(logStorage) << "deleteConversation (conversations):" << q.lastError().text();
+    qCInfo(logStorage) << "Deleted local conversation with" << peer;
+}
+
 void LocalStorage::clearAllData() {
     QSqlQuery q(_db);
     q.exec("DELETE FROM group_messages");
