@@ -321,7 +321,7 @@ void NetworkManager::sendCreateGroupPacket(const PendingGroupCreate& pending) {
     p.from = _currentUsername.toStdString();
     p.errorMsg = pending.name.toStdString();
     p.body = pending.members.join(",").toStdString();
-    p.key = keyParts.join("|").toStdString();
+    p.key = keyParts.join(";").toStdString();
     sendPacket(p);
 }
 
