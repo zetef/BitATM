@@ -134,20 +134,23 @@ void NetworkManager::encryptAndSend(const QString& to, const QString& plaintext,
 
 void NetworkManager::loadOrGenerateKeypair() {
     QSettings settings("BitATM", "BitATM");
-    QByteArray pub = settings.value("crypto/pubkey").toByteArray();
-    QByteArray priv = settings.value("crypto/privkey").toByteArray();
+    // Keys are scoped per username so different accounts don't overwrite each other
+    const QString pubKey = "crypto/" + _currentUsername + "/pubkey";
+    const QString privKey = "crypto/" + _currentUsername + "/privkey";
+    QByteArray pub = settings.value(pubKey).toByteArray();
+    QByteArray priv = settings.value(privKey).toByteArray();
 
     if (!pub.isEmpty() && !priv.isEmpty()) {
         _ownPubKey = pub;
         _ownPrivKey = priv;
-        qCInfo(logNetwork) << "Loaded existing RSA keypair";
+        qCInfo(logNetwork) << "Loaded existing RSA keypair for" << _currentUsername;
     } else {
         auto [pubPem, privPem] = _crypto.generateRSAKeypair();
         _ownPubKey = pubPem;
         _ownPrivKey = privPem;
-        settings.setValue("crypto/pubkey", _ownPubKey);
-        settings.setValue("crypto/privkey", _ownPrivKey);
-        qCInfo(logNetwork) << "Generated new RSA keypair";
+        settings.setValue(pubKey, _ownPubKey);
+        settings.setValue(privKey, _ownPrivKey);
+        qCInfo(logNetwork) << "Generated new RSA keypair for" << _currentUsername;
     }
 }
 
@@ -237,6 +240,7 @@ void NetworkManager::handleIncomingMessage(const Packet& p) {
 
     if (isOutgoingEcho) {
         const QString peer = QString::fromStdString(p.to);
+        if (peer == _currentUsername) return;  // ignore self-messages
         if (LocalStorage::instance().isDuplicate(peer, _currentUsername, ts)) return;
 
         // For real-time sibling echo, key field has "recipientKey;senderKey"
@@ -277,6 +281,7 @@ void NetworkManager::handleIncomingMessage(const Packet& p) {
         QString plaintext = _crypto.decrypt(QString::fromStdString(p.body), aesKey);
 
         const QString from = QString::fromStdString(p.from);
+        if (from == _currentUsername) return;  // ignore self-messages
         if (LocalStorage::instance().isDuplicate(from, from, ts)) {
             qCInfo(logChat) << "Skipping duplicate message from" << from;
             return;
