@@ -175,9 +175,9 @@ Rectangle {
                     anchors.rightMargin: 8
                     anchors.verticalCenter: parent.verticalCenter
                     visible: convDelegate.hovered
-                    width: 28
-                    height: 28
-                    text: "×"
+                    width: 36
+                    height: 24
+                    text: "[x]"
                     onClicked: {
                         if (model.is_group)
                             networkManager.deleteGroup(model.group_id)
@@ -187,7 +187,7 @@ Rectangle {
                     contentItem: Text {
                         text: parent.text
                         color: "#ff3333"
-                        font.pixelSize: 16
+                        font.pixelSize: 11
                         font.family: "Monospace"
                         horizontalAlignment: Text.AlignHCenter
                         verticalAlignment: Text.AlignVCenter
@@ -195,7 +195,7 @@ Rectangle {
                     background: Rectangle {
                         color: parent.down ? "#1a0000" : "transparent"
                         radius: 0
-                        border.color: parent.hovered ? "#ff3333" : "transparent"
+                        border.color: "#ff3333"
                         border.width: 1
                     }
                 }
