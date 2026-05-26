@@ -547,6 +547,8 @@ void NetworkManager::handleGroupLeave(const Packet& p) {
     } else {
         const QString groupId = QString::fromStdString(p.body);
         _groupKeys.remove(groupId);
+        _groupNames.remove(groupId);
+        LocalStorage::instance().removeGroup(groupId);
         emit groupLeft(groupId);
     }
 }
