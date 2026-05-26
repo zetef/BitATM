@@ -15,10 +15,7 @@ Rectangle {
 
     CreateGroupDialog {
         id: createGroupDialog
-        visible: false
-        anchors.centerIn: parent
-        z: 20
-        onClosed: createGroupDialog.visible = false
+        isMobile: convListPage.isMobile
     }
 
     ColumnLayout {
@@ -108,7 +105,7 @@ Rectangle {
                 text: "[+G]"
                 width: 42
                 height: newChatInput.height
-                onClicked: createGroupDialog.visible = true
+                onClicked: createGroupDialog.open()
                 contentItem: Text {
                     text: parent.text
                     color: "#c8c8c8"

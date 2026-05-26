@@ -2,97 +2,235 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 
-Rectangle {
-    id: dialog
-    color: "#252535"
-    radius: 8
-    width: 320
-    height: col.implicitHeight + 32
-
+Item {
+    id: root
+    property bool isMobile: false
     signal closed()
 
-    ColumnLayout {
-        id: col
-        anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.top: parent.top
-        anchors.margins: 16
-        spacing: 10
+    function open() {
+        if (root.isMobile) mobileDrawer.open()
+        else desktopPopup.open()
+    }
 
-        Label {
-            text: "New Group"
-            color: "#cdd6f4"
-            font.pixelSize: 16
-            font.bold: true
+    // --- Desktop: centered Popup over full window ---
+    Popup {
+        id: desktopPopup
+        parent: Overlay.overlay
+        anchors.centerIn: parent
+        modal: true
+        padding: 20
+        width: 360
+
+        Overlay.modal: Rectangle { color: "#0a0a0a"; opacity: 0.75 }
+
+        background: Rectangle {
+            color: "#0f0f0f"
+            border.color: "#404040"
+            border.width: 1
+            radius: 0
         }
 
-        TextField {
-            id: groupNameInput
-            Layout.fillWidth: true
-            placeholderText: "Group name"
-            color: "#cdd6f4"
-            placeholderTextColor: "#585b70"
-            background: Rectangle { color: "#313244"; radius: 4 }
-            padding: 8
-        }
+        contentItem: ColumnLayout {
+            spacing: 10
 
-        TextField {
-            id: membersInput
-            Layout.fillWidth: true
-            placeholderText: "Members (comma-separated usernames)"
-            color: "#cdd6f4"
-            placeholderTextColor: "#585b70"
-            background: Rectangle { color: "#313244"; radius: 4 }
-            padding: 8
-        }
-
-        Label {
-            visible: membersInput.text.length > 0
-            text: {
-                var parts = membersInput.text.split(",").filter(function(s) { return s.trim().length > 0 })
-                return "You + " + parts.length + " member(s)"
+            Label {
+                text: "> new group"
+                color: "#00ff41"
+                font.pixelSize: 15
+                font.bold: true
+                font.family: "Monospace"
             }
-            color: "#6c7086"
-            font.pixelSize: 11
-        }
 
-        Row {
-            spacing: 8
+            TextField {
+                id: desktopGroupName
+                Layout.fillWidth: true
+                placeholderText: "> group name"
+                color: "#c8c8c8"
+                placeholderTextColor: "#505050"
+                font.family: "Monospace"
+                background: Rectangle { color: "#1a1a1a"; radius: 0 }
+                padding: 8
+            }
 
-            Button {
-                text: "Cancel"
-                onClicked: dialog.closed()
-                contentItem: Text {
-                    text: parent.text; color: "#cdd6f4"; font.pixelSize: 12
-                    horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter
+            TextField {
+                id: desktopMembers
+                Layout.fillWidth: true
+                placeholderText: "> members (comma-separated)"
+                color: "#c8c8c8"
+                placeholderTextColor: "#505050"
+                font.family: "Monospace"
+                background: Rectangle { color: "#1a1a1a"; radius: 0 }
+                padding: 8
+            }
+
+            Label {
+                visible: desktopMembers.text.length > 0
+                text: {
+                    var parts = desktopMembers.text.split(",").filter(function(s) { return s.trim().length > 0 })
+                    return "you + " + parts.length + " member(s)"
                 }
-                background: Rectangle { color: parent.down ? "#45475a" : "#313244"; radius: 4 }
+                color: "#505050"
+                font.pixelSize: 11
+                font.family: "Monospace"
             }
 
-            Button {
-                text: "Create"
-                enabled: groupNameInput.text.trim().length > 0 && membersInput.text.trim().length > 0
-                onClicked: {
-                    var rawParts = membersInput.text.split(",")
-                    var memberList = []
-                    for (var i = 0; i < rawParts.length; ++i) {
-                        var s = rawParts[i].trim()
-                        if (s.length > 0) memberList.push(s)
+            Row {
+                spacing: 8
+
+                Button {
+                    text: "[cancel]"
+                    onClicked: desktopPopup.close()
+                    contentItem: Text {
+                        text: parent.text; color: "#c8c8c8"; font.pixelSize: 12
+                        font.family: "Monospace"
+                        horizontalAlignment: Text.AlignHCenter
+                        verticalAlignment: Text.AlignVCenter
                     }
-                    networkManager.createGroup(groupNameInput.text.trim(), memberList)
-                    groupNameInput.text = ""
-                    membersInput.text = ""
-                    dialog.closed()
+                    background: Rectangle {
+                        color: parent.down ? "#222222" : "#1a1a1a"
+                        radius: 0; border.color: "#505050"; border.width: 1
+                    }
                 }
-                contentItem: Text {
-                    text: parent.text; color: "#1e1e2e"; font.pixelSize: 12
-                    horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter
-                }
-                background: Rectangle {
-                    color: parent.enabled ? (parent.down ? "#74a0e8" : "#89b4fa") : "#45475a"
-                    radius: 4
+
+                Button {
+                    text: "[+ create]"
+                    enabled: desktopGroupName.text.trim().length > 0 && desktopMembers.text.trim().length > 0
+                    onClicked: {
+                        var rawParts = desktopMembers.text.split(",")
+                        var memberList = []
+                        for (var i = 0; i < rawParts.length; ++i) {
+                            var s = rawParts[i].trim()
+                            if (s.length > 0) memberList.push(s)
+                        }
+                        networkManager.createGroup(desktopGroupName.text.trim(), memberList)
+                        desktopGroupName.text = ""
+                        desktopMembers.text = ""
+                        desktopPopup.close()
+                    }
+                    contentItem: Text {
+                        text: parent.text; color: "#0a0a0a"; font.pixelSize: 12
+                        font.family: "Monospace"
+                        horizontalAlignment: Text.AlignHCenter
+                        verticalAlignment: Text.AlignVCenter
+                    }
+                    background: Rectangle {
+                        color: parent.enabled ? (parent.down ? "#00cc33" : "#00ff41") : "#222222"
+                        radius: 0
+                    }
                 }
             }
         }
+
+        onClosed: root.closed()
+    }
+
+    // --- Mobile: bottom sheet Drawer ---
+    Drawer {
+        id: mobileDrawer
+        edge: Qt.BottomEdge
+        width: Overlay.overlay ? Overlay.overlay.width : 400
+        height: mobileForm.implicitHeight + 48
+
+        background: Rectangle {
+            color: "#0f0f0f"
+            Rectangle { width: parent.width; height: 1; color: "#404040" }
+        }
+
+        ColumnLayout {
+            id: mobileForm
+            x: 20
+            y: 20
+            width: parent.width - 40
+            spacing: 10
+
+            Label {
+                text: "> new group"
+                color: "#00ff41"
+                font.pixelSize: 15
+                font.bold: true
+                font.family: "Monospace"
+            }
+
+            TextField {
+                id: mobileGroupName
+                Layout.fillWidth: true
+                placeholderText: "> group name"
+                color: "#c8c8c8"
+                placeholderTextColor: "#505050"
+                font.family: "Monospace"
+                background: Rectangle { color: "#1a1a1a"; radius: 0 }
+                padding: 8
+            }
+
+            TextField {
+                id: mobileMembers
+                Layout.fillWidth: true
+                placeholderText: "> members (comma-separated)"
+                color: "#c8c8c8"
+                placeholderTextColor: "#505050"
+                font.family: "Monospace"
+                background: Rectangle { color: "#1a1a1a"; radius: 0 }
+                padding: 8
+            }
+
+            Label {
+                visible: mobileMembers.text.length > 0
+                text: {
+                    var parts = mobileMembers.text.split(",").filter(function(s) { return s.trim().length > 0 })
+                    return "you + " + parts.length + " member(s)"
+                }
+                color: "#505050"
+                font.pixelSize: 11
+                font.family: "Monospace"
+            }
+
+            Row {
+                spacing: 8
+
+                Button {
+                    text: "[cancel]"
+                    onClicked: mobileDrawer.close()
+                    contentItem: Text {
+                        text: parent.text; color: "#c8c8c8"; font.pixelSize: 12
+                        font.family: "Monospace"
+                        horizontalAlignment: Text.AlignHCenter
+                        verticalAlignment: Text.AlignVCenter
+                    }
+                    background: Rectangle {
+                        color: parent.down ? "#222222" : "#1a1a1a"
+                        radius: 0; border.color: "#505050"; border.width: 1
+                    }
+                }
+
+                Button {
+                    text: "[+ create]"
+                    enabled: mobileGroupName.text.trim().length > 0 && mobileMembers.text.trim().length > 0
+                    onClicked: {
+                        var rawParts = mobileMembers.text.split(",")
+                        var memberList = []
+                        for (var i = 0; i < rawParts.length; ++i) {
+                            var s = rawParts[i].trim()
+                            if (s.length > 0) memberList.push(s)
+                        }
+                        networkManager.createGroup(mobileGroupName.text.trim(), memberList)
+                        mobileGroupName.text = ""
+                        mobileMembers.text = ""
+                        mobileDrawer.close()
+                    }
+                    contentItem: Text {
+                        text: parent.text; color: "#0a0a0a"; font.pixelSize: 12
+                        font.family: "Monospace"
+                        horizontalAlignment: Text.AlignHCenter
+                        verticalAlignment: Text.AlignVCenter
+                    }
+                    background: Rectangle {
+                        color: parent.enabled ? (parent.down ? "#00cc33" : "#00ff41") : "#222222"
+                        radius: 0
+                    }
+                }
+            }
+        }
+
+        onClosed: root.closed()
     }
 }
