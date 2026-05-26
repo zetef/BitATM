@@ -191,8 +191,18 @@ void NetworkManager::handleLoginAck(const Packet& p) {
     _lastMessage = "Logged in as " + _currentUsername;
     emit currentUsernameChanged();
 
+    QSettings settings("BitATM", "BitATM");
+
+    // Clear local cache if a different user is logging in to prevent data leakage
+    const QString lastUser = settings.value("session/lastUsername").toString();
+    if (!lastUser.isEmpty() && lastUser != _currentUsername) {
+        LocalStorage::instance().clearAllData();
+        qCInfo(logNetwork) << "User switched from" << lastUser << "to" << _currentUsername
+                           << "- local cache cleared";
+    }
+    settings.setValue("session/lastUsername", _currentUsername);
+
     if (_pendingRegister) {
-        QSettings settings("BitATM", "BitATM");
         settings.remove("history/" + _currentUsername);
         _pendingRegister = false;
     }
