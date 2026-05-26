@@ -3,12 +3,14 @@
 #include <sstream>
 
 Message::Message(int id, std::string sender, std::string recipient, std::string encryptedBody,
-                 std::string encryptedKey, std::string status, std::string createdAt)
+                 std::string encryptedKey, std::string senderEncryptedKey, std::string status,
+                 std::string createdAt)
     : _id(id),
       _sender(std::move(sender)),
       _recipient(std::move(recipient)),
       _encryptedBody(std::move(encryptedBody)),
       _encryptedKey(std::move(encryptedKey)),
+      _senderEncryptedKey(std::move(senderEncryptedKey)),
       _status(std::move(status)),
       _createdAt(std::move(createdAt)) {}
 

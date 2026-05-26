@@ -17,13 +17,15 @@ class Message : public IEntity {
     std::string _recipient;
     std::string _encryptedBody;
     std::string _encryptedKey;
+    std::string _senderEncryptedKey;
     std::string _status;
     std::string _createdAt;
 
 public:
     Message() = default;
     Message(int id, std::string sender, std::string recipient, std::string encryptedBody,
-            std::string encryptedKey, std::string status = "sent", std::string createdAt = {});
+            std::string encryptedKey, std::string senderEncryptedKey = {},
+            std::string status = "sent", std::string createdAt = {});
     Message(const Message&) = default;
     Message(Message&&) noexcept = default;
     Message& operator=(const Message&) = default;
@@ -35,6 +37,7 @@ public:
     const std::string& getRecipient() const { return _recipient; }
     const std::string& getEncryptedBody() const { return _encryptedBody; }
     const std::string& getEncryptedKey() const { return _encryptedKey; }
+    const std::string& getSenderEncryptedKey() const { return _senderEncryptedKey; }
     const std::string& getStatus() const { return _status; }
     const std::string& getCreatedAt() const { return _createdAt; }
 
