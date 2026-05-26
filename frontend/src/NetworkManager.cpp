@@ -437,6 +437,14 @@ void NetworkManager::leaveGroup(const QString& groupId) {
     sendPacket(p);
 }
 
+void NetworkManager::deleteGroup(const QString& groupId) {
+    Packet p;
+    p.type = PacketType::DELETE_GROUP;
+    p.from = _currentUsername.toStdString();
+    p.to = groupId.toStdString();
+    sendPacket(p);
+}
+
 void NetworkManager::fetchGroupInfo(const QString& groupId) {
     Packet p;
     p.type = PacketType::GROUP_INFO;
@@ -539,6 +547,8 @@ void NetworkManager::handleGroupLeave(const Packet& p) {
     } else {
         const QString groupId = QString::fromStdString(p.body);
         _groupKeys.remove(groupId);
+        _groupNames.remove(groupId);
+        LocalStorage::instance().removeGroup(groupId);
         emit groupLeft(groupId);
     }
 }

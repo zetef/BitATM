@@ -102,6 +102,9 @@ public:
     bool isGroupMessageDuplicate(const QString& groupId, const QString& sender,
                                  const QString& timestamp);
 
+    /** @brief Remove a group and all related records (messages, key) from the local cache. */
+    void removeGroup(const QString& groupId);
+
 private:
     LocalStorage() = default;
     LocalStorage(const LocalStorage&) = delete;

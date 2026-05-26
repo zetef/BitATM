@@ -165,6 +165,25 @@ Rectangle {
 
         Button {
             Layout.alignment: Qt.AlignRight
+            text: "[delete group]"
+            visible: sheet.currentUserRole === "creator"
+            onClicked: {
+                networkManager.deleteGroup(sheet.groupId)
+                sheet.closed()
+            }
+            contentItem: Text {
+                text: parent.text; color: "#ff3333"; font.pixelSize: 11
+                font.family: "Monospace"
+                horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter
+            }
+            background: Rectangle {
+                color: parent.down ? "#1a0000" : "transparent"
+                radius: 0; border.color: "#ff3333"; border.width: 1
+            }
+        }
+
+        Button {
+            Layout.alignment: Qt.AlignRight
             text: "[close]"
             onClicked: sheet.closed()
             contentItem: Text {

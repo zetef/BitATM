@@ -328,3 +328,18 @@ bool LocalStorage::isGroupMessageDuplicate(const QString& groupId, const QString
     q.addBindValue(timestamp);
     return q.exec() && q.next();
 }
+
+void LocalStorage::removeGroup(const QString& groupId) {
+    QSqlQuery q(_db);
+    q.prepare("DELETE FROM group_messages WHERE group_id=?");
+    q.addBindValue(groupId);
+    if (!q.exec()) qCWarning(logStorage) << "removeGroup (messages):" << q.lastError().text();
+
+    q.prepare("DELETE FROM group_keys WHERE group_id=?");
+    q.addBindValue(groupId);
+    if (!q.exec()) qCWarning(logStorage) << "removeGroup (keys):" << q.lastError().text();
+
+    q.prepare("DELETE FROM groups WHERE group_id=?");
+    q.addBindValue(groupId);
+    if (!q.exec()) qCWarning(logStorage) << "removeGroup (groups):" << q.lastError().text();
+}
