@@ -34,10 +34,20 @@ void SyncHistoryHandler::execute(Packet& packet, ClientSession& session) {
         fwd.from = msg.getSender();
         fwd.to = msg.getRecipient();
         fwd.body = msg.getEncryptedBody();
-        fwd.key = msg.getEncryptedKey();
         fwd.timestamp = msg.getCreatedAt();
-        // errorMsg repurposed as isOutgoing flag on MESSAGE packets during sync
-        fwd.errorMsg = (msg.getSender() == username) ? "1" : "0";
+
+        const bool isOutgoing = (msg.getSender() == username);
+        fwd.errorMsg = isOutgoing ? "1" : "0";
+
+        if (isOutgoing && !msg.getSenderEncryptedKey().empty()) {
+            // Send sender's own key copy so the sibling device can decrypt
+            fwd.key = msg.getSenderEncryptedKey();
+        } else {
+            // Incoming message or legacy row (no sender key stored): send recipient key
+            // Frontend falls back to "[Sent]" if it cannot decrypt
+            fwd.key = msg.getEncryptedKey();
+        }
+
         session.send(fwd);
     }
 
