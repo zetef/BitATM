@@ -86,6 +86,9 @@ public:
     /** @brief Leave a group voluntarily. */
     Q_INVOKABLE void leaveGroup(const QString& groupId);
 
+    /** @brief Send DELETE_GROUP packet to permanently delete the group (creator only). */
+    Q_INVOKABLE void deleteGroup(const QString& groupId);
+
     /** @brief Request updated group info (member list, roles). */
     Q_INVOKABLE void fetchGroupInfo(const QString& groupId);
 
