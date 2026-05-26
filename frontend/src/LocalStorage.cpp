@@ -329,6 +329,16 @@ bool LocalStorage::isGroupMessageDuplicate(const QString& groupId, const QString
     return q.exec() && q.next();
 }
 
+void LocalStorage::clearAllData() {
+    QSqlQuery q(_db);
+    q.exec("DELETE FROM group_messages");
+    q.exec("DELETE FROM group_keys");
+    q.exec("DELETE FROM groups");
+    q.exec("DELETE FROM messages");
+    q.exec("DELETE FROM conversations");
+    qCInfo(logStorage) << "LocalStorage cleared for user switch";
+}
+
 void LocalStorage::removeGroup(const QString& groupId) {
     QSqlQuery q(_db);
     q.prepare("DELETE FROM group_messages WHERE group_id=?");

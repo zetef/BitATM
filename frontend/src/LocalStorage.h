@@ -105,6 +105,9 @@ public:
     /** @brief Remove a group and all related records (messages, key) from the local cache. */
     void removeGroup(const QString& groupId);
 
+    /** @brief Delete all rows from every table. Called when a different user logs in. */
+    void clearAllData();
+
 private:
     LocalStorage() = default;
     LocalStorage(const LocalStorage&) = delete;
