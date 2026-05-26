@@ -110,9 +110,10 @@ void CreateGroupHandler::execute(Packet& packet, ClientSession& session) {
         }
     }
 
-    // Build member list string for GROUP_INFO response: "user:role|..."
+    // Build member list string for GROUP_INFO response: "user:role;..."
+    // Semicolon avoids collision with the pipe wire-format delimiter
     std::string memberList = creator + ":creator";
-    for (const auto& m : members) memberList += "|" + m + ":member";
+    for (const auto& m : members) memberList += ";" + m + ":member";
 
     // Reply to creator with GROUP_INFO
     Packet info;

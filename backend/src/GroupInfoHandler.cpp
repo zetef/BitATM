@@ -36,7 +36,7 @@ void GroupInfoHandler::execute(Packet& packet, ClientSession& session) {
     auto members = repo.getMembers(groupId);
     std::string memberList;
     for (const auto& m : members) {
-        if (!memberList.empty()) memberList += "|";
+        if (!memberList.empty()) memberList += ";";
         memberList += m.username + ":" + m.role;
     }
 
