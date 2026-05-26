@@ -10,6 +10,7 @@ var classLocalStorage =
     [ "loadMessages", "classLocalStorage.html#a854564c9de4d3d95b49a29b0ccc5b44b", null ],
     [ "newestTimestamp", "classLocalStorage.html#a1da495871df90969dcdfdb848b0e7b27", null ],
     [ "open", "classLocalStorage.html#ad21ff41070edb6041563a977462daaea", null ],
+    [ "removeGroup", "classLocalStorage.html#ad86253db00e34a43abd87da056c651ee", null ],
     [ "saveConversation", "classLocalStorage.html#a305331be3cb0cd51bd7a3f8a8892d0fa", null ],
     [ "saveGroup", "classLocalStorage.html#aa687237b59bc3516cbdd95478bd341b7", null ],
     [ "saveGroupKey", "classLocalStorage.html#a72f411de93c42872583500def6b7564d", null ],

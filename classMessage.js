@@ -1,7 +1,7 @@
 var classMessage =
 [
     [ "Message", "classMessage.html#a4e0c3e0a2be25186519ba075d7851b71", null ],
-    [ "Message", "classMessage.html#a62cc5cb3e230a9a6e766f343ac55920c", null ],
+    [ "Message", "classMessage.html#afb44a8d68b036667c15f9e6f264b136f", null ],
     [ "Message", "classMessage.html#a497221f3a915b3e5c2e69d4074dde5f7", null ],
     [ "Message", "classMessage.html#adfa636c8765376ea38b2aec4edca5980", null ],
     [ "~Message", "classMessage.html#af68f5801c560c1b51c5458067e9b3fdd", null ],
@@ -12,6 +12,7 @@ var classMessage =
     [ "getId", "classMessage.html#a8787580b81215372b898eadbe54a82fb", null ],
     [ "getRecipient", "classMessage.html#aad96a42dbfd135522f3f76671d604154", null ],
     [ "getSender", "classMessage.html#a014cebbb88637fd79ba5fe2c9989fd8b", null ],
+    [ "getSenderEncryptedKey", "classMessage.html#a95935dde7cddc46cb2dd3c6a287fee84", null ],
     [ "getStatus", "classMessage.html#a746b5db3ed3e5777f0886b4a71ae8e0c", null ],
     [ "operator<", "classMessage.html#adcff5d6cc2990635a0dd2d097f6116ad", null ],
     [ "operator=", "classMessage.html#a478b9e0bc362662cc32b367c3113e010", null ],

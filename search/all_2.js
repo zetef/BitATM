@@ -12,7 +12,7 @@ var searchData=
   ['clientsession_2eh_9',['ClientSession.h',['../ClientSession_8h.html',1,'']]],
   ['close_10',['close',['../classLocalStorage.html#a65c1f42f831642375777d54843b25aba',1,'LocalStorage']]],
   ['code_11',['code',['../classAppException.html#a3056373fbe8ee3d02cadbd143b0f895a',1,'AppException']]],
-  ['connected_12',['connected',['../classNetworkManager.html#aa2d7233230f2d609c31d9fd064c2f461',1,'NetworkManager::connected()'],['../classClientSession.html#a7285e048076fc75300a4becab14c6378a2ec0d16e4ca169baedb9b2d50ec5c6d7',1,'ClientSession::Connected']]],
+  ['connected_12',['connected',['../classClientSession.html#a7285e048076fc75300a4becab14c6378a2ec0d16e4ca169baedb9b2d50ec5c6d7',1,'ClientSession::Connected'],['../classNetworkManager.html#aa2d7233230f2d609c31d9fd064c2f461',1,'NetworkManager::connected()']]],
   ['connectionchanged_13',['connectionChanged',['../classNetworkManager.html#a63f17e322ae0d09f6c0c1d8b9c54a0b5',1,'NetworkManager']]],
   ['connectionhandler_14',['connectionhandler',['../classConnectionHandler.html',1,'ConnectionHandler'],['../classConnectionHandler.html#a8a45db472a37d6387fc7e0b7e42b1ea9',1,'ConnectionHandler::ConnectionHandler()']]],
   ['connectionhandlerfactory_15',['connectionhandlerfactory',['../classConnectionHandlerFactory.html',1,'ConnectionHandlerFactory'],['../classConnectionHandlerFactory.html#ab369c1a8c7508f28cc3af168fbc2554d',1,'ConnectionHandlerFactory::ConnectionHandlerFactory()']]],

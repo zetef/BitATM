@@ -16,6 +16,7 @@ var annotated_dup =
     [ "CryptoException", "classCryptoException.html", "classCryptoException" ],
     [ "DbException", "classDbException.html", "classDbException" ],
     [ "DbManager", "classDbManager.html", "classDbManager" ],
+    [ "DeleteGroupHandler", "classDeleteGroupHandler.html", "classDeleteGroupHandler" ],
     [ "GroupInfo", "structGroupInfo.html", "structGroupInfo" ],
     [ "GroupInfoHandler", "classGroupInfoHandler.html", "classGroupInfoHandler" ],
     [ "GroupKeyExchangeHandler", "classGroupKeyExchangeHandler.html", "classGroupKeyExchangeHandler" ],

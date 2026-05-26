@@ -126,8 +126,8 @@ Collaboration diagram for Message:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a4e0c3e0a2be25186519ba075d7851b71" id="r_a4e0c3e0a2be25186519ba075d7851b71"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessage.html#a4e0c3e0a2be25186519ba075d7851b71">Message</a> ()=default</td></tr>
 <tr class="separator:a4e0c3e0a2be25186519ba075d7851b71"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a62cc5cb3e230a9a6e766f343ac55920c" id="r_a62cc5cb3e230a9a6e766f343ac55920c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessage.html#a62cc5cb3e230a9a6e766f343ac55920c">Message</a> (int id, std::string sender, std::string recipient, std::string encryptedBody, std::string encryptedKey, std::string status=&quot;sent&quot;, std::string createdAt={})</td></tr>
-<tr class="separator:a62cc5cb3e230a9a6e766f343ac55920c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb44a8d68b036667c15f9e6f264b136f" id="r_afb44a8d68b036667c15f9e6f264b136f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessage.html#afb44a8d68b036667c15f9e6f264b136f">Message</a> (int id, std::string sender, std::string recipient, std::string encryptedBody, std::string encryptedKey, std::string senderEncryptedKey={}, std::string status=&quot;sent&quot;, std::string createdAt={})</td></tr>
+<tr class="separator:afb44a8d68b036667c15f9e6f264b136f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a497221f3a915b3e5c2e69d4074dde5f7" id="r_a497221f3a915b3e5c2e69d4074dde5f7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessage.html#a497221f3a915b3e5c2e69d4074dde5f7">Message</a> (const <a class="el" href="classMessage.html">Message</a> &amp;)=default</td></tr>
 <tr class="separator:a497221f3a915b3e5c2e69d4074dde5f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adfa636c8765376ea38b2aec4edca5980" id="r_adfa636c8765376ea38b2aec4edca5980"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessage.html#adfa636c8765376ea38b2aec4edca5980">Message</a> (<a class="el" href="classMessage.html">Message</a> &amp;&amp;) noexcept=default</td></tr>
@@ -148,6 +148,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ab8aeaca553642f24bdfd84bde3bb500f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a155fb5cd521a737a2b039aa2df593251" id="r_a155fb5cd521a737a2b039aa2df593251"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessage.html#a155fb5cd521a737a2b039aa2df593251">getEncryptedKey</a> () const</td></tr>
 <tr class="separator:a155fb5cd521a737a2b039aa2df593251"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95935dde7cddc46cb2dd3c6a287fee84" id="r_a95935dde7cddc46cb2dd3c6a287fee84"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessage.html#a95935dde7cddc46cb2dd3c6a287fee84">getSenderEncryptedKey</a> () const</td></tr>
+<tr class="separator:a95935dde7cddc46cb2dd3c6a287fee84"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a746b5db3ed3e5777f0886b4a71ae8e0c" id="r_a746b5db3ed3e5777f0886b4a71ae8e0c"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessage.html#a746b5db3ed3e5777f0886b4a71ae8e0c">getStatus</a> () const</td></tr>
 <tr class="separator:a746b5db3ed3e5777f0886b4a71ae8e0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7d1b23959f8424eb7be8f786859ed9d0" id="r_a7d1b23959f8424eb7be8f786859ed9d0"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessage.html#a7d1b23959f8424eb7be8f786859ed9d0">getCreatedAt</a> () const</td></tr>
@@ -202,8 +204,8 @@ Friends</h2></td></tr>
 
 </div>
 </div>
-<a id="a62cc5cb3e230a9a6e766f343ac55920c" name="a62cc5cb3e230a9a6e766f343ac55920c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a62cc5cb3e230a9a6e766f343ac55920c">&#9670;&#160;</a></span>Message() <span class="overload">[2/4]</span></h2>
+<a id="afb44a8d68b036667c15f9e6f264b136f" name="afb44a8d68b036667c15f9e6f264b136f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afb44a8d68b036667c15f9e6f264b136f">&#9670;&#160;</a></span>Message() <span class="overload">[2/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -237,6 +239,12 @@ Friends</h2></td></tr>
           <td></td>
           <td class="paramtype">std::string&#160;</td>
           <td class="paramname"><em>encryptedKey</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>senderEncryptedKey</em> = <code>{}</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -504,6 +512,31 @@ Friends</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">const std::string &amp; Message::getSender </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a95935dde7cddc46cb2dd3c6a287fee84" name="a95935dde7cddc46cb2dd3c6a287fee84"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a95935dde7cddc46cb2dd3c6a287fee84">&#9670;&#160;</a></span>getSenderEncryptedKey()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::string &amp; Message::getSenderEncryptedKey </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>

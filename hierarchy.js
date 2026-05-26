@@ -29,6 +29,7 @@ var hierarchy =
       [ "BaseAuthHandler", "classBaseAuthHandler.html", [
         [ "AckHandler", "classAckHandler.html", null ],
         [ "CreateGroupHandler", "classCreateGroupHandler.html", null ],
+        [ "DeleteGroupHandler", "classDeleteGroupHandler.html", null ],
         [ "GroupInfoHandler", "classGroupInfoHandler.html", null ],
         [ "GroupKeyExchangeHandler", "classGroupKeyExchangeHandler.html", null ],
         [ "GroupLeaveHandler", "classGroupLeaveHandler.html", null ],

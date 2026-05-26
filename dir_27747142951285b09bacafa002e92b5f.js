@@ -12,6 +12,8 @@ var dir_27747142951285b09bacafa002e92b5f =
     [ "CreateGroupHandler.h", "CreateGroupHandler_8h.html", "CreateGroupHandler_8h" ],
     [ "DbManager.cpp", "DbManager_8cpp.html", null ],
     [ "DbManager.h", "DbManager_8h.html", "DbManager_8h" ],
+    [ "DeleteGroupHandler.cpp", "DeleteGroupHandler_8cpp.html", null ],
+    [ "DeleteGroupHandler.h", "DeleteGroupHandler_8h.html", "DeleteGroupHandler_8h" ],
     [ "GroupInfoHandler.cpp", "GroupInfoHandler_8cpp.html", null ],
     [ "GroupInfoHandler.h", "GroupInfoHandler_8h.html", "GroupInfoHandler_8h" ],
     [ "GroupKeyExchangeHandler.cpp", "GroupKeyExchangeHandler_8cpp.html", null ],
