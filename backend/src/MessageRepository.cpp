@@ -68,11 +68,12 @@ void MessageRepository::save(const Message& msg) {
             std::string encryptedKey = msg.getEncryptedKey();
             std::string senderEncryptedKey = msg.getSenderEncryptedKey();
             std::string status = msg.getStatus();
+            std::string createdAt = msg.getCreatedAt();
             // clang-format off
-            ses << "INSERT INTO messages (sender, recipient, body, encrypted_key, sender_encrypted_key, status) "
-                   "VALUES ($1, $2, $3, $4, $5, $6)",
+            ses << "INSERT INTO messages (sender, recipient, body, encrypted_key, sender_encrypted_key, status, created_at) "
+                   "VALUES ($1, $2, $3, $4, $5, $6, COALESCE(NULLIF($7, '')::timestamptz, now()))",
                 use(sender), use(recipient), use(body), use(encryptedKey),
-                use(senderEncryptedKey), use(status), now;
+                use(senderEncryptedKey), use(status), use(createdAt), now;
             // clang-format on
         } else {
             std::string status = msg.getStatus();
