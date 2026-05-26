@@ -103,6 +103,7 @@ void NetworkManager::markConversationRead(const QString& peer) {
 
 void NetworkManager::encryptAndSend(const QString& to, const QString& plaintext,
                                     const QString& timestamp) {
+    if (to == _currentUsername) return;
     try {
         QByteArray aesKey = _crypto.generateAESKey();
         QString encBody = _crypto.encrypt(plaintext, aesKey);
@@ -157,6 +158,7 @@ void NetworkManager::loadOrGenerateKeypair() {
 void NetworkManager::loadLocalHistory() {
     auto convs = LocalStorage::instance().loadConversations();
     for (auto& c : convs) {
+        if (c.peer == _currentUsername) continue;  // skip any stale self-conversation rows
         auto msgs = LocalStorage::instance().loadMessages(c.peer);
         for (auto& m : msgs) {
             emit historySyncMessage(m.peer, m.sender, m.content, m.timestamp, m.isOutgoing);

@@ -25,7 +25,10 @@ void MessageHandler::execute(Packet& packet, ClientSession& session) {
     }
 
     // Persist message - body is opaque ciphertext, server never decrypts
-    Message msg{0, packet.from, packet.to, packet.body, recipientKey, senderKey};
+    // Preserve the client-generated timestamp so sync replays use the same value
+    // the client already cached, preventing duplicate entries on next sync.
+    Message msg{0,         packet.from, packet.to,       packet.body, recipientKey,
+                senderKey, "sent",      packet.timestamp};
     MessageRepository msgRepo;
     msgRepo.save(msg);
 
