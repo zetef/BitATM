@@ -163,6 +163,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ad86253db00e34a43abd87da056c651ee" id="r_ad86253db00e34a43abd87da056c651ee"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLocalStorage.html#ad86253db00e34a43abd87da056c651ee">removeGroup</a> (const QString &amp;groupId)</td></tr>
 <tr class="memdesc:ad86253db00e34a43abd87da056c651ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove a group and all related records (messages, key) from the local cache.  <br /></td></tr>
 <tr class="separator:ad86253db00e34a43abd87da056c651ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a32f6b260624c807b29db7543b255db16" id="r_a32f6b260624c807b29db7543b255db16"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLocalStorage.html#a32f6b260624c807b29db7543b255db16">clearAllData</a> ()</td></tr>
+<tr class="memdesc:a32f6b260624c807b29db7543b255db16"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete all rows from every table. Called when a different user logs in.  <br /></td></tr>
+<tr class="separator:a32f6b260624c807b29db7543b255db16"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -174,6 +177,25 @@ Static Public Member Functions</h2></td></tr>
 <div class="textblock"><p>Singleton SQLite cache for messages and conversations. </p>
 <p>Opened once at app start. All reads/writes happen on the main thread (same as <a class="el" href="classNetworkManager.html" title="Proxy to the BitATM WebSocket server with integrated E2EE and local history.">NetworkManager</a>). Not thread-safe by design. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a32f6b260624c807b29db7543b255db16" name="a32f6b260624c807b29db7543b255db16"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a32f6b260624c807b29db7543b255db16">&#9670;&#160;</a></span>clearAllData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LocalStorage::clearAllData </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Delete all rows from every table. Called when a different user logs in. </p>
+
+</div>
+</div>
 <a id="a65c1f42f831642375777d54843b25aba" name="a65c1f42f831642375777d54843b25aba"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a65c1f42f831642375777d54843b25aba">&#9670;&#160;</a></span>close()</h2>
 

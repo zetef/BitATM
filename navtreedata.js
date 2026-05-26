@@ -56,7 +56,7 @@ var NAVTREEINDEX =
 [
 "AckHandler_8cpp.html",
 "classDbManager.html#a5ffaa2034b2e23538486d7c2213815e6",
-"classProtocolParser.html#a1877a4b37338d4ab26681424bd78f773"
+"classProtocolParser.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

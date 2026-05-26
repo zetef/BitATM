@@ -1,5 +1,6 @@
 var classLocalStorage =
 [
+    [ "clearAllData", "classLocalStorage.html#a32f6b260624c807b29db7543b255db16", null ],
     [ "close", "classLocalStorage.html#a65c1f42f831642375777d54843b25aba", null ],
     [ "isDuplicate", "classLocalStorage.html#a06b06ecfeae022a3bbe37bfc9c8d29bf", null ],
     [ "isGroupMessageDuplicate", "classLocalStorage.html#ab60f6bb97d6255b8b0eba6edf3b9d2d8", null ],
