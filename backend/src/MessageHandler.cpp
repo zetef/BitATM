@@ -15,15 +15,26 @@ void MessageHandler::validate(const Packet& packet) {
 }
 
 void MessageHandler::execute(Packet& packet, ClientSession& session) {
+    // Parse dual-key field: "recipientKey;senderKey" or plain "recipientKey"
+    std::string recipientKey = packet.key;
+    std::string senderKey;
+    const auto sep = packet.key.find(';');
+    if (sep != std::string::npos) {
+        recipientKey = packet.key.substr(0, sep);
+        senderKey = packet.key.substr(sep + 1);
+    }
+
     // Persist message - body is opaque ciphertext, server never decrypts
-    Message msg{0, packet.from, packet.to, packet.body, packet.key};
+    Message msg{0, packet.from, packet.to, packet.body, recipientKey, senderKey};
     MessageRepository msgRepo;
     msgRepo.save(msg);
 
-    // Route: online -> direct forward, offline -> queue
+    // Route to recipient: forward only their key segment
     auto recipient = _server.findClient(packet.to);
     if (recipient) {
-        recipient->send(packet);
+        Packet fwd = packet;
+        fwd.key = recipientKey;
+        recipient->send(fwd);
     } else {
         // Reload to get the generated id (save() used id=0 for insert)
         auto saved = msgRepo.findByRecipient(packet.to);
@@ -35,12 +46,13 @@ void MessageHandler::execute(Packet& packet, ClientSession& session) {
     }
 
     // Fan-out to sender's other active sessions (multi-device echo)
-    // errorMsg="1" signals to sibling that this is an outgoing message copy
+    // Keep full key field so sibling can extract senderKey segment
+    // errorMsg="1" signals to sibling that this is an outgoing copy
     auto senderSessions = _server.getSessionsForUser(packet.from);
     for (auto& sibling : senderSessions) {
         if (sibling.get() != &session) {
             try {
-                Packet echo = packet;
+                Packet echo = packet;  // packet.key still has both segments
                 echo.errorMsg = "1";
                 sibling->send(echo);
             } catch (const NetworkException&) {
@@ -49,7 +61,7 @@ void MessageHandler::execute(Packet& packet, ClientSession& session) {
         }
     }
 
-    // ACK back to sender - echo timestamp so frontend can match delivery status
+    // ACK back to sender
     Packet ack;
     ack.type = PacketType::ACK;
     ack.to = packet.from;

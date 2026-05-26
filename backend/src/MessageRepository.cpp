@@ -9,9 +9,9 @@ using namespace Poco::Data::Keywords;
 
 namespace {
 Message rowToMessage(int id, const std::string& sender, const std::string& recipient,
-                     const std::string& body, const std::string& key, const std::string& status,
-                     const std::string& createdAt) {
-    return Message{id, sender, recipient, body, key, status, createdAt};
+                     const std::string& body, const std::string& key, const std::string& senderKey,
+                     const std::string& status, const std::string& createdAt) {
+    return Message{id, sender, recipient, body, key, senderKey, status, createdAt};
 }
 }  // namespace
 
@@ -19,16 +19,16 @@ std::optional<Message> MessageRepository::findById(int id) {
     try {
         auto ses = DbManager::instance().session();
         int mid;
-        std::string sender, recipient, body, key, status, createdAt;
+        std::string sender, recipient, body, key, senderKey, status, createdAt;
         // clang-format off
-        ses << "SELECT id, sender, recipient, body, encrypted_key, status, created_at "
+        ses << "SELECT id, sender, recipient, body, encrypted_key, sender_encrypted_key, status, created_at "
                "FROM messages WHERE id = $1",
             into(mid), into(sender), into(recipient), into(body),
-            into(key), into(status), into(createdAt),
+            into(key), into(senderKey), into(status), into(createdAt),
             use(id), now;
         // clang-format on
         if (sender.empty()) return std::nullopt;
-        return rowToMessage(mid, sender, recipient, body, key, status, createdAt);
+        return rowToMessage(mid, sender, recipient, body, key, senderKey, status, createdAt);
     } catch (const Poco::Exception& e) {
         throw DbException("MessageRepository::findById: " + e.message());
     }
@@ -39,17 +39,18 @@ std::vector<Message> MessageRepository::findAll() {
         auto ses = DbManager::instance().session();
         std::vector<Message> msgs;
         int mid;
-        std::string sender, recipient, body, key, status, createdAt;
+        std::string sender, recipient, body, key, senderKey, status, createdAt;
         Poco::Data::Statement sel(ses);
         // clang-format off
-        sel << "SELECT id, sender, recipient, body, encrypted_key, status, created_at FROM messages",
+        sel << "SELECT id, sender, recipient, body, encrypted_key, sender_encrypted_key, status, created_at FROM messages",
             into(mid), into(sender), into(recipient), into(body),
-            into(key), into(status), into(createdAt), range(0, 1);
+            into(key), into(senderKey), into(status), into(createdAt), range(0, 1);
         // clang-format on
         while (!sel.done()) {
             sel.execute();
             if (!sender.empty())
-                msgs.push_back(rowToMessage(mid, sender, recipient, body, key, status, createdAt));
+                msgs.push_back(
+                    rowToMessage(mid, sender, recipient, body, key, senderKey, status, createdAt));
         }
         return msgs;
     } catch (const Poco::Exception& e) {
@@ -65,11 +66,13 @@ void MessageRepository::save(const Message& msg) {
             std::string recipient = msg.getRecipient();
             std::string body = msg.getEncryptedBody();
             std::string encryptedKey = msg.getEncryptedKey();
+            std::string senderEncryptedKey = msg.getSenderEncryptedKey();
             std::string status = msg.getStatus();
             // clang-format off
-            ses << "INSERT INTO messages (sender, recipient, body, encrypted_key, status) "
-                   "VALUES ($1, $2, $3, $4, $5)",
-                use(sender), use(recipient), use(body), use(encryptedKey), use(status), now;
+            ses << "INSERT INTO messages (sender, recipient, body, encrypted_key, sender_encrypted_key, status) "
+                   "VALUES ($1, $2, $3, $4, $5, $6)",
+                use(sender), use(recipient), use(body), use(encryptedKey),
+                use(senderEncryptedKey), use(status), now;
             // clang-format on
         } else {
             std::string status = msg.getStatus();
@@ -98,20 +101,21 @@ std::vector<Message> MessageRepository::findByRecipient(const std::string& recip
         auto ses = DbManager::instance().session();
         std::vector<Message> msgs;
         int mid;
-        std::string sender, recip, body, key, status, createdAt;
+        std::string sender, recip, body, key, senderKey, status, createdAt;
         Poco::Data::Statement sel(ses);
         // clang-format off
         std::string recipientParam = recipient;
-        sel << "SELECT id, sender, recipient, body, encrypted_key, status, created_at "
+        sel << "SELECT id, sender, recipient, body, encrypted_key, sender_encrypted_key, status, created_at "
                "FROM messages WHERE recipient = $1 ORDER BY created_at ASC",
             into(mid), into(sender), into(recip), into(body),
-            into(key), into(status), into(createdAt),
+            into(key), into(senderKey), into(status), into(createdAt),
             use(recipientParam), range(0, 1);
         // clang-format on
         while (!sel.done()) {
             sel.execute();
             if (!sender.empty())
-                msgs.push_back(rowToMessage(mid, sender, recip, body, key, status, createdAt));
+                msgs.push_back(
+                    rowToMessage(mid, sender, recip, body, key, senderKey, status, createdAt));
         }
         return msgs;
     } catch (const Poco::Exception& e) {
@@ -125,29 +129,29 @@ std::vector<Message> MessageRepository::findAllForUser(const std::string& userna
         auto ses = DbManager::instance().session();
         std::vector<Message> msgs;
         int mid;
-        std::string sender, recipient, body, key, status, createdAt;
+        std::string sender, recipient, body, key, senderKey, status, createdAt;
         Poco::Data::Statement sel(ses);
         std::string u1 = username;
         std::string u2 = username;
         // clang-format off
         if (afterTimestamp.empty()) {
-            sel << "SELECT id, sender, recipient, body, encrypted_key, status, created_at "
+            sel << "SELECT id, sender, recipient, body, encrypted_key, sender_encrypted_key, status, created_at "
                    "FROM messages "
                    "WHERE (sender = $1 OR recipient = $2) "
                    "ORDER BY created_at ASC",
                 into(mid), into(sender), into(recipient), into(body),
-                into(key), into(status), into(createdAt),
+                into(key), into(senderKey), into(status), into(createdAt),
                 use(u1), use(u2),
                 range(0, 1);
         } else {
             std::string ts = afterTimestamp;
-            sel << "SELECT id, sender, recipient, body, encrypted_key, status, created_at "
+            sel << "SELECT id, sender, recipient, body, encrypted_key, sender_encrypted_key, status, created_at "
                    "FROM messages "
                    "WHERE (sender = $1 OR recipient = $2) "
                    "AND created_at > $3::timestamptz "
                    "ORDER BY created_at ASC",
                 into(mid), into(sender), into(recipient), into(body),
-                into(key), into(status), into(createdAt),
+                into(key), into(senderKey), into(status), into(createdAt),
                 use(u1), use(u2), use(ts),
                 range(0, 1);
         }
@@ -155,7 +159,8 @@ std::vector<Message> MessageRepository::findAllForUser(const std::string& userna
         while (!sel.done()) {
             sel.execute();
             if (!sender.empty())
-                msgs.push_back(rowToMessage(mid, sender, recipient, body, key, status, createdAt));
+                msgs.push_back(
+                    rowToMessage(mid, sender, recipient, body, key, senderKey, status, createdAt));
         }
         return msgs;
     } catch (const Poco::Exception& e) {
@@ -168,20 +173,21 @@ std::vector<Message> MessageRepository::findBySender(const std::string& sender) 
         auto ses = DbManager::instance().session();
         std::vector<Message> msgs;
         int mid;
-        std::string sndr, recipient, body, key, status, createdAt;
+        std::string sndr, recipient, body, key, senderKey, status, createdAt;
         Poco::Data::Statement sel(ses);
         // clang-format off
         std::string senderParam = sender;
-        sel << "SELECT id, sender, recipient, body, encrypted_key, status, created_at "
+        sel << "SELECT id, sender, recipient, body, encrypted_key, sender_encrypted_key, status, created_at "
                "FROM messages WHERE sender = $1 ORDER BY created_at ASC",
             into(mid), into(sndr), into(recipient), into(body),
-            into(key), into(status), into(createdAt),
+            into(key), into(senderKey), into(status), into(createdAt),
             use(senderParam), range(0, 1);
         // clang-format on
         while (!sel.done()) {
             sel.execute();
             if (!sndr.empty())
-                msgs.push_back(rowToMessage(mid, sndr, recipient, body, key, status, createdAt));
+                msgs.push_back(
+                    rowToMessage(mid, sndr, recipient, body, key, senderKey, status, createdAt));
         }
         return msgs;
     } catch (const Poco::Exception& e) {

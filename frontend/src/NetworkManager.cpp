@@ -106,7 +106,8 @@ void NetworkManager::encryptAndSend(const QString& to, const QString& plaintext,
     try {
         QByteArray aesKey = _crypto.generateAESKey();
         QString encBody = _crypto.encrypt(plaintext, aesKey);
-        QByteArray wrappedKey = _crypto.encryptRSA(aesKey, _peerKeys[to]);
+        QByteArray wrappedForRecipient = _crypto.encryptRSA(aesKey, _peerKeys[to]);
+        QByteArray wrappedForSelf = _crypto.encryptRSA(aesKey, _ownPubKey);
 
         const QString ts = timestamp.isEmpty()
                                ? QDateTime::currentDateTimeUtc().toString(Qt::ISODateWithMs)
@@ -117,7 +118,9 @@ void NetworkManager::encryptAndSend(const QString& to, const QString& plaintext,
         p.from = _currentUsername.toStdString();
         p.to = to.toStdString();
         p.body = encBody.toStdString();
-        p.key = wrappedKey.toBase64().toStdString();
+        p.key = (QString::fromLatin1(wrappedForRecipient.toBase64()) + ";" +
+                 QString::fromLatin1(wrappedForSelf.toBase64()))
+                    .toStdString();
         p.timestamp = ts.toStdString();
         sendPacket(p);
 
@@ -219,14 +222,36 @@ void NetworkManager::handleIncomingMessage(const Packet& p) {
                            ? QDateTime::currentDateTimeUtc().toString(Qt::ISODateWithMs)
                            : QString::fromStdString(p.timestamp);
 
+    const QString keyField = QString::fromStdString(p.key);
+    const int keySep = keyField.indexOf(';');
+
     if (isOutgoingEcho) {
-        // Cannot decrypt - AES key is wrapped with recipient's public key, not ours.
-        // Check local cache first (message may already be stored if sent from this device).
         const QString peer = QString::fromStdString(p.to);
         if (LocalStorage::instance().isDuplicate(peer, _currentUsername, ts)) return;
-        // Cross-device outgoing: store as a placeholder since we cannot decrypt.
-        persistMessage(peer, _currentUsername, "[Sent]", ts, true);
-        emit historySyncMessage(peer, _currentUsername, "[Sent]", ts, true);
+
+        // For real-time sibling echo, key field has "recipientKey;senderKey"
+        // For sync replay, SyncHistoryHandler sends just the senderKey directly
+        // In both cases: if there's a ';', the sender key is the second segment;
+        // if no ';', treat the whole field as the sender key (sync path)
+        const QString senderKeyB64 = (keySep >= 0) ? keyField.mid(keySep + 1) : keyField;
+
+        if (senderKeyB64.isEmpty() || _ownPrivKey.isEmpty()) {
+            // Legacy row (no sender key stored before migration)
+            persistMessage(peer, _currentUsername, "[Sent]", ts, true);
+            emit historySyncMessage(peer, _currentUsername, "[Sent]", ts, true);
+            return;
+        }
+        try {
+            QByteArray senderKey = QByteArray::fromBase64(senderKeyB64.toLatin1());
+            QByteArray aesKey = _crypto.decryptRSA(senderKey, _ownPrivKey);
+            QString plaintext = _crypto.decrypt(QString::fromStdString(p.body), aesKey);
+            persistMessage(peer, _currentUsername, plaintext, ts, true);
+            emit historySyncMessage(peer, _currentUsername, plaintext, ts, true);
+        } catch (const std::exception& e) {
+            qCWarning(logChat) << "Failed to decrypt outgoing sync message:" << e.what();
+            persistMessage(peer, _currentUsername, "[Sent]", ts, true);
+            emit historySyncMessage(peer, _currentUsername, "[Sent]", ts, true);
+        }
         return;
     }
 
@@ -235,7 +260,9 @@ void NetworkManager::handleIncomingMessage(const Packet& p) {
         return;
     }
     try {
-        QByteArray wrappedKey = QByteArray::fromBase64(QByteArray::fromStdString(p.key));
+        // Recipient key is the first segment; strip the sender-key segment if present
+        const QString recipientKeyB64 = (keySep >= 0) ? keyField.left(keySep) : keyField;
+        QByteArray wrappedKey = QByteArray::fromBase64(recipientKeyB64.toLatin1());
         QByteArray aesKey = _crypto.decryptRSA(wrappedKey, _ownPrivKey);
         QString plaintext = _crypto.decrypt(QString::fromStdString(p.body), aesKey);
 
@@ -527,7 +554,7 @@ void NetworkManager::handleGroupInfo(const Packet& p) {
     _groupNames[groupId] = groupName;
 
     QVariantList members;
-    const QStringList entries = memberStr.split("|", Qt::SkipEmptyParts);
+    const QStringList entries = memberStr.split(";", Qt::SkipEmptyParts);
     for (const QString& entry : entries) {
         const int sep = entry.indexOf(":");
         if (sep < 0) continue;
