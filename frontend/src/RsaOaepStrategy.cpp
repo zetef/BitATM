@@ -1,6 +1,7 @@
 #include "RsaOaepStrategy.h"
 
 #include <AppException.h>
+#include <openssl/err.h>
 #include <openssl/evp.h>
 #include <openssl/rsa.h>
 
@@ -77,13 +78,17 @@ QByteArray RsaOaepStrategy::decryptWithPrivate(const QByteArray& data,
 
     size_t outLen = 0;
     if (EVP_PKEY_decrypt(ctx.get(), nullptr, &outLen, OpensslAdapter::toUChar(data),
-                         static_cast<size_t>(data.size())) != 1)
+                         static_cast<size_t>(data.size())) != 1) {
+        ERR_clear_error();
         throw CryptoException("RSA decryptWithPrivate: EVP_PKEY_decrypt (size query) failed");
+    }
 
     QByteArray plaintext(static_cast<int>(outLen), '\0');
     if (EVP_PKEY_decrypt(ctx.get(), OpensslAdapter::toUChar(plaintext), &outLen,
-                         OpensslAdapter::toUChar(data), static_cast<size_t>(data.size())) != 1)
+                         OpensslAdapter::toUChar(data), static_cast<size_t>(data.size())) != 1) {
+        ERR_clear_error();
         throw CryptoException("RSA decryptWithPrivate: EVP_PKEY_decrypt failed");
+    }
 
     plaintext.resize(static_cast<int>(outLen));
     return plaintext;

@@ -292,6 +292,11 @@ void NetworkManager::handleIncomingMessage(const Packet& p) {
         emit messageDecrypted(from, plaintext, ts);
     } catch (const std::exception& e) {
         qCWarning(logChat) << "Failed to decrypt incoming message:" << e.what();
+        const QString from = QString::fromStdString(p.from);
+        if (from != _currentUsername) {
+            persistMessage(from, from, "[Encrypted]", ts, false);
+            emit messageDecrypted(from, "[Encrypted]", ts);
+        }
     }
 }
 
