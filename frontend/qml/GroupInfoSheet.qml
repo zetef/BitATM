@@ -4,8 +4,7 @@ import QtQuick.Layouts
 
 Rectangle {
     id: sheet
-    color: "#252535"
-    radius: 8
+    color: "#0f0f0f"
     width: 260
 
     property string groupId: ""
@@ -15,16 +14,33 @@ Rectangle {
 
     signal closed()
 
+    Rectangle {
+        anchors.left: parent.left
+        anchors.top: parent.top
+        anchors.bottom: parent.bottom
+        width: 1
+        color: "#1a1a1a"
+    }
+
     ColumnLayout {
         anchors.fill: parent
         anchors.margins: 12
         spacing: 8
 
         Label {
-            text: sheet.groupName
-            color: "#cdd6f4"
-            font.pixelSize: 15
+            text: "[ " + sheet.groupName + " ]"
+            color: "#00ff41"
+            font.pixelSize: 14
             font.bold: true
+            font.family: "Monospace"
+            elide: Text.ElideRight
+            Layout.fillWidth: true
+        }
+
+        Rectangle {
+            Layout.fillWidth: true
+            height: 1
+            color: "#1a1a1a"
         }
 
         ListView {
@@ -45,18 +61,20 @@ Rectangle {
                     Label {
                         anchors.verticalCenter: parent.verticalCenter
                         text: modelData.role === "creator" ? "[C]"
-                            : modelData.role === "admin"   ? "[A]" : ""
-                        color: modelData.role === "creator" ? "#f9e2af"
-                             : modelData.role === "admin"   ? "#a6e3a1" : "#6c7086"
+                            : modelData.role === "admin"   ? "[A]" : "   "
+                        color: modelData.role === "creator" ? "#00ff41"
+                             : modelData.role === "admin"   ? "#c8c8c8" : "#505050"
                         font.pixelSize: 10
                         font.bold: true
+                        font.family: "Monospace"
                     }
 
                     Label {
                         anchors.verticalCenter: parent.verticalCenter
                         text: modelData.username
-                        color: "#cdd6f4"
+                        color: "#c8c8c8"
                         font.pixelSize: 13
+                        font.family: "Monospace"
                     }
 
                     Button {
@@ -64,23 +82,30 @@ Rectangle {
                         visible: (sheet.currentUserRole === "creator" || sheet.currentUserRole === "admin")
                               && modelData.role !== "creator"
                               && modelData.username !== networkManager.currentUsername
-                        text: "Kick"
+                        text: "[kick]"
                         height: 24
                         onClicked: {
                             networkManager.kickMember(sheet.groupId, modelData.username)
                             sheet.closed()
                         }
                         contentItem: Text {
-                            text: parent.text; color: "#f38ba8"; font.pixelSize: 10
+                            text: parent.text; color: "#ff3333"; font.pixelSize: 10
+                            font.family: "Monospace"
                             horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter
                         }
                         background: Rectangle {
-                            color: parent.down ? "#3b1e1e" : "transparent"
-                            radius: 3; border.color: "#f38ba8"; border.width: 1
+                            color: parent.down ? "#1a0000" : "transparent"
+                            radius: 0; border.color: "#ff3333"; border.width: 1
                         }
                     }
                 }
             }
+        }
+
+        Rectangle {
+            Layout.fillWidth: true
+            height: 1
+            color: "#1a1a1a"
         }
 
         Row {
@@ -91,17 +116,18 @@ Rectangle {
             TextField {
                 id: addMemberInput
                 width: parent.width - addBtn.implicitWidth - parent.spacing
-                placeholderText: "Add member..."
-                color: "#cdd6f4"
-                placeholderTextColor: "#585b70"
+                placeholderText: "> add member..."
+                color: "#c8c8c8"
+                placeholderTextColor: "#505050"
                 font.pixelSize: 12
-                background: Rectangle { color: "#313244"; radius: 4 }
+                font.family: "Monospace"
+                background: Rectangle { color: "#1a1a1a"; radius: 0 }
                 padding: 6
             }
 
             Button {
                 id: addBtn
-                text: "Add"
+                text: ">>"
                 onClicked: {
                     var u = addMemberInput.text.trim()
                     if (u.length > 0) {
@@ -110,40 +136,46 @@ Rectangle {
                     }
                 }
                 contentItem: Text {
-                    text: parent.text; color: "#cdd6f4"; font.pixelSize: 11
+                    text: parent.text; color: "#0a0a0a"; font.pixelSize: 11
+                    font.family: "Monospace"
                     horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter
                 }
-                background: Rectangle { color: parent.down ? "#45475a" : "#89b4fa"; radius: 3 }
+                background: Rectangle { color: parent.down ? "#00cc33" : "#00ff41"; radius: 0 }
             }
         }
 
         Button {
             Layout.alignment: Qt.AlignRight
-            text: "Leave Group"
+            text: "[leave group]"
             visible: sheet.currentUserRole !== "creator"
             onClicked: {
                 networkManager.leaveGroup(sheet.groupId)
                 sheet.closed()
             }
             contentItem: Text {
-                text: parent.text; color: "#f38ba8"; font.pixelSize: 11
+                text: parent.text; color: "#ff3333"; font.pixelSize: 11
+                font.family: "Monospace"
                 horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter
             }
             background: Rectangle {
-                color: parent.down ? "#3b1e1e" : "transparent"
-                radius: 3; border.color: "#f38ba8"; border.width: 1
+                color: parent.down ? "#1a0000" : "transparent"
+                radius: 0; border.color: "#ff3333"; border.width: 1
             }
         }
 
         Button {
             Layout.alignment: Qt.AlignRight
-            text: "Close"
+            text: "[close]"
             onClicked: sheet.closed()
             contentItem: Text {
-                text: parent.text; color: "#cdd6f4"; font.pixelSize: 12
+                text: parent.text; color: "#c8c8c8"; font.pixelSize: 12
+                font.family: "Monospace"
                 horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter
             }
-            background: Rectangle { color: parent.down ? "#45475a" : "#313244"; radius: 4 }
+            background: Rectangle {
+                color: parent.down ? "#1a1a1a" : "transparent"
+                radius: 0; border.color: "#404040"; border.width: 1
+            }
         }
     }
 }

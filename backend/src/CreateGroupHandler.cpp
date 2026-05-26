@@ -27,13 +27,13 @@ static std::vector<std::string> parseMembers(const std::string& body) {
 /**
  * @brief Parse a pipe-separated key map into (username, encryptedKey) pairs.
  *
- * Format: "user1:key1|user2:key2|..."
+ * Format: "user1:key1;user2:key2;..."
  */
 static std::vector<std::pair<std::string, std::string>> parseKeyPairs(const std::string& keyField) {
     std::vector<std::pair<std::string, std::string>> pairs;
     std::istringstream ss(keyField);
     std::string entry;
-    while (std::getline(ss, entry, '|')) {
+    while (std::getline(ss, entry, ';')) {
         auto colonPos = entry.find(':');
         if (colonPos == std::string::npos || colonPos == 0) continue;
         std::string user = entry.substr(0, colonPos);

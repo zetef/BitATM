@@ -108,6 +108,10 @@ ApplicationWindow {
         function onGroupConvUpdated(groupId, groupName, lastMessage, lastTimestamp) {
             convListModel.addOrUpdateGroup(groupId, groupName, lastMessage, lastTimestamp)
         }
+
+        function onGroupInfoReceived(groupId, groupName, members) {
+            convListModel.addOrUpdateGroup(groupId, groupName, "", "")
+        }
     }
 
     Component {
