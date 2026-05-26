@@ -163,6 +163,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ad86253db00e34a43abd87da056c651ee" id="r_ad86253db00e34a43abd87da056c651ee"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLocalStorage.html#ad86253db00e34a43abd87da056c651ee">removeGroup</a> (const QString &amp;groupId)</td></tr>
 <tr class="memdesc:ad86253db00e34a43abd87da056c651ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove a group and all related records (messages, key) from the local cache.  <br /></td></tr>
 <tr class="separator:ad86253db00e34a43abd87da056c651ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a160112207eb386fe9417c67cdf9e682c" id="r_a160112207eb386fe9417c67cdf9e682c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLocalStorage.html#a160112207eb386fe9417c67cdf9e682c">deleteConversation</a> (const QString &amp;peer)</td></tr>
+<tr class="memdesc:a160112207eb386fe9417c67cdf9e682c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete all messages and the conversation summary row for a single peer.  <br /></td></tr>
+<tr class="separator:a160112207eb386fe9417c67cdf9e682c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a32f6b260624c807b29db7543b255db16" id="r_a32f6b260624c807b29db7543b255db16"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLocalStorage.html#a32f6b260624c807b29db7543b255db16">clearAllData</a> ()</td></tr>
 <tr class="memdesc:a32f6b260624c807b29db7543b255db16"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete all rows from every table. Called when a different user logs in.  <br /></td></tr>
 <tr class="separator:a32f6b260624c807b29db7543b255db16"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -212,6 +215,26 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Close the database connection. </p>
+
+</div>
+</div>
+<a id="a160112207eb386fe9417c67cdf9e682c" name="a160112207eb386fe9417c67cdf9e682c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a160112207eb386fe9417c67cdf9e682c">&#9670;&#160;</a></span>deleteConversation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LocalStorage::deleteConversation </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>peer</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Delete all messages and the conversation summary row for a single peer. </p>
 
 </div>
 </div>

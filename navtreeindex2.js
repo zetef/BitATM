@@ -1,5 +1,8 @@
 var NAVTREEINDEX2 =
 {
+"classPacketHandlerFactory.html#ae6d040a41f22b73726728b3b6f674a3c":[0,0,47,0],
+"classProtocolException.html":[0,0,48],
+"classProtocolException.html#adf9327a653e7da92e42cc15e913d2791":[0,0,48,0],
 "classProtocolParser.html":[0,0,49],
 "classProtocolParser.html#a1877a4b37338d4ab26681424bd78f773":[0,0,49,0],
 "classProtocolParser.html#a24c95541cfe1274f3ceccc1015a62526":[0,0,49,3],

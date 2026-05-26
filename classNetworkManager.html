@@ -144,6 +144,9 @@ Signals</h2></td></tr>
 <tr class="memitem:ad1120665171eec720f090a61cb7eedb3" id="r_ad1120665171eec720f090a61cb7eedb3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkManager.html#ad1120665171eec720f090a61cb7eedb3">messageDecrypted</a> (const QString &amp;from, const QString &amp;plaintext, const QString &amp;timestamp)</td></tr>
 <tr class="memdesc:ad1120665171eec720f090a61cb7eedb3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Emitted when an incoming MESSAGE packet is successfully decrypted.  <br /></td></tr>
 <tr class="separator:ad1120665171eec720f090a61cb7eedb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac80ed49c1ac856357e683ab36e2c6ff4" id="r_ac80ed49c1ac856357e683ab36e2c6ff4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkManager.html#ac80ed49c1ac856357e683ab36e2c6ff4">conversationDeleted</a> (const QString &amp;peer)</td></tr>
+<tr class="memdesc:ac80ed49c1ac856357e683ab36e2c6ff4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Emitted after a conversation is deleted from local cache.  <br /></td></tr>
+<tr class="separator:ac80ed49c1ac856357e683ab36e2c6ff4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad0d5ac1ac81e96aa4c99b5399122c887" id="r_ad0d5ac1ac81e96aa4c99b5399122c887"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkManager.html#ad0d5ac1ac81e96aa4c99b5399122c887">peerKeyReceived</a> (const QString &amp;username, const QString &amp;publicKey)</td></tr>
 <tr class="memdesc:ad0d5ac1ac81e96aa4c99b5399122c887"><td class="mdescLeft">&#160;</td><td class="mdescRight">Emitted when a KEY_EXCHANGE response delivers a peer's public key.  <br /></td></tr>
 <tr class="separator:ad0d5ac1ac81e96aa4c99b5399122c887"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -239,6 +242,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a9fddd966911296b4a40f1fda0362f57a" id="r_a9fddd966911296b4a40f1fda0362f57a"><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkManager.html#a9fddd966911296b4a40f1fda0362f57a">getGroupName</a> (const QString &amp;groupId) const</td></tr>
 <tr class="memdesc:a9fddd966911296b4a40f1fda0362f57a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the stored display name for a group, or groupId if unknown.  <br /></td></tr>
 <tr class="separator:a9fddd966911296b4a40f1fda0362f57a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac08ca33cae1af5055a9d188b7ca65250" id="r_ac08ca33cae1af5055a9d188b7ca65250"><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkManager.html#ac08ca33cae1af5055a9d188b7ca65250">deleteConversation</a> (const QString &amp;peer)</td></tr>
+<tr class="memdesc:ac08ca33cae1af5055a9d188b7ca65250"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete a conversation from local cache. Messages stay on the server.  <br /></td></tr>
+<tr class="separator:ac08ca33cae1af5055a9d188b7ca65250"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a97d1fb741f609c2442efdfd92e944ed2" id="r_a97d1fb741f609c2442efdfd92e944ed2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkManager.html#a97d1fb741f609c2442efdfd92e944ed2">isConnected</a> () const</td></tr>
 <tr class="memdesc:a97d1fb741f609c2442efdfd92e944ed2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if the WebSocket is in ConnectedState.  <br /></td></tr>
 <tr class="separator:a97d1fb741f609c2442efdfd92e944ed2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -395,6 +401,34 @@ Properties</h2></td></tr>
 
 </div>
 </div>
+<a id="ac80ed49c1ac856357e683ab36e2c6ff4" name="ac80ed49c1ac856357e683ab36e2c6ff4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac80ed49c1ac856357e683ab36e2c6ff4">&#9670;&#160;</a></span>conversationDeleted</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NetworkManager::conversationDeleted </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>peer</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">signal</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Emitted after a conversation is deleted from local cache. </p>
+
+</div>
+</div>
 <a id="a257318584ac0bf9569d5873314ad5d82" name="a257318584ac0bf9569d5873314ad5d82"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a257318584ac0bf9569d5873314ad5d82">&#9670;&#160;</a></span>convListUpdated</h2>
 
@@ -518,6 +552,26 @@ Properties</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac08ca33cae1af5055a9d188b7ca65250" name="ac08ca33cae1af5055a9d188b7ca65250"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac08ca33cae1af5055a9d188b7ca65250">&#9670;&#160;</a></span>deleteConversation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NetworkManager::deleteConversation </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>peer</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Delete a conversation from local cache. Messages stay on the server. </p>
 
 </div>
 </div>
