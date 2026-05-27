@@ -145,7 +145,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Handles LOGIN packets. L3 under <a class="el" href="classBaseAuthHandler.html" title="L2 abstract handler for packet types that require an authenticated session.">BaseAuthHandler</a>. </p>
-<p>Overrides <a class="el" href="classLoginHandler.html#ab8db42018f774e1e31cfb067fb259b33" title="Reject the request if the session is not authenticated.">authorize()</a> to require a non-authenticated session (rejects double-login). Overrides <a class="el" href="classLoginHandler.html#adb2e93f7dd241c34df8e86070cdd66ef">execute()</a> to verify credentials, issue a CSPRNG 256-bit session token, and flush offline messages. </p>
+<p>Overrides <a class="el" href="classLoginHandler.html#ab8db42018f774e1e31cfb067fb259b33" title="Reject the request if the session is not authenticated.">authorize()</a> to require a non-authenticated session (rejects double-login). Overrides <a class="el" href="classLoginHandler.html#adb2e93f7dd241c34df8e86070cdd66ef">execute()</a> to verify credentials, issue a CSPRNG 256-bit session token, flush offline messages, and flush queued read receipts. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="ab8db42018f774e1e31cfb067fb259b33" name="ab8db42018f774e1e31cfb067fb259b33"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab8db42018f774e1e31cfb067fb259b33">&#9670;&#160;</a></span>authorize()</h2>

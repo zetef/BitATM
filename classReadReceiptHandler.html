@@ -150,7 +150,7 @@ Protected Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Handles READ_RECEIPT packets. L3 under <a class="el" href="classBaseAuthHandler.html" title="L2 abstract handler for packet types that require an authenticated session.">BaseAuthHandler</a>. </p>
 <p>Relays a read receipt from the recipient to the original message sender. packet.from = recipient username (who read the message) packet.to = original sender username packet.body = ISO timestamp of the message that was read</p>
-<p>If the original sender is offline the receipt is silently dropped (read receipts are best-effort and are not queued). </p>
+<p>If the original sender is offline the receipt is stored in offline_read_receipts and flushed to them on their next login. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="aa6ddc714cb5adea5aa743a5c87ae0411" name="aa6ddc714cb5adea5aa743a5c87ae0411"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa6ddc714cb5adea5aa743a5c87ae0411">&#9670;&#160;</a></span>ReadReceiptHandler()</h2>
