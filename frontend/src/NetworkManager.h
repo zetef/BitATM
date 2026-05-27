@@ -159,7 +159,8 @@ signals:
      * @param isOutgoing True if the local user sent this message.
      */
     void historySyncMessage(const QString& peer, const QString& sender, const QString& content,
-                            const QString& timestamp, bool isOutgoing);
+                            const QString& timestamp, bool isOutgoing,
+                            const QString& status = "sent");
 
     /**
      * @brief Emitted after loading local history and on new messages - updates conversation list.
