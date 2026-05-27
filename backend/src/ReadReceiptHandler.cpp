@@ -1,8 +1,14 @@
 #include "ReadReceiptHandler.h"
 
+#include <Poco/Data/Session.h>
+#include <Poco/Data/Statement.h>
+
 #include "../../common/AppException.h"
 #include "ClientSession.h"
+#include "DbManager.h"
 #include "Server.h"
+
+using namespace Poco::Data::Keywords;
 
 void ReadReceiptHandler::validate(const Packet& packet) {
     if (packet.from.empty()) throw ProtocolException("READ_RECEIPT: sender (from) is required");
@@ -18,8 +24,23 @@ void ReadReceiptHandler::execute(Packet& packet, ClientSession& session) {
     auto sender = _server.findClient(packet.to);
     if (sender) {
         sender->send(packet);
+    } else {
+        // Original sender is offline - queue for delivery on their next login.
+        try {
+            auto ses = DbManager::instance().session();
+            std::string fromUser = packet.from;
+            std::string toUser = packet.to;
+            std::string msgTs = packet.body;
+            // clang-format off
+            ses << "INSERT INTO offline_read_receipts (from_user, to_user, message_ts) "
+                   "VALUES ($1, $2, $3) "
+                   "ON CONFLICT DO NOTHING",
+                use(fromUser), use(toUser), use(msgTs), now;
+            // clang-format on
+        } catch (const Poco::Exception& e) {
+            throw DbException("ReadReceiptHandler: queue failed: " + e.message());
+        }
     }
-    // Sender offline: silently drop - read receipts are best-effort
 
     // Fan-out READ_RECEIPT to all sibling sessions of the reader (multi-device sync)
     auto readerSessions = _server.getSessionsForUser(packet.from);

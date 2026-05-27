@@ -11,8 +11,8 @@ class Server;
  * packet.to   = original sender username
  * packet.body = ISO timestamp of the message that was read
  *
- * If the original sender is offline the receipt is silently dropped
- * (read receipts are best-effort and are not queued).
+ * If the original sender is offline the receipt is stored in
+ * offline_read_receipts and flushed to them on their next login.
  */
 class ReadReceiptHandler : public BaseAuthHandler {
 public:

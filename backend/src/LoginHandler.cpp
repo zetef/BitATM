@@ -1,5 +1,7 @@
 #include "LoginHandler.h"
 
+#include <Poco/Data/Session.h>
+#include <Poco/Data/Statement.h>
 #include <openssl/evp.h>
 #include <openssl/kdf.h>
 #include <openssl/params.h>
@@ -11,6 +13,7 @@
 
 #include "../../common/AppException.h"
 #include "ClientSession.h"
+#include "DbManager.h"
 #include "MessageRepository.h"
 #include "OfflineQueueRepository.h"
 #include "SessionRepository.h"
@@ -139,5 +142,53 @@ void LoginHandler::execute(Packet& packet, ClientSession& session) {
             session.send(fwd);
             offlineRepo.markDelivered(entry.getId());
         }
+    }
+
+    // flush queued read receipts - sent while this user was offline
+    flushOfflineReadReceipts(packet.from, session);
+}
+
+void LoginHandler::flushOfflineReadReceipts(const std::string& username, ClientSession& session) {
+    using namespace Poco::Data::Keywords;
+    try {
+        auto ses = DbManager::instance().session();
+        std::vector<int> ids;
+        std::vector<std::string> fromUsers, msgTimestamps;
+
+        {
+            int id;
+            std::string fromUser, msgTs;
+            Poco::Data::Statement sel(ses);
+            std::string usernameParam = username;
+            // clang-format off
+            sel << "SELECT id, from_user, message_ts FROM offline_read_receipts "
+                   "WHERE to_user = $1 AND delivered = FALSE ORDER BY queued_at ASC",
+                into(id), into(fromUser), into(msgTs),
+                use(usernameParam), range(0, 1);
+            // clang-format on
+            while (!sel.done()) {
+                sel.execute();
+                if (!fromUser.empty()) {
+                    ids.push_back(id);
+                    fromUsers.push_back(fromUser);
+                    msgTimestamps.push_back(msgTs);
+                    fromUser.clear();
+                }
+            }
+        }
+
+        for (std::size_t i = 0; i < ids.size(); ++i) {
+            Packet rr;
+            rr.type = PacketType::READ_RECEIPT;
+            rr.from = fromUsers[i];
+            rr.to = username;
+            rr.body = msgTimestamps[i];
+            session.send(rr);
+
+            int id = ids[i];
+            ses << "UPDATE offline_read_receipts SET delivered = TRUE WHERE id = $1", use(id), now;
+        }
+    } catch (const Poco::Exception& e) {
+        throw DbException("LoginHandler::flushOfflineReadReceipts: " + e.message());
     }
 }
