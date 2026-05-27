@@ -143,9 +143,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a1ba983184f7035e4e433ab4136ef1307" id="r_a1ba983184f7035e4e433ab4136ef1307"><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classChatModel.html#a1ba983184f7035e4e433ab4136ef1307">appendMessage</a> (const QString &amp;sender, const QString &amp;content, const QString &amp;timestamp, bool isOutgoing)</td></tr>
 <tr class="memdesc:a1ba983184f7035e4e433ab4136ef1307"><td class="mdescLeft">&#160;</td><td class="mdescRight">Append one message to the flat display list only (existing API, tests use this).  <br /></td></tr>
 <tr class="separator:a1ba983184f7035e4e433ab4136ef1307"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5e84eabeba74b05732ed0ab8b3f75124" id="r_a5e84eabeba74b05732ed0ab8b3f75124"><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classChatModel.html#a5e84eabeba74b05732ed0ab8b3f75124">appendAndCache</a> (const QString &amp;peer, const QString &amp;sender, const QString &amp;content, const QString &amp;timestamp, bool isOutgoing)</td></tr>
-<tr class="memdesc:a5e84eabeba74b05732ed0ab8b3f75124"><td class="mdescLeft">&#160;</td><td class="mdescRight">Append a message to the per-peer cache and to the flat list if peer is active.  <br /></td></tr>
-<tr class="separator:a5e84eabeba74b05732ed0ab8b3f75124"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b70c31ef59711801fda39cf0ea59004" id="r_a0b70c31ef59711801fda39cf0ea59004"><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classChatModel.html#a0b70c31ef59711801fda39cf0ea59004">appendAndCache</a> (const QString &amp;peer, const QString &amp;sender, const QString &amp;content, const QString &amp;timestamp, bool isOutgoing, const QString &amp;status=&quot;sent&quot;)</td></tr>
+<tr class="memdesc:a0b70c31ef59711801fda39cf0ea59004"><td class="mdescLeft">&#160;</td><td class="mdescRight">Append a message to the per-peer cache and to the flat list if peer is active.  <br /></td></tr>
+<tr class="separator:a0b70c31ef59711801fda39cf0ea59004"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a51b5a473b65b086c6cfcee6b9918da54" id="r_a51b5a473b65b086c6cfcee6b9918da54"><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classChatModel.html#a51b5a473b65b086c6cfcee6b9918da54">switchConversation</a> (const QString &amp;peer)</td></tr>
 <tr class="memdesc:a51b5a473b65b086c6cfcee6b9918da54"><td class="mdescLeft">&#160;</td><td class="mdescRight">Switch to a different conversation, replaying its cached messages.  <br /></td></tr>
 <tr class="separator:a51b5a473b65b086c6cfcee6b9918da54"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -167,7 +167,7 @@ Public Member Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>QAbstractListModel holding chat messages for one conversation. </p>
-<p>Always use <a class="el" href="classChatModel.html#a1ba983184f7035e4e433ab4136ef1307" title="Append one message to the flat display list only (existing API, tests use this).">appendMessage()</a> / <a class="el" href="classChatModel.html#a5e84eabeba74b05732ed0ab8b3f75124" title="Append a message to the per-peer cache and to the flat list if peer is active.">appendAndCache()</a> / <a class="el" href="classChatModel.html#a942690cc304d1c6e83f41cfe07d9c2be" title="Remove all messages from the flat display list. Does not touch the cache.">clearHistory()</a> / <a class="el" href="classChatModel.html#a51b5a473b65b086c6cfcee6b9918da54" title="Switch to a different conversation, replaying its cached messages.">switchConversation()</a> to mutate state - never touch entries_ or cache_ directly. All mutating methods call the required begin/end model change guards. </p>
+<p>Always use <a class="el" href="classChatModel.html#a1ba983184f7035e4e433ab4136ef1307" title="Append one message to the flat display list only (existing API, tests use this).">appendMessage()</a> / <a class="el" href="classChatModel.html#a0b70c31ef59711801fda39cf0ea59004" title="Append a message to the per-peer cache and to the flat list if peer is active.">appendAndCache()</a> / <a class="el" href="classChatModel.html#a942690cc304d1c6e83f41cfe07d9c2be" title="Remove all messages from the flat display list. Does not touch the cache.">clearHistory()</a> / <a class="el" href="classChatModel.html#a51b5a473b65b086c6cfcee6b9918da54" title="Switch to a different conversation, replaying its cached messages.">switchConversation()</a> to mutate state - never touch entries_ or cache_ directly. All mutating methods call the required begin/end model change guards. </p>
 </div><h2 class="groupheader">Member Enumeration Documentation</h2>
 <a id="a63e01c84f289f33e414ae789fcdc68e0" name="a63e01c84f289f33e414ae789fcdc68e0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a63e01c84f289f33e414ae789fcdc68e0">&#9670;&#160;</a></span>Roles</h2>
@@ -218,8 +218,8 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a5e84eabeba74b05732ed0ab8b3f75124" name="a5e84eabeba74b05732ed0ab8b3f75124"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5e84eabeba74b05732ed0ab8b3f75124">&#9670;&#160;</a></span>appendAndCache()</h2>
+<a id="a0b70c31ef59711801fda39cf0ea59004" name="a0b70c31ef59711801fda39cf0ea59004"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b70c31ef59711801fda39cf0ea59004">&#9670;&#160;</a></span>appendAndCache()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -252,7 +252,13 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>isOutgoing</em>&#160;</td>
+          <td class="paramname"><em>isOutgoing</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>status</em> = <code>&quot;sent&quot;</code>&#160;</td>
         </tr>
         <tr>
           <td></td>

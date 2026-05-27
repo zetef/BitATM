@@ -159,9 +159,9 @@ Signals</h2></td></tr>
 <tr class="memitem:a5e470cae21687ac465bd3ded727f5c88" id="r_a5e470cae21687ac465bd3ded727f5c88"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkManager.html#a5e470cae21687ac465bd3ded727f5c88">messageSeen</a> (const QString &amp;peer, const QString &amp;timestamp)</td></tr>
 <tr class="memdesc:a5e470cae21687ac465bd3ded727f5c88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Emitted when the recipient confirms they have read a specific message.  <br /></td></tr>
 <tr class="separator:a5e470cae21687ac465bd3ded727f5c88"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1e431ffe571e89103864c08eaea12488" id="r_a1e431ffe571e89103864c08eaea12488"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkManager.html#a1e431ffe571e89103864c08eaea12488">historySyncMessage</a> (const QString &amp;peer, const QString &amp;sender, const QString &amp;content, const QString &amp;timestamp, bool isOutgoing)</td></tr>
-<tr class="memdesc:a1e431ffe571e89103864c08eaea12488"><td class="mdescLeft">&#160;</td><td class="mdescRight">Emitted once per stored message during local history load on login.  <br /></td></tr>
-<tr class="separator:a1e431ffe571e89103864c08eaea12488"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9cfd3cf00804e0f1daa8483507b0b9e6" id="r_a9cfd3cf00804e0f1daa8483507b0b9e6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkManager.html#a9cfd3cf00804e0f1daa8483507b0b9e6">historySyncMessage</a> (const QString &amp;peer, const QString &amp;sender, const QString &amp;content, const QString &amp;timestamp, bool isOutgoing, const QString &amp;status=&quot;sent&quot;)</td></tr>
+<tr class="memdesc:a9cfd3cf00804e0f1daa8483507b0b9e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Emitted once per stored message during local history load on login.  <br /></td></tr>
+<tr class="separator:a9cfd3cf00804e0f1daa8483507b0b9e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a257318584ac0bf9569d5873314ad5d82" id="r_a257318584ac0bf9569d5873314ad5d82"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkManager.html#a257318584ac0bf9569d5873314ad5d82">convListUpdated</a> (const QString &amp;peer, const QString &amp;<a class="el" href="classNetworkManager.html#acb5092184a7b088b3fa60f61106320cb">lastMessage</a>, const QString &amp;lastTimestamp)</td></tr>
 <tr class="memdesc:a257318584ac0bf9569d5873314ad5d82"><td class="mdescLeft">&#160;</td><td class="mdescRight">Emitted after loading local history and on new messages - updates conversation list.  <br /></td></tr>
 <tr class="separator:a257318584ac0bf9569d5873314ad5d82"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1055,8 +1055,8 @@ Properties</h2></td></tr>
 
 </div>
 </div>
-<a id="a1e431ffe571e89103864c08eaea12488" name="a1e431ffe571e89103864c08eaea12488"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1e431ffe571e89103864c08eaea12488">&#9670;&#160;</a></span>historySyncMessage</h2>
+<a id="a9cfd3cf00804e0f1daa8483507b0b9e6" name="a9cfd3cf00804e0f1daa8483507b0b9e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9cfd3cf00804e0f1daa8483507b0b9e6">&#9670;&#160;</a></span>historySyncMessage</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1092,7 +1092,13 @@ Properties</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>isOutgoing</em>&#160;</td>
+          <td class="paramname"><em>isOutgoing</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>status</em> = <code>&quot;sent&quot;</code>&#160;</td>
         </tr>
         <tr>
           <td></td>

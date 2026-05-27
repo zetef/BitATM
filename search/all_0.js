@@ -13,7 +13,7 @@ var searchData=
   ['aesgcmstrategy_2ecpp_10',['AesGcmStrategy.cpp',['../AesGcmStrategy_8cpp.html',1,'']]],
   ['aesgcmstrategy_2eh_11',['AesGcmStrategy.h',['../AesGcmStrategy_8h.html',1,'']]],
   ['append_12',['append',['../classConversationHistory.html#a2f80481c78f84cf5a2d14867a5b8192c',1,'ConversationHistory']]],
-  ['appendandcache_13',['appendAndCache',['../classChatModel.html#a5e84eabeba74b05732ed0ab8b3f75124',1,'ChatModel']]],
+  ['appendandcache_13',['appendAndCache',['../classChatModel.html#a0b70c31ef59711801fda39cf0ea59004',1,'ChatModel']]],
   ['appendmessage_14',['appendMessage',['../classChatModel.html#a1ba983184f7035e4e433ab4136ef1307',1,'ChatModel']]],
   ['appexception_15',['appexception',['../classAppException.html',1,'AppException'],['../classProtocolException.html#adf9327a653e7da92e42cc15e913d2791',1,'ProtocolException::AppException()'],['../classDbException.html#adf9327a653e7da92e42cc15e913d2791',1,'DbException::AppException()'],['../classNetworkException.html#adf9327a653e7da92e42cc15e913d2791',1,'NetworkException::AppException()'],['../classCryptoException.html#adf9327a653e7da92e42cc15e913d2791',1,'CryptoException::AppException()'],['../classAppException.html#adf9327a653e7da92e42cc15e913d2791',1,'AppException::AppException()']]],
   ['appexception_2eh_16',['AppException.h',['../AppException_8h.html',1,'']]],

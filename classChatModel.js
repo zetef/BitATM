@@ -8,7 +8,7 @@ var classChatModel =
       [ "StatusRole", "classChatModel.html#a63e01c84f289f33e414ae789fcdc68e0ac9016d7dbba8f5c6b35a87d4209f1f5c", null ]
     ] ],
     [ "ChatModel", "classChatModel.html#a597d11bc706c54b9ee471ca7e46c2478", null ],
-    [ "appendAndCache", "classChatModel.html#a5e84eabeba74b05732ed0ab8b3f75124", null ],
+    [ "appendAndCache", "classChatModel.html#a0b70c31ef59711801fda39cf0ea59004", null ],
     [ "appendMessage", "classChatModel.html#a1ba983184f7035e4e433ab4136ef1307", null ],
     [ "clearAll", "classChatModel.html#af7c789ab9a5a53b3907a130da70991a4", null ],
     [ "clearHistory", "classChatModel.html#a942690cc304d1c6e83f41cfe07d9c2be", null ],

@@ -26,7 +26,7 @@ var classNetworkManager =
     [ "groupLeft", "classNetworkManager.html#af0902bd618f601ae0c472243a8a3e9bc", null ],
     [ "groupMessageDecrypted", "classNetworkManager.html#a1ebefc3b8b1ad69040decb2ed1f3cb57", null ],
     [ "hasError", "classNetworkManager.html#a81c14937cc630aa9accb44c2a65b9cde", null ],
-    [ "historySyncMessage", "classNetworkManager.html#a1e431ffe571e89103864c08eaea12488", null ],
+    [ "historySyncMessage", "classNetworkManager.html#a9cfd3cf00804e0f1daa8483507b0b9e6", null ],
     [ "isConnected", "classNetworkManager.html#a97d1fb741f609c2442efdfd92e944ed2", null ],
     [ "kickMember", "classNetworkManager.html#af19a5e79c92bb2c5beb0e4bcd2f8c2a2", null ],
     [ "lastMessage", "classNetworkManager.html#a6ee3929635e27c7b801a2a3d61279ce1", null ],
