@@ -70,8 +70,8 @@ ApplicationWindow {
             if (stack.depth > 1) stack.pop()
         }
 
-        function onHistorySyncMessage(peer, sender, content, timestamp, isOutgoing) {
-            chatModel.appendAndCache(peer, sender, content, timestamp, isOutgoing)
+        function onHistorySyncMessage(peer, sender, content, timestamp, isOutgoing, status) {
+            chatModel.appendAndCache(peer, sender, content, timestamp, isOutgoing, status)
             convListModel.addOrUpdate(peer, content, timestamp)
         }
 

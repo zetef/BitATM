@@ -1,5 +1,7 @@
 #include "ChatModel.h"
 
+#include "LocalStorage.h"
+
 ChatModel::ChatModel(QObject* parent) : QAbstractListModel(parent) {}
 
 void ChatModel::appendMessage(const QString& sender, const QString& content,
@@ -11,8 +13,8 @@ void ChatModel::appendMessage(const QString& sender, const QString& content,
 }
 
 void ChatModel::appendAndCache(const QString& peer, const QString& sender, const QString& content,
-                               const QString& timestamp, bool isOutgoing) {
-    ChatEntry entry{sender, content, timestamp, isOutgoing};
+                               const QString& timestamp, bool isOutgoing, const QString& status) {
+    ChatEntry entry{sender, content, timestamp, isOutgoing, status};
     cache_[peer].push_back(entry);
 
     if (activePeer_ == peer) {
@@ -81,6 +83,9 @@ QHash<int, QByteArray> ChatModel::roleNames() const {
 }
 
 void ChatModel::updateStatus(const QString& peer, const QString& timestamp, const QString& status) {
+    // Persist to SQLite so status survives app restarts
+    LocalStorage::instance().updateMessageStatus(peer, timestamp, status);
+
     // Update active view if the peer is currently displayed
     if (activePeer_ == peer) {
         for (int i = 0; i < static_cast<int>(entries_.size()); ++i) {

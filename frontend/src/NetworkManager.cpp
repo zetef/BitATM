@@ -161,7 +161,8 @@ void NetworkManager::loadLocalHistory() {
         if (c.peer == _currentUsername) continue;  // skip any stale self-conversation rows
         auto msgs = LocalStorage::instance().loadMessages(c.peer);
         for (auto& m : msgs) {
-            emit historySyncMessage(m.peer, m.sender, m.content, m.timestamp, m.isOutgoing);
+            emit historySyncMessage(m.peer, m.sender, m.content, m.timestamp, m.isOutgoing,
+                                    m.status);
         }
         emit convListUpdated(c.peer, c.lastMessage, c.lastTimestamp);
     }

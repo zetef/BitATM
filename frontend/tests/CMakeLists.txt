@@ -35,11 +35,12 @@ add_test(NAME PacketBuilderTest COMMAND packet_builder_test)
 add_executable(chat_model_test
     ChatModelTest.cpp
     ../src/ChatModel.cpp
+    ../src/LocalStorage.cpp
 )
 set_target_properties(chat_model_test PROPERTIES AUTOMOC ON)
 target_include_directories(chat_model_test PRIVATE ../src)
 target_link_libraries(chat_model_test PRIVATE
-    Qt6::Test Qt6::Core
+    Qt6::Test Qt6::Core Qt6::Sql
     common
 )
 add_test(NAME ChatModelTest COMMAND chat_model_test)

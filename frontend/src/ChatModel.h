@@ -40,7 +40,7 @@ public:
      */
     Q_INVOKABLE void appendAndCache(const QString& peer, const QString& sender,
                                     const QString& content, const QString& timestamp,
-                                    bool isOutgoing);
+                                    bool isOutgoing, const QString& status = "sent");
 
     /**
      * @brief Switch to a different conversation, replaying its cached messages.
