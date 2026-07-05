@@ -111,6 +111,30 @@ private slots:
 
         ws.close();
     }
+
+    // UT-BE-05c: MESSAGE without prior LOGIN -> server rejects with ERR
+    void rejectUnauthenticatedRequest() {
+        if (!serverReachable(_host, _port)) QSKIP("Test server not reachable");
+
+        Poco::Net::HTTPClientSession cs(_host, _port);
+        Poco::Net::HTTPRequest req(Poco::Net::HTTPRequest::HTTP_GET, "/",
+                                   Poco::Net::HTTPMessage::HTTP_1_1);
+        req.set("Host", _host + ":" + std::to_string(_port));
+        Poco::Net::HTTPResponse res;
+        Poco::Net::WebSocket ws(cs, req, res);
+
+        Packet msg;
+        msg.type = PacketType::MESSAGE;
+        msg.from = "ut_be_05_user";
+        msg.to = "ut_be_05_user";
+        msg.body = "ciphertext==";
+        msg.key = "wrappedkey==";
+        Packet resp = sendRecv(ws, msg);
+
+        QCOMPARE(static_cast<int>(resp.type), static_cast<int>(PacketType::ERR));
+
+        ws.close();
+    }
 };
 
 QTEST_MAIN(LoginHandlerTest)

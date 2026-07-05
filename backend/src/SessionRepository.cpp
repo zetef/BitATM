@@ -99,7 +99,7 @@ std::optional<::Session> SessionRepository::findByToken(const std::string& token
         // clang-format off
         std::string tokenParam = token;
         ses << "SELECT id, user_id, session_token, created_at, expires_at, is_active "
-               "FROM sessions WHERE session_token = $1 AND is_active = TRUE",
+               "FROM sessions WHERE session_token = $1 AND is_active = TRUE AND expires_at > NOW()",
             into(sid), into(userId), into(tok),
             into(createdAt), into(expiresAt), into(isActive),
             use(tokenParam), now;

@@ -103,11 +103,13 @@ std::vector<OfflineMessage> OfflineQueueRepository::findUndeliveredByRecipient(
         Poco::Data::Statement sel(ses);
         // clang-format off
         std::string recipientParam = recipient;
+        int maxAttempts = MAX_DELIVERY_ATTEMPTS;
         sel << "SELECT id, message_id, recipient, queued_at, delivered, delivery_attempts "
-               "FROM offline_queue WHERE recipient = $1 AND delivered = FALSE ORDER BY queued_at ASC",
+               "FROM offline_queue WHERE recipient = $1 AND delivered = FALSE "
+               "AND delivery_attempts < $2 ORDER BY queued_at ASC",
             into(oid), into(messageId), into(recip),
             into(queuedAt), into(delivered), into(deliveryAttempts),
-            use(recipientParam), range(0, 1);
+            use(recipientParam), use(maxAttempts), range(0, 1);
         // clang-format on
         while (!sel.done()) {
             sel.execute();
@@ -130,6 +132,18 @@ void OfflineQueueRepository::markDelivered(int id) {
     }
 }
 
+void OfflineQueueRepository::incrementAttempts(int id) {
+    try {
+        auto ses = DbManager::instance().session();
+        // clang-format off
+        ses << "UPDATE offline_queue SET delivery_attempts = delivery_attempts + 1 WHERE id = $1",
+            use(id), now;
+        // clang-format on
+    } catch (const Poco::Exception& e) {
+        throw DbException("OfflineQueueRepository::incrementAttempts: " + e.message());
+    }
+}
+
 void OfflineQueueRepository::cleanupDelivered() {
     try {
         auto ses = DbManager::instance().session();
@@ -139,5 +153,19 @@ void OfflineQueueRepository::cleanupDelivered() {
         // clang-format on
     } catch (const Poco::Exception& e) {
         throw DbException("OfflineQueueRepository::cleanupDelivered: " + e.message());
+    }
+}
+
+void OfflineQueueRepository::cleanupExhausted() {
+    try {
+        auto ses = DbManager::instance().session();
+        int maxAttempts = MAX_DELIVERY_ATTEMPTS;
+        // clang-format off
+        ses << "DELETE FROM offline_queue "
+               "WHERE delivered = FALSE AND delivery_attempts >= $1",
+            use(maxAttempts), now;
+        // clang-format on
+    } catch (const Poco::Exception& e) {
+        throw DbException("OfflineQueueRepository::cleanupExhausted: " + e.message());
     }
 }

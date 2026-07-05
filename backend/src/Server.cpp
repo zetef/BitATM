@@ -209,6 +209,13 @@ void Server::onCleanupTimer(Poco::Timer& /*timer*/) {
     } catch (const std::exception& e) {
         poco_error(log, std::string("cleanupDelivered failed: ") + e.what());
     }
+    poco_information(log, "Periodic cleanup: purging exhausted offline queue rows");
+    try {
+        OfflineQueueRepository offlineRepo;
+        offlineRepo.cleanupExhausted();
+    } catch (const std::exception& e) {
+        poco_error(log, std::string("cleanupExhausted failed: ") + e.what());
+    }
 }
 
 void Server::registerHandlers() {

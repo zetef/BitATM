@@ -15,6 +15,9 @@
  */
 class OfflineQueueRepository : public IRepository<OfflineMessage> {
 public:
+    /** @brief Delivery tries per entry before it is skipped and later purged. */
+    static constexpr int MAX_DELIVERY_ATTEMPTS = 5;
+
     OfflineQueueRepository() = default;
     ~OfflineQueueRepository() = default;
 
@@ -23,12 +26,23 @@ public:
     void save(const OfflineMessage& msg) override;
     void remove(int id) override;
 
-    /** @brief Return all undelivered entries for a recipient (called on reconnect). */
+    /**
+     * @brief Return undelivered entries for a recipient (called on reconnect).
+     *
+     * Entries that reached MAX_DELIVERY_ATTEMPTS are excluded; they await
+     * purge by cleanupExhausted().
+     */
     std::vector<OfflineMessage> findUndeliveredByRecipient(const std::string& recipient);
 
-    /** @brief Mark an entry as delivered and reset retry counter. */
+    /** @brief Mark an entry as delivered. */
     void markDelivered(int id);
+
+    /** @brief Increment the delivery attempt counter for an entry. */
+    void incrementAttempts(int id);
 
     /** @brief Delete rows that have been delivered and are older than 7 days. */
     void cleanupDelivered();
+
+    /** @brief Delete undelivered rows that reached MAX_DELIVERY_ATTEMPTS. */
+    void cleanupExhausted();
 };
