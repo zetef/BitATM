@@ -144,7 +144,7 @@ Protected Member Functions</h2></td></tr>
 <tr class="separator:ad023f1a6f6c93d56a8f36c2a3b50a4e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_classBaseAuthHandler"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classBaseAuthHandler')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classBaseAuthHandler.html">BaseAuthHandler</a></td></tr>
 <tr class="memitem:ab8d97c34782d2f2e20edb6c56074bfdf inherit pro_methods_classBaseAuthHandler" id="r_ab8d97c34782d2f2e20edb6c56074bfdf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBaseAuthHandler.html#ab8d97c34782d2f2e20edb6c56074bfdf">authorize</a> (const <a class="el" href="classClientSession.html">ClientSession</a> &amp;session) override</td></tr>
-<tr class="memdesc:ab8d97c34782d2f2e20edb6c56074bfdf inherit pro_methods_classBaseAuthHandler"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reject the request if the session is not authenticated.  <br /></td></tr>
+<tr class="memdesc:ab8d97c34782d2f2e20edb6c56074bfdf inherit pro_methods_classBaseAuthHandler"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reject the request unless the session is authenticated and its token maps to an active, unexpired row in the sessions table.  <br /></td></tr>
 <tr class="separator:ab8d97c34782d2f2e20edb6c56074bfdf inherit pro_methods_classBaseAuthHandler"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>

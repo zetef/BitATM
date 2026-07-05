@@ -9,7 +9,7 @@ var searchData=
   ['id_6',['id',['../structGroupInfo.html#af611c3e44607be5825b6c05734c5661a',1,'GroupInfo']]],
   ['ientity_7',['IEntity',['../classIEntity.html',1,'']]],
   ['ientity_2eh_8',['IEntity.h',['../IEntity_8h.html',1,'']]],
-  ['incrementattempts_9',['incrementAttempts',['../classOfflineMessage.html#ac88881836596507992d09654432ad8f9',1,'OfflineMessage']]],
+  ['incrementattempts_9',['incrementattempts',['../classOfflineQueueRepository.html#abc9e6a08c9a95ec99ee56ad274fb6cb7',1,'OfflineQueueRepository::incrementAttempts()'],['../classOfflineMessage.html#ac88881836596507992d09654432ad8f9',1,'OfflineMessage::incrementAttempts()']]],
   ['init_10',['init',['../classDbManager.html#a112def70f7921315f1f99124e8b08be3',1,'DbManager']]],
   ['instance_11',['instance',['../classDbManager.html#ab854b7eecf33502334ec042e1f45431d',1,'DbManager::instance()'],['../classLocalStorage.html#aad06d82197c07e9117930366b9fa0e72',1,'LocalStorage::instance()']]],
   ['irepository_12',['IRepository',['../classIRepository.html',1,'']]],

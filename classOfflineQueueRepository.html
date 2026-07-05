@@ -91,6 +91,7 @@ $(document).ready(function(){initNavTree('classOfflineQueueRepository.html','');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
 <a href="classOfflineQueueRepository-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">OfflineQueueRepository Class Reference</div></div>
 </div><!--header-->
@@ -105,9 +106,9 @@ Inheritance diagram for OfflineQueueRepository:</div>
 <div class="dyncontent">
 <div class="center"><img src="classOfflineQueueRepository__inherit__graph.png" border="0" usemap="#aOfflineQueueRepository_inherit__map" alt="Inheritance graph"/></div>
 <map name="aOfflineQueueRepository_inherit__map" id="aOfflineQueueRepository_inherit__map">
-<area shape="rect" title="PostgreSQL&#45;backed repository for the offline_queue table." alt="" coords="5,199,225,424"/>
+<area shape="rect" title="PostgreSQL&#45;backed repository for the offline_queue table." alt="" coords="5,199,225,464"/>
 <area shape="rect" href="classIRepository.html" title=" " alt="" coords="6,5,225,151"/>
-<area shape="poly" title=" " alt="" coords="118,164,118,199,113,199,113,164"/>
+<area shape="poly" title=" " alt="" coords="118,164,118,198,113,198,113,164"/>
 </map>
 </div>
 <div class="dynheader">
@@ -115,9 +116,9 @@ Collaboration diagram for OfflineQueueRepository:</div>
 <div class="dyncontent">
 <div class="center"><img src="classOfflineQueueRepository__coll__graph.png" border="0" usemap="#aOfflineQueueRepository_coll__map" alt="Collaboration graph"/></div>
 <map name="aOfflineQueueRepository_coll__map" id="aOfflineQueueRepository_coll__map">
-<area shape="rect" title="PostgreSQL&#45;backed repository for the offline_queue table." alt="" coords="5,199,225,424"/>
+<area shape="rect" title="PostgreSQL&#45;backed repository for the offline_queue table." alt="" coords="5,199,225,464"/>
 <area shape="rect" href="classIRepository.html" title=" " alt="" coords="6,5,225,151"/>
-<area shape="poly" title=" " alt="" coords="118,164,118,199,113,199,113,164"/>
+<area shape="poly" title=" " alt="" coords="118,164,118,198,113,198,113,164"/>
 </map>
 </div>
 <table class="memberdecls">
@@ -140,17 +141,29 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a21ea4d26525c12c03059bcc24e1bbd0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete the record with the given primary key.  <br /></td></tr>
 <tr class="separator:a21ea4d26525c12c03059bcc24e1bbd0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad3a3e520a3631a0c34ac869313b0b7fb" id="r_ad3a3e520a3631a0c34ac869313b0b7fb"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classOfflineMessage.html">OfflineMessage</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOfflineQueueRepository.html#ad3a3e520a3631a0c34ac869313b0b7fb">findUndeliveredByRecipient</a> (const std::string &amp;recipient)</td></tr>
-<tr class="memdesc:ad3a3e520a3631a0c34ac869313b0b7fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return all undelivered entries for a recipient (called on reconnect).  <br /></td></tr>
+<tr class="memdesc:ad3a3e520a3631a0c34ac869313b0b7fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return undelivered entries for a recipient (called on reconnect).  <br /></td></tr>
 <tr class="separator:ad3a3e520a3631a0c34ac869313b0b7fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6134cd9f25a0b69e4422083627e46cec" id="r_a6134cd9f25a0b69e4422083627e46cec"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOfflineQueueRepository.html#a6134cd9f25a0b69e4422083627e46cec">markDelivered</a> (int id)</td></tr>
-<tr class="memdesc:a6134cd9f25a0b69e4422083627e46cec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mark an entry as delivered and reset retry counter.  <br /></td></tr>
+<tr class="memdesc:a6134cd9f25a0b69e4422083627e46cec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mark an entry as delivered.  <br /></td></tr>
 <tr class="separator:a6134cd9f25a0b69e4422083627e46cec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc9e6a08c9a95ec99ee56ad274fb6cb7" id="r_abc9e6a08c9a95ec99ee56ad274fb6cb7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOfflineQueueRepository.html#abc9e6a08c9a95ec99ee56ad274fb6cb7">incrementAttempts</a> (int id)</td></tr>
+<tr class="memdesc:abc9e6a08c9a95ec99ee56ad274fb6cb7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Increment the delivery attempt counter for an entry.  <br /></td></tr>
+<tr class="separator:abc9e6a08c9a95ec99ee56ad274fb6cb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9ef12f13db4dae3a7415a05e9e55fc7c" id="r_a9ef12f13db4dae3a7415a05e9e55fc7c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOfflineQueueRepository.html#a9ef12f13db4dae3a7415a05e9e55fc7c">cleanupDelivered</a> ()</td></tr>
 <tr class="memdesc:a9ef12f13db4dae3a7415a05e9e55fc7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete rows that have been delivered and are older than 7 days.  <br /></td></tr>
 <tr class="separator:a9ef12f13db4dae3a7415a05e9e55fc7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a39da92e927dac9aa2be17ee7b60985d1" id="r_a39da92e927dac9aa2be17ee7b60985d1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOfflineQueueRepository.html#a39da92e927dac9aa2be17ee7b60985d1">cleanupExhausted</a> ()</td></tr>
+<tr class="memdesc:a39da92e927dac9aa2be17ee7b60985d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete undelivered rows that reached MAX_DELIVERY_ATTEMPTS.  <br /></td></tr>
+<tr class="separator:a39da92e927dac9aa2be17ee7b60985d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classIRepository"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classIRepository')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classIRepository.html">IRepository&lt; OfflineMessage &gt;</a></td></tr>
 <tr class="memitem:a1358ed9253601f09059575ddc131c587 inherit pub_methods_classIRepository" id="r_a1358ed9253601f09059575ddc131c587"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIRepository.html#a1358ed9253601f09059575ddc131c587">~IRepository</a> ()=default</td></tr>
 <tr class="separator:a1358ed9253601f09059575ddc131c587 inherit pub_methods_classIRepository"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr class="memitem:a5a35969e0291880975adb71e2b3031af" id="r_a5a35969e0291880975adb71e2b3031af"><td class="memItemLeft" align="right" valign="top">static constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOfflineQueueRepository.html#a5a35969e0291880975adb71e2b3031af">MAX_DELIVERY_ATTEMPTS</a> = 5</td></tr>
+<tr class="memdesc:a5a35969e0291880975adb71e2b3031af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delivery tries per entry before it is skipped and later purged.  <br /></td></tr>
+<tr class="separator:a5a35969e0291880975adb71e2b3031af"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>PostgreSQL-backed repository for the offline_queue table. </p>
@@ -223,6 +236,25 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Delete rows that have been delivered and are older than 7 days. </p>
+
+</div>
+</div>
+<a id="a39da92e927dac9aa2be17ee7b60985d1" name="a39da92e927dac9aa2be17ee7b60985d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a39da92e927dac9aa2be17ee7b60985d1">&#9670;&#160;</a></span>cleanupExhausted()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void OfflineQueueRepository::cleanupExhausted </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Delete undelivered rows that reached MAX_DELIVERY_ATTEMPTS. </p>
 
 </div>
 </div>
@@ -301,7 +333,28 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Return all undelivered entries for a recipient (called on reconnect). </p>
+<p>Return undelivered entries for a recipient (called on reconnect). </p>
+<p>Entries that reached MAX_DELIVERY_ATTEMPTS are excluded; they await purge by <a class="el" href="classOfflineQueueRepository.html#a39da92e927dac9aa2be17ee7b60985d1" title="Delete undelivered rows that reached MAX_DELIVERY_ATTEMPTS.">cleanupExhausted()</a>. </p>
+
+</div>
+</div>
+<a id="abc9e6a08c9a95ec99ee56ad274fb6cb7" name="abc9e6a08c9a95ec99ee56ad274fb6cb7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc9e6a08c9a95ec99ee56ad274fb6cb7">&#9670;&#160;</a></span>incrementAttempts()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void OfflineQueueRepository::incrementAttempts </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Increment the delivery attempt counter for an entry. </p>
 
 </div>
 </div>
@@ -321,7 +374,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Mark an entry as delivered and reset retry counter. </p>
+<p>Mark an entry as delivered. </p>
 
 </div>
 </div>
@@ -382,6 +435,31 @@ Public Member Functions</h2></td></tr>
 <p>Insert or update a record. </p>
 
 <p>Implements <a class="el" href="classIRepository.html#a127bc412b5736f161efa93e575d7a056">IRepository&lt; OfflineMessage &gt;</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a5a35969e0291880975adb71e2b3031af" name="a5a35969e0291880975adb71e2b3031af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a35969e0291880975adb71e2b3031af">&#9670;&#160;</a></span>MAX_DELIVERY_ATTEMPTS</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr int OfflineQueueRepository::MAX_DELIVERY_ATTEMPTS = 5</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Delivery tries per entry before it is skipped and later purged. </p>
 
 </div>
 </div>

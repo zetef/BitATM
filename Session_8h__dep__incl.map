@@ -1,16 +1,18 @@
 <map id="backend/src/Session.h" name="backend/src/Session.h">
-<area shape="rect" id="Node000001" title=" " alt="" coords="168,5,333,31"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="285,5,451,31"/>
 <area shape="rect" id="Node000002" href="$RegisterHandler_8cpp.html" title=" " alt="" coords="5,152,240,177"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="207,38,176,56,150,80,140,98,132,118,126,152,121,151,127,116,135,96,146,77,173,52,204,34"/>
-<area shape="rect" id="Node000003" href="$Session_8cpp.html" title=" " alt="" coords="161,79,341,104"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="253,44,253,79,248,79,248,44"/>
-<area shape="rect" id="Node000004" href="$SessionRepository_8h.html" title=" " alt="" coords="365,79,598,104"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="302,32,445,76,443,81,300,37"/>
-<area shape="poly" id="edge5_Node000004_Node000002" title=" " alt="" coords="411,109,181,155,180,149,410,104"/>
-<area shape="rect" id="Node000005" href="$LoginHandler_8cpp.html" title=" " alt="" coords="265,152,479,177"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="454,114,391,154,388,150,451,109"/>
-<area shape="rect" id="Node000006" href="$Server_8cpp.html" title=" " alt="" coords="504,152,675,177"/>
-<area shape="poly" id="edge6_Node000004_Node000006" title=" " alt="" coords="511,109,573,150,570,154,509,114"/>
-<area shape="rect" id="Node000007" href="$SessionRepository_8cpp.html" title=" " alt="" coords="699,152,947,177"/>
-<area shape="poly" id="edge7_Node000004_Node000007" title=" " alt="" coords="550,104,768,149,767,155,549,109"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="338,40,267,81,143,154,141,149,264,76,335,35"/>
+<area shape="rect" id="Node000003" href="$Session_8cpp.html" title=" " alt="" coords="278,79,458,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="371,44,371,79,365,79,365,44"/>
+<area shape="rect" id="Node000004" href="$SessionRepository_8h.html" title=" " alt="" coords="502,79,735,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="422,32,579,76,577,81,421,37"/>
+<area shape="poly" id="edge6_Node000004_Node000002" title=" " alt="" coords="526,109,203,155,202,149,525,103"/>
+<area shape="rect" id="Node000005" href="$BaseAuthHandler_8cpp.html" title=" " alt="" coords="264,152,507,177"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="569,110,424,154,422,149,568,105"/>
+<area shape="rect" id="Node000006" href="$LoginHandler_8cpp.html" title=" " alt="" coords="531,152,746,177"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="628,117,638,151,633,153,623,118"/>
+<area shape="rect" id="Node000007" href="$Server_8cpp.html" title=" " alt="" coords="771,152,941,177"/>
+<area shape="poly" id="edge7_Node000004_Node000007" title=" " alt="" coords="671,105,818,149,817,154,669,110"/>
+<area shape="rect" id="Node000008" href="$SessionRepository_8cpp.html" title=" " alt="" coords="965,152,1213,177"/>
+<area shape="poly" id="edge8_Node000004_Node000008" title=" " alt="" coords="708,103,1014,149,1013,155,707,109"/>
 </map>

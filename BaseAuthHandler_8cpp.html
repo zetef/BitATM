@@ -95,38 +95,63 @@ $(document).ready(function(){initNavTree('BaseAuthHandler_8cpp.html',''); initRe
 <div class="textblock"><code>#include &quot;<a class="el" href="BaseAuthHandler_8h_source.html">BaseAuthHandler.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="AppException_8h_source.html">../../common/AppException.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="ClientSession_8h_source.html">ClientSession.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="SessionRepository_8h_source.html">SessionRepository.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for BaseAuthHandler.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="BaseAuthHandler_8cpp__incl.png" border="0" usemap="#abackend_2src_2BaseAuthHandler_8cpp" alt=""/></div>
 <map name="abackend_2src_2BaseAuthHandler_8cpp" id="abackend_2src_2BaseAuthHandler_8cpp">
-<area shape="rect" title=" " alt="" coords="275,5,518,31"/>
-<area shape="rect" href="BaseAuthHandler_8h.html" title=" " alt="" coords="323,79,470,104"/>
-<area shape="poly" title=" " alt="" coords="399,31,399,65,394,65,394,31"/>
-<area shape="rect" href="AppException_8h.html" title=" " alt="" coords="442,299,564,324"/>
-<area shape="poly" title=" " alt="" coords="425,29,457,48,472,61,484,77,496,104,505,132,514,189,514,243,510,285,504,284,508,243,508,190,500,133,491,106,479,80,468,65,454,52,422,33"/>
-<area shape="rect" href="ClientSession_8h.html" title=" " alt="" coords="172,152,295,177"/>
-<area shape="poly" title=" " alt="" coords="379,33,347,54,313,81,280,112,253,143,249,139,277,109,309,77,344,50,376,28"/>
-<area shape="rect" href="ICommandHandler_8h.html" title=" " alt="" coords="319,152,474,177"/>
-<area shape="poly" title=" " alt="" coords="399,104,399,138,394,138,394,104"/>
-<area shape="rect" href="protocol_8h.html" title=" " alt="" coords="306,225,478,251"/>
-<area shape="poly" title=" " alt="" coords="398,178,396,212,391,212,393,178"/>
-<area shape="rect" title=" " alt="" coords="196,299,263,324"/>
-<area shape="poly" title=" " alt="" coords="367,253,270,295,268,291,365,248"/>
-<area shape="rect" title=" " alt="" coords="287,299,367,324"/>
-<area shape="poly" title=" " alt="" coords="383,253,349,290,345,287,379,249"/>
-<area shape="rect" title=" " alt="" coords="375,372,434,397"/>
-<area shape="poly" title=" " alt="" coords="396,251,405,358,399,359,391,251"/>
-<area shape="poly" title=" " alt="" coords="411,248,475,289,472,293,409,253"/>
-<area shape="poly" title=" " alt="" coords="489,326,433,366,430,362,485,322"/>
-<area shape="rect" title=" " alt="" coords="460,372,546,397"/>
-<area shape="poly" title=" " alt="" coords="506,324,506,358,500,358,500,324"/>
-<area shape="poly" title=" " alt="" coords="260,175,355,217,353,222,258,180"/>
-<area shape="poly" title=" " alt="" coords="172,171,109,177,49,191,27,202,13,214,8,230,16,249,49,288,90,318,136,341,185,358,235,370,282,377,361,382,361,387,281,382,234,375,184,363,134,346,87,323,45,292,11,252,3,230,8,212,24,197,47,186,108,172,171,165"/>
-<area shape="rect" title=" " alt="" coords="26,225,193,251"/>
-<area shape="poly" title=" " alt="" coords="215,180,143,221,140,216,212,175"/>
-<area shape="rect" title=" " alt="" coords="218,225,282,251"/>
-<area shape="poly" title=" " alt="" coords="239,177,247,212,241,213,234,178"/>
+<area shape="rect" title=" " alt="" coords="141,5,384,31"/>
+<area shape="rect" href="BaseAuthHandler_8h.html" title=" " alt="" coords="135,79,281,104"/>
+<area shape="poly" title=" " alt="" coords="256,33,227,69,223,66,252,29"/>
+<area shape="rect" href="AppException_8h.html" title=" " alt="" coords="5,299,128,324"/>
+<area shape="poly" title=" " alt="" coords="207,33,162,51,142,64,125,80,108,104,95,131,78,187,70,242,68,285,63,285,65,241,72,186,90,129,103,102,121,77,139,60,160,46,205,28"/>
+<area shape="rect" href="ClientSession_8h.html" title=" " alt="" coords="296,152,419,177"/>
+<area shape="poly" title=" " alt="" coords="273,30,344,139,340,142,268,33"/>
+<area shape="rect" href="SessionRepository_8h.html" title=" " alt="" coords="732,152,884,177"/>
+<area shape="poly" title=" " alt="" coords="307,28,752,146,751,151,305,33"/>
+<area shape="rect" href="ICommandHandler_8h.html" title=" " alt="" coords="117,152,272,177"/>
+<area shape="poly" title=" " alt="" coords="208,105,202,139,197,138,203,104"/>
+<area shape="rect" href="protocol_8h.html" title=" " alt="" coords="109,225,281,251"/>
+<area shape="poly" title=" " alt="" coords="197,178,197,212,192,212,192,178"/>
+<area shape="rect" title=" " alt="" coords="256,299,323,324"/>
+<area shape="poly" title=" " alt="" coords="211,249,264,288,261,292,208,253"/>
+<area shape="rect" title=" " alt="" coords="152,299,232,324"/>
+<area shape="poly" title=" " alt="" coords="197,251,196,285,190,285,192,251"/>
+<area shape="rect" title=" " alt="" coords="573,372,632,397"/>
+<area shape="poly" title=" " alt="" coords="223,248,336,296,393,322,482,350,561,371,560,376,481,355,391,326,334,301,221,253"/>
+<area shape="poly" title=" " alt="" coords="175,253,101,294,99,289,173,248"/>
+<area shape="poly" title=" " alt="" coords="129,320,140,321,560,375,559,381,140,327,128,325"/>
+<area shape="rect" title=" " alt="" coords="23,372,110,397"/>
+<area shape="poly" title=" " alt="" coords="69,324,69,358,64,358,64,324"/>
+<area shape="poly" title=" " alt="" coords="332,180,235,222,233,217,330,175"/>
+<area shape="poly" title=" " alt="" coords="369,176,397,210,435,249,510,312,577,362,573,366,507,317,432,253,393,213,365,179"/>
+<area shape="rect" title=" " alt="" coords="445,225,611,251"/>
+<area shape="poly" title=" " alt="" coords="386,175,489,218,487,222,384,180"/>
+<area shape="rect" title=" " alt="" coords="305,225,369,251"/>
+<area shape="poly" title=" " alt="" coords="357,178,347,213,342,211,351,177"/>
+<area shape="poly" title=" " alt="" coords="801,179,751,244,677,326,631,365,627,361,673,322,747,240,797,176"/>
+<area shape="rect" title=" " alt="" coords="795,299,869,324"/>
+<area shape="poly" title=" " alt="" coords="813,177,830,285,825,285,807,178"/>
+<area shape="rect" title=" " alt="" coords="894,299,957,324"/>
+<area shape="poly" title=" " alt="" coords="885,174,930,192,950,206,966,224,972,241,969,259,949,290,945,287,964,257,967,241,962,227,946,210,927,196,883,179"/>
+<area shape="rect" href="DbManager_8h.html" title=" " alt="" coords="1049,225,1157,251"/>
+<area shape="poly" title=" " alt="" coords="856,175,1042,219,1041,225,855,180"/>
+<area shape="rect" href="IRepository_8h.html" title=" " alt="" coords="845,225,952,251"/>
+<area shape="poly" title=" " alt="" coords="824,175,875,214,871,219,821,179"/>
+<area shape="rect" href="Session_8h.html" title=" " alt="" coords="635,225,719,251"/>
+<area shape="poly" title=" " alt="" coords="788,180,712,221,709,216,786,175"/>
+<area shape="poly" title=" " alt="" coords="1090,253,1040,290,1006,310,970,326,882,353,792,370,710,380,646,385,645,379,710,375,791,365,881,348,968,322,1004,305,1037,285,1087,249"/>
+<area shape="rect" title=" " alt="" coords="1033,299,1215,324"/>
+<area shape="poly" title=" " alt="" coords="1109,250,1119,285,1114,286,1104,252"/>
+<area shape="rect" title=" " alt="" coords="1240,299,1317,324"/>
+<area shape="poly" title=" " alt="" coords="1132,248,1238,291,1236,296,1130,253"/>
+<area shape="poly" title=" " alt="" coords="890,253,854,290,850,287,886,249"/>
+<area shape="poly" title=" " alt="" coords="906,250,919,285,914,287,901,252"/>
+<area shape="poly" title=" " alt="" coords="678,251,670,285,654,325,626,363,622,360,650,323,665,284,673,250"/>
+<area shape="rect" href="IEntity_8h.html" title=" " alt="" coords="565,299,640,324"/>
+<area shape="poly" title=" " alt="" coords="667,253,627,291,623,287,664,249"/>
+<area shape="poly" title=" " alt="" coords="605,324,605,358,600,358,600,324"/>
 </map>
 </div>
 </div></div><!-- contents -->

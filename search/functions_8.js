@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['incrementattempts_0',['incrementAttempts',['../classOfflineMessage.html#ac88881836596507992d09654432ad8f9',1,'OfflineMessage']]],
+  ['incrementattempts_0',['incrementattempts',['../classOfflineMessage.html#ac88881836596507992d09654432ad8f9',1,'OfflineMessage::incrementAttempts()'],['../classOfflineQueueRepository.html#abc9e6a08c9a95ec99ee56ad274fb6cb7',1,'OfflineQueueRepository::incrementAttempts()']]],
   ['init_1',['init',['../classDbManager.html#a112def70f7921315f1f99124e8b08be3',1,'DbManager']]],
   ['instance_2',['instance',['../classDbManager.html#ab854b7eecf33502334ec042e1f45431d',1,'DbManager::instance()'],['../classLocalStorage.html#aad06d82197c07e9117930366b9fa0e72',1,'LocalStorage::instance()']]],
   ['isactive_3',['isActive',['../classSession.html#a373fc8d50fca97a245c8eeea3bc8d066',1,'Session']]],

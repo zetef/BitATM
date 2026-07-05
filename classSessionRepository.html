@@ -140,7 +140,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a7fc99fdbeef51a150a8c8438e52e2442"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete the record with the given primary key.  <br /></td></tr>
 <tr class="separator:a7fc99fdbeef51a150a8c8438e52e2442"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4808982cbeb5653e080fdeddeda91829" id="r_a4808982cbeb5653e080fdeddeda91829"><td class="memItemLeft" align="right" valign="top">std::optional&lt; <a class="el" href="classSession.html">Session</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSessionRepository.html#a4808982cbeb5653e080fdeddeda91829">findByToken</a> (const std::string &amp;token)</td></tr>
-<tr class="memdesc:a4808982cbeb5653e080fdeddeda91829"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find an active session by its token. Returns nullopt if not found or inactive.  <br /></td></tr>
+<tr class="memdesc:a4808982cbeb5653e080fdeddeda91829"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find an active, unexpired session by its token.  <br /></td></tr>
 <tr class="separator:a4808982cbeb5653e080fdeddeda91829"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa4aa7fdfd701c810fe86dd76a3276516" id="r_aa4aa7fdfd701c810fe86dd76a3276516"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSessionRepository.html#aa4aa7fdfd701c810fe86dd76a3276516">deactivateAllForUser</a> (int userId)</td></tr>
 <tr class="memdesc:aa4aa7fdfd701c810fe86dd76a3276516"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deactivate all sessions belonging to a user (logout everywhere).  <br /></td></tr>
@@ -344,7 +344,8 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Find an active session by its token. Returns nullopt if not found or inactive. </p>
+<p>Find an active, unexpired session by its token. </p>
+<p>Returns nullopt if not found, inactive, or expired (expires_at &lt;= NOW()). </p>
 
 </div>
 </div>

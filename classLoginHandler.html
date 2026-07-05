@@ -130,7 +130,7 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:a8ee19028e40e40c8dae4eb5da7893f6a" id="r_a8ee19028e40e40c8dae4eb5da7893f6a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLoginHandler.html#a8ee19028e40e40c8dae4eb5da7893f6a">validate</a> (const <a class="el" href="structPacket.html">Packet</a> &amp;packet) override</td></tr>
 <tr class="separator:a8ee19028e40e40c8dae4eb5da7893f6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab8db42018f774e1e31cfb067fb259b33" id="r_ab8db42018f774e1e31cfb067fb259b33"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLoginHandler.html#ab8db42018f774e1e31cfb067fb259b33">authorize</a> (const <a class="el" href="classClientSession.html">ClientSession</a> &amp;session) override</td></tr>
-<tr class="memdesc:ab8db42018f774e1e31cfb067fb259b33"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reject the request if the session is not authenticated.  <br /></td></tr>
+<tr class="memdesc:ab8db42018f774e1e31cfb067fb259b33"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reject the request unless the session is authenticated and its token maps to an active, unexpired row in the sessions table.  <br /></td></tr>
 <tr class="separator:ab8db42018f774e1e31cfb067fb259b33"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adb2e93f7dd241c34df8e86070cdd66ef" id="r_adb2e93f7dd241c34df8e86070cdd66ef"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLoginHandler.html#adb2e93f7dd241c34df8e86070cdd66ef">execute</a> (<a class="el" href="structPacket.html">Packet</a> &amp;packet, <a class="el" href="classClientSession.html">ClientSession</a> &amp;session) override</td></tr>
 <tr class="separator:adb2e93f7dd241c34df8e86070cdd66ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -145,7 +145,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Handles LOGIN packets. L3 under <a class="el" href="classBaseAuthHandler.html" title="L2 abstract handler for packet types that require an authenticated session.">BaseAuthHandler</a>. </p>
-<p>Overrides <a class="el" href="classLoginHandler.html#ab8db42018f774e1e31cfb067fb259b33" title="Reject the request if the session is not authenticated.">authorize()</a> to require a non-authenticated session (rejects double-login). Overrides <a class="el" href="classLoginHandler.html#adb2e93f7dd241c34df8e86070cdd66ef">execute()</a> to verify credentials, issue a CSPRNG 256-bit session token, flush offline messages, and flush queued read receipts. </p>
+<p>Overrides <a class="el" href="classLoginHandler.html#ab8db42018f774e1e31cfb067fb259b33" title="Reject the request unless the session is authenticated and its token maps to an active,...">authorize()</a> to require a non-authenticated session (rejects double-login). Overrides <a class="el" href="classLoginHandler.html#adb2e93f7dd241c34df8e86070cdd66ef">execute()</a> to verify credentials, issue a CSPRNG 256-bit session token, flush offline messages, and flush queued read receipts. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="ab8db42018f774e1e31cfb067fb259b33" name="ab8db42018f774e1e31cfb067fb259b33"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab8db42018f774e1e31cfb067fb259b33">&#9670;&#160;</a></span>authorize()</h2>
@@ -171,10 +171,11 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Reject the request if the session is not authenticated. </p>
+<p>Reject the request unless the session is authenticated and its token maps to an active, unexpired row in the sessions table. </p>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname"><a class="el" href="classProtocolException.html">ProtocolException</a></td><td>if session state != Authenticated. </td></tr>
+    <tr><td class="paramname"><a class="el" href="classProtocolException.html">ProtocolException</a></td><td>if session state != Authenticated, the token is missing, or the DB session is expired/revoked. </td></tr>
+    <tr><td class="paramname"><a class="el" href="classDbException.html">DbException</a></td><td>on DB failure (fail-closed: requests are rejected rather than trusting stale in-memory state). </td></tr>
   </table>
   </dd>
 </dl>

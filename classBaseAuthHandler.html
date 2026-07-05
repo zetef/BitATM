@@ -148,7 +148,7 @@ Collaboration diagram for BaseAuthHandler:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr class="memitem:ab8d97c34782d2f2e20edb6c56074bfdf" id="r_ab8d97c34782d2f2e20edb6c56074bfdf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBaseAuthHandler.html#ab8d97c34782d2f2e20edb6c56074bfdf">authorize</a> (const <a class="el" href="classClientSession.html">ClientSession</a> &amp;session) override</td></tr>
-<tr class="memdesc:ab8d97c34782d2f2e20edb6c56074bfdf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reject the request if the session is not authenticated.  <br /></td></tr>
+<tr class="memdesc:ab8d97c34782d2f2e20edb6c56074bfdf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reject the request unless the session is authenticated and its token maps to an active, unexpired row in the sessions table.  <br /></td></tr>
 <tr class="separator:ab8d97c34782d2f2e20edb6c56074bfdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_classICommandHandler"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classICommandHandler')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classICommandHandler.html">ICommandHandler</a></td></tr>
 <tr class="memitem:a958ac0a8073a92c0cc17765061034482 inherit pro_methods_classICommandHandler" id="r_a958ac0a8073a92c0cc17765061034482"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classICommandHandler.html#a958ac0a8073a92c0cc17765061034482">validate</a> (const <a class="el" href="structPacket.html">Packet</a> &amp;packet)=0</td></tr>
@@ -166,7 +166,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>L2 abstract handler for packet types that require an authenticated session. </p>
-<p>Implements <a class="el" href="classBaseAuthHandler.html#ab8d97c34782d2f2e20edb6c56074bfdf" title="Reject the request if the session is not authenticated.">authorize()</a> - throws <a class="el" href="classProtocolException.html">ProtocolException</a> if the session is not in the Authenticated state. Subclasses (<a class="el" href="classLoginHandler.html" title="Handles LOGIN packets. L3 under BaseAuthHandler.">LoginHandler</a>, <a class="el" href="classMessageHandler.html" title="Handles MESSAGE packets. L3 under BaseAuthHandler.">MessageHandler</a>, <a class="el" href="classKeyExchangeHandler.html" title="Handles KEY_EXCHANGE packets. L3 under BaseAuthHandler.">KeyExchangeHandler</a>, <a class="el" href="classAckHandler.html" title="Handles ACK packets. L3 under BaseAuthHandler.">AckHandler</a>) only need to override <a class="el" href="classICommandHandler.html#a958ac0a8073a92c0cc17765061034482">validate()</a> and <a class="el" href="classICommandHandler.html#ac84b26b8eaff696e610a35304476f50c">execute()</a>. </p>
+<p>Implements <a class="el" href="classBaseAuthHandler.html#ab8d97c34782d2f2e20edb6c56074bfdf" title="Reject the request unless the session is authenticated and its token maps to an active,...">authorize()</a> - requires the in-memory Authenticated state AND an active, unexpired session row in the DB. Subclasses (<a class="el" href="classLoginHandler.html" title="Handles LOGIN packets. L3 under BaseAuthHandler.">LoginHandler</a>, <a class="el" href="classMessageHandler.html" title="Handles MESSAGE packets. L3 under BaseAuthHandler.">MessageHandler</a>, <a class="el" href="classKeyExchangeHandler.html" title="Handles KEY_EXCHANGE packets. L3 under BaseAuthHandler.">KeyExchangeHandler</a>, <a class="el" href="classAckHandler.html" title="Handles ACK packets. L3 under BaseAuthHandler.">AckHandler</a>) only need to override <a class="el" href="classICommandHandler.html#a958ac0a8073a92c0cc17765061034482">validate()</a> and <a class="el" href="classICommandHandler.html#ac84b26b8eaff696e610a35304476f50c">execute()</a>. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="ab8d97c34782d2f2e20edb6c56074bfdf" name="ab8d97c34782d2f2e20edb6c56074bfdf"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab8d97c34782d2f2e20edb6c56074bfdf">&#9670;&#160;</a></span>authorize()</h2>
@@ -192,10 +192,11 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Reject the request if the session is not authenticated. </p>
+<p>Reject the request unless the session is authenticated and its token maps to an active, unexpired row in the sessions table. </p>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname"><a class="el" href="classProtocolException.html">ProtocolException</a></td><td>if session state != Authenticated. </td></tr>
+    <tr><td class="paramname"><a class="el" href="classProtocolException.html">ProtocolException</a></td><td>if session state != Authenticated, the token is missing, or the DB session is expired/revoked. </td></tr>
+    <tr><td class="paramname"><a class="el" href="classDbException.html">DbException</a></td><td>on DB failure (fail-closed: requests are rejected rather than trusting stale in-memory state). </td></tr>
   </table>
   </dd>
 </dl>
