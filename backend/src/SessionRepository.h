@@ -23,7 +23,11 @@ public:
     void save(const Session& session) override;
     void remove(int id) override;
 
-    /** @brief Find an active session by its token. Returns nullopt if not found or inactive. */
+    /**
+     * @brief Find an active, unexpired session by its token.
+     *
+     * Returns nullopt if not found, inactive, or expired (expires_at <= NOW()).
+     */
     std::optional<Session> findByToken(const std::string& token);
 
     /** @brief Deactivate all sessions belonging to a user (logout everywhere). */
