@@ -131,10 +131,19 @@ void LoginHandler::execute(Packet& packet, ClientSession& session) {
     // private key before the first MESSAGE packet arrives
     OfflineQueueRepository offlineRepo;
     MessageRepository msgRepo;
+    Poco::Logger& log = Poco::Logger::get("LoginHandler");
     auto pending = offlineRepo.findUndeliveredByRecipient(packet.from);
     for (auto& entry : pending) {
-        auto msgOpt = msgRepo.findById(entry.getMessageId());
-        if (msgOpt) {
+        try {
+            // persist the attempt before sending so a crash mid-send still counts
+            offlineRepo.incrementAttempts(entry.getId());
+            auto msgOpt = msgRepo.findById(entry.getMessageId());
+            if (!msgOpt) {
+                poco_warning(log, "offline entry " + std::to_string(entry.getId()) +
+                                      " references missing message " +
+                                      std::to_string(entry.getMessageId()) + ", skipping");
+                continue;
+            }
             Packet fwd;
             fwd.type = PacketType::MESSAGE;
             fwd.from = msgOpt->getSender();
@@ -144,6 +153,13 @@ void LoginHandler::execute(Packet& packet, ClientSession& session) {
             fwd.timestamp = msgOpt->getCreatedAt();
             session.send(fwd);
             offlineRepo.markDelivered(entry.getId());
+        } catch (const NetworkException& e) {
+            // dead socket: stop, do not burn attempts for the rest of the queue
+            poco_warning(log, std::string("offline flush aborted, socket dead: ") + e.what());
+            break;
+        } catch (const std::exception& e) {
+            poco_warning(log, "offline flush entry " + std::to_string(entry.getId()) +
+                                  " failed: " + e.what());
         }
     }
 
