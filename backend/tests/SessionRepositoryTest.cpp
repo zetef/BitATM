@@ -17,16 +17,6 @@ class SessionRepositoryTest : public QObject {
 private:
     bool _dbAvailable = false;
 
-    void initTestCase() {
-        const char* url = std::getenv("DATABASE_URL");
-        if (!url) return;
-        try {
-            DbManager::instance().init(std::string(url));
-            _dbAvailable = true;
-        } catch (...) {
-        }
-    }
-
     int makeUser(const std::string& name) {
         UserRepository userRepo;
         if (!userRepo.findByUsername(name)) userRepo.save(User{0, name, "hash:x", ""});
@@ -40,6 +30,16 @@ private:
     }
 
 private slots:
+    void initTestCase() {
+        const char* url = std::getenv("DATABASE_URL");
+        if (!url) return;
+        try {
+            DbManager::instance().init(std::string(url));
+            _dbAvailable = true;
+        } catch (...) {
+        }
+    }
+
     // UT-BE-13a: deactivated session token is no longer accepted
     void findByTokenRejectsInactive() {
         if (!_dbAvailable) QSKIP("DATABASE_URL not set");

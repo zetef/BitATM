@@ -14,6 +14,7 @@ class DbManagerTest : public QObject {
 private:
     bool _dbAvailable = false;
 
+private slots:
     void initTestCase() {
         const char* url = std::getenv("DATABASE_URL");
         if (!url) return;
@@ -24,7 +25,6 @@ private:
         }
     }
 
-private slots:
     // UT-BE-01: insert user -> fetch by username returns correct struct
     void insertUser() {
         if (!_dbAvailable) QSKIP("DATABASE_URL not set");

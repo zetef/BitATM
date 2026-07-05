@@ -14,16 +14,6 @@ class OfflineQueueRepositoryTest : public QObject {
 private:
     bool _dbAvailable = false;
 
-    void initTestCase() {
-        const char* url = std::getenv("DATABASE_URL");
-        if (!url) return;
-        try {
-            DbManager::instance().init(std::string(url));
-            _dbAvailable = true;
-        } catch (...) {
-        }
-    }
-
     // Create user pair + message + undelivered offline entry; returns entry id.
     int makeOfflineEntry(const std::string& sender, const std::string& recipient) {
         UserRepository userRepo;
@@ -55,6 +45,16 @@ private:
     }
 
 private slots:
+    void initTestCase() {
+        const char* url = std::getenv("DATABASE_URL");
+        if (!url) return;
+        try {
+            DbManager::instance().init(std::string(url));
+            _dbAvailable = true;
+        } catch (...) {
+        }
+    }
+
     // UT-BE-12a: incrementAttempts persists and entry stays retryable below the cap
     void incrementAttemptsPersists() {
         if (!_dbAvailable) QSKIP("DATABASE_URL not set");
