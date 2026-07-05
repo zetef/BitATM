@@ -2,6 +2,7 @@
 
 #include <Poco/Data/Session.h>
 #include <Poco/Data/Statement.h>
+#include <Poco/Logger.h>
 #include <openssl/evp.h>
 #include <openssl/kdf.h>
 #include <openssl/params.h>
@@ -114,8 +115,10 @@ void LoginHandler::execute(Packet& packet, ClientSession& session) {
     session.setState(ClientSession::State::Authenticated);
     try {
         userRepo.updateLastSeen(packet.from);
-    } catch (const std::exception&) {
+    } catch (const std::exception& e) {
         // Non-fatal: stale last_seen is cosmetic, login must not fail over it.
+        poco_warning(Poco::Logger::get("LoginHandler"),
+                     std::string("updateLastSeen failed (non-fatal): ") + e.what());
     }
 
     Packet ack;
