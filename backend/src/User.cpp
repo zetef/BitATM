@@ -6,7 +6,7 @@
 
 User::User(int id, std::string username, std::string passwordHash, std::string publicKey,
            std::string lastSeen, std::string createdAt)
-    : _id(id),
+    : BasePersistableEntity(id),
       _username(std::move(username)),
       _passwordHash(std::move(passwordHash)),
       _publicKey(std::move(publicKey)),

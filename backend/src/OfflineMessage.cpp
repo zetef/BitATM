@@ -4,7 +4,7 @@
 
 OfflineMessage::OfflineMessage(int id, int messageId, std::string recipient, std::string queuedAt,
                                bool delivered, int deliveryAttempts)
-    : _id(id),
+    : BasePersistableEntity(id),
       _messageId(messageId),
       _recipient(std::move(recipient)),
       _queuedAt(std::move(queuedAt)),

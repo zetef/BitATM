@@ -5,7 +5,7 @@
 GroupMessage::GroupMessage(int id, std::string groupName, std::string sender,
                            std::string encryptedBody, std::string encryptedKeys,
                            std::string createdAt)
-    : _id(id),
+    : BasePersistableEntity(id),
       _groupName(std::move(groupName)),
       _sender(std::move(sender)),
       _encryptedBody(std::move(encryptedBody)),

@@ -1,15 +1,14 @@
 #pragma once
 #include <string>
 
-#include "IEntity.h"
+#include "BasePersistableEntity.h"
 
 /**
  * @brief An authenticated session. Maps to the `sessions` table.
  *
  * Holds the session token and expiry. operator== compares by token.
  */
-class Session : public IEntity {
-    int _id{0};
+class Session : public BasePersistableEntity {
     int _userId{0};
     std::string _sessionToken;
     std::string _createdAt;
@@ -26,7 +25,6 @@ public:
     Session& operator=(Session&&) noexcept = default;
     ~Session() override = default;
 
-    int getId() const override { return _id; }
     int getUserId() const { return _userId; }
     const std::string& getSessionToken() const { return _sessionToken; }
     const std::string& getCreatedAt() const { return _createdAt; }

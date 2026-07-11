@@ -1,15 +1,14 @@
 #pragma once
 #include <string>
 
-#include "IEntity.h"
+#include "BasePersistableEntity.h"
 
 /**
  * @brief A queued message for an offline recipient. Maps to the `offline_queue` table.
  *
  * operator== compares by id.
  */
-class OfflineMessage : public IEntity {
-    int _id{0};
+class OfflineMessage : public BasePersistableEntity {
     int _messageId{0};
     std::string _recipient;
     std::string _queuedAt;
@@ -26,7 +25,6 @@ public:
     OfflineMessage& operator=(OfflineMessage&&) noexcept = default;
     ~OfflineMessage() override = default;
 
-    int getId() const override { return _id; }
     int getMessageId() const { return _messageId; }
     const std::string& getRecipient() const { return _recipient; }
     const std::string& getQueuedAt() const { return _queuedAt; }

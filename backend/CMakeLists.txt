@@ -6,6 +6,8 @@ add_library(bitatm-backend-lib STATIC
     src/ConversationHistory.h     src/ConversationHistory.cpp
     src/GroupMessage.h            src/GroupMessage.cpp
     src/ProtocolParser.h          src/ProtocolParser.cpp
+    src/IEntity.h
+    src/BasePersistableEntity.h
     src/IRepository.h
     src/DbManager.h               src/DbManager.cpp
     src/UserRepository.h          src/UserRepository.cpp

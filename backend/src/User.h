@@ -2,7 +2,7 @@
 #include <ostream>
 #include <string>
 
-#include "IEntity.h"
+#include "BasePersistableEntity.h"
 
 /**
  * @brief Registered user. Maps to the `users` table.
@@ -10,8 +10,7 @@
  * operator== compares by username (case-insensitive).
  * operator<< never prints the password hash.
  */
-class User : public IEntity {
-    int _id{0};
+class User : public BasePersistableEntity {
     std::string _username;
     std::string _passwordHash;
     std::string _publicKey;
@@ -28,7 +27,6 @@ public:
     User& operator=(User&&) noexcept = default;
     ~User() override = default;
 
-    int getId() const override { return _id; }
     const std::string& getUsername() const { return _username; }
     const std::string& getPasswordHash() const { return _passwordHash; }
     const std::string& getPublicKey() const { return _publicKey; }

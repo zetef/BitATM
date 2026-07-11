@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 
-#include "IEntity.h"
+#include "BasePersistableEntity.h"
 
 /**
  * @brief A message sent to a group. Maps to the `group_messages` table.
@@ -10,8 +10,7 @@
  * so each member can decrypt with their own RSA private key.
  * operator== compares by id.
  */
-class GroupMessage : public IEntity {
-    int _id{0};
+class GroupMessage : public BasePersistableEntity {
     std::string _groupName;
     std::string _sender;
     std::string _encryptedBody;
@@ -28,7 +27,6 @@ public:
     GroupMessage& operator=(GroupMessage&&) noexcept = default;
     ~GroupMessage() override = default;
 
-    int getId() const override { return _id; }
     const std::string& getGroupName() const { return _groupName; }
     const std::string& getSender() const { return _sender; }
     const std::string& getEncryptedKeys() const { return _encryptedKeys; }

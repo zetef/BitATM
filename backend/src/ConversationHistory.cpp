@@ -7,7 +7,10 @@
 
 ConversationHistory::ConversationHistory(int id, std::string user1, std::string user2,
                                          std::vector<Message> messages)
-    : _id(id), _user1(std::move(user1)), _user2(std::move(user2)), _messages(std::move(messages)) {}
+    : BasePersistableEntity(id),
+      _user1(std::move(user1)),
+      _user2(std::move(user2)),
+      _messages(std::move(messages)) {}
 
 const Message& ConversationHistory::operator[](std::size_t index) const {
     if (index >= _messages.size())  // size_t is implicitly >= 0
