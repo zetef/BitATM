@@ -3,8 +3,7 @@
 #include <string>
 #include <vector>
 
-#include "DbManager.h"
-#include "IRepository.h"
+#include "BaseSqlRepository.h"
 #include "Session.h"
 
 /**
@@ -13,15 +12,14 @@
  * Inherits CRUD from IRepository<Session> and adds token-based lookup
  * and bulk deactivation (logout).
  */
-class SessionRepository : public IRepository<Session> {
+class SessionRepository : public BaseSqlRepository<Session> {
 public:
-    SessionRepository() = default;
+    SessionRepository() : BaseSqlRepository("sessions") {}
     ~SessionRepository() = default;
 
     std::optional<Session> findById(int id) override;
     std::vector<Session> findAll() override;
     void save(const Session& session) override;
-    void remove(int id) override;
 
     /**
      * @brief Find an active, unexpired session by its token.

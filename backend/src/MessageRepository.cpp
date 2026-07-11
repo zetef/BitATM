@@ -88,15 +88,6 @@ void MessageRepository::save(const Message& msg) {
     }
 }
 
-void MessageRepository::remove(int id) {
-    try {
-        auto ses = DbManager::instance().session();
-        ses << "DELETE FROM messages WHERE id = $1", use(id), now;
-    } catch (const Poco::Exception& e) {
-        throw DbException("MessageRepository::remove: " + e.message());
-    }
-}
-
 std::vector<Message> MessageRepository::findByRecipient(const std::string& recipient) {
     try {
         auto ses = DbManager::instance().session();

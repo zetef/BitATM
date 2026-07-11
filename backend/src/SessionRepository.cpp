@@ -82,15 +82,6 @@ void SessionRepository::save(const ::Session& s) {
     }
 }
 
-void SessionRepository::remove(int id) {
-    try {
-        auto ses = DbManager::instance().session();
-        ses << "DELETE FROM sessions WHERE id = $1", use(id), now;
-    } catch (const Poco::Exception& e) {
-        throw DbException("SessionRepository::remove: " + e.message());
-    }
-}
-
 std::optional<::Session> SessionRepository::findByToken(const std::string& token) {
     try {
         auto ses = DbManager::instance().session();

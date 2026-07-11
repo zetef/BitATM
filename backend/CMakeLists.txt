@@ -9,6 +9,7 @@ add_library(bitatm-backend-lib STATIC
     src/IEntity.h
     src/BasePersistableEntity.h
     src/IRepository.h
+    src/BaseSqlRepository.h
     src/DbManager.h               src/DbManager.cpp
     src/UserRepository.h          src/UserRepository.cpp
     src/MessageRepository.h       src/MessageRepository.cpp

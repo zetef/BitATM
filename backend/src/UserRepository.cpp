@@ -73,15 +73,6 @@ void UserRepository::save(const User& u) {
     }
 }
 
-void UserRepository::remove(int id) {
-    try {
-        auto ses = DbManager::instance().session();
-        ses << "DELETE FROM users WHERE id = $1", use(id), now;
-    } catch (const Poco::Exception& e) {
-        throw DbException("UserRepository::remove: " + e.message());
-    }
-}
-
 void UserRepository::updateLastSeen(const std::string& username) {
     try {
         auto ses = DbManager::instance().session();

@@ -3,8 +3,7 @@
 #include <string>
 #include <vector>
 
-#include "DbManager.h"
-#include "IRepository.h"
+#include "BaseSqlRepository.h"
 #include "OfflineMessage.h"
 
 /**
@@ -13,18 +12,17 @@
  * Inherits CRUD from IRepository<OfflineMessage> and adds delivery helpers.
  * Used by the server to buffer messages for recipients who are offline.
  */
-class OfflineQueueRepository : public IRepository<OfflineMessage> {
+class OfflineQueueRepository : public BaseSqlRepository<OfflineMessage> {
 public:
     /** @brief Delivery tries per entry before it is skipped and later purged. */
     static constexpr int MAX_DELIVERY_ATTEMPTS = 5;
 
-    OfflineQueueRepository() = default;
+    OfflineQueueRepository() : BaseSqlRepository("offline_queue") {}
     ~OfflineQueueRepository() = default;
 
     std::optional<OfflineMessage> findById(int id) override;
     std::vector<OfflineMessage> findAll() override;
     void save(const OfflineMessage& msg) override;
-    void remove(int id) override;
 
     /**
      * @brief Return undelivered entries for a recipient (called on reconnect).
