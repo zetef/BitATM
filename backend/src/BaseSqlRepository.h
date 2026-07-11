@@ -42,10 +42,10 @@ public:
     void remove(int id) override {
         try {
             auto ses = session();
-            ses << "DELETE FROM " + _table + " WHERE id = $1", Poco::Data::Keywords::use(id),
+            ses << "DELETE FROM " + table() + " WHERE id = $1", Poco::Data::Keywords::use(id),
                 Poco::Data::Keywords::now;
         } catch (const Poco::Exception& e) {
-            throw DbException(_table + " remove: " + e.message());
+            throw DbException(table() + " remove: " + e.message());
         }
     }
 };

@@ -9,8 +9,8 @@
 /**
  * @brief PostgreSQL-backed repository for the offline_queue table.
  *
- * Inherits CRUD from IRepository<OfflineMessage> and adds delivery helpers.
- * Used by the server to buffer messages for recipients who are offline.
+ * Inherits CRUD via BaseSqlRepository<OfflineMessage> (shared session plumbing, generic remove())
+ * and adds delivery helpers. Used by the server to buffer messages for recipients who are offline.
  */
 class OfflineQueueRepository : public BaseSqlRepository<OfflineMessage> {
 public:

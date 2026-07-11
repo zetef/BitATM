@@ -9,8 +9,8 @@
 /**
  * @brief PostgreSQL-backed repository for Session records.
  *
- * Inherits CRUD from IRepository<Session> and adds token-based lookup
- * and bulk deactivation (logout).
+ * Inherits CRUD via BaseSqlRepository<Session> (shared session plumbing, generic remove()) and adds
+ * token-based lookup and bulk deactivation (logout).
  */
 class SessionRepository : public BaseSqlRepository<Session> {
 public:

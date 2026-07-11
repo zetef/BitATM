@@ -26,6 +26,8 @@ private slots:
         QCOMPARE(history[1].getId(), 2);
         QVERIFY(history[2].getCreatedAt() == "2026-07-01T12:00:00Z");
         QVERIFY_THROWS_EXCEPTION(std::out_of_range, (void)history[9]);
+        // exact boundary: index == size() must also throw
+        QVERIFY_THROWS_EXCEPTION(std::out_of_range, (void)history[3]);
     }
 
     // operator+ merges two histories and drops duplicate message ids

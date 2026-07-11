@@ -9,8 +9,8 @@
 /**
  * @brief PostgreSQL-backed repository for User records.
  *
- * Inherits CRUD from IRepository<User> and adds username lookup.
- * All queries go through DbManager::instance().session().
+ * Inherits CRUD via BaseSqlRepository<User> (shared session plumbing, generic remove()) and adds
+ * username lookup. All queries go through DbManager::instance().session().
  */
 class UserRepository : public BaseSqlRepository<User> {
 public:

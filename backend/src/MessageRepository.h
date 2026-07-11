@@ -9,8 +9,8 @@
 /**
  * @brief PostgreSQL-backed repository for Message records.
  *
- * Inherits CRUD from IRepository<Message> and adds directional lookups.
- * All queries go through DbManager::instance().session().
+ * Inherits CRUD via BaseSqlRepository<Message> (shared session plumbing, generic remove()) and adds
+ * directional lookups. All queries go through DbManager::instance().session().
  */
 class MessageRepository : public BaseSqlRepository<Message> {
 public:
