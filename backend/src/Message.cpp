@@ -5,7 +5,7 @@
 Message::Message(int id, std::string sender, std::string recipient, std::string encryptedBody,
                  std::string encryptedKey, std::string senderEncryptedKey, std::string status,
                  std::string createdAt)
-    : _id(id),
+    : BasePersistableEntity(id),
       _sender(std::move(sender)),
       _recipient(std::move(recipient)),
       _encryptedBody(std::move(encryptedBody)),

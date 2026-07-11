@@ -84,15 +84,6 @@ void OfflineQueueRepository::save(const OfflineMessage& msg) {
     }
 }
 
-void OfflineQueueRepository::remove(int id) {
-    try {
-        auto ses = DbManager::instance().session();
-        ses << "DELETE FROM offline_queue WHERE id = $1", use(id), now;
-    } catch (const Poco::Exception& e) {
-        throw DbException("OfflineQueueRepository::remove: " + e.message());
-    }
-}
-
 std::vector<OfflineMessage> OfflineQueueRepository::findUndeliveredByRecipient(
     const std::string& recipient) {
     try {

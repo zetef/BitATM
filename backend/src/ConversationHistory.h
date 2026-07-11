@@ -2,7 +2,7 @@
 #include <string>
 #include <vector>
 
-#include "IEntity.h"
+#include "BasePersistableEntity.h"
 #include "Message.h"
 
 /**
@@ -12,8 +12,7 @@
  * operator+  merges two histories, deduplicates by id, and sorts by timestamp.
  * operator== compares by the two participant usernames (order-insensitive).
  */
-class ConversationHistory : public IEntity {
-    int _id{0};
+class ConversationHistory : public BasePersistableEntity {
     std::string _user1;
     std::string _user2;
     std::vector<Message> _messages;
@@ -28,7 +27,6 @@ public:
     ConversationHistory& operator=(ConversationHistory&&) noexcept = default;
     ~ConversationHistory() override = default;
 
-    int getId() const override { return _id; }
     const std::string& getUser1() const { return _user1; }
     const std::string& getUser2() const { return _user2; }
     const std::vector<Message>& getMessages() const { return _messages; }

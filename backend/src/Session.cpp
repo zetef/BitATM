@@ -4,7 +4,7 @@
 
 Session::Session(int id, int userId, std::string sessionToken, std::string createdAt,
                  std::string expiresAt, bool isActive)
-    : _id(id),
+    : BasePersistableEntity(id),
       _userId(userId),
       _sessionToken(std::move(sessionToken)),
       _createdAt(std::move(createdAt)),

@@ -47,3 +47,10 @@ add_executable(session_repository_test SessionRepositoryTest.cpp)
 set_target_properties(session_repository_test PROPERTIES AUTOMOC ON)
 target_link_libraries(session_repository_test PRIVATE Qt6::Test bitatm-backend-lib)
 add_test(NAME SessionRepositoryTest COMMAND session_repository_test)
+
+# Beyond DCS baseline - ConversationHistory operator[]/operator+ and
+# Message operator> live call sites (pure logic, always runs)
+add_executable(conversation_history_test ConversationHistoryTest.cpp)
+set_target_properties(conversation_history_test PROPERTIES AUTOMOC ON)
+target_link_libraries(conversation_history_test PRIVATE Qt6::Test bitatm-backend-lib)
+add_test(NAME ConversationHistoryTest COMMAND conversation_history_test)

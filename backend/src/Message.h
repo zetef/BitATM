@@ -2,7 +2,7 @@
 #include <ostream>
 #include <string>
 
-#include "IEntity.h"
+#include "BasePersistableEntity.h"
 
 /**
  * @brief A chat message. Maps to the `messages` table.
@@ -11,8 +11,7 @@
  * operator< and operator> order by created_at timestamp.
  * operator== compares by id.
  */
-class Message : public IEntity {
-    int _id{0};
+class Message : public BasePersistableEntity {
     std::string _sender;
     std::string _recipient;
     std::string _encryptedBody;
@@ -32,7 +31,6 @@ public:
     Message& operator=(Message&&) noexcept = default;
     ~Message() override = default;
 
-    int getId() const override { return _id; }
     const std::string& getSender() const { return _sender; }
     const std::string& getRecipient() const { return _recipient; }
     const std::string& getEncryptedBody() const { return _encryptedBody; }
