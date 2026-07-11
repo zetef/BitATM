@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['max_5fdelivery_5fattempts_0',['MAX_DELIVERY_ATTEMPTS',['../classOfflineQueueRepository.html#a5a35969e0291880975adb71e2b3031af',1,'OfflineQueueRepository']]],
-  ['max_5fpacket_5fsize_1',['MAX_PACKET_SIZE',['../protocol_8h.html#ae4d2325390b1703d2db37ab125ef43cf',1,'protocol.h']]]
+  ['lastmessage_0',['lastmessage',['../structConversationRecord.html#aebf318f01d76254306e8aca4c0f445e0',1,'ConversationRecord::lastMessage'],['../structGroupRecord.html#aeb9a169227720afa8c087e5d35e693f0',1,'GroupRecord::lastMessage']]],
+  ['lasttimestamp_1',['lasttimestamp',['../structConversationRecord.html#a2342a5880f62236a244f9d219aaefc2d',1,'ConversationRecord::lastTimestamp'],['../structGroupRecord.html#af92dcb5eac64d8548efd1fc579760761',1,'GroupRecord::lastTimestamp']]]
 ];

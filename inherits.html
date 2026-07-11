@@ -189,51 +189,63 @@ $(document).ready(function(){initNavTree('hierarchy.html',''); initResizable(); 
 <tr><td><img src="inherit_graph_11.png" border="0" usemap="#aIEntity" alt=""/>
 <map name="aIEntity" id="aIEntity">
 <area shape="rect" href="classIEntity.html" title="Base interface for all persistent domain objects." alt="" coords="5,129,69,155"/>
-<area shape="rect" href="classConversationHistory.html" title="Ordered message history between two users." alt="" coords="117,5,272,31"/>
-<area shape="poly" title=" " alt="" coords="50,116,77,77,95,57,116,40,138,28,140,33,119,44,99,61,81,80,54,119"/>
-<area shape="rect" href="classGroupMessage.html" title="A message sent to a group. Maps to the group_messages table." alt="" coords="135,55,254,80"/>
-<area shape="poly" title=" " alt="" coords="66,119,116,89,145,78,147,82,119,94,69,123"/>
-<area shape="rect" href="classMessage.html" title="A chat message. Maps to the messages table." alt="" coords="155,104,235,129"/>
-<area shape="poly" title=" " alt="" coords="82,132,154,120,155,126,83,137"/>
-<area shape="rect" href="classOfflineMessage.html" title="A queued message for an offline recipient. Maps to the offline_queue table." alt="" coords="133,153,256,179"/>
-<area shape="poly" title=" " alt="" coords="84,146,133,154,133,159,83,152"/>
-<area shape="rect" href="classSession.html" title="An authenticated session. Maps to the sessions table." alt="" coords="159,203,231,228"/>
-<area shape="poly" title=" " alt="" coords="69,160,118,188,160,203,158,208,116,192,67,164"/>
-<area shape="rect" href="classUser.html" title="Registered user. Maps to the users table." alt="" coords="169,252,221,277"/>
-<area shape="poly" title=" " alt="" coords="55,165,82,202,119,237,144,250,169,258,168,263,142,255,116,242,78,206,51,168"/>
+<area shape="rect" href="classBasePersistableEntity.html" title="Abstract middle layer for DB&#45;mapped entities: owns the primary key." alt="" coords="117,129,281,155"/>
+<area shape="poly" title=" " alt="" coords="83,139,117,139,117,145,83,145"/>
+<area shape="rect" href="classConversationHistory.html" title="Ordered message history between two users." alt="" coords="329,5,484,31"/>
+<area shape="poly" title=" " alt="" coords="222,118,269,78,328,40,355,28,357,33,331,44,272,83,226,122"/>
+<area shape="rect" href="classGroupMessage.html" title="A message sent to a group. Maps to the group_messages table." alt="" coords="347,55,466,80"/>
+<area shape="poly" title=" " alt="" coords="243,122,328,89,363,77,364,83,330,94,245,127"/>
+<area shape="rect" href="classMessage.html" title="A chat message. Maps to the messages table." alt="" coords="367,104,447,129"/>
+<area shape="poly" title=" " alt="" coords="295,128,366,119,367,124,295,133"/>
+<area shape="rect" href="classOfflineMessage.html" title="A queued message for an offline recipient. Maps to the offline_queue table." alt="" coords="345,153,468,179"/>
+<area shape="poly" title=" " alt="" coords="295,150,346,156,345,162,295,156"/>
+<area shape="rect" href="classSession.html" title="An authenticated session. Maps to the sessions table." alt="" coords="371,203,443,228"/>
+<area shape="poly" title=" " alt="" coords="247,157,330,187,371,201,370,207,328,193,246,162"/>
+<area shape="rect" href="classUser.html" title="Registered user. Maps to the users table." alt="" coords="381,252,433,277"/>
+<area shape="poly" title=" " alt="" coords="226,162,273,200,331,237,381,256,380,261,328,242,270,204,223,166"/>
 </map>
 </td></tr>
 <tr><td><img src="inherit_graph_12.png" border="0" usemap="#aIRepository_3_01Message_01_4" alt=""/>
 <map name="aIRepository_3_01Message_01_4" id="aIRepository_3_01Message_01_4">
 <area shape="rect" href="classIRepository.html" title=" " alt="" coords="5,5,189,31"/>
-<area shape="rect" href="classMessageRepository.html" title="PostgreSQL&#45;backed repository for Message records." alt="" coords="237,5,388,31"/>
-<area shape="poly" title=" " alt="" coords="203,15,237,15,237,21,203,21"/>
 </map>
 </td></tr>
 <tr><td><img src="inherit_graph_13.png" border="0" usemap="#aIRepository_3_01OfflineMessage_01_4" alt=""/>
 <map name="aIRepository_3_01OfflineMessage_01_4" id="aIRepository_3_01OfflineMessage_01_4">
 <area shape="rect" href="classIRepository.html" title=" " alt="" coords="5,5,232,31"/>
-<area shape="rect" href="classOfflineQueueRepository.html" title="PostgreSQL&#45;backed repository for the offline_queue table." alt="" coords="280,5,457,31"/>
-<area shape="poly" title=" " alt="" coords="246,15,280,15,280,21,246,21"/>
 </map>
 </td></tr>
 <tr><td><img src="inherit_graph_14.png" border="0" usemap="#aIRepository_3_01Session_01_4" alt=""/>
 <map name="aIRepository_3_01Session_01_4" id="aIRepository_3_01Session_01_4">
 <area shape="rect" href="classIRepository.html" title=" " alt="" coords="5,5,181,31"/>
-<area shape="rect" href="classSessionRepository.html" title="PostgreSQL&#45;backed repository for Session records." alt="" coords="229,5,372,31"/>
-<area shape="poly" title=" " alt="" coords="195,15,229,15,229,21,195,21"/>
 </map>
 </td></tr>
 <tr><td><img src="inherit_graph_15.png" border="0" usemap="#aIRepository_3_01T_01_4" alt=""/>
 <map name="aIRepository_3_01T_01_4" id="aIRepository_3_01T_01_4">
-<area shape="rect" href="classIRepository.html" title="Abstract CRUD interface for a persistent store of domain objects." alt="" coords="5,5,140,31"/>
+<area shape="rect" href="classIRepository.html" title="Abstract CRUD interface for a persistent store of domain objects." alt="" coords="5,141,140,166"/>
+<area shape="rect" href="classBaseSqlRepository.html" title=" " alt="" coords="202,5,357,45"/>
+<area shape="poly" title=" " alt="" coords="94,129,135,92,187,55,212,43,214,48,189,60,138,96,97,133"/>
+<area shape="rect" href="classBaseSqlRepository.html" title=" " alt="" coords="202,69,357,109"/>
+<area shape="poly" title=" " alt="" coords="127,134,213,107,215,112,128,139"/>
+<area shape="rect" href="classBaseSqlRepository.html" title=" " alt="" coords="202,133,357,173"/>
+<area shape="poly" title=" " alt="" coords="154,151,202,151,202,156,154,156"/>
+<area shape="rect" href="classBaseSqlRepository.html" title=" " alt="" coords="202,197,357,237"/>
+<area shape="poly" title=" " alt="" coords="128,168,215,195,213,200,127,173"/>
+<area shape="rect" href="classBaseSqlRepository.html" title="Abstract middle layer for PostgreSQL&#45;backed repositories." alt="" coords="188,262,371,287"/>
+<area shape="poly" title=" " alt="" coords="97,174,138,212,189,247,220,259,218,264,187,252,135,216,94,178"/>
+<area shape="rect" href="classMessageRepository.html" title="PostgreSQL&#45;backed repository for Message records." alt="" coords="432,13,583,38"/>
+<area shape="poly" title=" " alt="" coords="371,23,432,23,432,28,371,28"/>
+<area shape="rect" href="classOfflineQueueRepository.html" title="PostgreSQL&#45;backed repository for the offline_queue table." alt="" coords="419,77,596,102"/>
+<area shape="poly" title=" " alt="" coords="371,87,419,87,419,92,371,92"/>
+<area shape="rect" href="classSessionRepository.html" title="PostgreSQL&#45;backed repository for Session records." alt="" coords="436,141,579,166"/>
+<area shape="poly" title=" " alt="" coords="370,151,436,151,436,156,370,156"/>
+<area shape="rect" href="classUserRepository.html" title="PostgreSQL&#45;backed repository for User records." alt="" coords="446,205,569,230"/>
+<area shape="poly" title=" " alt="" coords="370,215,446,215,446,220,370,220"/>
 </map>
 </td></tr>
 <tr><td><img src="inherit_graph_16.png" border="0" usemap="#aIRepository_3_01User_01_4" alt=""/>
 <map name="aIRepository_3_01User_01_4" id="aIRepository_3_01User_01_4">
 <area shape="rect" href="classIRepository.html" title=" " alt="" coords="5,5,161,31"/>
-<area shape="rect" href="classUserRepository.html" title="PostgreSQL&#45;backed repository for User records." alt="" coords="209,5,332,31"/>
-<area shape="poly" title=" " alt="" coords="175,15,209,15,209,21,175,21"/>
 </map>
 </td></tr>
 <tr><td><img src="inherit_graph_17.png" border="0" usemap="#aLocalStorage" alt=""/>

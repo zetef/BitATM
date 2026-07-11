@@ -1,15 +1,17 @@
 <map id="IEntity" name="IEntity">
-<area shape="rect" id="Node000001" title="Base interface for all persistent domain objects." alt="" coords="476,5,592,151"/>
-<area shape="rect" id="Node000002" href="$classConversationHistory.html" title="Ordered message history between two users." alt="" coords="5,239,188,504"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="463,93,402,107,333,129,264,159,201,201,164,240,160,237,198,197,261,155,331,124,401,102,462,88"/>
-<area shape="rect" id="Node000003" href="$classGroupMessage.html" title="A message sent to a group. Maps to the group_messages table." alt="" coords="212,199,368,544"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="466,126,423,160,383,200,370,216,366,213,379,197,419,156,463,121"/>
-<area shape="rect" id="Node000004" href="$classMessage.html" title="A chat message. Maps to the messages table." alt="" coords="393,239,515,504"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="513,165,493,239,488,238,508,164"/>
-<area shape="rect" id="Node000005" href="$classOfflineMessage.html" title="A queued message for an offline recipient. Maps to the offline_queue table." alt="" coords="540,239,691,504"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="560,164,581,238,576,239,555,165"/>
-<area shape="rect" id="Node000006" href="$classSession.html" title="An authenticated session. Maps to the sessions table." alt="" coords="715,239,862,504"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="605,115,657,152,705,197,734,237,730,240,701,200,654,156,602,120"/>
-<area shape="rect" id="Node000007" href="$classUser.html" title="Registered user. Maps to the users table." alt="" coords="887,239,1040,504"/>
-<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="606,86,669,99,740,121,811,153,845,173,876,197,910,237,906,240,872,201,842,178,809,158,738,126,668,105,605,91"/>
+<area shape="rect" id="Node000001" title="Base interface for all persistent domain objects." alt="" coords="503,5,619,151"/>
+<area shape="rect" id="Node000002" href="$classBasePersistableEntity.html" title="Abstract middle layer for DB&#45;mapped entities: owns the primary key." alt="" coords="465,199,657,404"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="563,164,563,199,558,199,558,164"/>
+<area shape="rect" id="Node000003" href="$classConversationHistory.html" title="Ordered message history between two users." alt="" coords="5,482,188,747"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="452,331,391,352,325,378,260,412,201,454,172,484,168,480,198,450,257,408,323,374,389,347,450,326"/>
+<area shape="rect" id="Node000004" href="$classGroupMessage.html" title="A message sent to a group. Maps to the group_messages table." alt="" coords="212,452,368,777"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="456,382,418,417,383,454,370,470,366,467,379,450,414,413,452,378"/>
+<area shape="rect" id="Node000005" href="$classMessage.html" title="A chat message. Maps to the messages table." alt="" coords="393,482,550,747"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="530,418,512,483,507,481,525,417"/>
+<area shape="rect" id="Node000006" href="$classOfflineMessage.html" title="A queued message for an offline recipient. Maps to the offline_queue table." alt="" coords="575,482,725,747"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="596,417,615,481,610,483,591,418"/>
+<area shape="rect" id="Node000007" href="$classSession.html" title="An authenticated session. Maps to the sessions table." alt="" coords="750,482,897,747"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="669,379,706,413,740,450,762,480,757,484,736,454,702,417,665,383"/>
+<area shape="rect" id="Node000008" href="$classUser.html" title="Registered user. Maps to the users table." alt="" coords="921,482,1075,747"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="671,327,730,347,793,374,855,408,910,450,937,480,933,484,907,454,852,412,791,379,728,352,669,332"/>
 </map>

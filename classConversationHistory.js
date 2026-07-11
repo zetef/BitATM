@@ -7,7 +7,6 @@ var classConversationHistory =
     [ "~ConversationHistory", "classConversationHistory.html#a7275a283a1c015b1b19b1b8e13dc54de", null ],
     [ "append", "classConversationHistory.html#a2f80481c78f84cf5a2d14867a5b8192c", null ],
     [ "deserialize", "classConversationHistory.html#acf305a2f9b6603adf70522794b2477da", null ],
-    [ "getId", "classConversationHistory.html#a31eb1bb6a456a4528e0d03eec6445304", null ],
     [ "getMessages", "classConversationHistory.html#a28b7df90e3b8b9a32a5d4e58d9633d95", null ],
     [ "getUser1", "classConversationHistory.html#a8a465e2fa12da20ba3c890b5b2e19537", null ],
     [ "getUser2", "classConversationHistory.html#a0cf69f716af31a1c930fa36c5ace8126", null ],

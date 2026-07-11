@@ -9,6 +9,6 @@ var searchData=
   ['messagedelivered_6',['messageDelivered',['../classNetworkManager.html#af4a48bde3701cd396dc455b413b3e8f6',1,'NetworkManager']]],
   ['messagehandler_7',['MessageHandler',['../classMessageHandler.html#a646fbcf1e4fe0b01a654a39c95df5bfe',1,'MessageHandler']]],
   ['messagereceived_8',['messageReceived',['../classNetworkManager.html#a603d801e6200da430707381ba39241c2',1,'NetworkManager']]],
-  ['messagerepository_9',['MessageRepository',['../classMessageRepository.html#a4d98baabfe3b508fd743db2b9cfb0650',1,'MessageRepository']]],
+  ['messagerepository_9',['MessageRepository',['../classMessageRepository.html#a4be46cf9575a16d4b85cc59f48a14ab0',1,'MessageRepository']]],
   ['messageseen_10',['messageSeen',['../classNetworkManager.html#a5e470cae21687ac465bd3ded727f5c88',1,'NetworkManager']]]
 ];

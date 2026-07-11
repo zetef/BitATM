@@ -9,7 +9,6 @@ var classSession =
     [ "deserialize", "classSession.html#a583b9cab3a1933f696abfafee76ccc84", null ],
     [ "getCreatedAt", "classSession.html#af08009a2390d5fedd855138ef139d3f3", null ],
     [ "getExpiresAt", "classSession.html#ad30b4abe08c73b93623d3eb30dbc7cb3", null ],
-    [ "getId", "classSession.html#a6c8dfb5aa93b2c7d63b5d54c6e7224d3", null ],
     [ "getSessionToken", "classSession.html#a829ae1126a8c8c1e03339ec0af1a5d58", null ],
     [ "getUserId", "classSession.html#a74d0189d01b34041d228c3a7808f6a8f", null ],
     [ "isActive", "classSession.html#a373fc8d50fca97a245c8eeea3bc8d066", null ],

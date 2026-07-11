@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['role_0',['role',['../structGroupMember.html#a93ff775d08f660d9281a2ed4c1297111',1,'GroupMember::role'],['../structGroupRecord.html#aa242ef916c1f0d5736728247661db642',1,'GroupRecord::role']]]
+  ['peer_0',['peer',['../structMessageRecord.html#af0f9a052d0cd869f122665297da7a2c3',1,'MessageRecord::peer'],['../structConversationRecord.html#ac2f9c7ff8f0edee9c94e785c1abcc9d6',1,'ConversationRecord::peer']]],
+  ['protocol_5fversion_1',['PROTOCOL_VERSION',['../protocol_8h.html#a70f52007f8c2408ec768efe3c27c8849',1,'protocol.h']]]
 ];

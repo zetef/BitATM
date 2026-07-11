@@ -1,26 +1,5 @@
 var searchData=
 [
-  ['_7eaesgcmstrategy_0',['~AesGcmStrategy',['../classAesGcmStrategy.html#aa893ea73ca8a70a5a402317993640698',1,'AesGcmStrategy']]],
-  ['_7eclientsession_1',['~ClientSession',['../classClientSession.html#ac863b8bb3c21e836045e9ba8bd47b742',1,'ClientSession']]],
-  ['_7econversationhistory_2',['~ConversationHistory',['../classConversationHistory.html#a7275a283a1c015b1b19b1b8e13dc54de',1,'ConversationHistory']]],
-  ['_7ecryptoengine_3',['~CryptoEngine',['../classCryptoEngine.html#a6f22ea9687e889d7e0a92b9fd78c524f',1,'CryptoEngine']]],
-  ['_7egroupmessage_4',['~GroupMessage',['../classGroupMessage.html#a27c1278e2d8e0d53e1e749fbc9e0ef25',1,'GroupMessage']]],
-  ['_7eiasymmetricstrategy_5',['~IAsymmetricStrategy',['../classIAsymmetricStrategy.html#af94e27e24872f1d74e0464f5650a8aa6',1,'IAsymmetricStrategy']]],
-  ['_7eicommandhandler_6',['~ICommandHandler',['../classICommandHandler.html#a2c2d11b6bd94d4bd721935b793fcd33d',1,'ICommandHandler']]],
-  ['_7eicryptostrategy_7',['~ICryptoStrategy',['../classICryptoStrategy.html#a8fa70bcabfd2292763c043c22cd081ba',1,'ICryptoStrategy']]],
-  ['_7eientity_8',['~IEntity',['../classIEntity.html#a727892234e0efad23c7a399997dee974',1,'IEntity']]],
-  ['_7eirepository_9',['~IRepository',['../classIRepository.html#a1358ed9253601f09059575ddc131c587',1,'IRepository']]],
-  ['_7eisymmetricstrategy_10',['~ISymmetricStrategy',['../classISymmetricStrategy.html#a863314dc21727559440afedc4b71f8c1',1,'ISymmetricStrategy']]],
-  ['_7emessage_11',['~Message',['../classMessage.html#af68f5801c560c1b51c5458067e9b3fdd',1,'Message']]],
-  ['_7emessagerepository_12',['~MessageRepository',['../classMessageRepository.html#ac55c1e302a265a5aab8234d5fb9ab32e',1,'MessageRepository']]],
-  ['_7eofflinemessage_13',['~OfflineMessage',['../classOfflineMessage.html#a311637cd9a81e8b80fd32369048cbdd8',1,'OfflineMessage']]],
-  ['_7eofflinequeuerepository_14',['~OfflineQueueRepository',['../classOfflineQueueRepository.html#a053fd2e03ca523c01f0eb47e002c32fa',1,'OfflineQueueRepository']]],
-  ['_7epacket_15',['~Packet',['../structPacket.html#a9fef7789952566bff8ab09b49a0eee83',1,'Packet']]],
-  ['_7epackethandlerfactory_16',['~PacketHandlerFactory',['../classPacketHandlerFactory.html#a689100e1b419f1d602645ba5bae6b990',1,'PacketHandlerFactory']]],
-  ['_7eprotocolparser_17',['~ProtocolParser',['../classProtocolParser.html#a8b269b5e7de8af7c88ec51156cf09b61',1,'ProtocolParser']]],
-  ['_7ersaoaepstrategy_18',['~RsaOaepStrategy',['../classRsaOaepStrategy.html#a6ce11eb2de83fc21a610c270fde08c97',1,'RsaOaepStrategy']]],
-  ['_7esession_19',['~Session',['../classSession.html#a77cdd3dcbccb78435af2aa6aec7a40d8',1,'Session']]],
-  ['_7esessionrepository_20',['~SessionRepository',['../classSessionRepository.html#accedf471024a2efa458ce7b59627dd6a',1,'SessionRepository']]],
-  ['_7euser_21',['~User',['../classUser.html#a2aca5ee0046f477a5acb084653dcc801',1,'User']]],
-  ['_7euserrepository_22',['~UserRepository',['../classUserRepository.html#ab92bc26042c7229a9330f0d30be047dc',1,'UserRepository']]]
+  ['validate_0',['validate',['../classAckHandler.html#a18c7a7f9fc71c79eed54c198ea6f8d7c',1,'AckHandler::validate()'],['../classCreateGroupHandler.html#a59e48b72e9be724724fa94e5ce344268',1,'CreateGroupHandler::validate()'],['../classDeleteGroupHandler.html#a0be772182821f256ed47a17f19910bd8',1,'DeleteGroupHandler::validate()'],['../classGroupInfoHandler.html#af2853edfc87965c5f4a8a50d951ea2e3',1,'GroupInfoHandler::validate()'],['../classGroupKeyExchangeHandler.html#ad68a03957aec719b8dec290fa651c147',1,'GroupKeyExchangeHandler::validate()'],['../classGroupLeaveHandler.html#ac4c29090e50dbcd8a7978303dd99bbb8',1,'GroupLeaveHandler::validate()'],['../classGroupMessageHandler.html#ae41681961fd7f48f8d39d0cb4f2ce05a',1,'GroupMessageHandler::validate()'],['../classICommandHandler.html#a958ac0a8073a92c0cc17765061034482',1,'ICommandHandler::validate()'],['../classKeyExchangeHandler.html#a78f9ac2a88f8ff8fbfaefe09664f93cb',1,'KeyExchangeHandler::validate()'],['../classLoginHandler.html#a8ee19028e40e40c8dae4eb5da7893f6a',1,'LoginHandler::validate()'],['../classMessageHandler.html#a9ae3da418b8c53e56539148717897d05',1,'MessageHandler::validate()'],['../classReadReceiptHandler.html#afcd7e4248f60a13b419a7ece01dcadb4',1,'ReadReceiptHandler::validate()'],['../classRegisterHandler.html#a08d25d31268049839550fb69e1a68bdf',1,'RegisterHandler::validate()'],['../classSyncHistoryHandler.html#aad6d17f639ca81fff21326f86370f7ca',1,'SyncHistoryHandler::validate()']]],
+  ['version_1',['version',['../structPacket.html#ad13846cda7db38fd2cba1f63049bb4c2',1,'Packet']]]
 ];

@@ -105,9 +105,11 @@ Inheritance diagram for ConversationHistory:</div>
 <div class="dyncontent">
 <div class="center"><img src="classConversationHistory__inherit__graph.png" border="0" usemap="#aConversationHistory_inherit__map" alt="Inheritance graph"/></div>
 <map name="aConversationHistory_inherit__map" id="aConversationHistory_inherit__map">
-<area shape="rect" title="Ordered message history between two users." alt="" coords="5,199,188,464"/>
-<area shape="rect" href="classIEntity.html" title="Base interface for all persistent domain objects." alt="" coords="39,5,155,151"/>
-<area shape="poly" title=" " alt="" coords="99,164,99,198,94,198,94,164"/>
+<area shape="rect" title="Ordered message history between two users." alt="" coords="10,452,193,717"/>
+<area shape="rect" href="classBasePersistableEntity.html" title="Abstract middle layer for DB&#45;mapped entities: owns the primary key." alt="" coords="5,199,197,404"/>
+<area shape="poly" title=" " alt="" coords="104,418,104,452,99,452,99,418"/>
+<area shape="rect" href="classIEntity.html" title="Base interface for all persistent domain objects." alt="" coords="43,5,159,151"/>
+<area shape="poly" title=" " alt="" coords="104,164,104,199,99,199,99,164"/>
 </map>
 </div>
 <div class="dynheader">
@@ -115,9 +117,11 @@ Collaboration diagram for ConversationHistory:</div>
 <div class="dyncontent">
 <div class="center"><img src="classConversationHistory__coll__graph.png" border="0" usemap="#aConversationHistory_coll__map" alt="Collaboration graph"/></div>
 <map name="aConversationHistory_coll__map" id="aConversationHistory_coll__map">
-<area shape="rect" title="Ordered message history between two users." alt="" coords="5,199,188,464"/>
-<area shape="rect" href="classIEntity.html" title="Base interface for all persistent domain objects." alt="" coords="39,5,155,151"/>
-<area shape="poly" title=" " alt="" coords="99,164,99,198,94,198,94,164"/>
+<area shape="rect" title="Ordered message history between two users." alt="" coords="10,452,193,717"/>
+<area shape="rect" href="classBasePersistableEntity.html" title="Abstract middle layer for DB&#45;mapped entities: owns the primary key." alt="" coords="5,199,197,404"/>
+<area shape="poly" title=" " alt="" coords="104,418,104,452,99,452,99,418"/>
+<area shape="rect" href="classIEntity.html" title="Base interface for all persistent domain objects." alt="" coords="43,5,159,151"/>
+<area shape="poly" title=" " alt="" coords="104,164,104,199,99,199,99,164"/>
 </map>
 </div>
 <table class="memberdecls">
@@ -137,8 +141,6 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a02993f53521347f7898d01b7664a73af"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7275a283a1c015b1b19b1b8e13dc54de" id="r_a7275a283a1c015b1b19b1b8e13dc54de"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConversationHistory.html#a7275a283a1c015b1b19b1b8e13dc54de">~ConversationHistory</a> () override=default</td></tr>
 <tr class="separator:a7275a283a1c015b1b19b1b8e13dc54de"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a31eb1bb6a456a4528e0d03eec6445304" id="r_a31eb1bb6a456a4528e0d03eec6445304"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConversationHistory.html#a31eb1bb6a456a4528e0d03eec6445304">getId</a> () const override</td></tr>
-<tr class="separator:a31eb1bb6a456a4528e0d03eec6445304"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8a465e2fa12da20ba3c890b5b2e19537" id="r_a8a465e2fa12da20ba3c890b5b2e19537"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConversationHistory.html#a8a465e2fa12da20ba3c890b5b2e19537">getUser1</a> () const</td></tr>
 <tr class="separator:a8a465e2fa12da20ba3c890b5b2e19537"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0cf69f716af31a1c930fa36c5ace8126" id="r_a0cf69f716af31a1c930fa36c5ace8126"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConversationHistory.html#a0cf69f716af31a1c930fa36c5ace8126">getUser2</a> () const</td></tr>
@@ -161,9 +163,34 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:acf305a2f9b6603adf70522794b2477da"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adc6a5ffcfe9ff8e6a40e151db1b72f16" id="r_adc6a5ffcfe9ff8e6a40e151db1b72f16"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConversationHistory.html#adc6a5ffcfe9ff8e6a40e151db1b72f16">operator==</a> (const <a class="el" href="classIEntity.html">IEntity</a> &amp;other) const override</td></tr>
 <tr class="separator:adc6a5ffcfe9ff8e6a40e151db1b72f16"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classBasePersistableEntity"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classBasePersistableEntity')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classBasePersistableEntity.html">BasePersistableEntity</a></td></tr>
+<tr class="memitem:a43eb2dbdbf72768d35f1f99dd14c575d inherit pub_methods_classBasePersistableEntity" id="r_a43eb2dbdbf72768d35f1f99dd14c575d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBasePersistableEntity.html#a43eb2dbdbf72768d35f1f99dd14c575d">~BasePersistableEntity</a> () override=default</td></tr>
+<tr class="separator:a43eb2dbdbf72768d35f1f99dd14c575d inherit pub_methods_classBasePersistableEntity"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2af74ec41f4d0bd88961fb796b502405 inherit pub_methods_classBasePersistableEntity" id="r_a2af74ec41f4d0bd88961fb796b502405"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBasePersistableEntity.html#a2af74ec41f4d0bd88961fb796b502405">getId</a> () const override</td></tr>
+<tr class="memdesc:a2af74ec41f4d0bd88961fb796b502405 inherit pub_methods_classBasePersistableEntity"><td class="mdescLeft">&#160;</td><td class="mdescRight">Primary key of the mapped row (0 when not yet persisted).  <br /></td></tr>
+<tr class="separator:a2af74ec41f4d0bd88961fb796b502405 inherit pub_methods_classBasePersistableEntity"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classIEntity"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classIEntity')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classIEntity.html">IEntity</a></td></tr>
 <tr class="memitem:a727892234e0efad23c7a399997dee974 inherit pub_methods_classIEntity" id="r_a727892234e0efad23c7a399997dee974"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIEntity.html#a727892234e0efad23c7a399997dee974">~IEntity</a> ()=default</td></tr>
 <tr class="separator:a727892234e0efad23c7a399997dee974 inherit pub_methods_classIEntity"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pro_methods_classBasePersistableEntity"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classBasePersistableEntity')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classBasePersistableEntity.html">BasePersistableEntity</a></td></tr>
+<tr class="memitem:a239d505bcf1cf801c9e7da98d4180642 inherit pro_methods_classBasePersistableEntity" id="r_a239d505bcf1cf801c9e7da98d4180642"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBasePersistableEntity.html#a239d505bcf1cf801c9e7da98d4180642">BasePersistableEntity</a> ()=default</td></tr>
+<tr class="separator:a239d505bcf1cf801c9e7da98d4180642 inherit pro_methods_classBasePersistableEntity"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad506cd2ed7c85eb128aa2eb61ccab8bd inherit pro_methods_classBasePersistableEntity" id="r_ad506cd2ed7c85eb128aa2eb61ccab8bd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBasePersistableEntity.html#ad506cd2ed7c85eb128aa2eb61ccab8bd">BasePersistableEntity</a> (int id)</td></tr>
+<tr class="separator:ad506cd2ed7c85eb128aa2eb61ccab8bd inherit pro_methods_classBasePersistableEntity"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24b890112993c2aa90284110c8b1b97a inherit pro_methods_classBasePersistableEntity" id="r_a24b890112993c2aa90284110c8b1b97a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBasePersistableEntity.html#a24b890112993c2aa90284110c8b1b97a">BasePersistableEntity</a> (const <a class="el" href="classBasePersistableEntity.html">BasePersistableEntity</a> &amp;)=default</td></tr>
+<tr class="separator:a24b890112993c2aa90284110c8b1b97a inherit pro_methods_classBasePersistableEntity"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa2d908a321c867db8b001fa54a3f3333 inherit pro_methods_classBasePersistableEntity" id="r_aa2d908a321c867db8b001fa54a3f3333"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBasePersistableEntity.html#aa2d908a321c867db8b001fa54a3f3333">BasePersistableEntity</a> (<a class="el" href="classBasePersistableEntity.html">BasePersistableEntity</a> &amp;&amp;) noexcept=default</td></tr>
+<tr class="separator:aa2d908a321c867db8b001fa54a3f3333 inherit pro_methods_classBasePersistableEntity"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a08a4831724baa94afdfdcc6a5f4c1e0a inherit pro_methods_classBasePersistableEntity" id="r_a08a4831724baa94afdfdcc6a5f4c1e0a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classBasePersistableEntity.html">BasePersistableEntity</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBasePersistableEntity.html#a08a4831724baa94afdfdcc6a5f4c1e0a">operator=</a> (const <a class="el" href="classBasePersistableEntity.html">BasePersistableEntity</a> &amp;)=default</td></tr>
+<tr class="separator:a08a4831724baa94afdfdcc6a5f4c1e0a inherit pro_methods_classBasePersistableEntity"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:addbccb9198f3a21d0760c315a2d52534 inherit pro_methods_classBasePersistableEntity" id="r_addbccb9198f3a21d0760c315a2d52534"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classBasePersistableEntity.html">BasePersistableEntity</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBasePersistableEntity.html#addbccb9198f3a21d0760c315a2d52534">operator=</a> (<a class="el" href="classBasePersistableEntity.html">BasePersistableEntity</a> &amp;&amp;) noexcept=default</td></tr>
+<tr class="separator:addbccb9198f3a21d0760c315a2d52534 inherit pro_methods_classBasePersistableEntity"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_attribs_classBasePersistableEntity"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classBasePersistableEntity')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classBasePersistableEntity.html">BasePersistableEntity</a></td></tr>
+<tr class="memitem:a0e2c61a32a32946a552a329867744b74 inherit pro_attribs_classBasePersistableEntity" id="r_a0e2c61a32a32946a552a329867744b74"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBasePersistableEntity.html#a0e2c61a32a32946a552a329867744b74">_id</a> {0}</td></tr>
+<tr class="separator:a0e2c61a32a32946a552a329867744b74 inherit pro_attribs_classBasePersistableEntity"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Ordered message history between two users. </p>
@@ -363,33 +390,6 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Implements <a class="el" href="classIEntity.html#a6e00e0b206888fcedb29a6e082a0d04f">IEntity</a>.</p>
-
-</div>
-</div>
-<a id="a31eb1bb6a456a4528e0d03eec6445304" name="a31eb1bb6a456a4528e0d03eec6445304"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a31eb1bb6a456a4528e0d03eec6445304">&#9670;&#160;</a></span>getId()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">int ConversationHistory::getId </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Implements <a class="el" href="classIEntity.html#a11c6e8b18c2456dc2f44d1fff94dc9b6">IEntity</a>.</p>
 
 </div>
 </div>

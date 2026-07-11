@@ -7,7 +7,6 @@ var classOfflineMessage =
     [ "~OfflineMessage", "classOfflineMessage.html#a311637cd9a81e8b80fd32369048cbdd8", null ],
     [ "deserialize", "classOfflineMessage.html#aab48c468f3eeba6d8f6fa5754e9d88a5", null ],
     [ "getDeliveryAttempts", "classOfflineMessage.html#abed4071cb9ec83ce1c1f18a9f1356694", null ],
-    [ "getId", "classOfflineMessage.html#a9d4ae615dffc02af012d152c47f564fe", null ],
     [ "getMessageId", "classOfflineMessage.html#a3adf875390f7f670efdec35be5da6253", null ],
     [ "getQueuedAt", "classOfflineMessage.html#aa2738512a7f05d0cbc8467f48c78c270", null ],
     [ "getRecipient", "classOfflineMessage.html#a140b682cf423d353eb1ac9b5c7ac07fd", null ],

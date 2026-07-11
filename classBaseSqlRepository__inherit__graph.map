@@ -1,0 +1,5 @@
+<map id="BaseSqlRepository&lt; T &gt;" name="BaseSqlRepository&lt; T &gt;">
+<area shape="rect" id="Node000001" title="Abstract middle layer for PostgreSQL&#45;backed repositories." alt="" coords="5,199,180,344"/>
+<area shape="rect" id="Node000002" href="$classIRepository.html" title="Abstract CRUD interface for a persistent store of domain objects." alt="" coords="29,5,156,151"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="95,164,95,198,90,198,90,164"/>
+</map>

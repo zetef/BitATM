@@ -4,6 +4,8 @@ var annotated_dup =
     [ "AesGcmStrategy", "classAesGcmStrategy.html", "classAesGcmStrategy" ],
     [ "AppException", "classAppException.html", "classAppException" ],
     [ "BaseAuthHandler", "classBaseAuthHandler.html", "classBaseAuthHandler" ],
+    [ "BasePersistableEntity", "classBasePersistableEntity.html", "classBasePersistableEntity" ],
+    [ "BaseSqlRepository", "classBaseSqlRepository.html", "classBaseSqlRepository" ],
     [ "ChatModel", "classChatModel.html", "classChatModel" ],
     [ "ClientSession", "classClientSession.html", "classClientSession" ],
     [ "ConnectionHandler", "classConnectionHandler.html", "classConnectionHandler" ],

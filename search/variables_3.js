@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['from_0',['from',['../structPacket.html#a965a703b8b6b98c773ff398ac6d94e4e',1,'Packet']]]
+  ['errormsg_0',['errorMsg',['../structPacket.html#aae4924b288ada0dfe58407dc91cc779a',1,'Packet']]]
 ];

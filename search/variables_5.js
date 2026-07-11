@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['id_0',['id',['../structGroupInfo.html#af611c3e44607be5825b6c05734c5661a',1,'GroupInfo']]],
-  ['isoutgoing_1',['isoutgoing',['../structMessageRecord.html#a3e8433cfd3a33e3f16da52504d6c194a',1,'MessageRecord::isOutgoing'],['../structGroupMessageRecord.html#ad9c417f8be6c7c37f8dc6badb5f5d98f',1,'GroupMessageRecord::isOutgoing']]],
-  ['iv_5fsize_2',['IV_SIZE',['../classAesGcmStrategy.html#ae915acac6103c93119fc59680b3aabfd',1,'AesGcmStrategy']]]
+  ['groupid_0',['groupid',['../structGroupMember.html#aaf9c1db4215bf273f603da39f6869b2f',1,'GroupMember::groupId'],['../structGroupMessageRecord.html#ada6fd06f5c085d1cb76e3a80a043bc46',1,'GroupMessageRecord::groupId'],['../structGroupRecord.html#a2eb74158b4f1f108895960a871400e38',1,'GroupRecord::groupId']]]
 ];

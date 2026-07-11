@@ -3,7 +3,7 @@ var searchData=
   ['readreceipthandler_0',['ReadReceiptHandler',['../classReadReceiptHandler.html#aa6ddc714cb5adea5aa743a5c87ae0411',1,'ReadReceiptHandler']]],
   ['receive_1',['receive',['../classClientSession.html#a20cc80548cecca1f22160a294acb0e64',1,'ClientSession']]],
   ['registerhandler_2',['registerHandler',['../classPacketHandlerFactory.html#a97bbfc7c3920b497266d536c15997418',1,'PacketHandlerFactory']]],
-  ['remove_3',['remove',['../classIRepository.html#a30f7113e0d03aef3c362e06457650485',1,'IRepository::remove()'],['../classMessageRepository.html#a726df51d795b2154d2625a21237f7784',1,'MessageRepository::remove()'],['../classOfflineQueueRepository.html#a21ea4d26525c12c03059bcc24e1bbd0b',1,'OfflineQueueRepository::remove()'],['../classSessionRepository.html#a7fc99fdbeef51a150a8c8438e52e2442',1,'SessionRepository::remove()'],['../classUserRepository.html#ae1d6d7fa3856295cc13ffecb793a0244',1,'UserRepository::remove()'],['../classConversationListModel.html#a37f0ccaab1caa4fb45977c98256e8705',1,'ConversationListModel::remove()']]],
+  ['remove_3',['remove',['../classBaseSqlRepository.html#a409cebb83af6cf878c46d44f6610af55',1,'BaseSqlRepository::remove()'],['../classIRepository.html#a30f7113e0d03aef3c362e06457650485',1,'IRepository::remove()'],['../classConversationListModel.html#a37f0ccaab1caa4fb45977c98256e8705',1,'ConversationListModel::remove()']]],
   ['removeclient_4',['removeClient',['../classServer.html#a7e7ed80da888379bbe3ec346e1210dbf',1,'Server']]],
   ['removegroup_5',['removeGroup',['../classLocalStorage.html#ad86253db00e34a43abd87da056c651ee',1,'LocalStorage']]],
   ['removemember_6',['removeMember',['../classGroupRepository.html#a0639709942f521cf2d115b8d256debb5',1,'GroupRepository']]],

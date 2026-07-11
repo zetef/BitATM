@@ -51,26 +51,34 @@ var hierarchy =
       ] ]
     ] ],
     [ "IEntity", "classIEntity.html", [
-      [ "ConversationHistory", "classConversationHistory.html", null ],
-      [ "GroupMessage", "classGroupMessage.html", null ],
-      [ "Message", "classMessage.html", null ],
-      [ "OfflineMessage", "classOfflineMessage.html", null ],
-      [ "Session", "classSession.html", null ],
-      [ "User", "classUser.html", null ]
+      [ "BasePersistableEntity", "classBasePersistableEntity.html", [
+        [ "ConversationHistory", "classConversationHistory.html", null ],
+        [ "GroupMessage", "classGroupMessage.html", null ],
+        [ "Message", "classMessage.html", null ],
+        [ "OfflineMessage", "classOfflineMessage.html", null ],
+        [ "Session", "classSession.html", null ],
+        [ "User", "classUser.html", null ]
+      ] ]
     ] ],
-    [ "IRepository< T >", "classIRepository.html", null ],
-    [ "IRepository< Message >", "classIRepository.html", [
-      [ "MessageRepository", "classMessageRepository.html", null ]
+    [ "IRepository< T >", "classIRepository.html", [
+      [ "BaseSqlRepository< Message >", "classBaseSqlRepository.html", [
+        [ "MessageRepository", "classMessageRepository.html", null ]
+      ] ],
+      [ "BaseSqlRepository< OfflineMessage >", "classBaseSqlRepository.html", [
+        [ "OfflineQueueRepository", "classOfflineQueueRepository.html", null ]
+      ] ],
+      [ "BaseSqlRepository< Session >", "classBaseSqlRepository.html", [
+        [ "SessionRepository", "classSessionRepository.html", null ]
+      ] ],
+      [ "BaseSqlRepository< User >", "classBaseSqlRepository.html", [
+        [ "UserRepository", "classUserRepository.html", null ]
+      ] ],
+      [ "BaseSqlRepository< T >", "classBaseSqlRepository.html", null ]
     ] ],
-    [ "IRepository< OfflineMessage >", "classIRepository.html", [
-      [ "OfflineQueueRepository", "classOfflineQueueRepository.html", null ]
-    ] ],
-    [ "IRepository< Session >", "classIRepository.html", [
-      [ "SessionRepository", "classSessionRepository.html", null ]
-    ] ],
-    [ "IRepository< User >", "classIRepository.html", [
-      [ "UserRepository", "classUserRepository.html", null ]
-    ] ],
+    [ "IRepository< Message >", "classIRepository.html", null ],
+    [ "IRepository< OfflineMessage >", "classIRepository.html", null ],
+    [ "IRepository< Session >", "classIRepository.html", null ],
+    [ "IRepository< User >", "classIRepository.html", null ],
     [ "LocalStorage", "classLocalStorage.html", null ],
     [ "MessageRecord", "structMessageRecord.html", null ],
     [ "OpensslAdapter", "classOpensslAdapter.html", null ],

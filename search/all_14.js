@@ -1,5 +1,15 @@
 var searchData=
 [
-  ['validate_0',['validate',['../classAckHandler.html#a18c7a7f9fc71c79eed54c198ea6f8d7c',1,'AckHandler::validate()'],['../classCreateGroupHandler.html#a59e48b72e9be724724fa94e5ce344268',1,'CreateGroupHandler::validate()'],['../classDeleteGroupHandler.html#a0be772182821f256ed47a17f19910bd8',1,'DeleteGroupHandler::validate()'],['../classGroupInfoHandler.html#af2853edfc87965c5f4a8a50d951ea2e3',1,'GroupInfoHandler::validate()'],['../classGroupKeyExchangeHandler.html#ad68a03957aec719b8dec290fa651c147',1,'GroupKeyExchangeHandler::validate()'],['../classGroupLeaveHandler.html#ac4c29090e50dbcd8a7978303dd99bbb8',1,'GroupLeaveHandler::validate()'],['../classGroupMessageHandler.html#ae41681961fd7f48f8d39d0cb4f2ce05a',1,'GroupMessageHandler::validate()'],['../classICommandHandler.html#a958ac0a8073a92c0cc17765061034482',1,'ICommandHandler::validate()'],['../classKeyExchangeHandler.html#a78f9ac2a88f8ff8fbfaefe09664f93cb',1,'KeyExchangeHandler::validate()'],['../classLoginHandler.html#a8ee19028e40e40c8dae4eb5da7893f6a',1,'LoginHandler::validate()'],['../classMessageHandler.html#a9ae3da418b8c53e56539148717897d05',1,'MessageHandler::validate()'],['../classReadReceiptHandler.html#afcd7e4248f60a13b419a7ece01dcadb4',1,'ReadReceiptHandler::validate()'],['../classRegisterHandler.html#a08d25d31268049839550fb69e1a68bdf',1,'RegisterHandler::validate()'],['../classSyncHistoryHandler.html#aad6d17f639ca81fff21326f86370f7ca',1,'SyncHistoryHandler::validate()']]],
-  ['version_1',['version',['../structPacket.html#ad13846cda7db38fd2cba1f63049bb4c2',1,'Packet']]]
+  ['updatelastseen_0',['updateLastSeen',['../classUserRepository.html#a3031cf2d6edb5409261d4103c3d622a4',1,'UserRepository']]],
+  ['updatemessagestatus_1',['updateMessageStatus',['../classLocalStorage.html#a35349bb6cbf4f0e329109e1c579827bb',1,'LocalStorage']]],
+  ['updaterole_2',['updateRole',['../classGroupRepository.html#a06d238dce5bbf0fbf0e4e6f4a3babcda',1,'GroupRepository']]],
+  ['updatestatus_3',['updateStatus',['../classChatModel.html#a3411fa778c0b57622def2b26af8bbc43',1,'ChatModel']]],
+  ['user_4',['user',['../classUser.html',1,'User'],['../classUser.html#a4dd5fde1b81bb132994a67f27bc203d1',1,'User::User()=default'],['../classUser.html#a268f2592165f7da858a3db365ad79746',1,'User::User(int id, std::string username, std::string passwordHash, std::string publicKey={}, std::string lastSeen={}, std::string createdAt={})'],['../classUser.html#a3c20678fb9c65cdb1f27462a0d476303',1,'User::User(const User &amp;)=default'],['../classUser.html#ac8106d639827043ed02dec54917b2f69',1,'User::User(User &amp;&amp;) noexcept=default']]],
+  ['user_2ecpp_5',['User.cpp',['../User_8cpp.html',1,'']]],
+  ['user_2eh_6',['User.h',['../User_8h.html',1,'']]],
+  ['username_7',['username',['../structGroupMember.html#a291b80ccf8421c409a9dee8741042249',1,'GroupMember']]],
+  ['usernamerole_8',['UsernameRole',['../classConversationListModel.html#ac6c4a9feb3a203d342de583ca01bc38ea6f48e554b0cc08530b6219115353919f',1,'ConversationListModel']]],
+  ['userrepository_9',['userrepository',['../classUserRepository.html#a910154e7ced8b9951ee3046ee5e50524',1,'UserRepository::UserRepository()'],['../classUserRepository.html',1,'UserRepository']]],
+  ['userrepository_2ecpp_10',['UserRepository.cpp',['../UserRepository_8cpp.html',1,'']]],
+  ['userrepository_2eh_11',['UserRepository.h',['../UserRepository_8h.html',1,'']]]
 ];

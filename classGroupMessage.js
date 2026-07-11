@@ -9,7 +9,6 @@ var classGroupMessage =
     [ "getCreatedAt", "classGroupMessage.html#acb3c5ee69137ce0655f4026290e6ef8e", null ],
     [ "getEncryptedKeys", "classGroupMessage.html#adeeb3d9f5a2d2366871c814984c25428", null ],
     [ "getGroupName", "classGroupMessage.html#ac930c4b758c3ba4e9fbd41552f0c629f", null ],
-    [ "getId", "classGroupMessage.html#a53dfec5cfed9835102cc11617de93c07", null ],
     [ "getSender", "classGroupMessage.html#ad62aa89182c021f3f1de63d1d62d92ff", null ],
     [ "operator=", "classGroupMessage.html#a51fdeb962c343f6e50c31586da55bd7e", null ],
     [ "operator=", "classGroupMessage.html#a22023d8a2950a80697a4ede141d18228", null ],

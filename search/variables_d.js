@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['tag_5fsize_0',['TAG_SIZE',['../classAesGcmStrategy.html#aba45a561bcc8f62433db649f591cf8b2',1,'AesGcmStrategy']]],
-  ['timestamp_1',['timestamp',['../structMessageRecord.html#aa0f6e70e160f9a2c1c2d13f455e6ff99',1,'MessageRecord::timestamp'],['../structGroupMessageRecord.html#a05c6c8ed1bdcb315c79027118f8c4a3c',1,'GroupMessageRecord::timestamp'],['../structPacket.html#a9c59bf2df4801081b4b913fa54a55ae3',1,'Packet::timestamp']]],
-  ['to_2',['to',['../structPacket.html#ade008e6fbe56f0f663ffcc1f36f32b9a',1,'Packet']]],
-  ['type_3',['type',['../structPacket.html#aebbae2cef32f967d0bbcabbe41dae6bf',1,'Packet']]]
+  ['sender_0',['sender',['../structMessageRecord.html#a2600f6ec1a6ca229770a4deaed1d643c',1,'MessageRecord::sender'],['../structGroupMessageRecord.html#ae0b5bd02c90790b3876d9ac134e2d5b7',1,'GroupMessageRecord::sender']]],
+  ['status_1',['status',['../structMessageRecord.html#a76802998b49a15e782c425b84829ab3f',1,'MessageRecord']]]
 ];

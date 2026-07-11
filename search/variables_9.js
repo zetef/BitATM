@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['name_0',['name',['../structGroupInfo.html#a6fb4450cc60c5c8c75fe4c340cca193a',1,'GroupInfo::name'],['../structGroupRecord.html#a1c94690597a3227201f6d4856ac1d992',1,'GroupRecord::name']]]
+  ['max_5fdelivery_5fattempts_0',['MAX_DELIVERY_ATTEMPTS',['../classOfflineQueueRepository.html#a5a35969e0291880975adb71e2b3031af',1,'OfflineQueueRepository']]],
+  ['max_5fpacket_5fsize_1',['MAX_PACKET_SIZE',['../protocol_8h.html#ae4d2325390b1703d2db37ab125ef43cf',1,'protocol.h']]]
 ];

@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['key_0',['key',['../structPacket.html#aa3757b0e0f59c9e810f0e7d0a02fb6e4',1,'Packet']]],
-  ['key_5fbits_1',['KEY_BITS',['../classRsaOaepStrategy.html#aa4931b6b182e3a8ee395903a24a63dc5',1,'RsaOaepStrategy']]],
-  ['key_5fsize_2',['KEY_SIZE',['../classAesGcmStrategy.html#a1b49e5b681f22e622b6169d012d0e007',1,'AesGcmStrategy']]]
+  ['id_0',['id',['../structGroupInfo.html#af611c3e44607be5825b6c05734c5661a',1,'GroupInfo']]],
+  ['isoutgoing_1',['isoutgoing',['../structMessageRecord.html#a3e8433cfd3a33e3f16da52504d6c194a',1,'MessageRecord::isOutgoing'],['../structGroupMessageRecord.html#ad9c417f8be6c7c37f8dc6badb5f5d98f',1,'GroupMessageRecord::isOutgoing']]],
+  ['iv_5fsize_2',['IV_SIZE',['../classAesGcmStrategy.html#ae915acac6103c93119fc59680b3aabfd',1,'AesGcmStrategy']]]
 ];

@@ -101,6 +101,32 @@ $(document).ready(function(){initNavTree('classIRepository.html',''); initResiza
 
 <p><code>#include &lt;<a class="el" href="IRepository_8h_source.html">IRepository.h</a>&gt;</code></p>
 <div class="dynheader">
+Inheritance diagram for IRepository&lt; T &gt;:</div>
+<div class="dyncontent">
+<div class="center"><img src="classIRepository__inherit__graph.png" border="0" usemap="#aIRepository_3_01T_01_4_inherit__map" alt="Inheritance graph"/></div>
+<map name="aIRepository_3_01T_01_4_inherit__map" id="aIRepository_3_01T_01_4_inherit__map">
+<area shape="rect" title="Abstract CRUD interface for a persistent store of domain objects." alt="" coords="461,5,588,151"/>
+<area shape="rect" href="classBaseSqlRepository.html" title=" " alt="" coords="25,199,197,359"/>
+<area shape="poly" title=" " alt="" coords="449,106,340,147,223,201,199,215,196,211,221,196,338,142,447,101"/>
+<area shape="rect" href="classBaseSqlRepository.html" title=" " alt="" coords="235,199,407,359"/>
+<area shape="poly" title=" " alt="" coords="453,152,404,201,400,197,450,149"/>
+<area shape="rect" href="classBaseSqlRepository.html" title=" " alt="" coords="439,199,611,359"/>
+<area shape="poly" title=" " alt="" coords="527,164,527,199,522,199,522,164"/>
+<area shape="rect" href="classBaseSqlRepository.html" title=" " alt="" coords="635,199,807,359"/>
+<area shape="poly" title=" " alt="" coords="600,151,645,197,641,200,596,155"/>
+<area shape="rect" href="classBaseSqlRepository.html" title="Abstract middle layer for PostgreSQL&#45;backed repositories." alt="" coords="831,206,1005,351"/>
+<area shape="poly" title=" " alt="" coords="602,101,708,141,765,167,821,196,832,203,829,208,818,201,763,172,706,146,600,106"/>
+<area shape="rect" href="classMessageRepository.html" title="PostgreSQL&#45;backed repository for Message records." alt="" coords="5,427,183,632"/>
+<area shape="poly" title=" " alt="" coords="108,372,104,427,98,426,102,372"/>
+<area shape="rect" href="classOfflineQueueRepository.html" title="PostgreSQL&#45;backed repository for the offline_queue table." alt="" coords="207,407,427,652"/>
+<area shape="poly" title=" " alt="" coords="322,372,321,406,316,406,317,372"/>
+<area shape="rect" href="classSessionRepository.html" title="PostgreSQL&#45;backed repository for Session records." alt="" coords="451,417,625,642"/>
+<area shape="poly" title=" " alt="" coords="532,372,535,416,529,416,527,372"/>
+<area shape="rect" href="classUserRepository.html" title="PostgreSQL&#45;backed repository for User records." alt="" coords="650,437,799,622"/>
+<area shape="poly" title=" " alt="" coords="725,372,726,436,721,436,719,372"/>
+</map>
+</div>
+<div class="dynheader">
 Collaboration diagram for IRepository&lt; T &gt;:</div>
 <div class="dyncontent">
 <div class="center"><img src="classIRepository__coll__graph.png" border="0" usemap="#aIRepository_3_01T_01_4_coll__map" alt="Collaboration graph"/></div>
@@ -256,7 +282,7 @@ template&lt;typename T &gt; </div>
 
 <p>Delete the record with the given primary key. </p>
 
-<p>Implemented in <a class="el" href="classMessageRepository.html#a726df51d795b2154d2625a21237f7784">MessageRepository</a>, <a class="el" href="classOfflineQueueRepository.html#a21ea4d26525c12c03059bcc24e1bbd0b">OfflineQueueRepository</a>, <a class="el" href="classSessionRepository.html#a7fc99fdbeef51a150a8c8438e52e2442">SessionRepository</a>, and <a class="el" href="classUserRepository.html#ae1d6d7fa3856295cc13ffecb793a0244">UserRepository</a>.</p>
+<p>Implemented in <a class="el" href="classBaseSqlRepository.html#a409cebb83af6cf878c46d44f6610af55">BaseSqlRepository&lt; T &gt;</a>, <a class="el" href="classBaseSqlRepository.html#a409cebb83af6cf878c46d44f6610af55">BaseSqlRepository&lt; Message &gt;</a>, <a class="el" href="classBaseSqlRepository.html#a409cebb83af6cf878c46d44f6610af55">BaseSqlRepository&lt; OfflineMessage &gt;</a>, <a class="el" href="classBaseSqlRepository.html#a409cebb83af6cf878c46d44f6610af55">BaseSqlRepository&lt; Session &gt;</a>, and <a class="el" href="classBaseSqlRepository.html#a409cebb83af6cf878c46d44f6610af55">BaseSqlRepository&lt; User &gt;</a>.</p>
 
 </div>
 </div>
@@ -287,8 +313,6 @@ template&lt;typename T &gt; </div>
 </div><div class="memdoc">
 
 <p>Insert or update a record. </p>
-
-<p>Implemented in <a class="el" href="classMessageRepository.html#aa07bc2bb626fc17580646e7598747cf6">MessageRepository</a>, <a class="el" href="classOfflineQueueRepository.html#a29e48ab68bfa73b53a9e990700f1eabf">OfflineQueueRepository</a>, <a class="el" href="classSessionRepository.html#a49d226d7af830a3a35c33f48f0174f6a">SessionRepository</a>, and <a class="el" href="classUserRepository.html#acc2d72378c67bffd4a2ede7343533cc0">UserRepository</a>.</p>
 
 </div>
 </div>

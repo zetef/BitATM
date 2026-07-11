@@ -1,23 +1,4 @@
 var searchData=
 [
-  ['ack_0',['ACK',['../protocol_8h.html#a0a80a7bc045affcf10846075b88cbca0a0fc437bc317835cad5faafc12a83fad5',1,'protocol.h']]],
-  ['ackhandler_1',['AckHandler',['../classAckHandler.html',1,'']]],
-  ['ackhandler_2ecpp_2',['AckHandler.cpp',['../AckHandler_8cpp.html',1,'']]],
-  ['ackhandler_2eh_3',['AckHandler.h',['../AckHandler_8h.html',1,'']]],
-  ['addclient_4',['addClient',['../classServer.html#a192dea8c568586fe6f1cafac75a00b5b',1,'Server']]],
-  ['addgroupmember_5',['addGroupMember',['../classNetworkManager.html#ab0e4e845f992abd7842feb9ef8a83ae3',1,'NetworkManager']]],
-  ['addmember_6',['addMember',['../classGroupRepository.html#adedb41fba71229539d5e7fec370c8038',1,'GroupRepository']]],
-  ['addorupdate_7',['addOrUpdate',['../classConversationListModel.html#acf023bbcd5d16dac0619d909a3280565',1,'ConversationListModel']]],
-  ['addorupdategroup_8',['addOrUpdateGroup',['../classConversationListModel.html#a93d4759883f8df68c20757ead27c6868',1,'ConversationListModel']]],
-  ['aesgcmstrategy_9',['aesgcmstrategy',['../classAesGcmStrategy.html',1,'AesGcmStrategy'],['../classAesGcmStrategy.html#a5c684663f56dce66e9bc7506e62e7c47',1,'AesGcmStrategy::AesGcmStrategy()']]],
-  ['aesgcmstrategy_2ecpp_10',['AesGcmStrategy.cpp',['../AesGcmStrategy_8cpp.html',1,'']]],
-  ['aesgcmstrategy_2eh_11',['AesGcmStrategy.h',['../AesGcmStrategy_8h.html',1,'']]],
-  ['append_12',['append',['../classConversationHistory.html#a2f80481c78f84cf5a2d14867a5b8192c',1,'ConversationHistory']]],
-  ['appendandcache_13',['appendAndCache',['../classChatModel.html#a0b70c31ef59711801fda39cf0ea59004',1,'ChatModel']]],
-  ['appendmessage_14',['appendMessage',['../classChatModel.html#a1ba983184f7035e4e433ab4136ef1307',1,'ChatModel']]],
-  ['appexception_15',['appexception',['../classAppException.html',1,'AppException'],['../classProtocolException.html#adf9327a653e7da92e42cc15e913d2791',1,'ProtocolException::AppException()'],['../classDbException.html#adf9327a653e7da92e42cc15e913d2791',1,'DbException::AppException()'],['../classNetworkException.html#adf9327a653e7da92e42cc15e913d2791',1,'NetworkException::AppException()'],['../classCryptoException.html#adf9327a653e7da92e42cc15e913d2791',1,'CryptoException::AppException()'],['../classAppException.html#adf9327a653e7da92e42cc15e913d2791',1,'AppException::AppException()']]],
-  ['appexception_2eh_16',['AppException.h',['../AppException_8h.html',1,'']]],
-  ['authenticated_17',['Authenticated',['../classClientSession.html#a7285e048076fc75300a4becab14c6378aa927b3e1f83aa1b3c6feff945ca18f77',1,'ClientSession']]],
-  ['authenticating_18',['Authenticating',['../classClientSession.html#a7285e048076fc75300a4becab14c6378aedb214653d9f3cecd840463790ac2894',1,'ClientSession']]],
-  ['authorize_19',['authorize',['../classBaseAuthHandler.html#ab8d97c34782d2f2e20edb6c56074bfdf',1,'BaseAuthHandler::authorize()'],['../classICommandHandler.html#a1e54be46e1393acbbfc28c238c37f2c1',1,'ICommandHandler::authorize()'],['../classLoginHandler.html#ab8db42018f774e1e31cfb067fb259b33',1,'LoginHandler::authorize()'],['../classRegisterHandler.html#ad34c688d1684ef0629ca9cce10a13b3d',1,'RegisterHandler::authorize()']]]
+  ['_5fid_0',['_id',['../classBasePersistableEntity.html#a0e2c61a32a32946a552a329867744b74',1,'BasePersistableEntity']]]
 ];

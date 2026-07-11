@@ -4,6 +4,8 @@ var dir_27747142951285b09bacafa002e92b5f =
     [ "AckHandler.h", "AckHandler_8h.html", "AckHandler_8h" ],
     [ "BaseAuthHandler.cpp", "BaseAuthHandler_8cpp.html", null ],
     [ "BaseAuthHandler.h", "BaseAuthHandler_8h.html", "BaseAuthHandler_8h" ],
+    [ "BasePersistableEntity.h", "BasePersistableEntity_8h.html", "BasePersistableEntity_8h" ],
+    [ "BaseSqlRepository.h", "BaseSqlRepository_8h.html", "BaseSqlRepository_8h" ],
     [ "ClientSession.cpp", "ClientSession_8cpp.html", null ],
     [ "ClientSession.h", "ClientSession_8h.html", "ClientSession_8h" ],
     [ "ConversationHistory.cpp", "ConversationHistory_8cpp.html", null ],

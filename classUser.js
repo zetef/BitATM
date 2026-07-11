@@ -7,7 +7,6 @@ var classUser =
     [ "~User", "classUser.html#a2aca5ee0046f477a5acb084653dcc801", null ],
     [ "deserialize", "classUser.html#a444abd10995bb32aed3d1df5e7263448", null ],
     [ "getCreatedAt", "classUser.html#ad5dd1754dc217815c11d6fd2bc212261", null ],
-    [ "getId", "classUser.html#a97ca3ca233e5275501dca9786360cb2c", null ],
     [ "getLastSeen", "classUser.html#afadba4a3a138a6233294b65a43ce2f2d", null ],
     [ "getPasswordHash", "classUser.html#af6151c2deb77f73d2700056f6c588b06", null ],
     [ "getPublicKey", "classUser.html#a9a2fa17d1b38aa1939a5494c629d908d", null ],

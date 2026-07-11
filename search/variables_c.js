@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['sender_0',['sender',['../structMessageRecord.html#a2600f6ec1a6ca229770a4deaed1d643c',1,'MessageRecord::sender'],['../structGroupMessageRecord.html#ae0b5bd02c90790b3876d9ac134e2d5b7',1,'GroupMessageRecord::sender']]],
-  ['status_1',['status',['../structMessageRecord.html#a76802998b49a15e782c425b84829ab3f',1,'MessageRecord']]]
+  ['role_0',['role',['../structGroupMember.html#a93ff775d08f660d9281a2ed4c1297111',1,'GroupMember::role'],['../structGroupRecord.html#aa242ef916c1f0d5736728247661db642',1,'GroupRecord::role']]]
 ];

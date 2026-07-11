@@ -1,5 +1,7 @@
 <map id="UserRepository" name="UserRepository">
-<area shape="rect" id="Node000001" title="PostgreSQL&#45;backed repository for User records." alt="" coords="5,199,155,404"/>
-<area shape="rect" id="Node000002" href="$classIRepository.html" title=" " alt="" coords="6,5,154,151"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="83,164,83,199,77,199,77,164"/>
+<area shape="rect" id="Node000001" title="PostgreSQL&#45;backed repository for User records." alt="" coords="17,407,166,592"/>
+<area shape="rect" id="Node000002" href="$classBaseSqlRepository.html" title=" " alt="" coords="5,199,177,359"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="94,372,94,406,89,406,89,372"/>
+<area shape="rect" id="Node000003" href="$classIRepository.html" title="Abstract CRUD interface for a persistent store of domain objects." alt="" coords="28,5,155,151"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="94,164,94,199,89,199,89,164"/>
 </map>
