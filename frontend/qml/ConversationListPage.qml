@@ -225,6 +225,7 @@ Rectangle {
         if (groupId.length === 0) return
         convListPage.peerSelected(groupId)
         chatModel.switchConversation(groupId)
+        networkManager.markConversationRead(groupId)
         networkManager.fetchGroupInfo(groupId)
         if (convListPage.isMobile && convListPage.stackView !== null) {
             convListPage.stackView.push(convListPage.chatPageComponent)

@@ -76,11 +76,12 @@ ApplicationWindow {
         }
 
         function onMessageDelivered(timestamp) {
-            chatModel.updateStatus(root.activePeer, timestamp, "delivered")
+            chatModel.updateStatus(root.activePeer, timestamp, "delivered",
+                                   /^\d+$/.test(root.activePeer))
         }
 
         function onMessageSeen(peer, timestamp) {
-            chatModel.updateStatus(peer, timestamp, "seen")
+            chatModel.updateStatus(peer, timestamp, "seen", /^\d+$/.test(peer))
         }
 
         function onConvListUpdated(peer, lastMessage, lastTimestamp) {
@@ -102,6 +103,9 @@ ApplicationWindow {
         function onGroupMessageDecrypted(groupId, sender, plaintext, timestamp, isOutgoing) {
             chatModel.appendAndCache(groupId, sender, plaintext, timestamp, isOutgoing)
             convListModel.addOrUpdateGroup(groupId, "", plaintext, timestamp)
+            if (!isOutgoing && groupId === root.activePeer) {
+                networkManager.markConversationRead(groupId)
+            }
         }
 
         function onGroupLeft(groupId) {
@@ -109,8 +113,8 @@ ApplicationWindow {
             convListModel.remove(groupId)
         }
 
-        function onGroupHistorySyncMessage(groupId, sender, content, timestamp, isOutgoing) {
-            chatModel.appendAndCache(groupId, sender, content, timestamp, isOutgoing)
+        function onGroupHistorySyncMessage(groupId, sender, content, timestamp, isOutgoing, status) {
+            chatModel.appendAndCache(groupId, sender, content, timestamp, isOutgoing, status)
         }
 
         function onGroupConvUpdated(groupId, groupName, lastMessage, lastTimestamp) {

@@ -3,6 +3,7 @@
 #include <QDateTime>
 #include <QDebug>
 #include <QLoggingCategory>
+#include <QRegularExpression>
 #include <QSslConfiguration>
 #include <QTimer>
 #include <sstream>
@@ -184,7 +185,8 @@ void NetworkManager::loadLocalHistory() {
         }
         auto msgs = LocalStorage::instance().loadGroupMessages(g.groupId);
         for (auto& m : msgs) {
-            emit groupHistorySyncMessage(m.groupId, m.sender, m.content, m.timestamp, m.isOutgoing);
+            emit groupHistorySyncMessage(m.groupId, m.sender, m.content, m.timestamp, m.isOutgoing,
+                                         m.status);
         }
         emit groupConvUpdated(g.groupId, g.name, g.lastMessage, g.lastTimestamp);
     }
@@ -311,8 +313,17 @@ void NetworkManager::handleIncomingMessage(const Packet& p) {
 }
 
 void NetworkManager::handleReadReceipt(const Packet& p) {
-    emit messageSeen(QString::fromStdString(p.from),
-                     TimestampUtil::canonical(QString::fromStdString(p.body)));
+    const QString ts = TimestampUtil::canonical(QString::fromStdString(p.body));
+    // Group receipts carry the group id in 'to'; the conversation key is the
+    // group id, not the reader. LocalStorage persistence is handled here for
+    // groups because ChatModel::updateStatus only writes the 1:1 table.
+    const QString to = QString::fromStdString(p.to);
+    static const QRegularExpression numeric("^\\d+$");
+    if (numeric.match(to).hasMatch()) {
+        emit messageSeen(to, ts);  // ChatModel persists via updateStatus(isGroup)
+        return;
+    }
+    emit messageSeen(QString::fromStdString(p.from), ts);
 }
 
 void NetworkManager::handleKeyExchangeResponse(const Packet& p) {
@@ -417,10 +428,24 @@ void NetworkManager::createGroup(const QString& name, const QStringList& members
     }
 }
 
+void NetworkManager::requestGroupKey(const QString& groupId) {
+    if (_pendingGroupKeyRequests.contains(groupId)) return;
+    _pendingGroupKeyRequests.insert(groupId);
+    Packet p;
+    p.type = PacketType::GROUP_KEY_EXCHANGE;
+    p.from = _currentUsername.toStdString();
+    p.to = groupId.toStdString();
+    // empty key field = recover my own stored key from the server
+    sendPacket(p);
+}
+
 void NetworkManager::sendGroupMessage(const QString& groupId, const QString& plaintext,
                                       const QString& timestamp) {
     if (!_groupKeys.contains(groupId)) {
-        qWarning() << "sendGroupMessage: no AES key for group" << groupId;
+        qCInfo(logChat) << "sendGroupMessage: no AES key for group" << groupId
+                        << "- queuing and requesting key";
+        _pendingGroupSends[groupId].append(qMakePair(plaintext, timestamp));
+        requestGroupKey(groupId);
         return;
     }
     try {
@@ -546,7 +571,12 @@ void NetworkManager::handleGroupMessage(const Packet& p) {
         } else {
             QString stored = LocalStorage::instance().loadGroupKey(groupId);
             if (stored.isEmpty()) {
-                qWarning() << "handleGroupMessage: no key for group" << groupId;
+                // Lost local key (cache wipe, new device): buffer the packet
+                // and recover our wrapped key from the server
+                qCInfo(logChat) << "handleGroupMessage: no key for group" << groupId
+                                << "- buffering and requesting key";
+                _pendingGroupPackets[groupId].append(p);
+                requestGroupKey(groupId);
                 return;
             }
             aesKey = QByteArray::fromBase64(stored.toLatin1());
@@ -556,6 +586,7 @@ void NetworkManager::handleGroupMessage(const Packet& p) {
         QString plaintext = _crypto.decrypt(QString::fromStdString(p.body), aesKey);
         bool isOutgoing = (sender == _currentUsername);
         LocalStorage::instance().saveGroupMessage(groupId, sender, plaintext, ts, isOutgoing);
+        if (!isOutgoing) _unreadTimestamps[groupId].append(ts);
         emit groupMessageDecrypted(groupId, sender, plaintext, ts, isOutgoing);
     } catch (const std::exception& e) {
         qWarning() << "handleGroupMessage: decrypt failed:" << e.what();
@@ -570,7 +601,18 @@ void NetworkManager::handleGroupKeyExchange(const Packet& p) {
             _crypto.decryptRSA(QByteArray::fromBase64(encKey.toLatin1()), _ownPrivKey);
         _groupKeys[groupId] = aesKey;
         LocalStorage::instance().saveGroupKey(groupId, QString::fromLatin1(aesKey.toBase64()));
+        _pendingGroupKeyRequests.remove(groupId);
         emit groupKeyUpdated(groupId);
+
+        // Drain packets and sends that were waiting for this key
+        if (_pendingGroupPackets.contains(groupId)) {
+            const QList<Packet> buffered = _pendingGroupPackets.take(groupId);
+            for (const Packet& bp : buffered) handleGroupMessage(bp);
+        }
+        if (_pendingGroupSends.contains(groupId)) {
+            const QList<QPair<QString, QString>> sends = _pendingGroupSends.take(groupId);
+            for (const auto& [msg, ts] : sends) sendGroupMessage(groupId, msg, ts);
+        }
     } catch (const std::exception& e) {
         qWarning() << "handleGroupKeyExchange: decrypt failed:" << e.what();
     }
@@ -584,6 +626,9 @@ void NetworkManager::handleGroupInfo(const Packet& p) {
     // If sentinel key exists, a CREATE_GROUP was just acked - remap to the real group id
     if (_groupKeys.contains("0")) {
         _groupKeys[groupId] = _groupKeys.take("0");
+        // Persist the creator's key; the invite path does this for members
+        LocalStorage::instance().saveGroupKey(groupId,
+                                              QString::fromLatin1(_groupKeys[groupId].toBase64()));
     }
 
     LocalStorage::instance().saveGroup(groupId, groupName, "creator");

@@ -241,7 +241,9 @@ Rectangle {
                     id: msgInput
                     width: parent.width - sendButton.width - parent.spacing
                     height: parent.height
-                    placeholderText: "> msg " + chatPage.activePeer + "..."
+                    placeholderText: "> msg " + (chatPage._isGroup
+                        ? networkManager.getGroupName(chatPage.activePeer)
+                        : chatPage.activePeer) + "..."
                     color: "#c8c8c8"
                     placeholderTextColor: "#505050"
                     font.family: "Monospace"

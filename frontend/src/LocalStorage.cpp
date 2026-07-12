@@ -85,12 +85,15 @@ bool LocalStorage::createSchema() {
         "  sender      TEXT    NOT NULL,"
         "  content     TEXT    NOT NULL,"
         "  timestamp   TEXT    NOT NULL,"
-        "  is_outgoing INTEGER NOT NULL DEFAULT 0"
+        "  is_outgoing INTEGER NOT NULL DEFAULT 0,"
+        "  status      TEXT    NOT NULL DEFAULT 'sent'"
         ")");
     if (!ok) {
         qWarning() << "LocalStorage: schema error (group_messages):" << q.lastError().text();
         return false;
     }
+    // Upgrade pre-status caches in place; failure just means the column exists
+    q.exec("ALTER TABLE group_messages ADD COLUMN status TEXT NOT NULL DEFAULT 'sent'");
 
     ok = q.exec(
         "CREATE TABLE IF NOT EXISTS group_keys ("
@@ -212,7 +215,10 @@ QList<ConversationRecord> LocalStorage::loadConversations() {
 
 QString LocalStorage::newestTimestamp() {
     QSqlQuery q(_db);
-    if (!q.exec("SELECT MAX(timestamp) FROM messages")) {
+    // Sync cursor covers 1:1 AND group history; canonical ISO strings sort
+    // lexicographically, so MAX over both tables is the true newest.
+    if (!q.exec("SELECT MAX(ts) FROM (SELECT MAX(timestamp) AS ts FROM messages "
+                "UNION SELECT MAX(timestamp) AS ts FROM group_messages)")) {
         qCWarning(logStorage) << "newestTimestamp failed:" << q.lastError().text();
         return {};
     }
@@ -254,7 +260,7 @@ void LocalStorage::saveGroupMessage(const QString& groupId, const QString& sende
 QList<GroupMessageRecord> LocalStorage::loadGroupMessages(const QString& groupId) {
     QSqlQuery q(_db);
     q.prepare(
-        "SELECT sender,content,timestamp,is_outgoing FROM group_messages "
+        "SELECT sender,content,timestamp,is_outgoing,status FROM group_messages "
         "WHERE group_id=? ORDER BY timestamp ASC");
     q.addBindValue(groupId);
     QList<GroupMessageRecord> result;
@@ -266,10 +272,23 @@ QList<GroupMessageRecord> LocalStorage::loadGroupMessages(const QString& groupId
             r.content = q.value(1).toString();
             r.timestamp = q.value(2).toString();
             r.isOutgoing = q.value(3).toInt() != 0;
+            r.status = q.value(4).toString();
             result.append(r);
         }
     }
     return result;
+}
+
+void LocalStorage::updateGroupMessageStatus(const QString& groupId, const QString& timestamp,
+                                            const QString& status) {
+    QSqlQuery q(_db);
+    q.prepare("UPDATE group_messages SET status=? WHERE group_id=? AND timestamp=?");
+    q.addBindValue(status);
+    q.addBindValue(groupId);
+    q.addBindValue(timestamp);
+    if (!q.exec()) {
+        qCWarning(logStorage) << "updateGroupMessageStatus failed:" << q.lastError().text();
+    }
 }
 
 void LocalStorage::saveGroupKey(const QString& groupId, const QString& aesKeyBase64) {

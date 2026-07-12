@@ -82,9 +82,14 @@ QHash<int, QByteArray> ChatModel::roleNames() const {
     };
 }
 
-void ChatModel::updateStatus(const QString& peer, const QString& timestamp, const QString& status) {
+void ChatModel::updateStatus(const QString& peer, const QString& timestamp, const QString& status,
+                             bool isGroup) {
     // Persist to SQLite so status survives app restarts
-    LocalStorage::instance().updateMessageStatus(peer, timestamp, status);
+    if (isGroup) {
+        LocalStorage::instance().updateGroupMessageStatus(peer, timestamp, status);
+    } else {
+        LocalStorage::instance().updateMessageStatus(peer, timestamp, status);
+    }
 
     // Update active view if the peer is currently displayed
     if (activePeer_ == peer) {
