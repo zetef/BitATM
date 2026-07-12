@@ -3,6 +3,7 @@
 #include <Poco/Data/Session.h>
 #include <Poco/Data/Statement.h>
 #include <Poco/Logger.h>
+#include <Poco/Nullable.h>
 #include <openssl/evp.h>
 #include <openssl/kdf.h>
 #include <openssl/params.h>
@@ -173,16 +174,18 @@ void LoginHandler::flushOfflineReadReceipts(const std::string& username, ClientS
         auto ses = DbManager::instance().session();
         std::vector<int> ids;
         std::vector<std::string> fromUsers, msgTimestamps;
+        std::vector<int> groupIds;  // 0 = 1:1 receipt
 
         {
             int id;
             std::string fromUser, msgTs;
+            Poco::Nullable<int> groupId;
             Poco::Data::Statement sel(ses);
             std::string usernameParam = username;
             // clang-format off
-            sel << "SELECT id, from_user, message_ts FROM offline_read_receipts "
+            sel << "SELECT id, from_user, message_ts, group_id FROM offline_read_receipts "
                    "WHERE to_user = $1 AND delivered = FALSE ORDER BY queued_at ASC",
-                into(id), into(fromUser), into(msgTs),
+                into(id), into(fromUser), into(msgTs), into(groupId),
                 use(usernameParam), range(0, 1);
             // clang-format on
             while (!sel.done()) {
@@ -191,7 +194,9 @@ void LoginHandler::flushOfflineReadReceipts(const std::string& username, ClientS
                     ids.push_back(id);
                     fromUsers.push_back(fromUser);
                     msgTimestamps.push_back(msgTs);
+                    groupIds.push_back(groupId.isNull() ? 0 : groupId.value());
                     fromUser.clear();
+                    groupId.clear();
                 }
             }
         }
@@ -200,7 +205,9 @@ void LoginHandler::flushOfflineReadReceipts(const std::string& username, ClientS
             Packet rr;
             rr.type = PacketType::READ_RECEIPT;
             rr.from = fromUsers[i];
-            rr.to = username;
+            // Group receipts keep the group id in 'to' so the client can
+            // route the seen-update to the right conversation
+            rr.to = groupIds[i] > 0 ? std::to_string(groupIds[i]) : username;
             rr.body = msgTimestamps[i];
             session.send(rr);
 
