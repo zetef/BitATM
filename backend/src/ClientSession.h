@@ -35,7 +35,9 @@ public:
     void send(const Packet& packet);
 
     /**
-     * @brief Block until a frame arrives and deserialize it into packet.
+     * @brief Block until a data frame arrives and deserialize it into packet.
+     * Ping frames are answered with pong and pong frames are ignored, so
+     * keepalive traffic never surfaces to the caller.
      * @return false if the connection closed or a CLOSE frame was received.
      * @throws NetworkException on receive error.
      */

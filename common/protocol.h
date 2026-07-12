@@ -8,6 +8,12 @@
 constexpr int PROTOCOL_VERSION = 1;
 constexpr int MAX_PACKET_SIZE = 65536;
 
+// WebSocket keepalive contract: the client sends a protocol-level ping every
+// WS_CLIENT_PING_INTERVAL_SEC; the server closes sockets silent for longer
+// than WS_RECEIVE_TIMEOUT_SEC. The interval must stay well under the timeout.
+constexpr int WS_CLIENT_PING_INTERVAL_SEC = 30;
+constexpr int WS_RECEIVE_TIMEOUT_SEC = 600;
+
 enum class PacketType {
     LOGIN,
     REGISTER,
