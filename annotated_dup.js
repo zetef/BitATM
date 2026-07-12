@@ -27,6 +27,7 @@ var annotated_dup =
     [ "GroupMessage", "classGroupMessage.html", "classGroupMessage" ],
     [ "GroupMessageHandler", "classGroupMessageHandler.html", "classGroupMessageHandler" ],
     [ "GroupMessageRecord", "structGroupMessageRecord.html", "structGroupMessageRecord" ],
+    [ "GroupMessageRow", "structGroupMessageRow.html", "structGroupMessageRow" ],
     [ "GroupRecord", "structGroupRecord.html", "structGroupRecord" ],
     [ "GroupRepository", "classGroupRepository.html", "classGroupRepository" ],
     [ "IAsymmetricStrategy", "classIAsymmetricStrategy.html", "classIAsymmetricStrategy" ],

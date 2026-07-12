@@ -145,6 +145,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a99cc43bdd9c07b8927ce22df28074cff" id="r_a99cc43bdd9c07b8927ce22df28074cff"><td class="memItemLeft" align="right" valign="top">QList&lt; <a class="el" href="structGroupMessageRecord.html">GroupMessageRecord</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLocalStorage.html#a99cc43bdd9c07b8927ce22df28074cff">loadGroupMessages</a> (const QString &amp;groupId)</td></tr>
 <tr class="memdesc:a99cc43bdd9c07b8927ce22df28074cff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load all messages for a group in ascending timestamp order.  <br /></td></tr>
 <tr class="separator:a99cc43bdd9c07b8927ce22df28074cff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af59dd2a276df89e9ce770b6e33bdad15" id="r_af59dd2a276df89e9ce770b6e33bdad15"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLocalStorage.html#af59dd2a276df89e9ce770b6e33bdad15">updateGroupMessageStatus</a> (const QString &amp;groupId, const QString &amp;timestamp, const QString &amp;status)</td></tr>
+<tr class="memdesc:af59dd2a276df89e9ce770b6e33bdad15"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update the status of the group message matching groupId + timestamp.  <br /></td></tr>
+<tr class="separator:af59dd2a276df89e9ce770b6e33bdad15"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a72f411de93c42872583500def6b7564d" id="r_a72f411de93c42872583500def6b7564d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLocalStorage.html#a72f411de93c42872583500def6b7564d">saveGroupKey</a> (const QString &amp;groupId, const QString &amp;aesKeyBase64)</td></tr>
 <tr class="memdesc:a72f411de93c42872583500def6b7564d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Persist the AES key (base64) for a group. Overwrites existing entry.  <br /></td></tr>
 <tr class="separator:a72f411de93c42872583500def6b7564d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -694,6 +697,42 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Save a message to the local cache. Silently ignores duplicates. </p>
+
+</div>
+</div>
+<a id="af59dd2a276df89e9ce770b6e33bdad15" name="af59dd2a276df89e9ce770b6e33bdad15"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af59dd2a276df89e9ce770b6e33bdad15">&#9670;&#160;</a></span>updateGroupMessageStatus()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LocalStorage::updateGroupMessageStatus </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>groupId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>timestamp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>status</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Update the status of the group message matching groupId + timestamp. </p>
 
 </div>
 </div>

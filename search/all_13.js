@@ -2,7 +2,7 @@ var searchData=
 [
   ['table_0',['table',['../classBaseSqlRepository.html#a6162d09db4df5ab3ba2cb50090102061',1,'BaseSqlRepository']]],
   ['tag_5fsize_1',['TAG_SIZE',['../classAesGcmStrategy.html#aba45a561bcc8f62433db649f591cf8b2',1,'AesGcmStrategy']]],
-  ['timestamp_2',['timestamp',['../structMessageRecord.html#aa0f6e70e160f9a2c1c2d13f455e6ff99',1,'MessageRecord::timestamp'],['../structGroupMessageRecord.html#a05c6c8ed1bdcb315c79027118f8c4a3c',1,'GroupMessageRecord::timestamp'],['../structPacket.html#a9c59bf2df4801081b4b913fa54a55ae3',1,'Packet::timestamp']]],
+  ['timestamp_2',['timestamp',['../structGroupMessageRow.html#acf46f898c9048c1ae03b7b88505d204f',1,'GroupMessageRow::timestamp'],['../structMessageRecord.html#aa0f6e70e160f9a2c1c2d13f455e6ff99',1,'MessageRecord::timestamp'],['../structGroupMessageRecord.html#a05c6c8ed1bdcb315c79027118f8c4a3c',1,'GroupMessageRecord::timestamp'],['../structPacket.html#a9c59bf2df4801081b4b913fa54a55ae3',1,'Packet::timestamp']]],
   ['timestamprole_3',['timestamprole',['../classChatModel.html#a63e01c84f289f33e414ae789fcdc68e0a6510819445d6c5d8921afcec041fd0f7',1,'ChatModel::TimestampRole'],['../classConversationListModel.html#ac6c4a9feb3a203d342de583ca01bc38ea1ac943673dbb92fa545ca59443f30877',1,'ConversationListModel::TimestampRole']]],
   ['timestamputil_4',['TimestampUtil',['../namespaceTimestampUtil.html',1,'']]],
   ['timestamputil_2eh_5',['TimestampUtil.h',['../TimestampUtil_8h.html',1,'']]],

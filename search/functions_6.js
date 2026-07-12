@@ -35,7 +35,7 @@ var searchData=
   ['getusername_32',['getusername',['../classClientSession.html#a497f0583a40dbf793d01c6ce646f3054',1,'ClientSession::getUsername()'],['../classUser.html#a0bdca63ed72fc8ffcee690a0119c2104',1,'User::getUsername()']]],
   ['grantadmin_33',['grantAdmin',['../classNetworkManager.html#a487b7f0a5ef2af0dfd9e2b53959d308c',1,'NetworkManager']]],
   ['groupconvupdated_34',['groupConvUpdated',['../classNetworkManager.html#ae7c5fa5545a263b2e75c41b9aaa6f2ba',1,'NetworkManager']]],
-  ['grouphistorysyncmessage_35',['groupHistorySyncMessage',['../classNetworkManager.html#a57295b0fe8b8dcb07c51e40e3b7f01c5',1,'NetworkManager']]],
+  ['grouphistorysyncmessage_35',['groupHistorySyncMessage',['../classNetworkManager.html#a0f4f6493f5b561b8cfa26d138694e6fa',1,'NetworkManager']]],
   ['groupinforeceived_36',['groupInfoReceived',['../classNetworkManager.html#abd6c36aa7591e7b20dcf761b90e718fa',1,'NetworkManager']]],
   ['groupinvitereceived_37',['groupInviteReceived',['../classNetworkManager.html#ab7c6e64b70fa96f558f026d263f1424b',1,'NetworkManager']]],
   ['groupkeyexchangehandler_38',['GroupKeyExchangeHandler',['../classGroupKeyExchangeHandler.html#a41835b2f8665821cd293814a31e88373',1,'GroupKeyExchangeHandler']]],

@@ -155,9 +155,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:af7c789ab9a5a53b3907a130da70991a4" id="r_af7c789ab9a5a53b3907a130da70991a4"><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classChatModel.html#af7c789ab9a5a53b3907a130da70991a4">clearAll</a> ()</td></tr>
 <tr class="memdesc:af7c789ab9a5a53b3907a130da70991a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear both the flat display list and the entire per-peer cache.  <br /></td></tr>
 <tr class="separator:af7c789ab9a5a53b3907a130da70991a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3411fa778c0b57622def2b26af8bbc43" id="r_a3411fa778c0b57622def2b26af8bbc43"><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classChatModel.html#a3411fa778c0b57622def2b26af8bbc43">updateStatus</a> (const QString &amp;peer, const QString &amp;timestamp, const QString &amp;status)</td></tr>
-<tr class="memdesc:a3411fa778c0b57622def2b26af8bbc43"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update the status of the outgoing message matching the given timestamp within a peer conversation.  <br /></td></tr>
-<tr class="separator:a3411fa778c0b57622def2b26af8bbc43"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8aaddcf3da409623abb79e4aecbb9f7f" id="r_a8aaddcf3da409623abb79e4aecbb9f7f"><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classChatModel.html#a8aaddcf3da409623abb79e4aecbb9f7f">updateStatus</a> (const QString &amp;peer, const QString &amp;timestamp, const QString &amp;status, bool isGroup=false)</td></tr>
+<tr class="memdesc:a8aaddcf3da409623abb79e4aecbb9f7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update the status of the outgoing message matching the given timestamp within a peer conversation.  <br /></td></tr>
+<tr class="separator:a8aaddcf3da409623abb79e4aecbb9f7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa597aa46f94dba90ba14a990562bd9f1" id="r_aa597aa46f94dba90ba14a990562bd9f1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classChatModel.html#aa597aa46f94dba90ba14a990562bd9f1">rowCount</a> (const QModelIndex &amp;parent=QModelIndex()) const override</td></tr>
 <tr class="separator:aa597aa46f94dba90ba14a990562bd9f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a62e5fb33e029b96891d4ce1167e97a89" id="r_a62e5fb33e029b96891d4ce1167e97a89"><td class="memItemLeft" align="right" valign="top">QVariant&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classChatModel.html#a62e5fb33e029b96891d4ce1167e97a89">data</a> (const QModelIndex &amp;index, int role=Qt::DisplayRole) const override</td></tr>
@@ -470,8 +470,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a3411fa778c0b57622def2b26af8bbc43" name="a3411fa778c0b57622def2b26af8bbc43"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3411fa778c0b57622def2b26af8bbc43">&#9670;&#160;</a></span>updateStatus()</h2>
+<a id="a8aaddcf3da409623abb79e4aecbb9f7f" name="a8aaddcf3da409623abb79e4aecbb9f7f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8aaddcf3da409623abb79e4aecbb9f7f">&#9670;&#160;</a></span>updateStatus()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -492,7 +492,13 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const QString &amp;&#160;</td>
-          <td class="paramname"><em>status</em>&#160;</td>
+          <td class="paramname"><em>status</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>isGroup</em> = <code>false</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -506,9 +512,10 @@ Public Member Functions</h2></td></tr>
 <p>Updates both the active view (emits dataChanged) and the per-peer cache so status survives conversation switches. Scoped to the given peer to avoid false matches when two conversations share a timestamp.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">peer</td><td>The conversation key (peer username). </td></tr>
+    <tr><td class="paramname">peer</td><td>The conversation key (peer username or group id). </td></tr>
     <tr><td class="paramname">timestamp</td><td>ISO timestamp matching the original sent message. </td></tr>
     <tr><td class="paramname">status</td><td>New status: "sent" | "delivered" | "seen". </td></tr>
+    <tr><td class="paramname">isGroup</td><td>True when peer is a group id; routes persistence to the group_messages table instead of messages. </td></tr>
   </table>
   </dd>
 </dl>

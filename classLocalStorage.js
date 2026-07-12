@@ -18,5 +18,6 @@ var classLocalStorage =
     [ "saveGroupKey", "classLocalStorage.html#a72f411de93c42872583500def6b7564d", null ],
     [ "saveGroupMessage", "classLocalStorage.html#af273e27619cb4057f0c4796825a8cbe2", null ],
     [ "saveMessage", "classLocalStorage.html#aa65c9e81248bedf96445affb11018d69", null ],
+    [ "updateGroupMessageStatus", "classLocalStorage.html#af59dd2a276df89e9ce770b6e33bdad15", null ],
     [ "updateMessageStatus", "classLocalStorage.html#a35349bb6cbf4f0e329109e1c579827bb", null ]
 ];

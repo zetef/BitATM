@@ -4,6 +4,7 @@ var classGroupRepository =
     [ "addMember", "classGroupRepository.html#adedb41fba71229539d5e7fec370c8038", null ],
     [ "createGroup", "classGroupRepository.html#ab6756c8118c036d8d64133c705b52ef0", null ],
     [ "findGroupById", "classGroupRepository.html#ad2e77b670cda032065be426595de442f", null ],
+    [ "findMessagesForUserSince", "classGroupRepository.html#a92467c43dc6fb65b9ed1c24c9635128d", null ],
     [ "getKey", "classGroupRepository.html#acdfd6c8af390ecf504982ea3ff18df64", null ],
     [ "getMemberRole", "classGroupRepository.html#aafcb7d05767a7f578f9b234a261bf1a7", null ],
     [ "getMembers", "classGroupRepository.html#a17d03d42dbffe98ded5ed2ca331bbb51", null ],

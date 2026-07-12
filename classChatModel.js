@@ -16,5 +16,5 @@ var classChatModel =
     [ "roleNames", "classChatModel.html#ad0973978d5d2c49262577d5442a5afbb", null ],
     [ "rowCount", "classChatModel.html#aa597aa46f94dba90ba14a990562bd9f1", null ],
     [ "switchConversation", "classChatModel.html#a51b5a473b65b086c6cfcee6b9918da54", null ],
-    [ "updateStatus", "classChatModel.html#a3411fa778c0b57622def2b26af8bbc43", null ]
+    [ "updateStatus", "classChatModel.html#a8aaddcf3da409623abb79e4aecbb9f7f", null ]
 ];

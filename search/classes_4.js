@@ -8,6 +8,7 @@ var searchData=
   ['groupmessage_5',['GroupMessage',['../classGroupMessage.html',1,'']]],
   ['groupmessagehandler_6',['GroupMessageHandler',['../classGroupMessageHandler.html',1,'']]],
   ['groupmessagerecord_7',['GroupMessageRecord',['../structGroupMessageRecord.html',1,'']]],
-  ['grouprecord_8',['GroupRecord',['../structGroupRecord.html',1,'']]],
-  ['grouprepository_9',['GroupRepository',['../classGroupRepository.html',1,'']]]
+  ['groupmessagerow_8',['GroupMessageRow',['../structGroupMessageRow.html',1,'']]],
+  ['grouprecord_9',['GroupRecord',['../structGroupRecord.html',1,'']]],
+  ['grouprepository_10',['GroupRepository',['../classGroupRepository.html',1,'']]]
 ];
