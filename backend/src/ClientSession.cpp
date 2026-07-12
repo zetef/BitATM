@@ -23,18 +23,35 @@ void ClientSession::send(const Packet& packet) {
 bool ClientSession::receive(Packet& packet) {
     try {
         char buf[MAX_PACKET_SIZE];
-        int flags = 0;
-        int n = _ws.receiveFrame(buf, sizeof(buf), flags);
+        while (true) {
+            int flags = 0;
+            int n = _ws.receiveFrame(buf, sizeof(buf), flags);
 
-        if (n <= 0 || (flags & Poco::Net::WebSocket::FRAME_OP_BITMASK) ==
-                          Poco::Net::WebSocket::FRAME_OP_CLOSE) {
-            setState(State::Disconnected);
-            return false;
+            const int op = flags & Poco::Net::WebSocket::FRAME_OP_BITMASK;
+            if (op == Poco::Net::WebSocket::FRAME_OP_CLOSE) {
+                setState(State::Disconnected);
+                return false;
+            }
+            // Poco does not auto-reply to pings; answer here so keepalive
+            // frames never reach the protocol parser.
+            if (op == Poco::Net::WebSocket::FRAME_OP_PING) {
+                _ws.sendFrame(buf, n,
+                              static_cast<int>(Poco::Net::WebSocket::FRAME_FLAG_FIN) |
+                                  static_cast<int>(Poco::Net::WebSocket::FRAME_OP_PONG));
+                continue;
+            }
+            if (op == Poco::Net::WebSocket::FRAME_OP_PONG) {
+                continue;
+            }
+            if (n <= 0) {
+                setState(State::Disconnected);
+                return false;
+            }
+
+            ProtocolParser parser;
+            packet = parser.deserialize(std::string(buf, static_cast<std::size_t>(n)));
+            return true;
         }
-
-        ProtocolParser parser;
-        packet = parser.deserialize(std::string(buf, static_cast<std::size_t>(n)));
-        return true;
     } catch (const Poco::Exception& e) {
         throw NetworkException("ClientSession::receive failed: " + e.message());
     }

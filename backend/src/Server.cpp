@@ -8,6 +8,7 @@
 #include <Poco/Net/ServerSocket.h>
 #include <Poco/Net/WebSocket.h>
 #include <Poco/Timer.h>
+#include <Poco/Timespan.h>
 
 #include <algorithm>
 #include <cstdlib>
@@ -46,6 +47,10 @@ public:
         ClientSession* sessionPtr = nullptr;
         try {
             Poco::Net::WebSocket ws(req, res);
+            // Override Poco's 60s HTTP session timeout inherited by the
+            // upgraded socket; clients ping every WS_CLIENT_PING_INTERVAL_SEC,
+            // so a silent socket this long is a dead peer.
+            ws.setReceiveTimeout(Poco::Timespan(WS_RECEIVE_TIMEOUT_SEC, 0));
             auto session = std::make_shared<ClientSession>(std::move(ws));
             sessionPtr = session.get();
 

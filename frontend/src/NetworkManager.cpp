@@ -4,6 +4,7 @@
 #include <QDebug>
 #include <QLoggingCategory>
 #include <QSslConfiguration>
+#include <QTimeZone>
 #include <QTimer>
 #include <sstream>
 
@@ -19,6 +20,11 @@ NetworkManager::NetworkManager(QObject* parent) : QObject(parent) {
     connect(&_socket, &QWebSocket::errorOccurred, this, [this](QAbstractSocket::SocketError e) {
         qCWarning(logNetwork) << "Socket error:" << e << _socket.errorString();
     });
+
+    // Keepalive: the server drops sockets silent for WS_RECEIVE_TIMEOUT_SEC,
+    // so ping while connected to keep idle conversations alive.
+    _pingTimer.setInterval(WS_CLIENT_PING_INTERVAL_SEC * 1000);
+    connect(&_pingTimer, &QTimer::timeout, &_socket, [this]() { _socket.ping(); });
 
     if (QNetworkInformation::loadDefaultBackend()) {
         auto* netInfo = QNetworkInformation::instance();
@@ -236,7 +242,7 @@ void NetworkManager::handleIncomingMessage(const Packet& p) {
 
     const QString ts = p.timestamp.empty()
                            ? QDateTime::currentDateTimeUtc().toString(Qt::ISODateWithMs)
-                           : QString::fromStdString(p.timestamp);
+                           : canonicalTimestamp(QString::fromStdString(p.timestamp));
 
     const QString keyField = QString::fromStdString(p.key);
     const int keySep = keyField.indexOf(';');
@@ -303,8 +309,19 @@ void NetworkManager::handleIncomingMessage(const Packet& p) {
     }
 }
 
+QString NetworkManager::canonicalTimestamp(const QString& raw) {
+    QString s = raw.trimmed();
+    if (s.size() > 10 && s.at(10) == QLatin1Char(' ')) s[10] = QLatin1Char('T');
+    QDateTime dt = QDateTime::fromString(s, Qt::ISODateWithMs);
+    if (!dt.isValid()) return raw;
+    // PostgreSQL text has no zone suffix; those instants are UTC already
+    if (dt.timeSpec() == Qt::LocalTime) dt = QDateTime(dt.date(), dt.time(), QTimeZone::utc());
+    return dt.toUTC().toString(Qt::ISODateWithMs);
+}
+
 void NetworkManager::handleReadReceipt(const Packet& p) {
-    emit messageSeen(QString::fromStdString(p.from), QString::fromStdString(p.body));
+    emit messageSeen(QString::fromStdString(p.from),
+                     canonicalTimestamp(QString::fromStdString(p.body)));
 }
 
 void NetworkManager::handleKeyExchangeResponse(const Packet& p) {
@@ -530,7 +547,7 @@ void NetworkManager::handleGroupMessage(const Packet& p) {
     const QString sender = QString::fromStdString(p.from);
     const QString ts = p.timestamp.empty()
                            ? QDateTime::currentDateTimeUtc().toString(Qt::ISODateWithMs)
-                           : QString::fromStdString(p.timestamp);
+                           : canonicalTimestamp(QString::fromStdString(p.timestamp));
     try {
         QByteArray aesKey;
         if (_groupKeys.contains(groupId)) {
@@ -650,6 +667,7 @@ QString NetworkManager::currentUsername() const { return _currentUsername; }
 
 void NetworkManager::onConnected() {
     _intentionallyConnecting = false;
+    _pingTimer.start();
     qCInfo(logNetwork) << "Connected to server";
     emit connectionChanged();
     emit connected();
@@ -657,6 +675,7 @@ void NetworkManager::onConnected() {
 
 void NetworkManager::onDisconnected() {
     _intentionallyConnecting = false;
+    _pingTimer.stop();
     qCInfo(logNetwork) << "Disconnected from server";
     emit connectionChanged();
     emit disconnected();
@@ -696,7 +715,7 @@ void NetworkManager::onTextMessageReceived(const QString& message) {
             if (!p.body.empty()) {
                 handleLoginAck(p);
             } else if (!p.timestamp.empty()) {
-                emit messageDelivered(QString::fromStdString(p.timestamp));
+                emit messageDelivered(canonicalTimestamp(QString::fromStdString(p.timestamp)));
             } else if (p.to == _currentUsername.toStdString()) {
                 emit syncComplete();
             }
