@@ -28,6 +28,7 @@ struct GroupMessageRecord {
     QString content;
     QString timestamp;
     bool isOutgoing{false};
+    QString status{"sent"};
 };
 
 /** @brief One group entry from the groups SQLite table. */
@@ -85,6 +86,10 @@ public:
 
     /** @brief Load all messages for a group in ascending timestamp order. */
     QList<GroupMessageRecord> loadGroupMessages(const QString& groupId);
+
+    /** @brief Update the status of the group message matching groupId + timestamp. */
+    void updateGroupMessageStatus(const QString& groupId, const QString& timestamp,
+                                  const QString& status);
 
     /** @brief Persist the AES key (base64) for a group. Overwrites existing entry. */
     void saveGroupKey(const QString& groupId, const QString& aesKeyBase64);

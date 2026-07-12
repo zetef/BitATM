@@ -4,6 +4,7 @@
 
 #include "../../common/AppException.h"
 #include "ClientSession.h"
+#include "GroupRepository.h"
 #include "Message.h"
 #include "MessageRepository.h"
 
@@ -48,6 +49,26 @@ void SyncHistoryHandler::execute(Packet& packet, ClientSession& session) {
             fwd.key = msg.getEncryptedKey();
         }
 
+        session.send(fwd);
+    }
+
+    // Replay missed group messages; GroupMessageHandler skips offline members
+    // at send time, so sync is the only delivery path after a reconnect.
+    GroupRepository groupRepo;
+    std::vector<GroupMessageRow> groupMessages;
+    try {
+        groupMessages = groupRepo.findMessagesForUserSince(username, cursor);
+    } catch (const DbException&) {
+        groupMessages = groupRepo.findMessagesForUserSince(username, "");
+    }
+
+    for (const auto& gm : groupMessages) {
+        Packet fwd;
+        fwd.type = PacketType::GROUP_MESSAGE;
+        fwd.from = gm.sender;
+        fwd.to = std::to_string(gm.groupId);
+        fwd.body = gm.encryptedBody;
+        fwd.timestamp = gm.timestamp;
         session.send(fwd);
     }
 

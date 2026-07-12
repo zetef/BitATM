@@ -25,8 +25,7 @@ static std::vector<std::pair<std::string, std::string>> parseKeyPairsGKE(
 
 void GroupKeyExchangeHandler::validate(const Packet& packet) {
     if (packet.to.empty()) throw ProtocolException("GROUP_KEY_EXCHANGE: group_id (to) is required");
-    if (packet.key.empty())
-        throw ProtocolException("GROUP_KEY_EXCHANGE: key map (key) is required");
+    // Empty key field is allowed: it means "resend me my own stored key"
 }
 
 void GroupKeyExchangeHandler::execute(Packet& packet, ClientSession& session) {
@@ -40,6 +39,27 @@ void GroupKeyExchangeHandler::execute(Packet& packet, ClientSession& session) {
     GroupRepository repo;
     const std::string& actorName = session.getUsername();
     std::string actorRole = repo.getMemberRole(groupId, actorName);
+
+    // Key recovery: any member may request their own stored wrapped key
+    // (lost local cache, new device). Reply mirrors the distribution shape.
+    if (packet.key.empty()) {
+        if (actorRole.empty())
+            throw ProtocolException("GROUP_KEY_EXCHANGE: requester is not a member of group " +
+                                    packet.to);
+        auto stored = repo.getKey(groupId, actorName);
+        if (!stored)
+            throw ProtocolException("GROUP_KEY_EXCHANGE: no stored key for requester in group " +
+                                    packet.to);
+        Packet resp;
+        resp.type = PacketType::GROUP_KEY_EXCHANGE;
+        resp.from = actorName;
+        resp.to = packet.to;
+        resp.key = *stored;
+        resp.body = actorName;
+        session.send(resp);
+        return;
+    }
+
     if (actorRole != "creator" && actorRole != "admin")
         throw ProtocolException("GROUP_KEY_EXCHANGE: only creator or admin may distribute keys");
 

@@ -64,12 +64,14 @@ public:
      * so status survives conversation switches. Scoped to the given peer to
      * avoid false matches when two conversations share a timestamp.
      *
-     * @param peer      The conversation key (peer username).
+     * @param peer      The conversation key (peer username or group id).
      * @param timestamp ISO timestamp matching the original sent message.
      * @param status    New status: "sent" | "delivered" | "seen".
+     * @param isGroup   True when peer is a group id; routes persistence to
+     *                  the group_messages table instead of messages.
      */
     Q_INVOKABLE void updateStatus(const QString& peer, const QString& timestamp,
-                                  const QString& status);
+                                  const QString& status, bool isGroup = false);
 
     int rowCount(const QModelIndex& parent = QModelIndex()) const override;
     QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;

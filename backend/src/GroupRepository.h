@@ -25,6 +25,19 @@ struct GroupMember {
 };
 
 /**
+ * @brief A stored group message returned by GroupRepository::findMessagesForUserSince.
+ *
+ * timestamp is emitted in canonical ISO 8601 UTC ("YYYY-MM-DDThh:mm:ss.mmmZ")
+ * so replayed packets string-match the client's canonical timestamps.
+ */
+struct GroupMessageRow {
+    int groupId = 0;
+    std::string sender;
+    std::string encryptedBody;
+    std::string timestamp;
+};
+
+/**
  * @brief PostgreSQL-backed repository for groups, group_members, group_keys, group_messages.
  *
  * This class is NOT an IRepository<T> template because it spans four tables
@@ -99,6 +112,19 @@ public:
      */
     int saveMessage(int groupId, const std::string& sender, const std::string& encryptedBody,
                     const std::string& timestamp);
+
+    /**
+     * @brief Return all group messages visible to a user, newest-cursor filtered.
+     *
+     * Joins group_members so only groups the user currently belongs to are
+     * included. Used by SyncHistoryHandler to replay missed group messages.
+     *
+     * @param username Member whose groups to search.
+     * @param afterTimestamp Replay only messages strictly newer than this
+     *        cursor; empty replays full history.
+     */
+    std::vector<GroupMessageRow> findMessagesForUserSince(const std::string& username,
+                                                          const std::string& afterTimestamp);
 
     /**
      * @brief Return the number of members in a group.

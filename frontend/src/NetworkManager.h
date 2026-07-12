@@ -3,6 +3,7 @@
 #include <QMap>
 #include <QNetworkInformation>
 #include <QObject>
+#include <QSet>
 #include <QSettings>
 #include <QSslError>
 #include <QString>
@@ -74,6 +75,15 @@ public:
     /** @brief Encrypt and send a group message. */
     Q_INVOKABLE void sendGroupMessage(const QString& groupId, const QString& plaintext,
                                       const QString& timestamp);
+
+    /**
+     * @brief Recover this user's wrapped group key from the server.
+     *
+     * Sends GROUP_KEY_EXCHANGE with an empty key field; the server replies
+     * with the stored RSA-wrapped AES key. Deduplicated per group until the
+     * key arrives.
+     */
+    void requestGroupKey(const QString& groupId);
 
     /** @brief Admin: kick a member from a group. */
     Q_INVOKABLE void kickMember(const QString& groupId, const QString& username);
@@ -192,7 +202,8 @@ signals:
 
     /** @brief Emitted once per group message during local history load. */
     void groupHistorySyncMessage(const QString& groupId, const QString& sender,
-                                 const QString& content, const QString& timestamp, bool isOutgoing);
+                                 const QString& content, const QString& timestamp, bool isOutgoing,
+                                 const QString& status);
 
     /** @brief Emitted once per group during local history load for sidebar population. */
     void groupConvUpdated(const QString& groupId, const QString& groupName,
@@ -267,6 +278,9 @@ private:
 
     /** @brief Pending group member adds: username -> list of groupIds waiting for that key. */
     QMap<QString, QStringList> _pendingGroupMemberAdds;
+    QSet<QString> _pendingGroupKeyRequests;
+    QMap<QString, QList<Packet>> _pendingGroupPackets;  // awaiting key recovery
+    QMap<QString, QList<QPair<QString, QString>>> _pendingGroupSends;
 
     struct PendingGroupCreate {
         QString name;
