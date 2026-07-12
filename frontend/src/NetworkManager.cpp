@@ -4,9 +4,10 @@
 #include <QDebug>
 #include <QLoggingCategory>
 #include <QSslConfiguration>
-#include <QTimeZone>
 #include <QTimer>
 #include <sstream>
+
+#include "TimestampUtil.h"
 
 Q_LOGGING_CATEGORY(logNetwork, "app.network")
 Q_LOGGING_CATEGORY(logChat, "app.chat")
@@ -242,7 +243,7 @@ void NetworkManager::handleIncomingMessage(const Packet& p) {
 
     const QString ts = p.timestamp.empty()
                            ? QDateTime::currentDateTimeUtc().toString(Qt::ISODateWithMs)
-                           : canonicalTimestamp(QString::fromStdString(p.timestamp));
+                           : TimestampUtil::canonical(QString::fromStdString(p.timestamp));
 
     const QString keyField = QString::fromStdString(p.key);
     const int keySep = keyField.indexOf(';');
@@ -309,19 +310,9 @@ void NetworkManager::handleIncomingMessage(const Packet& p) {
     }
 }
 
-QString NetworkManager::canonicalTimestamp(const QString& raw) {
-    QString s = raw.trimmed();
-    if (s.size() > 10 && s.at(10) == QLatin1Char(' ')) s[10] = QLatin1Char('T');
-    QDateTime dt = QDateTime::fromString(s, Qt::ISODateWithMs);
-    if (!dt.isValid()) return raw;
-    // PostgreSQL text has no zone suffix; those instants are UTC already
-    if (dt.timeSpec() == Qt::LocalTime) dt = QDateTime(dt.date(), dt.time(), QTimeZone::utc());
-    return dt.toUTC().toString(Qt::ISODateWithMs);
-}
-
 void NetworkManager::handleReadReceipt(const Packet& p) {
     emit messageSeen(QString::fromStdString(p.from),
-                     canonicalTimestamp(QString::fromStdString(p.body)));
+                     TimestampUtil::canonical(QString::fromStdString(p.body)));
 }
 
 void NetworkManager::handleKeyExchangeResponse(const Packet& p) {
@@ -547,7 +538,7 @@ void NetworkManager::handleGroupMessage(const Packet& p) {
     const QString sender = QString::fromStdString(p.from);
     const QString ts = p.timestamp.empty()
                            ? QDateTime::currentDateTimeUtc().toString(Qt::ISODateWithMs)
-                           : canonicalTimestamp(QString::fromStdString(p.timestamp));
+                           : TimestampUtil::canonical(QString::fromStdString(p.timestamp));
     try {
         QByteArray aesKey;
         if (_groupKeys.contains(groupId)) {
@@ -715,7 +706,8 @@ void NetworkManager::onTextMessageReceived(const QString& message) {
             if (!p.body.empty()) {
                 handleLoginAck(p);
             } else if (!p.timestamp.empty()) {
-                emit messageDelivered(canonicalTimestamp(QString::fromStdString(p.timestamp)));
+                emit messageDelivered(
+                    TimestampUtil::canonical(QString::fromStdString(p.timestamp)));
             } else if (p.to == _currentUsername.toStdString()) {
                 emit syncComplete();
             }
