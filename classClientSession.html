@@ -137,7 +137,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:abd07a940e0ae4b6b6114f24c07db14fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serialize and send a <a class="el" href="structPacket.html">Packet</a> over the WebSocket.  <br /></td></tr>
 <tr class="separator:abd07a940e0ae4b6b6114f24c07db14fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a20cc80548cecca1f22160a294acb0e64" id="r_a20cc80548cecca1f22160a294acb0e64"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClientSession.html#a20cc80548cecca1f22160a294acb0e64">receive</a> (<a class="el" href="structPacket.html">Packet</a> &amp;packet)</td></tr>
-<tr class="memdesc:a20cc80548cecca1f22160a294acb0e64"><td class="mdescLeft">&#160;</td><td class="mdescRight">Block until a frame arrives and deserialize it into packet.  <br /></td></tr>
+<tr class="memdesc:a20cc80548cecca1f22160a294acb0e64"><td class="mdescLeft">&#160;</td><td class="mdescRight">Block until a data frame arrives and deserialize it into packet. Ping frames are answered with pong and pong frames are ignored, so keepalive traffic never surfaces to the caller.  <br /></td></tr>
 <tr class="separator:a20cc80548cecca1f22160a294acb0e64"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a776e9454b7b3cbc6843a19c5f1b7730b" id="r_a776e9454b7b3cbc6843a19c5f1b7730b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classClientSession.html#a7285e048076fc75300a4becab14c6378">State</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClientSession.html#a776e9454b7b3cbc6843a19c5f1b7730b">getState</a> () const</td></tr>
 <tr class="separator:a776e9454b7b3cbc6843a19c5f1b7730b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -428,7 +428,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Block until a frame arrives and deserialize it into packet. </p>
+<p>Block until a data frame arrives and deserialize it into packet. Ping frames are answered with pong and pong frames are ignored, so keepalive traffic never surfaces to the caller. </p>
 <dl class="section return"><dt>Returns</dt><dd>false if the connection closed or a CLOSE frame was received. </dd></dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
