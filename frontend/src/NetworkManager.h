@@ -6,6 +6,7 @@
 #include <QSettings>
 #include <QSslError>
 #include <QString>
+#include <QTimer>
 #include <QUrl>
 #include <QWebSocket>
 
@@ -222,6 +223,17 @@ private:
     /** @brief Handle an incoming READ_RECEIPT packet and emit messageSeen. */
     void handleReadReceipt(const Packet& p);
 
+    /**
+     * @brief Normalize a wire timestamp to canonical Qt::ISODateWithMs UTC.
+     *
+     * Live packets carry client-generated ISO strings ("...T...Z") while
+     * server replays carry PostgreSQL text ("YYYY-MM-DD HH:MM:SS.f", naive
+     * UTC, trailing zeros trimmed). Dedup and read-receipt matching compare
+     * timestamps as strings, so every ingress must canonicalize first.
+     * Unparseable input is returned unchanged.
+     */
+    static QString canonicalTimestamp(const QString& raw);
+
     /** @brief Load RSA keypair from QSettings, or generate and persist a new one. */
     void loadOrGenerateKeypair();
 
@@ -249,6 +261,7 @@ private:
                         const QString& timestamp, bool isOutgoing);
 
     QWebSocket _socket;
+    QTimer _pingTimer;
     QUrl _serverUrl;
     QString _lastMessage;
     QString _currentUsername;
