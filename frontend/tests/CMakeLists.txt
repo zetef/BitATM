@@ -85,3 +85,14 @@ target_link_libraries(conv_list_model_test PRIVATE
     Qt6::Test Qt6::Core
 )
 add_test(NAME ConversationListModelTest COMMAND conv_list_model_test)
+
+# UT-FE-16: TimestampUtil wire timestamp normalization
+add_executable(timestamp_util_test
+    TimestampUtilTest.cpp
+)
+set_target_properties(timestamp_util_test PROPERTIES AUTOMOC ON)
+target_include_directories(timestamp_util_test PRIVATE ../src)
+target_link_libraries(timestamp_util_test PRIVATE
+    Qt6::Test Qt6::Core
+)
+add_test(NAME TimestampUtilTest COMMAND timestamp_util_test)
