@@ -182,6 +182,53 @@ int GroupRepository::saveMessage(int groupId, const std::string& sender,
     }
 }
 
+std::vector<GroupMessageRow> GroupRepository::findMessagesForUserSince(
+    const std::string& username, const std::string& afterTimestamp) {
+    try {
+        auto ses = DbManager::instance().session();
+        std::vector<GroupMessageRow> rows;
+        int groupId = 0;
+        std::string sender, body, ts;
+        std::string user = username;
+        Poco::Data::Statement sel(ses);
+        // to_char emits the client's canonical ISO 8601 UTC format directly
+        // clang-format off
+        if (afterTimestamp.empty()) {
+            sel << "SELECT gm.group_id, gm.sender, gm.encrypted_body, "
+                   "to_char(gm.timestamp AT TIME ZONE 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS.MS\"Z\"') "
+                   "FROM group_messages gm "
+                   "JOIN group_members m ON m.group_id = gm.group_id "
+                   "WHERE m.username = $1 "
+                   "ORDER BY gm.timestamp ASC",
+                into(groupId), into(sender), into(body), into(ts),
+                use(user), range(0, 1);
+        } else {
+            std::string cursor = afterTimestamp;
+            sel << "SELECT gm.group_id, gm.sender, gm.encrypted_body, "
+                   "to_char(gm.timestamp AT TIME ZONE 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS.MS\"Z\"') "
+                   "FROM group_messages gm "
+                   "JOIN group_members m ON m.group_id = gm.group_id "
+                   "WHERE m.username = $1 AND gm.timestamp > $2::timestamptz "
+                   "ORDER BY gm.timestamp ASC",
+                into(groupId), into(sender), into(body), into(ts),
+                use(user), use(cursor), range(0, 1);
+        }
+        // clang-format on
+        while (!sel.done()) {
+            sel.execute();
+            if (!sender.empty()) {
+                rows.push_back(GroupMessageRow{groupId, sender, body, ts});
+                sender.clear();
+                body.clear();
+                ts.clear();
+            }
+        }
+        return rows;
+    } catch (const Poco::Exception& e) {
+        throw DbException("GroupRepository::findMessagesForUserSince: " + e.message());
+    }
+}
+
 int GroupRepository::memberCount(int groupId) {
     try {
         auto ses = DbManager::instance().session();
