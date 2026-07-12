@@ -25,6 +25,13 @@
 var NAVTREE =
 [
   [ "BitATM", "index.html", [
+    [ "Namespaces", "namespaces.html", [
+      [ "Namespace List", "namespaces.html", "namespaces_dup" ],
+      [ "Namespace Members", "namespacemembers.html", [
+        [ "All", "namespacemembers.html", null ],
+        [ "Functions", "namespacemembers_func.html", null ]
+      ] ]
+    ] ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],
@@ -55,8 +62,9 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "AckHandler_8cpp.html",
-"classCreateGroupHandler.html",
-"classPacketBuilder.html"
+"classConversationListModel.html#ac6c4a9feb3a203d342de583ca01bc38eaf0e58025765c985dde2f37f89322fb2c",
+"classOfflineQueueRepository.html#ad3a3e520a3631a0c34ac869313b0b7fb",
+"structPacket.html#acfa2640865d0557714d24dca819849a5"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
