@@ -3,6 +3,7 @@
 #include <QObject>
 #include <QSqlDatabase>
 #include <QString>
+#include <QVariant>
 
 /** @brief Value type for a stored message record. */
 struct MessageRecord {
@@ -90,6 +91,35 @@ public:
     /** @brief Update the status of the group message matching groupId + timestamp. */
     void updateGroupMessageStatus(const QString& groupId, const QString& timestamp,
                                   const QString& status);
+
+    /** @brief Receipts v2: store the recipient snapshot for a sent group message. */
+    void saveRecipientSnapshot(const QString& groupId, const QString& timestamp,
+                               const QStringList& members);
+
+    /** @brief Mark one recipient of (group, ts) as delivered. */
+    void markRecipientDelivered(const QString& groupId, const QString& timestamp,
+                                const QString& member);
+
+    /** @brief Mark one recipient of (group, ts) as seen (implies delivered). */
+    void markRecipientSeen(const QString& groupId, const QString& timestamp, const QString& member);
+
+    /** @brief Number of snapshot recipients for (group, ts); 0 = legacy message. */
+    int recipientCount(const QString& groupId, const QString& timestamp);
+
+    /** @brief True when every snapshot recipient of (group, ts) is delivered. */
+    bool allRecipientsDelivered(const QString& groupId, const QString& timestamp);
+
+    /** @brief True when every snapshot recipient of (group, ts) has seen it. */
+    bool allRecipientsSeen(const QString& groupId, const QString& timestamp);
+
+    /** @brief Per-member states for the info sheet: [{member, delivered, seen}]. */
+    QVariantList recipientStates(const QString& groupId, const QString& timestamp);
+
+    /**
+     * @brief Delete snapshot rows of members no longer in the group.
+     * @return Timestamps that still have rows (aggregate recompute candidates).
+     */
+    QStringList removeRecipientsNotIn(const QString& groupId, const QStringList& members);
 
     /** @brief Persist the AES key (base64) for a group. Overwrites existing entry. */
     void saveGroupKey(const QString& groupId, const QString& aesKeyBase64);
