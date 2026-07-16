@@ -257,3 +257,95 @@ void GroupRepository::updateRole(int groupId, const std::string& username,
         throw DbException("GroupRepository::updateRole: " + e.message());
     }
 }
+
+void GroupRepository::insertReceiptRows(int messageId, const std::vector<std::string>& usernames) {
+    try {
+        auto ses = DbManager::instance().session();
+        int mid = messageId;
+        std::string user;
+        for (const auto& u : usernames) {
+            user = u;
+            // clang-format off
+            ses << "INSERT INTO group_message_receipts (message_id, username) "
+                   "VALUES ($1, $2) ON CONFLICT DO NOTHING",
+                use(mid), use(user), now;
+            // clang-format on
+        }
+    } catch (const Poco::Exception& e) {
+        throw DbException("GroupRepository::insertReceiptRows: " + e.message());
+    }
+}
+
+namespace {
+// Shared by markReceiptDelivered/markReceiptSeen. setClause must only touch
+// delivered_at/seen_at with COALESCE so re-marking stays idempotent.
+std::vector<std::string> markReceipt(int groupId, const std::string& timestamp,
+                                     const std::string& username, const char* setClause,
+                                     const char* context) {
+    try {
+        auto ses = DbManager::instance().session();
+        int gid = groupId;
+        std::string ts = timestamp;
+        std::string user = username;
+        Poco::Data::Statement upd(ses);
+        // clang-format off
+        upd << std::string("UPDATE group_message_receipts r SET ") + setClause +
+               " FROM group_messages gm "
+               "WHERE gm.id = r.message_id AND r.username = $3 AND gm.group_id = $1 "
+               "AND to_char(gm.timestamp AT TIME ZONE 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS.MS\"Z\"') = $2",
+            use(gid), use(ts), use(user);
+        // clang-format on
+        upd.execute();
+
+        std::vector<std::string> senders;
+        std::string sender;
+        Poco::Data::Statement sel(ses);
+        // clang-format off
+        sel << "SELECT DISTINCT sender FROM group_messages WHERE group_id = $1 "
+               "AND to_char(timestamp AT TIME ZONE 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS.MS\"Z\"') = $2",
+            into(sender), use(gid), use(ts), range(0, 1);
+        // clang-format on
+        while (!sel.done()) {
+            sel.execute();
+            if (!sender.empty()) {
+                senders.push_back(sender);
+                sender.clear();
+            }
+        }
+        return senders;
+    } catch (const Poco::Exception& e) {
+        throw DbException(std::string(context) + ": " + e.message());
+    }
+}
+}  // namespace
+
+std::vector<std::string> GroupRepository::markReceiptDelivered(int groupId,
+                                                               const std::string& timestamp,
+                                                               const std::string& username) {
+    return markReceipt(groupId, timestamp, username,
+                       "delivered_at = COALESCE(r.delivered_at, NOW())",
+                       "GroupRepository::markReceiptDelivered");
+}
+
+std::vector<std::string> GroupRepository::markReceiptSeen(int groupId, const std::string& timestamp,
+                                                          const std::string& username) {
+    return markReceipt(groupId, timestamp, username,
+                       "seen_at = COALESCE(r.seen_at, NOW()), "
+                       "delivered_at = COALESCE(r.delivered_at, NOW())",
+                       "GroupRepository::markReceiptSeen");
+}
+
+void GroupRepository::deleteReceiptsForMember(int groupId, const std::string& username) {
+    try {
+        auto ses = DbManager::instance().session();
+        int gid = groupId;
+        std::string user = username;
+        // clang-format off
+        ses << "DELETE FROM group_message_receipts r USING group_messages gm "
+               "WHERE r.message_id = gm.id AND gm.group_id = $1 AND r.username = $2",
+            use(gid), use(user), now;
+        // clang-format on
+    } catch (const Poco::Exception& e) {
+        throw DbException("GroupRepository::deleteReceiptsForMember: " + e.message());
+    }
+}
