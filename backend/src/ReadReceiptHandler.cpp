@@ -40,6 +40,11 @@ void ReadReceiptHandler::execute(Packet& packet, ClientSession& session) {
         if (repo.getMemberRole(groupId, packet.from).empty())
             throw ProtocolException("READ_RECEIPT: reader is not a member of group " + packet.to);
 
+        // v2: record per-member seen (implies delivered) on the receipt rows.
+        // Fan-out below stays: non-sender members ignore it, the sender's
+        // client recomputes its aggregate from the row update.
+        repo.markReceiptSeen(groupId, packet.body, packet.from);
+
         for (const auto& member : repo.getMembers(groupId)) {
             if (member.username == packet.from) continue;
             auto peer = _server.findClient(member.username);
