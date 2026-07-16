@@ -3,13 +3,24 @@
 
 #include "DbManager.h"
 #include "GroupRepository.h"
+#include "UserRepository.h"
 
 class CreateGroupHandlerTest : public QObject {
     Q_OBJECT
+private:
+    // Group tables have FKs to users; create fixtures so the test
+    // passes on a fresh database, not just the homelab one
+    void ensureUser(const std::string& name) {
+        UserRepository userRepo;
+        if (!userRepo.findByUsername(name)) userRepo.save(User{0, name, "hash:x", ""});
+    }
+
 private slots:
     void initTestCase() {
         if (qgetenv("DATABASE_URL").isEmpty()) QSKIP("DATABASE_URL not set");
         DbManager::instance().init(qgetenv("DATABASE_URL").toStdString());
+        ensureUser("alice");
+        ensureUser("bob");
     }
 
     // UT-BE-09: group > 32 members should be rejected (validation logic)

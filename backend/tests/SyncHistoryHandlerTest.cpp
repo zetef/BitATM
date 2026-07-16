@@ -1,10 +1,18 @@
 #include <QtTest>
 
 #include "DbManager.h"
+#include "GroupRepository.h"
 #include "MessageRepository.h"
+#include "UserRepository.h"
 
 class SyncHistoryHandlerTest : public QObject {
     Q_OBJECT
+private:
+    void ensureUser(const std::string& name) {
+        UserRepository userRepo;
+        if (!userRepo.findByUsername(name)) userRepo.save(User{0, name, "hash:x", ""});
+    }
+
 private slots:
     void initTestCase() {
         if (qgetenv("DATABASE_URL").isEmpty()) QSKIP("DATABASE_URL not set - skipping DB tests");
@@ -51,6 +59,30 @@ private slots:
             }
         }
         QVERIFY2(found, "Message with sender key not found after save");
+    }
+
+    void groupCursorFiltersOlderMessages() {
+        if (qgetenv("DATABASE_URL").isEmpty()) QSKIP("DATABASE_URL not set");
+        ensureUser("ut_sync_sender");
+        GroupRepository repo;
+        const int gid = repo.createGroup("ut_sync_group", "ut_sync_sender");
+        repo.addMember(gid, "ut_sync_sender", "creator");
+        repo.saveMessage(gid, "ut_sync_sender", "group_body==", "2026-01-01T12:00:00.000Z");
+
+        // Old cursor must include the message; future cursor must exclude it.
+        // Both must not throw - a DbException here means the cursor binding
+        // broke and SyncHistoryHandler silently replays full history each login
+        auto since = repo.findMessagesForUserSince("ut_sync_sender", "2020-01-01T00:00:00.000Z");
+        bool found = false;
+        for (const auto& r : since) {
+            if (r.groupId == gid) found = true;
+        }
+        QVERIFY2(found, "Message not returned for a cursor older than it");
+
+        auto future = repo.findMessagesForUserSince("ut_sync_sender", "2099-01-01T00:00:00.000Z");
+        for (const auto& r : future) {
+            QVERIFY2(r.groupId != gid, "Message returned despite cursor newer than it");
+        }
     }
 };
 QTEST_MAIN(SyncHistoryHandlerTest)
