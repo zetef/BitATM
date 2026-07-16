@@ -74,6 +74,9 @@ private slots:
         const QString gid = "77";
         const QString ts = "2026-02-02T10:00:00.000Z";
 
+        // test-mode DB persists across runs; drop leftover rows for this group
+        ls.removeRecipientsNotIn(gid, {});
+
         ls.saveRecipientSnapshot(gid, ts, {"m1", "m2"});
         QCOMPARE(ls.recipientCount(gid, ts), 2);
         QVERIFY(!ls.allRecipientsDelivered(gid, ts));
