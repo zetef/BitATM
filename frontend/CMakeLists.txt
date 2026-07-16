@@ -29,6 +29,7 @@ qt_add_qml_module(frontend
 		qml/ChatPage.qml
 		qml/CreateGroupDialog.qml
 		qml/GroupInfoSheet.qml
+		qml/MessageInfoSheet.qml
 	SOURCES src/AesGcmStrategy.h
 	SOURCES src/AesGcmStrategy.cpp
 	SOURCES src/RsaOaepStrategy.h
