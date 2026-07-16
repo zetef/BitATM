@@ -1,5 +1,7 @@
 #include "SyncHistoryHandler.h"
 
+#include <Poco/Logger.h>
+
 #include <algorithm>
 
 #include "../../common/AppException.h"
@@ -21,8 +23,11 @@ void SyncHistoryHandler::execute(Packet& packet, ClientSession& session) {
     std::vector<Message> messages;
     try {
         messages = repo.findAllForUser(username, cursor);
-    } catch (const DbException&) {
+    } catch (const DbException& e) {
         // cursor was not a valid timestamp - fall back to full history
+        poco_warning(Poco::Logger::get("SyncHistoryHandler"),
+                     "message cursor query failed, replaying full history for " + username + ": " +
+                         e.what());
         messages = repo.findAllForUser(username, "");
     }
 
@@ -58,7 +63,10 @@ void SyncHistoryHandler::execute(Packet& packet, ClientSession& session) {
     std::vector<GroupMessageRow> groupMessages;
     try {
         groupMessages = groupRepo.findMessagesForUserSince(username, cursor);
-    } catch (const DbException&) {
+    } catch (const DbException& e) {
+        poco_warning(
+            Poco::Logger::get("SyncHistoryHandler"),
+            "group cursor query failed, replaying full history for " + username + ": " + e.what());
         groupMessages = groupRepo.findMessagesForUserSince(username, "");
     }
 
