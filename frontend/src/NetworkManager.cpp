@@ -305,7 +305,9 @@ void NetworkManager::handleIncomingMessage(const Packet& p) {
     } catch (const std::exception& e) {
         qCWarning(logChat) << "Failed to decrypt incoming message:" << e.what();
         const QString from = QString::fromStdString(p.from);
-        if (from != _currentUsername) {
+        // Undecryptable replays must dedup too, or every sync appends
+        // another "[Encrypted]" row to the UI
+        if (from != _currentUsername && !LocalStorage::instance().isDuplicate(from, from, ts)) {
             persistMessage(from, from, "[Encrypted]", ts, false);
             emit messageDecrypted(from, "[Encrypted]", ts);
         }
