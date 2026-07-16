@@ -125,6 +125,9 @@ std::vector<Message> MessageRepository::findAllForUser(const std::string& userna
         Poco::Data::Statement sel(ses);
         std::string u1 = username;
         std::string u2 = username;
+        // use() binds by reference and execute() runs after the if/else,
+        // so the cursor must outlive both branches
+        std::string ts = afterTimestamp;
         // clang-format off
         if (afterTimestamp.empty()) {
             sel << "SELECT id, sender, recipient, body, encrypted_key, sender_encrypted_key, status, created_at "
@@ -136,7 +139,6 @@ std::vector<Message> MessageRepository::findAllForUser(const std::string& userna
                 use(u1), use(u2),
                 range(0, 1);
         } else {
-            std::string ts = afterTimestamp;
             sel << "SELECT id, sender, recipient, body, encrypted_key, sender_encrypted_key, status, created_at "
                    "FROM messages "
                    "WHERE (sender = $1 OR recipient = $2) "

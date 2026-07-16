@@ -190,6 +190,9 @@ std::vector<GroupMessageRow> GroupRepository::findMessagesForUserSince(
         int groupId = 0;
         std::string sender, body, ts;
         std::string user = username;
+        // use() binds by reference and execute() runs after the if/else,
+        // so the cursor must outlive both branches
+        std::string cursor = afterTimestamp;
         Poco::Data::Statement sel(ses);
         // to_char emits the client's canonical ISO 8601 UTC format directly
         // clang-format off
@@ -203,7 +206,6 @@ std::vector<GroupMessageRow> GroupRepository::findMessagesForUserSince(
                 into(groupId), into(sender), into(body), into(ts),
                 use(user), range(0, 1);
         } else {
-            std::string cursor = afterTimestamp;
             sel << "SELECT gm.group_id, gm.sender, gm.encrypted_body, "
                    "to_char(gm.timestamp AT TIME ZONE 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS.MS\"Z\"') "
                    "FROM group_messages gm "
