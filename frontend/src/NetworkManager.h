@@ -109,6 +109,9 @@ public:
     /** @brief Delete a conversation from local cache. Messages stay on the server. */
     Q_INVOKABLE void deleteConversation(const QString& peer);
 
+    /** @brief Per-member receipt states for the info sheet: [{member, delivered, seen}]. */
+    Q_INVOKABLE QVariantList groupMessageReceipts(const QString& groupId, const QString& timestamp);
+
     /** @brief Returns true if the WebSocket is in ConnectedState. */
     bool isConnected() const;
 
@@ -152,10 +155,17 @@ signals:
 
     /**
      * @brief Emitted when the recipient confirms they have read a specific message.
+     *
+     * For groups (peer = numeric group id) this fires only when EVERY
+     * snapshot recipient has seen the message (receipts v2 aggregate).
+     *
      * @param peer      The conversation peer (recipient who sent the receipt).
      * @param timestamp ISO timestamp of the message that was read.
      */
     void messageSeen(const QString& peer, const QString& timestamp);
+
+    /** @brief Group message reached delivered-to-all (per-member aggregate). */
+    void groupMessageDelivered(const QString& groupId, const QString& timestamp);
 
     /**
      * @brief Emitted once per stored message during local history load on login.
@@ -233,6 +243,15 @@ private:
 
     /** @brief Handle an incoming READ_RECEIPT packet and emit messageSeen. */
     void handleReadReceipt(const Packet& p);
+
+    /** @brief Group send-ACK: persist the recipient snapshot from the server. */
+    void handleGroupSendAck(const Packet& p);
+
+    /** @brief Per-member delivered event: update row and recompute aggregate. */
+    void handleGroupDelivered(const Packet& p);
+
+    /** @brief Flip group message status when per-member aggregates complete. */
+    void recomputeGroupAggregate(const QString& groupId, const QString& ts);
 
     /** @brief Load RSA keypair from QSettings, or generate and persist a new one. */
     void loadOrGenerateKeypair();

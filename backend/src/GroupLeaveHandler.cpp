@@ -42,6 +42,10 @@ void GroupLeaveHandler::execute(Packet& packet, ClientSession& session) {
 
     repo.removeMember(groupId, target);
 
+    // Drop the leaver's receipt rows so old messages can still reach
+    // seen-by-all (churn rule: snapshot at send, drop leavers)
+    repo.deleteReceiptsForMember(groupId, target);
+
     // Notify the target if they are online
     auto targetSession = _server.findClient(target);
     if (targetSession) {

@@ -67,6 +67,42 @@ private slots:
         }
         QCOMPARE(count, 1);
     }
+
+    /** @brief Receipts v2: per-member snapshot aggregates and leaver pruning. */
+    void groupRecipientAggregates() {
+        auto& ls = LocalStorage::instance();
+        const QString gid = "77";
+        const QString ts = "2026-02-02T10:00:00.000Z";
+
+        // test-mode DB persists across runs; drop leftover rows for this group
+        ls.removeRecipientsNotIn(gid, {});
+
+        ls.saveRecipientSnapshot(gid, ts, {"m1", "m2"});
+        QCOMPARE(ls.recipientCount(gid, ts), 2);
+        QVERIFY(!ls.allRecipientsDelivered(gid, ts));
+        QVERIFY(!ls.allRecipientsSeen(gid, ts));
+
+        ls.markRecipientDelivered(gid, ts, "m1");
+        QVERIFY(!ls.allRecipientsDelivered(gid, ts));
+
+        // seen implies delivered
+        ls.markRecipientSeen(gid, ts, "m2");
+        QVERIFY(!ls.allRecipientsSeen(gid, ts));
+        QVERIFY(ls.allRecipientsDelivered(gid, ts));
+
+        ls.markRecipientSeen(gid, ts, "m1");
+        QVERIFY(ls.allRecipientsSeen(gid, ts));
+
+        // info sheet payload
+        const QVariantList states = ls.recipientStates(gid, ts);
+        QCOMPARE(states.size(), 2);
+
+        // pruning: m2 left; remaining ts reported for recompute
+        ls.saveRecipientSnapshot(gid, "2026-02-02T11:00:00.000Z", {"m1", "m2"});
+        const QStringList affected = ls.removeRecipientsNotIn(gid, {"m1"});
+        QVERIFY(affected.contains("2026-02-02T11:00:00.000Z"));
+        QCOMPARE(ls.recipientCount(gid, "2026-02-02T11:00:00.000Z"), 1);
+    }
 };
 
 QTEST_MAIN(LocalStorageTest)

@@ -11,6 +11,14 @@ Rectangle {
     property var stackView: null
     property bool _isGroup: /^\d+$/.test(chatPage.activePeer)
 
+    MessageInfoSheet {
+        id: messageInfoSheet
+        anchors.right: parent.right
+        anchors.top: parent.top
+        anchors.bottom: parent.bottom
+        z: 11
+    }
+
     GroupInfoSheet {
         id: groupInfoSheet
         visible: false
@@ -184,6 +192,13 @@ Rectangle {
                                 font.pixelSize: 13
                                 font.family: "Monospace"
                                 wrapMode: Text.Wrap
+                            }
+
+                            TapHandler {
+                                enabled: model.isOutgoing && chatPage._isGroup
+                                onTapped: messageInfoSheet.openFor(
+                                    networkManager.groupMessageReceipts(chatPage.activePeer,
+                                                                        model.timestamp))
                             }
                         }
                     }

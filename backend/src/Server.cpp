@@ -231,7 +231,8 @@ void Server::registerHandlers() {
                              [this] { return std::make_unique<MessageHandler>(*this); });
     _factory.registerHandler(PacketType::KEY_EXCHANGE,
                              [] { return std::make_unique<KeyExchangeHandler>(); });
-    _factory.registerHandler(PacketType::ACK, [] { return std::make_unique<AckHandler>(); });
+    _factory.registerHandler(PacketType::ACK,
+                             [this] { return std::make_unique<AckHandler>(*this); });
     _factory.registerHandler(PacketType::SYNC_HISTORY,
                              [] { return std::make_unique<SyncHistoryHandler>(); });
     _factory.registerHandler(PacketType::READ_RECEIPT,

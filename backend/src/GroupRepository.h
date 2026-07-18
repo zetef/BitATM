@@ -127,6 +127,30 @@ public:
                                                           const std::string& afterTimestamp);
 
     /**
+     * @brief Create one pending receipt row per recipient for a stored message.
+     */
+    void insertReceiptRows(int messageId, const std::vector<std::string>& usernames);
+
+    /**
+     * @brief Mark a member's receipt delivered for messages at (group, ts).
+     * @return Distinct senders of the matched messages (receipt forwarding targets).
+     */
+    std::vector<std::string> markReceiptDelivered(int groupId, const std::string& timestamp,
+                                                  const std::string& username);
+
+    /**
+     * @brief Mark a member's receipt seen (implies delivered) for (group, ts).
+     * @return Distinct senders of the matched messages.
+     */
+    std::vector<std::string> markReceiptSeen(int groupId, const std::string& timestamp,
+                                             const std::string& username);
+
+    /**
+     * @brief Delete all receipt rows of a member in a group (leave/kick).
+     */
+    void deleteReceiptsForMember(int groupId, const std::string& username);
+
+    /**
      * @brief Return the number of members in a group.
      */
     int memberCount(int groupId);

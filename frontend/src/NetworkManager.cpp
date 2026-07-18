@@ -317,15 +317,50 @@ void NetworkManager::handleIncomingMessage(const Packet& p) {
 void NetworkManager::handleReadReceipt(const Packet& p) {
     const QString ts = TimestampUtil::canonical(QString::fromStdString(p.body));
     // Group receipts carry the group id in 'to'; the conversation key is the
-    // group id, not the reader. LocalStorage persistence is handled here for
-    // groups because ChatModel::updateStatus only writes the 1:1 table.
+    // group id, not the reader.
     const QString to = QString::fromStdString(p.to);
     static const QRegularExpression numeric("^\\d+$");
     if (numeric.match(to).hasMatch()) {
-        emit messageSeen(to, ts);  // ChatModel persists via updateStatus(isGroup)
+        const QString reader = QString::fromStdString(p.from);
+        // v2: per-member row update; the aggregate decides when the bubble
+        // flips. First-receipt-wins v1 behavior is gone.
+        LocalStorage::instance().markRecipientSeen(to, ts, reader);
+        recomputeGroupAggregate(to, ts);
         return;
     }
     emit messageSeen(QString::fromStdString(p.from), ts);
+}
+
+void NetworkManager::handleGroupSendAck(const Packet& p) {
+    const QString groupId = QString::fromStdString(p.errorMsg);
+    const QString ts = TimestampUtil::canonical(QString::fromStdString(p.timestamp));
+    const QStringList members = QString::fromStdString(p.key).split(";", Qt::SkipEmptyParts);
+    if (!members.isEmpty()) LocalStorage::instance().saveRecipientSnapshot(groupId, ts, members);
+}
+
+void NetworkManager::handleGroupDelivered(const Packet& p) {
+    const QString groupId = QString::fromStdString(p.to);
+    const QString member = QString::fromStdString(p.from);
+    const QString ts = TimestampUtil::canonical(QString::fromStdString(p.body));
+    LocalStorage::instance().markRecipientDelivered(groupId, ts, member);
+    recomputeGroupAggregate(groupId, ts);
+}
+
+void NetworkManager::recomputeGroupAggregate(const QString& groupId, const QString& ts) {
+    auto& ls = LocalStorage::instance();
+    if (ls.recipientCount(groupId, ts) == 0) return;  // legacy message or empty group
+    if (ls.allRecipientsSeen(groupId, ts)) {
+        ls.updateGroupMessageStatus(groupId, ts, "seen");
+        emit messageSeen(groupId, ts);
+    } else if (ls.allRecipientsDelivered(groupId, ts)) {
+        ls.updateGroupMessageStatus(groupId, ts, "delivered");
+        emit groupMessageDelivered(groupId, ts);
+    }
+}
+
+QVariantList NetworkManager::groupMessageReceipts(const QString& groupId,
+                                                  const QString& timestamp) {
+    return LocalStorage::instance().recipientStates(groupId, timestamp);
 }
 
 void NetworkManager::handleKeyExchangeResponse(const Packet& p) {
@@ -584,9 +619,21 @@ void NetworkManager::handleGroupMessage(const Packet& p) {
             aesKey = QByteArray::fromBase64(stored.toLatin1());
             _groupKeys[groupId] = aesKey;
         }
+        const bool isOutgoing = (sender == _currentUsername);
+        if (!isOutgoing) {
+            // v2: explicit per-member delivered receipt, live and sync paths.
+            // Sent before the dedup return so a crash-after-persist still ACKs;
+            // the server-side mark is idempotent.
+            Packet ack;
+            ack.type = PacketType::ACK;
+            ack.from = _currentUsername.toStdString();
+            ack.to = groupId.toStdString();
+            ack.body = ts.toStdString();
+            ack.errorMsg = "delivered";
+            sendPacket(ack);
+        }
         if (LocalStorage::instance().isGroupMessageDuplicate(groupId, sender, ts)) return;
         QString plaintext = _crypto.decrypt(QString::fromStdString(p.body), aesKey);
-        bool isOutgoing = (sender == _currentUsername);
         LocalStorage::instance().saveGroupMessage(groupId, sender, plaintext, ts, isOutgoing);
         if (!isOutgoing) _unreadTimestamps[groupId].append(ts);
         emit groupMessageDecrypted(groupId, sender, plaintext, ts, isOutgoing);
@@ -646,6 +693,13 @@ void NetworkManager::handleGroupInfo(const Packet& p) {
         m["role"] = entry.mid(sep + 1);
         members.append(m);
     }
+
+    // Receipts churn rule: drop local snapshot rows of ex-members, then
+    // recompute any aggregates their departure may have completed
+    QStringList usernames;
+    for (const QVariant& mv : members) usernames << mv.toMap().value("username").toString();
+    const QStringList affected = LocalStorage::instance().removeRecipientsNotIn(groupId, usernames);
+    for (const QString& t : affected) recomputeGroupAggregate(groupId, t);
 
     emit groupInfoReceived(groupId, groupName, members);
 }
@@ -750,7 +804,11 @@ void NetworkManager::onTextMessageReceived(const QString& message) {
 
         case PacketType::ACK:
             _hasError = false;
-            if (!p.body.empty()) {
+            if (p.errorMsg == "delivered") {
+                handleGroupDelivered(p);
+            } else if (!p.errorMsg.empty() && !p.timestamp.empty()) {
+                handleGroupSendAck(p);  // errorMsg = group id, key = recipient list
+            } else if (!p.body.empty()) {
                 handleLoginAck(p);
             } else if (!p.timestamp.empty()) {
                 emit messageDelivered(

@@ -121,6 +121,21 @@ bool LocalStorage::createSchema() {
     q.exec(
         "CREATE UNIQUE INDEX IF NOT EXISTS idx_gm_dedup ON group_messages(group_id, sender, "
         "timestamp)");
+
+    ok = q.exec(
+        "CREATE TABLE IF NOT EXISTS group_message_recipients ("
+        "  group_id  TEXT NOT NULL,"
+        "  timestamp TEXT NOT NULL,"
+        "  member    TEXT NOT NULL,"
+        "  delivered INTEGER NOT NULL DEFAULT 0,"
+        "  seen      INTEGER NOT NULL DEFAULT 0,"
+        "  PRIMARY KEY (group_id, timestamp, member)"
+        ")");
+    if (!ok) {
+        qWarning() << "LocalStorage: schema error (group_message_recipients):"
+                   << q.lastError().text();
+        return false;
+    }
     return true;
 }
 
@@ -384,4 +399,126 @@ void LocalStorage::removeGroup(const QString& groupId) {
     q.prepare("DELETE FROM groups WHERE group_id=?");
     q.addBindValue(groupId);
     if (!q.exec()) qCWarning(logStorage) << "removeGroup (groups):" << q.lastError().text();
+}
+
+void LocalStorage::saveRecipientSnapshot(const QString& groupId, const QString& timestamp,
+                                         const QStringList& members) {
+    for (const QString& m : members) {
+        QSqlQuery q(_db);
+        q.prepare(
+            "INSERT OR IGNORE INTO group_message_recipients(group_id, timestamp, member) "
+            "VALUES(?, ?, ?)");
+        q.addBindValue(groupId);
+        q.addBindValue(timestamp);
+        q.addBindValue(m);
+        if (!q.exec()) qCWarning(logStorage) << "saveRecipientSnapshot:" << q.lastError().text();
+    }
+}
+
+void LocalStorage::markRecipientDelivered(const QString& groupId, const QString& timestamp,
+                                          const QString& member) {
+    QSqlQuery q(_db);
+    q.prepare(
+        "UPDATE group_message_recipients SET delivered=1 "
+        "WHERE group_id=? AND timestamp=? AND member=?");
+    q.addBindValue(groupId);
+    q.addBindValue(timestamp);
+    q.addBindValue(member);
+    if (!q.exec()) qCWarning(logStorage) << "markRecipientDelivered:" << q.lastError().text();
+}
+
+void LocalStorage::markRecipientSeen(const QString& groupId, const QString& timestamp,
+                                     const QString& member) {
+    QSqlQuery q(_db);
+    q.prepare(
+        "UPDATE group_message_recipients SET delivered=1, seen=1 "
+        "WHERE group_id=? AND timestamp=? AND member=?");
+    q.addBindValue(groupId);
+    q.addBindValue(timestamp);
+    q.addBindValue(member);
+    if (!q.exec()) qCWarning(logStorage) << "markRecipientSeen:" << q.lastError().text();
+}
+
+int LocalStorage::recipientCount(const QString& groupId, const QString& timestamp) {
+    QSqlQuery q(_db);
+    q.prepare("SELECT COUNT(*) FROM group_message_recipients WHERE group_id=? AND timestamp=?");
+    q.addBindValue(groupId);
+    q.addBindValue(timestamp);
+    if (!q.exec() || !q.next()) return 0;
+    return q.value(0).toInt();
+}
+
+bool LocalStorage::allRecipientsDelivered(const QString& groupId, const QString& timestamp) {
+    QSqlQuery q(_db);
+    q.prepare(
+        "SELECT COUNT(*) FROM group_message_recipients "
+        "WHERE group_id=? AND timestamp=? AND delivered=0");
+    q.addBindValue(groupId);
+    q.addBindValue(timestamp);
+    if (!q.exec() || !q.next()) return false;
+    return q.value(0).toInt() == 0 && recipientCount(groupId, timestamp) > 0;
+}
+
+bool LocalStorage::allRecipientsSeen(const QString& groupId, const QString& timestamp) {
+    QSqlQuery q(_db);
+    q.prepare(
+        "SELECT COUNT(*) FROM group_message_recipients "
+        "WHERE group_id=? AND timestamp=? AND seen=0");
+    q.addBindValue(groupId);
+    q.addBindValue(timestamp);
+    if (!q.exec() || !q.next()) return false;
+    return q.value(0).toInt() == 0 && recipientCount(groupId, timestamp) > 0;
+}
+
+QVariantList LocalStorage::recipientStates(const QString& groupId, const QString& timestamp) {
+    QVariantList result;
+    QSqlQuery q(_db);
+    q.prepare(
+        "SELECT member, delivered, seen FROM group_message_recipients "
+        "WHERE group_id=? AND timestamp=? ORDER BY member");
+    q.addBindValue(groupId);
+    q.addBindValue(timestamp);
+    if (!q.exec()) return result;
+    while (q.next()) {
+        QVariantMap row;
+        row["member"] = q.value(0).toString();
+        row["delivered"] = q.value(1).toInt() != 0;
+        row["seen"] = q.value(2).toInt() != 0;
+        result.append(row);
+    }
+    return result;
+}
+
+QStringList LocalStorage::removeRecipientsNotIn(const QString& groupId,
+                                                const QStringList& members) {
+    // Collect the ex-members' rows first, then delete them
+    QStringList affected;
+    QSqlQuery q(_db);
+    q.prepare("SELECT DISTINCT timestamp, member FROM group_message_recipients WHERE group_id=?");
+    q.addBindValue(groupId);
+    if (!q.exec()) return affected;
+    QStringList doomedTs;
+    QList<QPair<QString, QString>> doomed;
+    while (q.next()) {
+        const QString ts = q.value(0).toString();
+        const QString member = q.value(1).toString();
+        if (!members.contains(member)) {
+            doomed.append({ts, member});
+            if (!doomedTs.contains(ts)) doomedTs.append(ts);
+        }
+    }
+    for (const auto& [ts, member] : doomed) {
+        QSqlQuery del(_db);
+        del.prepare(
+            "DELETE FROM group_message_recipients WHERE group_id=? AND timestamp=? AND member=?");
+        del.addBindValue(groupId);
+        del.addBindValue(ts);
+        del.addBindValue(member);
+        if (!del.exec())
+            qCWarning(logStorage) << "removeRecipientsNotIn:" << del.lastError().text();
+    }
+    // Only timestamps that still have rows can complete their aggregate
+    for (const QString& ts : doomedTs)
+        if (recipientCount(groupId, ts) > 0) affected.append(ts);
+    return affected;
 }

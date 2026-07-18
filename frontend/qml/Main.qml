@@ -84,6 +84,10 @@ ApplicationWindow {
             chatModel.updateStatus(peer, timestamp, "seen", /^\d+$/.test(peer))
         }
 
+        function onGroupMessageDelivered(groupId, timestamp) {
+            chatModel.updateStatus(groupId, timestamp, "delivered", true)
+        }
+
         function onConvListUpdated(peer, lastMessage, lastTimestamp) {
             convListModel.addOrUpdate(peer, lastMessage, lastTimestamp)
         }
