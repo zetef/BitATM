@@ -159,6 +159,9 @@ Signals</h2></td></tr>
 <tr class="memitem:a5e470cae21687ac465bd3ded727f5c88" id="r_a5e470cae21687ac465bd3ded727f5c88"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkManager.html#a5e470cae21687ac465bd3ded727f5c88">messageSeen</a> (const QString &amp;peer, const QString &amp;timestamp)</td></tr>
 <tr class="memdesc:a5e470cae21687ac465bd3ded727f5c88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Emitted when the recipient confirms they have read a specific message.  <br /></td></tr>
 <tr class="separator:a5e470cae21687ac465bd3ded727f5c88"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9868a4dc10675d2cc8ad727a69fd03f9" id="r_a9868a4dc10675d2cc8ad727a69fd03f9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkManager.html#a9868a4dc10675d2cc8ad727a69fd03f9">groupMessageDelivered</a> (const QString &amp;groupId, const QString &amp;timestamp)</td></tr>
+<tr class="memdesc:a9868a4dc10675d2cc8ad727a69fd03f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Group message reached delivered-to-all (per-member aggregate).  <br /></td></tr>
+<tr class="separator:a9868a4dc10675d2cc8ad727a69fd03f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9cfd3cf00804e0f1daa8483507b0b9e6" id="r_a9cfd3cf00804e0f1daa8483507b0b9e6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkManager.html#a9cfd3cf00804e0f1daa8483507b0b9e6">historySyncMessage</a> (const QString &amp;peer, const QString &amp;sender, const QString &amp;content, const QString &amp;timestamp, bool isOutgoing, const QString &amp;status=&quot;sent&quot;)</td></tr>
 <tr class="memdesc:a9cfd3cf00804e0f1daa8483507b0b9e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Emitted once per stored message during local history load on login.  <br /></td></tr>
 <tr class="separator:a9cfd3cf00804e0f1daa8483507b0b9e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -248,6 +251,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ac08ca33cae1af5055a9d188b7ca65250" id="r_ac08ca33cae1af5055a9d188b7ca65250"><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkManager.html#ac08ca33cae1af5055a9d188b7ca65250">deleteConversation</a> (const QString &amp;peer)</td></tr>
 <tr class="memdesc:ac08ca33cae1af5055a9d188b7ca65250"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete a conversation from local cache. Messages stay on the server.  <br /></td></tr>
 <tr class="separator:ac08ca33cae1af5055a9d188b7ca65250"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd44b2c3ee8724a75c02fac05fb52680" id="r_afd44b2c3ee8724a75c02fac05fb52680"><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE QVariantList&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkManager.html#afd44b2c3ee8724a75c02fac05fb52680">groupMessageReceipts</a> (const QString &amp;groupId, const QString &amp;timestamp)</td></tr>
+<tr class="memdesc:afd44b2c3ee8724a75c02fac05fb52680"><td class="mdescLeft">&#160;</td><td class="mdescRight">Per-member receipt states for the info sheet: [{member, delivered, seen}].  <br /></td></tr>
+<tr class="separator:afd44b2c3ee8724a75c02fac05fb52680"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a97d1fb741f609c2442efdfd92e944ed2" id="r_a97d1fb741f609c2442efdfd92e944ed2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetworkManager.html#a97d1fb741f609c2442efdfd92e944ed2">isConnected</a> () const</td></tr>
 <tr class="memdesc:a97d1fb741f609c2442efdfd92e944ed2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if the WebSocket is in ConnectedState.  <br /></td></tr>
 <tr class="separator:a97d1fb741f609c2442efdfd92e944ed2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1045,6 +1051,74 @@ Properties</h2></td></tr>
 
 </div>
 </div>
+<a id="a9868a4dc10675d2cc8ad727a69fd03f9" name="a9868a4dc10675d2cc8ad727a69fd03f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9868a4dc10675d2cc8ad727a69fd03f9">&#9670;&#160;</a></span>groupMessageDelivered</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NetworkManager::groupMessageDelivered </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>groupId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>timestamp</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">signal</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Group message reached delivered-to-all (per-member aggregate). </p>
+
+</div>
+</div>
+<a id="afd44b2c3ee8724a75c02fac05fb52680" name="afd44b2c3ee8724a75c02fac05fb52680"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd44b2c3ee8724a75c02fac05fb52680">&#9670;&#160;</a></span>groupMessageReceipts()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QVariantList NetworkManager::groupMessageReceipts </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>groupId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>timestamp</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Per-member receipt states for the info sheet: [{member, delivered, seen}]. </p>
+
+</div>
+</div>
 <a id="a81c14937cc630aa9accb44c2a65b9cde" name="a81c14937cc630aa9accb44c2a65b9cde"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a81c14937cc630aa9accb44c2a65b9cde">&#9670;&#160;</a></span>hasError()</h2>
 
@@ -1431,6 +1505,7 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Emitted when the recipient confirms they have read a specific message. </p>
+<p>For groups (peer = numeric group id) this fires only when EVERY snapshot recipient has seen the message (receipts v2 aggregate).</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">peer</td><td>The conversation peer (recipient who sent the receipt). </td></tr>

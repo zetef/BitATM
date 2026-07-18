@@ -11,7 +11,7 @@ var searchData=
   ['getencryptedkeys_8',['getEncryptedKeys',['../classGroupMessage.html#adeeb3d9f5a2d2366871c814984c25428',1,'GroupMessage']]],
   ['getexpiresat_9',['getExpiresAt',['../classSession.html#ad30b4abe08c73b93623d3eb30dbc7cb3',1,'Session']]],
   ['getfactory_10',['getFactory',['../classServer.html#a5125611bb999de9619ea6b746e6448ce',1,'Server']]],
-  ['getgroupname_11',['getgroupname',['../classGroupMessage.html#ac930c4b758c3ba4e9fbd41552f0c629f',1,'GroupMessage::getGroupName()'],['../classNetworkManager.html#a9fddd966911296b4a40f1fda0362f57a',1,'NetworkManager::getGroupName()']]],
+  ['getgroupname_11',['getgroupname',['../classNetworkManager.html#a9fddd966911296b4a40f1fda0362f57a',1,'NetworkManager::getGroupName()'],['../classGroupMessage.html#ac930c4b758c3ba4e9fbd41552f0c629f',1,'GroupMessage::getGroupName()']]],
   ['getid_12',['getid',['../classBasePersistableEntity.html#a2af74ec41f4d0bd88961fb796b502405',1,'BasePersistableEntity::getId()'],['../classIEntity.html#a11c6e8b18c2456dc2f44d1fff94dc9b6',1,'IEntity::getId()']]],
   ['getkey_13',['getKey',['../classGroupRepository.html#acdfd6c8af390ecf504982ea3ff18df64',1,'GroupRepository']]],
   ['getlastseen_14',['getLastSeen',['../classUser.html#afadba4a3a138a6233294b65a43ce2f2d',1,'User']]],
@@ -22,7 +22,7 @@ var searchData=
   ['getpasswordhash_19',['getPasswordHash',['../classUser.html#af6151c2deb77f73d2700056f6c588b06',1,'User']]],
   ['getpublickey_20',['getPublicKey',['../classUser.html#a9a2fa17d1b38aa1939a5494c629d908d',1,'User']]],
   ['getqueuedat_21',['getQueuedAt',['../classOfflineMessage.html#aa2738512a7f05d0cbc8467f48c78c270',1,'OfflineMessage']]],
-  ['getrecipient_22',['getrecipient',['../classOfflineMessage.html#a140b682cf423d353eb1ac9b5c7ac07fd',1,'OfflineMessage::getRecipient()'],['../classMessage.html#aad96a42dbfd135522f3f76671d604154',1,'Message::getRecipient()']]],
+  ['getrecipient_22',['getrecipient',['../classMessage.html#aad96a42dbfd135522f3f76671d604154',1,'Message::getRecipient()'],['../classOfflineMessage.html#a140b682cf423d353eb1ac9b5c7ac07fd',1,'OfflineMessage::getRecipient()']]],
   ['getsender_23',['getsender',['../classGroupMessage.html#ad62aa89182c021f3f1de63d1d62d92ff',1,'GroupMessage::getSender()'],['../classMessage.html#a014cebbb88637fd79ba5fe2c9989fd8b',1,'Message::getSender() const']]],
   ['getsenderencryptedkey_24',['getSenderEncryptedKey',['../classMessage.html#a95935dde7cddc46cb2dd3c6a287fee84',1,'Message']]],
   ['getsessionsforuser_25',['getSessionsForUser',['../classServer.html#ae97ff589de8eb00ce1cb43b913ee2a1d',1,'Server']]],
@@ -44,6 +44,8 @@ var searchData=
   ['groupleft_41',['groupLeft',['../classNetworkManager.html#af0902bd618f601ae0c472243a8a3e9bc',1,'NetworkManager']]],
   ['groupmessage_42',['groupmessage',['../classGroupMessage.html#a1366277e42ed1552ce50b6be409f9eaa',1,'GroupMessage::GroupMessage()=default'],['../classGroupMessage.html#aa556a2f2bb63b5c7831a9355bf9fdc64',1,'GroupMessage::GroupMessage(int id, std::string groupName, std::string sender, std::string encryptedBody, std::string encryptedKeys, std::string createdAt={})'],['../classGroupMessage.html#a05fcd509823fcd2fa73cebc849ed494f',1,'GroupMessage::GroupMessage(const GroupMessage &amp;)=default'],['../classGroupMessage.html#ae926c644e6d52904af2bc7a7174b08e5',1,'GroupMessage::GroupMessage(GroupMessage &amp;&amp;) noexcept=default']]],
   ['groupmessagedecrypted_43',['groupMessageDecrypted',['../classNetworkManager.html#a1ebefc3b8b1ad69040decb2ed1f3cb57',1,'NetworkManager']]],
-  ['groupmessagehandler_44',['GroupMessageHandler',['../classGroupMessageHandler.html#afcbbf5062a84f2f064701a94fedc62ee',1,'GroupMessageHandler']]],
-  ['grouprepository_45',['GroupRepository',['../classGroupRepository.html#a40a74b65a9eac1404fea482aaf2cae5a',1,'GroupRepository']]]
+  ['groupmessagedelivered_44',['groupMessageDelivered',['../classNetworkManager.html#a9868a4dc10675d2cc8ad727a69fd03f9',1,'NetworkManager']]],
+  ['groupmessagehandler_45',['GroupMessageHandler',['../classGroupMessageHandler.html#afcbbf5062a84f2f064701a94fedc62ee',1,'GroupMessageHandler']]],
+  ['groupmessagereceipts_46',['groupMessageReceipts',['../classNetworkManager.html#afd44b2c3ee8724a75c02fac05fb52680',1,'NetworkManager']]],
+  ['grouprepository_47',['GroupRepository',['../classGroupRepository.html#a40a74b65a9eac1404fea482aaf2cae5a',1,'GroupRepository']]]
 ];

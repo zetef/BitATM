@@ -144,8 +144,9 @@ var NAVTREEINDEX0 =
 "annotated.html":[1,0],
 "backend_2src_2main_8cpp.html":[2,0,0,0,35],
 "classAckHandler.html":[1,0,0],
-"classAckHandler.html#a18c7a7f9fc71c79eed54c198ea6f8d7c":[1,0,0,1],
-"classAckHandler.html#ac5b55b2a7755c08435d5b041fb5a9561":[1,0,0,0],
+"classAckHandler.html#a18c7a7f9fc71c79eed54c198ea6f8d7c":[1,0,0,2],
+"classAckHandler.html#a6b8ff61304ccb9a66a0ddbb1a00587cb":[1,0,0,0],
+"classAckHandler.html#ac5b55b2a7755c08435d5b041fb5a9561":[1,0,0,1],
 "classAesGcmStrategy.html":[1,0,1],
 "classAesGcmStrategy.html#a1400cb6aa4a01545a1615f023dff7c5f":[1,0,1,3],
 "classAesGcmStrategy.html#a1ac7dc2a139d66af96e3ce023e3b753c":[1,0,1,4],
@@ -248,6 +249,5 @@ var NAVTREEINDEX0 =
 "classConversationListModel.html#ac6c4a9feb3a203d342de583ca01bc38e":[1,0,11,0],
 "classConversationListModel.html#ac6c4a9feb3a203d342de583ca01bc38ea1ac943673dbb92fa545ca59443f30877":[1,0,11,0,2],
 "classConversationListModel.html#ac6c4a9feb3a203d342de583ca01bc38ea6556cf00fa5a62fefc4b89a375b40968":[1,0,11,0,1],
-"classConversationListModel.html#ac6c4a9feb3a203d342de583ca01bc38ea6f48e554b0cc08530b6219115353919f":[1,0,11,0,0],
-"classConversationListModel.html#ac6c4a9feb3a203d342de583ca01bc38ea8b7a838d1823ca83bed8148e8c598ee8":[1,0,11,0,3]
+"classConversationListModel.html#ac6c4a9feb3a203d342de583ca01bc38ea6f48e554b0cc08530b6219115353919f":[1,0,11,0,0]
 };

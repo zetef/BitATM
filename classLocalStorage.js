@@ -1,5 +1,7 @@
 var classLocalStorage =
 [
+    [ "allRecipientsDelivered", "classLocalStorage.html#a86c7513591cb8422ad2a0202ad37ca54", null ],
+    [ "allRecipientsSeen", "classLocalStorage.html#a910034ff38efda55086f9610908e4502", null ],
     [ "clearAllData", "classLocalStorage.html#a32f6b260624c807b29db7543b255db16", null ],
     [ "close", "classLocalStorage.html#a65c1f42f831642375777d54843b25aba", null ],
     [ "deleteConversation", "classLocalStorage.html#a160112207eb386fe9417c67cdf9e682c", null ],
@@ -10,14 +12,20 @@ var classLocalStorage =
     [ "loadGroupMessages", "classLocalStorage.html#a99cc43bdd9c07b8927ce22df28074cff", null ],
     [ "loadGroups", "classLocalStorage.html#ada663a005a01cd9dba3af7f84460ac0d", null ],
     [ "loadMessages", "classLocalStorage.html#a854564c9de4d3d95b49a29b0ccc5b44b", null ],
+    [ "markRecipientDelivered", "classLocalStorage.html#aa3067b022b8831a29824a22a205ab60c", null ],
+    [ "markRecipientSeen", "classLocalStorage.html#ae1eeceaa5a66ce4125c3208be3351fbd", null ],
     [ "newestTimestamp", "classLocalStorage.html#a1da495871df90969dcdfdb848b0e7b27", null ],
     [ "open", "classLocalStorage.html#ad21ff41070edb6041563a977462daaea", null ],
+    [ "recipientCount", "classLocalStorage.html#a9732601e6eceb6965aaf444a0c6e042f", null ],
+    [ "recipientStates", "classLocalStorage.html#a039494276a735291ded01b7399e0380f", null ],
     [ "removeGroup", "classLocalStorage.html#ad86253db00e34a43abd87da056c651ee", null ],
+    [ "removeRecipientsNotIn", "classLocalStorage.html#ab68f9f9d75fa0077bfc92619108ea203", null ],
     [ "saveConversation", "classLocalStorage.html#a305331be3cb0cd51bd7a3f8a8892d0fa", null ],
     [ "saveGroup", "classLocalStorage.html#aa687237b59bc3516cbdd95478bd341b7", null ],
     [ "saveGroupKey", "classLocalStorage.html#a72f411de93c42872583500def6b7564d", null ],
     [ "saveGroupMessage", "classLocalStorage.html#af273e27619cb4057f0c4796825a8cbe2", null ],
     [ "saveMessage", "classLocalStorage.html#aa65c9e81248bedf96445affb11018d69", null ],
+    [ "saveRecipientSnapshot", "classLocalStorage.html#aff49d05241d6928b3c541d59d778bfec", null ],
     [ "updateGroupMessageStatus", "classLocalStorage.html#af59dd2a276df89e9ce770b6e33bdad15", null ],
     [ "updateMessageStatus", "classLocalStorage.html#a35349bb6cbf4f0e329109e1c579827bb", null ]
 ];

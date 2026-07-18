@@ -148,6 +148,30 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:af59dd2a276df89e9ce770b6e33bdad15" id="r_af59dd2a276df89e9ce770b6e33bdad15"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLocalStorage.html#af59dd2a276df89e9ce770b6e33bdad15">updateGroupMessageStatus</a> (const QString &amp;groupId, const QString &amp;timestamp, const QString &amp;status)</td></tr>
 <tr class="memdesc:af59dd2a276df89e9ce770b6e33bdad15"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update the status of the group message matching groupId + timestamp.  <br /></td></tr>
 <tr class="separator:af59dd2a276df89e9ce770b6e33bdad15"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff49d05241d6928b3c541d59d778bfec" id="r_aff49d05241d6928b3c541d59d778bfec"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLocalStorage.html#aff49d05241d6928b3c541d59d778bfec">saveRecipientSnapshot</a> (const QString &amp;groupId, const QString &amp;timestamp, const QStringList &amp;members)</td></tr>
+<tr class="memdesc:aff49d05241d6928b3c541d59d778bfec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Receipts v2: store the recipient snapshot for a sent group message.  <br /></td></tr>
+<tr class="separator:aff49d05241d6928b3c541d59d778bfec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3067b022b8831a29824a22a205ab60c" id="r_aa3067b022b8831a29824a22a205ab60c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLocalStorage.html#aa3067b022b8831a29824a22a205ab60c">markRecipientDelivered</a> (const QString &amp;groupId, const QString &amp;timestamp, const QString &amp;member)</td></tr>
+<tr class="memdesc:aa3067b022b8831a29824a22a205ab60c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mark one recipient of (group, ts) as delivered.  <br /></td></tr>
+<tr class="separator:aa3067b022b8831a29824a22a205ab60c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae1eeceaa5a66ce4125c3208be3351fbd" id="r_ae1eeceaa5a66ce4125c3208be3351fbd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLocalStorage.html#ae1eeceaa5a66ce4125c3208be3351fbd">markRecipientSeen</a> (const QString &amp;groupId, const QString &amp;timestamp, const QString &amp;member)</td></tr>
+<tr class="memdesc:ae1eeceaa5a66ce4125c3208be3351fbd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mark one recipient of (group, ts) as seen (implies delivered).  <br /></td></tr>
+<tr class="separator:ae1eeceaa5a66ce4125c3208be3351fbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9732601e6eceb6965aaf444a0c6e042f" id="r_a9732601e6eceb6965aaf444a0c6e042f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLocalStorage.html#a9732601e6eceb6965aaf444a0c6e042f">recipientCount</a> (const QString &amp;groupId, const QString &amp;timestamp)</td></tr>
+<tr class="memdesc:a9732601e6eceb6965aaf444a0c6e042f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of snapshot recipients for (group, ts); 0 = legacy message.  <br /></td></tr>
+<tr class="separator:a9732601e6eceb6965aaf444a0c6e042f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a86c7513591cb8422ad2a0202ad37ca54" id="r_a86c7513591cb8422ad2a0202ad37ca54"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLocalStorage.html#a86c7513591cb8422ad2a0202ad37ca54">allRecipientsDelivered</a> (const QString &amp;groupId, const QString &amp;timestamp)</td></tr>
+<tr class="memdesc:a86c7513591cb8422ad2a0202ad37ca54"><td class="mdescLeft">&#160;</td><td class="mdescRight">True when every snapshot recipient of (group, ts) is delivered.  <br /></td></tr>
+<tr class="separator:a86c7513591cb8422ad2a0202ad37ca54"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a910034ff38efda55086f9610908e4502" id="r_a910034ff38efda55086f9610908e4502"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLocalStorage.html#a910034ff38efda55086f9610908e4502">allRecipientsSeen</a> (const QString &amp;groupId, const QString &amp;timestamp)</td></tr>
+<tr class="memdesc:a910034ff38efda55086f9610908e4502"><td class="mdescLeft">&#160;</td><td class="mdescRight">True when every snapshot recipient of (group, ts) has seen it.  <br /></td></tr>
+<tr class="separator:a910034ff38efda55086f9610908e4502"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a039494276a735291ded01b7399e0380f" id="r_a039494276a735291ded01b7399e0380f"><td class="memItemLeft" align="right" valign="top">QVariantList&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLocalStorage.html#a039494276a735291ded01b7399e0380f">recipientStates</a> (const QString &amp;groupId, const QString &amp;timestamp)</td></tr>
+<tr class="memdesc:a039494276a735291ded01b7399e0380f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Per-member states for the info sheet: [{member, delivered, seen}].  <br /></td></tr>
+<tr class="separator:a039494276a735291ded01b7399e0380f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab68f9f9d75fa0077bfc92619108ea203" id="r_ab68f9f9d75fa0077bfc92619108ea203"><td class="memItemLeft" align="right" valign="top">QStringList&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLocalStorage.html#ab68f9f9d75fa0077bfc92619108ea203">removeRecipientsNotIn</a> (const QString &amp;groupId, const QStringList &amp;members)</td></tr>
+<tr class="memdesc:ab68f9f9d75fa0077bfc92619108ea203"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete snapshot rows of members no longer in the group.  <br /></td></tr>
+<tr class="separator:ab68f9f9d75fa0077bfc92619108ea203"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a72f411de93c42872583500def6b7564d" id="r_a72f411de93c42872583500def6b7564d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLocalStorage.html#a72f411de93c42872583500def6b7564d">saveGroupKey</a> (const QString &amp;groupId, const QString &amp;aesKeyBase64)</td></tr>
 <tr class="memdesc:a72f411de93c42872583500def6b7564d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Persist the AES key (base64) for a group. Overwrites existing entry.  <br /></td></tr>
 <tr class="separator:a72f411de93c42872583500def6b7564d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -183,6 +207,66 @@ Static Public Member Functions</h2></td></tr>
 <div class="textblock"><p>Singleton SQLite cache for messages and conversations. </p>
 <p>Opened once at app start. All reads/writes happen on the main thread (same as <a class="el" href="classNetworkManager.html" title="Proxy to the BitATM WebSocket server with integrated E2EE and local history.">NetworkManager</a>). Not thread-safe by design. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a86c7513591cb8422ad2a0202ad37ca54" name="a86c7513591cb8422ad2a0202ad37ca54"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a86c7513591cb8422ad2a0202ad37ca54">&#9670;&#160;</a></span>allRecipientsDelivered()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool LocalStorage::allRecipientsDelivered </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>groupId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>timestamp</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>True when every snapshot recipient of (group, ts) is delivered. </p>
+
+</div>
+</div>
+<a id="a910034ff38efda55086f9610908e4502" name="a910034ff38efda55086f9610908e4502"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a910034ff38efda55086f9610908e4502">&#9670;&#160;</a></span>allRecipientsSeen()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool LocalStorage::allRecipientsSeen </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>groupId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>timestamp</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>True when every snapshot recipient of (group, ts) has seen it. </p>
+
+</div>
+</div>
 <a id="a32f6b260624c807b29db7543b255db16" name="a32f6b260624c807b29db7543b255db16"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a32f6b260624c807b29db7543b255db16">&#9670;&#160;</a></span>clearAllData()</h2>
 
@@ -438,6 +522,78 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="aa3067b022b8831a29824a22a205ab60c" name="aa3067b022b8831a29824a22a205ab60c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa3067b022b8831a29824a22a205ab60c">&#9670;&#160;</a></span>markRecipientDelivered()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LocalStorage::markRecipientDelivered </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>groupId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>timestamp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>member</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Mark one recipient of (group, ts) as delivered. </p>
+
+</div>
+</div>
+<a id="ae1eeceaa5a66ce4125c3208be3351fbd" name="ae1eeceaa5a66ce4125c3208be3351fbd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae1eeceaa5a66ce4125c3208be3351fbd">&#9670;&#160;</a></span>markRecipientSeen()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LocalStorage::markRecipientSeen </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>groupId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>timestamp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>member</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Mark one recipient of (group, ts) as seen (implies delivered). </p>
+
+</div>
+</div>
 <a id="a1da495871df90969dcdfdb848b0e7b27" name="a1da495871df90969dcdfdb848b0e7b27"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1da495871df90969dcdfdb848b0e7b27">&#9670;&#160;</a></span>newestTimestamp()</h2>
 
@@ -476,6 +632,66 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a9732601e6eceb6965aaf444a0c6e042f" name="a9732601e6eceb6965aaf444a0c6e042f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9732601e6eceb6965aaf444a0c6e042f">&#9670;&#160;</a></span>recipientCount()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int LocalStorage::recipientCount </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>groupId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>timestamp</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Number of snapshot recipients for (group, ts); 0 = legacy message. </p>
+
+</div>
+</div>
+<a id="a039494276a735291ded01b7399e0380f" name="a039494276a735291ded01b7399e0380f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a039494276a735291ded01b7399e0380f">&#9670;&#160;</a></span>recipientStates()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QVariantList LocalStorage::recipientStates </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>groupId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>timestamp</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Per-member states for the info sheet: [{member, delivered, seen}]. </p>
+
+</div>
+</div>
 <a id="ad86253db00e34a43abd87da056c651ee" name="ad86253db00e34a43abd87da056c651ee"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad86253db00e34a43abd87da056c651ee">&#9670;&#160;</a></span>removeGroup()</h2>
 
@@ -493,6 +709,37 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Remove a group and all related records (messages, key) from the local cache. </p>
+
+</div>
+</div>
+<a id="ab68f9f9d75fa0077bfc92619108ea203" name="ab68f9f9d75fa0077bfc92619108ea203"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab68f9f9d75fa0077bfc92619108ea203">&#9670;&#160;</a></span>removeRecipientsNotIn()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QStringList LocalStorage::removeRecipientsNotIn </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>groupId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QStringList &amp;&#160;</td>
+          <td class="paramname"><em>members</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Delete snapshot rows of members no longer in the group. </p>
+<dl class="section return"><dt>Returns</dt><dd>Timestamps that still have rows (aggregate recompute candidates). </dd></dl>
 
 </div>
 </div>
@@ -697,6 +944,42 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Save a message to the local cache. Silently ignores duplicates. </p>
+
+</div>
+</div>
+<a id="aff49d05241d6928b3c541d59d778bfec" name="aff49d05241d6928b3c541d59d778bfec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aff49d05241d6928b3c541d59d778bfec">&#9670;&#160;</a></span>saveRecipientSnapshot()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LocalStorage::saveRecipientSnapshot </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>groupId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>timestamp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QStringList &amp;&#160;</td>
+          <td class="paramname"><em>members</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Receipts v2: store the recipient snapshot for a sent group message. </p>
 
 </div>
 </div>

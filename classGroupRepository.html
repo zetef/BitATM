@@ -105,7 +105,7 @@ Collaboration diagram for GroupRepository:</div>
 <div class="dyncontent">
 <div class="center"><img src="classGroupRepository__coll__graph.png" border="0" usemap="#aGroupRepository_coll__map" alt="Collaboration graph"/></div>
 <map name="aGroupRepository_coll__map" id="aGroupRepository_coll__map">
-<area shape="rect" title="PostgreSQL&#45;backed repository for groups, group_members, group_keys, group_messages." alt="" coords="5,5,219,331"/>
+<area shape="rect" title="PostgreSQL&#45;backed repository for groups, group_members, group_keys, group_messages." alt="" coords="5,5,153,271"/>
 </map>
 </div>
 <table class="memberdecls">
@@ -146,6 +146,18 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a92467c43dc6fb65b9ed1c24c9635128d" id="r_a92467c43dc6fb65b9ed1c24c9635128d"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="structGroupMessageRow.html">GroupMessageRow</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGroupRepository.html#a92467c43dc6fb65b9ed1c24c9635128d">findMessagesForUserSince</a> (const std::string &amp;username, const std::string &amp;afterTimestamp)</td></tr>
 <tr class="memdesc:a92467c43dc6fb65b9ed1c24c9635128d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return all group messages visible to a user, newest-cursor filtered.  <br /></td></tr>
 <tr class="separator:a92467c43dc6fb65b9ed1c24c9635128d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6cc4e366054bbf646e8e6994f23cee73" id="r_a6cc4e366054bbf646e8e6994f23cee73"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGroupRepository.html#a6cc4e366054bbf646e8e6994f23cee73">insertReceiptRows</a> (int messageId, const std::vector&lt; std::string &gt; &amp;usernames)</td></tr>
+<tr class="memdesc:a6cc4e366054bbf646e8e6994f23cee73"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create one pending receipt row per recipient for a stored message.  <br /></td></tr>
+<tr class="separator:a6cc4e366054bbf646e8e6994f23cee73"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8178a153e5fa9433f3c4d6c638cdf5e4" id="r_a8178a153e5fa9433f3c4d6c638cdf5e4"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGroupRepository.html#a8178a153e5fa9433f3c4d6c638cdf5e4">markReceiptDelivered</a> (int groupId, const std::string &amp;timestamp, const std::string &amp;username)</td></tr>
+<tr class="memdesc:a8178a153e5fa9433f3c4d6c638cdf5e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mark a member's receipt delivered for messages at (group, ts).  <br /></td></tr>
+<tr class="separator:a8178a153e5fa9433f3c4d6c638cdf5e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeca27326605063d8d52771d01f2205bf" id="r_aeca27326605063d8d52771d01f2205bf"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGroupRepository.html#aeca27326605063d8d52771d01f2205bf">markReceiptSeen</a> (int groupId, const std::string &amp;timestamp, const std::string &amp;username)</td></tr>
+<tr class="memdesc:aeca27326605063d8d52771d01f2205bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mark a member's receipt seen (implies delivered) for (group, ts).  <br /></td></tr>
+<tr class="separator:aeca27326605063d8d52771d01f2205bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a81a1dfe2dfa873544d47b1c8751605a2" id="r_a81a1dfe2dfa873544d47b1c8751605a2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGroupRepository.html#a81a1dfe2dfa873544d47b1c8751605a2">deleteReceiptsForMember</a> (int groupId, const std::string &amp;username)</td></tr>
+<tr class="memdesc:a81a1dfe2dfa873544d47b1c8751605a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete all receipt rows of a member in a group (leave/kick).  <br /></td></tr>
+<tr class="separator:a81a1dfe2dfa873544d47b1c8751605a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adc428b34520bfcb965666a06f4593f67" id="r_adc428b34520bfcb965666a06f4593f67"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGroupRepository.html#adc428b34520bfcb965666a06f4593f67">memberCount</a> (int groupId)</td></tr>
 <tr class="memdesc:adc428b34520bfcb965666a06f4593f67"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the number of members in a group.  <br /></td></tr>
 <tr class="separator:adc428b34520bfcb965666a06f4593f67"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -253,6 +265,36 @@ Public Member Functions</h2></td></tr>
 
 <p>Insert a new group row. </p>
 <dl class="section return"><dt>Returns</dt><dd>The auto-generated group id. </dd></dl>
+
+</div>
+</div>
+<a id="a81a1dfe2dfa873544d47b1c8751605a2" name="a81a1dfe2dfa873544d47b1c8751605a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a81a1dfe2dfa873544d47b1c8751605a2">&#9670;&#160;</a></span>deleteReceiptsForMember()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GroupRepository::deleteReceiptsForMember </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>groupId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>username</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Delete all receipt rows of a member in a group (leave/kick). </p>
 
 </div>
 </div>
@@ -394,6 +436,110 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Return all members of a group. </p>
+
+</div>
+</div>
+<a id="a6cc4e366054bbf646e8e6994f23cee73" name="a6cc4e366054bbf646e8e6994f23cee73"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6cc4e366054bbf646e8e6994f23cee73">&#9670;&#160;</a></span>insertReceiptRows()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GroupRepository::insertReceiptRows </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>messageId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; std::string &gt; &amp;&#160;</td>
+          <td class="paramname"><em>usernames</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Create one pending receipt row per recipient for a stored message. </p>
+
+</div>
+</div>
+<a id="a8178a153e5fa9433f3c4d6c638cdf5e4" name="a8178a153e5fa9433f3c4d6c638cdf5e4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8178a153e5fa9433f3c4d6c638cdf5e4">&#9670;&#160;</a></span>markReceiptDelivered()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; std::string &gt; GroupRepository::markReceiptDelivered </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>groupId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>timestamp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>username</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Mark a member's receipt delivered for messages at (group, ts). </p>
+<dl class="section return"><dt>Returns</dt><dd>Distinct senders of the matched messages (receipt forwarding targets). </dd></dl>
+
+</div>
+</div>
+<a id="aeca27326605063d8d52771d01f2205bf" name="aeca27326605063d8d52771d01f2205bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeca27326605063d8d52771d01f2205bf">&#9670;&#160;</a></span>markReceiptSeen()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; std::string &gt; GroupRepository::markReceiptSeen </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>groupId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>timestamp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>username</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Mark a member's receipt seen (implies delivered) for (group, ts). </p>
+<dl class="section return"><dt>Returns</dt><dd>Distinct senders of the matched messages. </dd></dl>
 
 </div>
 </div>
