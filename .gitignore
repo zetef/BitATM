@@ -2,6 +2,7 @@
 build/
 build-release/
 build-default/
+build-android/
 cmake-build-*/
 *.o *.a *.so *.dll *.exe
 

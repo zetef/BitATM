@@ -1,3 +1,11 @@
+if(ANDROID)
+    # Defines the OpenSSL::SSL / OpenSSL::Crypto imported targets from the
+    # project's prebuilt Android OpenSSL libs (must run before the
+    # target_link_libraries() call below references them - vcpkg's desktop
+    # OpenSSL from the top-level find_package() doesn't apply to this toolchain).
+    include("$ENV{HOME}/android_openssl/android_openssl.cmake")
+endif()
+
 qt_add_executable(frontend
 	src/main.cpp
 	src/NetworkManager.h
@@ -55,10 +63,13 @@ target_link_libraries(frontend PRIVATE
 target_include_directories(frontend PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src)
 
 if(ANDROID)
-    set_property(TARGET frontend APPEND PROPERTY QT_ANDROID_EXTRA_LIBS
-        "$ENV{HOME}/android_openssl/ssl_3/${ANDROID_ABI}/libssl_3.so"
-        "$ENV{HOME}/android_openssl/ssl_3/${ANDROID_ABI}/libcrypto_3.so"
-    )
+    # Links OpenSSL::SSL/Crypto (targets defined by the include() above) and
+    # sets QT_ANDROID_EXTRA_LIBS with the correct debug/release (no-asm vs
+    # regular) and ABI-specific .so paths - replaces a previous hand-rolled
+    # set_property() that hardcoded the ssl_3 path and didn't account for
+    # the no-asm Debug build variant the script switches on.
+    add_android_openssl_libraries(frontend)
+
     # Custom manifest sets android:windowSoftInputMode="adjustResize" so the
     # OS actually shrinks the app's visible viewport when the on-screen
     # keyboard appears - without it, bottom-anchored content (dialogs,
@@ -68,4 +79,8 @@ if(ANDROID)
         "${CMAKE_CURRENT_SOURCE_DIR}/android")
 endif()
 
-add_subdirectory(tests)
+# Unit tests are desktop-only (CI targets ubuntu-latest/windows-latest);
+# they're never meant to build/run on an Android device.
+if(NOT ANDROID)
+    add_subdirectory(tests)
+endif()
