@@ -33,6 +33,9 @@ Rectangle {
         function onGroupInviteReceived(gid, name) {
             if (gid === chatPage.activePeer && name.length > 0) chatPage._liveGroupName = name
         }
+        function onGroupLeft(gid) {
+            if (gid === chatPage.activePeer) groupInfoSheet.visible = false
+        }
     }
 
     MessageInfoSheet {
