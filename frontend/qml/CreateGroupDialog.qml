@@ -129,18 +129,26 @@ Item {
         id: mobileDrawer
         edge: Qt.BottomEdge
         width: Overlay.overlay ? Overlay.overlay.width : 400
-        height: mobileForm.implicitHeight + 48
+        // Capped so the sheet never tries to be taller than the visible
+        // viewport - windowSoftInputMode="adjustResize" (AndroidManifest.xml)
+        // already shrinks that viewport when the keyboard appears, so this
+        // cap plus the ScrollView below is defense-in-depth, not the primary fix.
+        height: Math.min(mobileForm.implicitHeight + 48,
+                         (Overlay.overlay ? Overlay.overlay.height : 640) * 0.9)
 
         background: Rectangle {
             color: "#0f0f0f"
             Rectangle { width: parent.width; height: 1; color: "#404040" }
         }
 
+        ScrollView {
+            anchors.fill: parent
+            anchors.margins: 20
+            clip: true
+
         ColumnLayout {
             id: mobileForm
-            x: 20
-            y: 20
-            width: parent.width - 40
+            width: parent.width
             spacing: 10
 
             Label {
@@ -229,6 +237,7 @@ Item {
                     }
                 }
             }
+        }
         }
 
         onClosed: root.closed()

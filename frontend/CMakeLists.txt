@@ -59,6 +59,13 @@ if(ANDROID)
         "$ENV{HOME}/android_openssl/ssl_3/${ANDROID_ABI}/libssl_3.so"
         "$ENV{HOME}/android_openssl/ssl_3/${ANDROID_ABI}/libcrypto_3.so"
     )
+    # Custom manifest sets android:windowSoftInputMode="adjustResize" so the
+    # OS actually shrinks the app's visible viewport when the on-screen
+    # keyboard appears - without it, bottom-anchored content (dialogs,
+    # drawers, the chat input) gets covered by the keyboard with no way for
+    # QML-side layout alone to reliably work around it.
+    set_property(TARGET frontend PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
+        "${CMAKE_CURRENT_SOURCE_DIR}/android")
 endif()
 
 add_subdirectory(tests)
