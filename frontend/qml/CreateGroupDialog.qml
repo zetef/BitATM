@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+import QtQuick.Window
 
 Item {
     id: root
@@ -124,23 +125,84 @@ Item {
         onClosed: root.closed()
     }
 
-    // --- Mobile: bottom sheet Drawer ---
-    Drawer {
+    // --- Mobile: bottom sheet Popup ---
+    // Plain Popup, not Drawer: Drawer positions itself via its own internal
+    // edge-docking transform, which fights any manual y binding. A Popup
+    // gives full manual control, needed to track the keyboard directly.
+    //
+    // windowSoftInputMode="adjustResize" (AndroidManifest.xml) does not
+    // reliably make Qt's own render surface shrink on Android even though
+    // the OS resizes the activity window - confirmed on-device. So instead
+    // of relying on the viewport shrinking, this tracks the live keyboard
+    // geometry directly via Qt.inputMethod.keyboardRectangle (the documented
+    // API for this, independent of whether the window itself resizes) and
+    // pins the sheet's bottom edge just above the keyboard.
+    Popup {
         id: mobileDrawer
-        edge: Qt.BottomEdge
+        parent: Overlay.overlay
+        modal: true
+        padding: 0
+
+        // Reactive bindings alone are not reliable here: Qt.inputMethod.visible,
+        // keyboardRectangle, and mobileForm.implicitHeight were confirmed
+        // on-device to update in separate, inconsistent steps within the same
+        // burst of change signals (e.g. visible flips true a moment before
+        // keyboardRectangle has real geometry), so any single reactive
+        // expression combining them can transiently see a mismatched
+        // combination. Instead: debounce with a short settle timer, then
+        // compute the final geometry once, atomically, in JS.
+        x: 0
+        y: 0
         width: Overlay.overlay ? Overlay.overlay.width : 400
-        height: mobileForm.implicitHeight + 48
+        height: 218
+
+        // Qt.inputMethod.keyboardRectangle is reported in PHYSICAL pixels on
+        // Android, while every other QML geometry value (Overlay.overlay,
+        // Popup.y/height) is in logical/DPI-scaled pixels - confirmed via
+        // on-device logging (keyboardRectangle.y was larger than the entire
+        // logical viewport height). Must divide by devicePixelRatio to bring
+        // it into the same coordinate space as everything else here.
+        readonly property real dpr: Screen.devicePixelRatio > 0 ? Screen.devicePixelRatio : 1
+
+        function recalcGeometry() {
+            var viewportHeight = Overlay.overlay ? Overlay.overlay.height : 640
+            var kbVisible = Qt.inputMethod.visible
+            var kbRect = Qt.inputMethod.keyboardRectangle
+            var availableBottom = (kbVisible && kbRect.height > 0) ? (kbRect.y / dpr) : viewportHeight
+            var h = Math.max(100, Math.min(mobileForm.implicitHeight + 48, availableBottom - 20))
+            height = h
+            y = Math.max(0, availableBottom - h)
+        }
+
+        Timer {
+            id: settleTimer
+            interval: 80
+            onTriggered: mobileDrawer.recalcGeometry()
+        }
+
+        Connections {
+            target: Qt.inputMethod
+            function onVisibleChanged() { settleTimer.restart() }
+            function onKeyboardRectangleChanged() { settleTimer.restart() }
+        }
+
+        onOpened: recalcGeometry()
+
+        Overlay.modal: Rectangle { color: "#0a0a0a"; opacity: 0.75 }
 
         background: Rectangle {
             color: "#0f0f0f"
             Rectangle { width: parent.width; height: 1; color: "#404040" }
         }
 
+        ScrollView {
+            anchors.fill: parent
+            anchors.margins: 20
+            clip: true
+
         ColumnLayout {
             id: mobileForm
-            x: 20
-            y: 20
-            width: parent.width - 40
+            width: parent.width
             spacing: 10
 
             Label {
@@ -229,6 +291,7 @@ Item {
                     }
                 }
             }
+        }
         }
 
         onClosed: root.closed()
