@@ -171,7 +171,7 @@ Rectangle {
 
                 Label {
                     id: unreadBadge
-                    visible: model.unreadCount > 0 && !convDelegate.hovered
+                    visible: model.unreadCount > 0 && !(convListPage.isMobile || convDelegate.hovered)
                     anchors.right: parent.right
                     anchors.rightMargin: 10
                     anchors.verticalCenter: parent.verticalCenter
@@ -187,7 +187,7 @@ Rectangle {
                     anchors.right: parent.right
                     anchors.rightMargin: 8
                     anchors.verticalCenter: parent.verticalCenter
-                    visible: convDelegate.hovered
+                    visible: convListPage.isMobile || convDelegate.hovered
                     width: 36
                     height: 24
                     text: "[x]"
