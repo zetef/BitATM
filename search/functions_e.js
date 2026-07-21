@@ -5,7 +5,8 @@ var searchData=
   ['peerkeyreceived_2',['peerKeyReceived',['../classNetworkManager.html#ad0d5ac1ac81e96aa4c99b5399122c887',1,'NetworkManager']]],
   ['pemtoprivatekey_3',['pemToPrivateKey',['../classOpensslAdapter.html#a2e3781b0462d637376c5e45109def680',1,'OpensslAdapter']]],
   ['pemtopublickey_4',['pemToPublicKey',['../classOpensslAdapter.html#a3668ee31f99bf20ab78075944a29da46',1,'OpensslAdapter']]],
-  ['privatekeytopem_5',['privateKeyToPem',['../classOpensslAdapter.html#ada0bf650695ab8188f3d365c6baab055',1,'OpensslAdapter']]],
-  ['protocolparser_6',['protocolparser',['../classProtocolParser.html#a1877a4b37338d4ab26681424bd78f773',1,'ProtocolParser::ProtocolParser()=default'],['../classProtocolParser.html#a4e606f90d749a317195ae6ed58bfca81',1,'ProtocolParser::ProtocolParser(const ProtocolParser &amp;)=delete'],['../classProtocolParser.html#a24c95541cfe1274f3ceccc1015a62526',1,'ProtocolParser::ProtocolParser(ProtocolParser &amp;&amp;)=delete']]],
-  ['publickeytopem_7',['publicKeyToPem',['../classOpensslAdapter.html#afd35523ee1fe0e32b7734ebf072dd3bf',1,'OpensslAdapter']]]
+  ['pendingnotificationrepository_5',['PendingNotificationRepository',['../classPendingNotificationRepository.html#af891b1d1034a0c4cd5c4fb7fa265e1b8',1,'PendingNotificationRepository']]],
+  ['privatekeytopem_6',['privateKeyToPem',['../classOpensslAdapter.html#ada0bf650695ab8188f3d365c6baab055',1,'OpensslAdapter']]],
+  ['protocolparser_7',['protocolparser',['../classProtocolParser.html#a1877a4b37338d4ab26681424bd78f773',1,'ProtocolParser::ProtocolParser()=default'],['../classProtocolParser.html#a4e606f90d749a317195ae6ed58bfca81',1,'ProtocolParser::ProtocolParser(const ProtocolParser &amp;)=delete'],['../classProtocolParser.html#a24c95541cfe1274f3ceccc1015a62526',1,'ProtocolParser::ProtocolParser(ProtocolParser &amp;&amp;)=delete']]],
+  ['publickeytopem_8',['publicKeyToPem',['../classOpensslAdapter.html#afd35523ee1fe0e32b7734ebf072dd3bf',1,'OpensslAdapter']]]
 ];

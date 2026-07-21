@@ -62,9 +62,9 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "AckHandler_8cpp.html",
-"classConversationListModel.html#ac6c4a9feb3a203d342de583ca01bc38ea8b7a838d1823ca83bed8148e8c598ee8",
-"classOfflineMessage.html#aab48c468f3eeba6d8f6fa5754e9d88a5",
-"structGroupRecord.html#a1c94690597a3227201f6d4856ac1d992"
+"classConversationListModel.html#a93d4759883f8df68c20757ead27c6868",
+"classNetworkManager.html#afd44b2c3ee8724a75c02fac05fb52680",
+"structGroupInfo.html#a6fb4450cc60c5c8c75fe4c340cca193a"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

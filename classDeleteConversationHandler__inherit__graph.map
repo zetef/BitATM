@@ -1,0 +1,7 @@
+<map id="DeleteConversationHandler" name="DeleteConversationHandler">
+<area shape="rect" id="Node000001" title="Handles DELETE_CONVERSATION packets (&quot;delete for everyone&quot;). L3 under BaseAuthHandler." alt="" coords="5,312,224,417"/>
+<area shape="rect" id="Node000002" href="$classBaseAuthHandler.html" title="L2 abstract handler for packet types that require an authenticated session." alt="" coords="51,199,178,264"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="117,278,117,312,112,312,112,278"/>
+<area shape="rect" id="Node000003" href="$classICommandHandler.html" title="Template Method base for all packet handlers." alt="" coords="29,5,201,151"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="117,164,117,198,112,198,112,164"/>
+</map>

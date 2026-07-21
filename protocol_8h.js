@@ -16,7 +16,8 @@ var protocol_8h =
       [ "GROUP_INVITE", "protocol_8h.html#a0a80a7bc045affcf10846075b88cbca0a71e00f1f4080ab3934f687c452894e02", null ],
       [ "GROUP_LEAVE", "protocol_8h.html#a0a80a7bc045affcf10846075b88cbca0a58cd701fa74ff4fa649ae70d1c4539d5", null ],
       [ "GROUP_INFO", "protocol_8h.html#a0a80a7bc045affcf10846075b88cbca0a95c5ce5e01569afc91da3eca654eddb6", null ],
-      [ "DELETE_GROUP", "protocol_8h.html#a0a80a7bc045affcf10846075b88cbca0aa380f1bf2dd084cc65bdc5de97f91d8d", null ]
+      [ "DELETE_GROUP", "protocol_8h.html#a0a80a7bc045affcf10846075b88cbca0aa380f1bf2dd084cc65bdc5de97f91d8d", null ],
+      [ "DELETE_CONVERSATION", "protocol_8h.html#a0a80a7bc045affcf10846075b88cbca0a0f7006b5de953e0e874ab0e087b6f24a", null ]
     ] ],
     [ "MAX_PACKET_SIZE", "protocol_8h.html#ae4d2325390b1703d2db37ab125ef43cf", null ],
     [ "PROTOCOL_VERSION", "protocol_8h.html#a70f52007f8c2408ec768efe3c27c8849", null ],

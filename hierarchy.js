@@ -30,6 +30,7 @@ var hierarchy =
       [ "BaseAuthHandler", "classBaseAuthHandler.html", [
         [ "AckHandler", "classAckHandler.html", null ],
         [ "CreateGroupHandler", "classCreateGroupHandler.html", null ],
+        [ "DeleteConversationHandler", "classDeleteConversationHandler.html", null ],
         [ "DeleteGroupHandler", "classDeleteGroupHandler.html", null ],
         [ "GroupInfoHandler", "classGroupInfoHandler.html", null ],
         [ "GroupKeyExchangeHandler", "classGroupKeyExchangeHandler.html", null ],
@@ -86,6 +87,8 @@ var hierarchy =
     [ "Packet", "structPacket.html", null ],
     [ "PacketBuilder", "classPacketBuilder.html", null ],
     [ "PacketHandlerFactory", "classPacketHandlerFactory.html", null ],
+    [ "PendingNotification", "structPendingNotification.html", null ],
+    [ "PendingNotificationRepository", "classPendingNotificationRepository.html", null ],
     [ "ProtocolParser", "classProtocolParser.html", null ],
     [ "QAbstractListModel", null, [
       [ "ChatModel", "classChatModel.html", null ],

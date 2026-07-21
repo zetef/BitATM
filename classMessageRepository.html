@@ -105,9 +105,9 @@ Inheritance diagram for MessageRepository:</div>
 <div class="dyncontent">
 <div class="center"><img src="classMessageRepository__inherit__graph.png" border="0" usemap="#aMessageRepository_inherit__map" alt="Inheritance graph"/></div>
 <map name="aMessageRepository_inherit__map" id="aMessageRepository_inherit__map">
-<area shape="rect" title="PostgreSQL&#45;backed repository for Message records." alt="" coords="5,407,183,612"/>
+<area shape="rect" title="PostgreSQL&#45;backed repository for Message records." alt="" coords="5,407,183,632"/>
 <area shape="rect" href="classBaseSqlRepository.html" title=" " alt="" coords="8,199,180,359"/>
-<area shape="poly" title=" " alt="" coords="97,373,97,407,91,407,91,373"/>
+<area shape="poly" title=" " alt="" coords="97,373,97,406,91,406,91,373"/>
 <area shape="rect" href="classIRepository.html" title="Abstract CRUD interface for a persistent store of domain objects." alt="" coords="31,5,157,151"/>
 <area shape="poly" title=" " alt="" coords="97,164,97,199,91,199,91,164"/>
 </map>
@@ -117,9 +117,9 @@ Collaboration diagram for MessageRepository:</div>
 <div class="dyncontent">
 <div class="center"><img src="classMessageRepository__coll__graph.png" border="0" usemap="#aMessageRepository_coll__map" alt="Collaboration graph"/></div>
 <map name="aMessageRepository_coll__map" id="aMessageRepository_coll__map">
-<area shape="rect" title="PostgreSQL&#45;backed repository for Message records." alt="" coords="5,407,183,612"/>
+<area shape="rect" title="PostgreSQL&#45;backed repository for Message records." alt="" coords="5,407,183,632"/>
 <area shape="rect" href="classBaseSqlRepository.html" title=" " alt="" coords="8,199,180,359"/>
-<area shape="poly" title=" " alt="" coords="97,373,97,407,91,407,91,373"/>
+<area shape="poly" title=" " alt="" coords="97,373,97,406,91,406,91,373"/>
 <area shape="rect" href="classIRepository.html" title="Abstract CRUD interface for a persistent store of domain objects." alt="" coords="31,5,157,151"/>
 <area shape="poly" title=" " alt="" coords="97,164,97,199,91,199,91,164"/>
 </map>
@@ -145,6 +145,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aa38f2f8ffa32af9b971e8772053cd827" id="r_aa38f2f8ffa32af9b971e8772053cd827"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classMessage.html">Message</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessageRepository.html#aa38f2f8ffa32af9b971e8772053cd827">findBySender</a> (const std::string &amp;sender)</td></tr>
 <tr class="memdesc:aa38f2f8ffa32af9b971e8772053cd827"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find all messages sent by a given sender.  <br /></td></tr>
 <tr class="separator:aa38f2f8ffa32af9b971e8772053cd827"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25ceeaab58a191c527628d00ce10706e" id="r_a25ceeaab58a191c527628d00ce10706e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessageRepository.html#a25ceeaab58a191c527628d00ce10706e">deleteConversation</a> (const std::string &amp;userA, const std::string &amp;userB)</td></tr>
+<tr class="memdesc:a25ceeaab58a191c527628d00ce10706e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hard-delete all messages between two users ("delete for everyone").  <br /></td></tr>
+<tr class="separator:a25ceeaab58a191c527628d00ce10706e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad7177fbea34291fcd2cb015c7b63f88a" id="r_ad7177fbea34291fcd2cb015c7b63f88a"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classMessage.html">Message</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMessageRepository.html#ad7177fbea34291fcd2cb015c7b63f88a">findAllForUser</a> (const std::string &amp;username, const std::string &amp;afterTimestamp=&quot;&quot;)</td></tr>
 <tr class="memdesc:ad7177fbea34291fcd2cb015c7b63f88a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find all messages where user is sender or recipient, with created_at strictly after the given ISO 8601 cursor. If cursor is empty, returns all messages for the user.  <br /></td></tr>
 <tr class="separator:ad7177fbea34291fcd2cb015c7b63f88a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -229,6 +232,37 @@ Additional Inherited Members</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a25ceeaab58a191c527628d00ce10706e" name="a25ceeaab58a191c527628d00ce10706e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a25ceeaab58a191c527628d00ce10706e">&#9670;&#160;</a></span>deleteConversation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MessageRepository::deleteConversation </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>userA</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>userB</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Hard-delete all messages between two users ("delete for everyone"). </p>
+<p>Deletes any offline_queue rows referencing those messages first (the FK on offline_queue.message_id has no cascade), then deletes the messages rows themselves. </p>
+
+</div>
+</div>
 <a id="aa88e1ec09b7c0dbcbe84e410b391d6d3" name="aa88e1ec09b7c0dbcbe84e410b391d6d3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa88e1ec09b7c0dbcbe84e410b391d6d3">&#9670;&#160;</a></span>findAll()</h2>
 

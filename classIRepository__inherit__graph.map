@@ -10,8 +10,8 @@
 <area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="600,151,645,197,641,200,596,155"/>
 <area shape="rect" id="Node000010" href="$classBaseSqlRepository.html" title="Abstract middle layer for PostgreSQL&#45;backed repositories." alt="" coords="831,206,1005,351"/>
 <area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="602,101,708,141,765,167,821,196,832,203,829,208,818,201,763,172,706,146,600,106"/>
-<area shape="rect" id="Node000003" href="$classMessageRepository.html" title="PostgreSQL&#45;backed repository for Message records." alt="" coords="5,427,183,632"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="108,372,104,427,98,426,102,372"/>
+<area shape="rect" id="Node000003" href="$classMessageRepository.html" title="PostgreSQL&#45;backed repository for Message records." alt="" coords="5,417,183,642"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="108,373,104,417,99,416,102,372"/>
 <area shape="rect" id="Node000005" href="$classOfflineQueueRepository.html" title="PostgreSQL&#45;backed repository for the offline_queue table." alt="" coords="207,407,427,652"/>
 <area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="322,372,321,406,316,406,317,372"/>
 <area shape="rect" id="Node000007" href="$classSessionRepository.html" title="PostgreSQL&#45;backed repository for Session records." alt="" coords="451,417,625,642"/>

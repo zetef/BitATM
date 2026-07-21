@@ -11,6 +11,7 @@ var classNetworkManager =
     [ "currentUsername", "classNetworkManager.html#aaa96a3d16f45cafb80c8242d5a1f7216", null ],
     [ "currentUsernameChanged", "classNetworkManager.html#a5a95bfdbdf91e47e8341ef89bae23b9d", null ],
     [ "deleteConversation", "classNetworkManager.html#ac08ca33cae1af5055a9d188b7ca65250", null ],
+    [ "deleteConversationForEveryone", "classNetworkManager.html#abe476751a5faba4a38db819b22241a51", null ],
     [ "deleteGroup", "classNetworkManager.html#a33e99021de03ebe32588f703e0a27cdc", null ],
     [ "disconnected", "classNetworkManager.html#a3c9d18963e77a155faf338b86927e2e5", null ],
     [ "errorOcurred", "classNetworkManager.html#a6b6ee9cf02e7df2a766d5db74c4d2125", null ],

@@ -1,75 +1,79 @@
 <map id="backend/src/DbManager.h" name="backend/src/DbManager.h">
-<area shape="rect" id="Node000001" title=" " alt="" coords="1475,5,1665,31"/>
-<area shape="rect" id="Node000002" href="$AckHandler_8cpp.html" title=" " alt="" coords="5,247,209,273"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1461,26,1266,37,1007,60,865,77,718,98,571,124,428,155,344,178,262,204,137,250,135,245,260,199,342,172,427,149,570,118,717,93,864,72,1007,55,1265,32,1461,21"/>
-<area shape="rect" id="Node000003" href="$BaseSqlRepository_8h.html" title=" " alt="" coords="919,79,1154,104"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="1471,35,1123,81,1122,76,1470,30"/>
-<area shape="rect" id="Node000005" href="$LoginHandler_8cpp.html" title=" " alt="" coords="989,247,1204,273"/>
-<area shape="poly" id="edge43_Node000001_Node000005" title=" " alt="" coords="1512,37,1375,82,1295,115,1219,154,1166,198,1110,249,1107,245,1162,194,1217,150,1293,110,1373,77,1511,32"/>
-<area shape="rect" id="Node000012" href="$Server_8cpp.html" title=" " alt="" coords="2026,247,2197,273"/>
-<area shape="poly" id="edge45_Node000001_Node000012" title=" " alt="" coords="1552,43,1539,60,1530,80,1518,112,1511,140,1512,164,1528,190,1538,197,1556,203,1610,213,1764,226,2014,237,2057,245,2056,250,2014,243,1763,231,1610,218,1555,208,1536,202,1524,194,1507,166,1505,139,1513,110,1525,78,1535,57,1547,39"/>
-<area shape="rect" id="Node000020" href="$DbManager_8cpp.html" title=" " alt="" coords="1539,79,1743,104"/>
-<area shape="poly" id="edge30_Node000001_Node000020" title=" " alt="" coords="1593,39,1631,77,1627,80,1589,43"/>
-<area shape="rect" id="Node000021" href="$DeleteGroupHandler_8cpp.html" title=" " alt="" coords="1776,159,2039,185"/>
-<area shape="poly" id="edge31_Node000001_Node000021" title=" " alt="" coords="1630,32,1692,51,1756,76,1834,118,1893,157,1890,161,1831,123,1754,81,1690,56,1628,37"/>
-<area shape="rect" id="Node000022" href="$GroupRepository_8h.html" title=" " alt="" coords="2603,79,2825,104"/>
-<area shape="poly" id="edge32_Node000001_Node000022" title=" " alt="" coords="1679,23,2603,80,2602,86,1679,29"/>
-<area shape="rect" id="Node000028" href="$ReadReceiptHandler_8cpp.html" title=" " alt="" coords="3455,159,3717,185"/>
-<area shape="poly" id="edge44_Node000001_Node000028" title=" " alt="" coords="1678,19,2180,36,2507,53,2838,76,3028,95,3215,117,3510,157,3509,162,3215,122,3027,100,2838,81,2507,58,2179,41,1678,24"/>
-<area shape="rect" id="Node000004" href="$MessageRepository_8h.html" title=" " alt="" coords="912,159,1153,185"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="1038,118,1036,159,1031,159,1033,118"/>
-<area shape="rect" id="Node000010" href="$OfflineQueueRepository_8h.html" title=" " alt="" coords="700,152,888,192"/>
-<area shape="poly" id="edge10_Node000003_Node000010" title=" " alt="" coords="989,111,853,154,852,149,987,106"/>
-<area shape="rect" id="Node000013" href="$SessionRepository_8h.html" title=" " alt="" coords="1229,159,1463,185"/>
-<area shape="poly" id="edge17_Node000003_Node000013" title=" " alt="" coords="1095,105,1302,157,1300,162,1094,110"/>
-<area shape="rect" id="Node000016" href="$UserRepository_8h.html" title=" " alt="" coords="1538,159,1751,185"/>
-<area shape="poly" id="edge23_Node000003_Node000016" title=" " alt="" coords="1139,103,1556,157,1556,162,1138,108"/>
-<area shape="poly" id="edge4_Node000004_Node000002" title=" " alt="" coords="945,189,900,195,709,211,560,217,411,225,221,243,171,250,170,245,220,237,411,219,560,212,708,205,899,189,944,184"/>
-<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="1052,194,1090,245,1086,248,1047,197"/>
-<area shape="rect" id="Node000006" href="$MessageHandler_8cpp.html" title=" " alt="" coords="445,247,684,273"/>
-<area shape="poly" id="edge6_Node000004_Node000006" title=" " alt="" coords="957,190,627,250,626,245,956,185"/>
-<area shape="rect" id="Node000007" href="$MessageRepository_8cpp.html" title=" " alt="" coords="709,247,965,273"/>
-<area shape="poly" id="edge7_Node000004_Node000007" title=" " alt="" coords="995,193,864,250,862,245,993,188"/>
-<area shape="rect" id="Node000008" href="$RegisterHandler_8cpp.html" title=" " alt="" coords="1229,247,1463,273"/>
-<area shape="poly" id="edge8_Node000004_Node000008" title=" " alt="" coords="1089,186,1305,245,1303,250,1087,191"/>
-<area shape="rect" id="Node000009" href="$SyncHistoryHandler_8cpp.html" title=" " alt="" coords="2825,247,3083,273"/>
-<area shape="poly" id="edge9_Node000004_Node000009" title=" " alt="" coords="1147,183,1218,189,1452,203,1649,210,1985,214,2321,218,2519,225,2753,237,2845,245,2845,250,2752,243,2519,230,2321,224,1985,220,1649,215,1451,208,1218,195,1146,189"/>
-<area shape="poly" id="edge11_Node000010_Node000002" title=" " alt="" coords="687,187,471,211,221,243,174,250,173,245,220,237,471,206,686,182"/>
-<area shape="poly" id="edge12_Node000010_Node000005" title=" " alt="" coords="874,193,1057,245,1056,250,873,198"/>
-<area shape="poly" id="edge13_Node000010_Node000006" title=" " alt="" coords="732,199,596,250,594,245,730,194"/>
-<area shape="poly" id="edge15_Node000010_Node000008" title=" " alt="" coords="902,190,1268,245,1267,250,901,195"/>
-<area shape="rect" id="Node000011" href="$OfflineQueueRepository_8cpp.html" title=" " alt="" coords="233,240,421,280"/>
-<area shape="poly" id="edge14_Node000010_Node000011" title=" " alt="" coords="686,196,422,244,421,239,685,190"/>
-<area shape="poly" id="edge16_Node000010_Node000012" title=" " alt="" coords="902,189,1071,204,1215,211,1460,212,1704,213,1846,221,2014,237,2060,245,2059,250,2014,243,1846,226,1704,219,1460,217,1215,217,1071,210,901,195"/>
-<area shape="poly" id="edge19_Node000013_Node000005" title=" " alt="" coords="1300,192,1131,250,1129,245,1298,187"/>
-<area shape="poly" id="edge20_Node000013_Node000008" title=" " alt="" coords="1349,199,1349,247,1343,247,1343,199"/>
-<area shape="poly" id="edge21_Node000013_Node000012" title=" " alt="" coords="1438,184,1482,189,1632,204,1748,211,1865,220,2014,237,2057,245,2056,250,2014,243,1865,225,1748,216,1631,209,1482,195,1437,189"/>
-<area shape="rect" id="Node000014" href="$BaseAuthHandler_8cpp.html" title=" " alt="" coords="1759,247,2002,273"/>
-<area shape="poly" id="edge18_Node000013_Node000014" title=" " alt="" coords="1432,184,1810,245,1809,250,1431,190"/>
-<area shape="rect" id="Node000015" href="$SessionRepository_8cpp.html" title=" " alt="" coords="1487,247,1735,273"/>
-<area shape="poly" id="edge22_Node000013_Node000015" title=" " alt="" coords="1396,186,1577,245,1575,250,1394,192"/>
-<area shape="poly" id="edge26_Node000016_Node000005" title=" " alt="" coords="1558,189,1170,250,1169,245,1558,184"/>
-<area shape="poly" id="edge27_Node000016_Node000008" title=" " alt="" coords="1592,191,1387,250,1385,245,1591,186"/>
-<area shape="poly" id="edge28_Node000016_Node000012" title=" " alt="" coords="1723,184,2014,237,2053,245,2052,250,2014,243,1722,190"/>
-<area shape="rect" id="Node000017" href="$CreateGroupHandler_8cpp.html" title=" " alt="" coords="3227,247,3489,273"/>
-<area shape="poly" id="edge24_Node000016_Node000017" title=" " alt="" coords="1722,184,1765,189,1967,206,2138,216,2429,223,2721,224,2893,228,3095,237,3227,246,3226,251,3095,243,2893,234,2721,230,2429,228,2138,221,1967,212,1764,195,1722,189"/>
-<area shape="rect" id="Node000018" href="$KeyExchangeHandler_8cpp.html" title=" " alt="" coords="2221,247,2487,273"/>
-<area shape="poly" id="edge25_Node000016_Node000018" title=" " alt="" coords="1728,184,1765,189,1987,214,2209,237,2268,245,2268,250,2208,243,1986,220,1764,195,1727,189"/>
-<area shape="rect" id="Node000019" href="$UserRepository_8cpp.html" title=" " alt="" coords="2512,247,2740,273"/>
-<area shape="poly" id="edge29_Node000016_Node000019" title=" " alt="" coords="1725,184,1765,189,1971,207,2132,214,2293,220,2500,237,2556,245,2555,250,2499,243,2293,226,2132,219,1971,212,1764,195,1724,189"/>
-<area shape="poly" id="edge33_Node000022_Node000002" title=" " alt="" coords="2589,96,2182,102,1634,112,1087,130,860,141,688,155,534,175,384,202,156,250,155,245,383,196,533,170,687,149,860,136,1087,124,1634,107,2182,96,2589,91"/>
-<area shape="poly" id="edge42_Node000022_Node000009" title=" " alt="" coords="2839,93,2986,99,3143,110,3273,126,3318,137,3342,150,3350,161,3352,172,3343,194,3326,208,3302,220,3238,237,3161,249,3084,256,3083,251,3161,244,3237,232,3300,215,3323,203,3339,190,3347,172,3345,163,3339,154,3316,142,3272,131,3142,115,2986,104,2839,98"/>
-<area shape="poly" id="edge34_Node000022_Node000017" title=" " alt="" coords="2839,93,2992,98,3156,109,3292,125,3339,136,3365,150,3377,174,3378,201,3373,227,3366,248,3361,246,3368,226,3373,201,3372,176,3361,154,3337,141,3292,130,3155,114,2992,104,2839,98"/>
-<area shape="poly" id="edge35_Node000022_Node000021" title=" " alt="" coords="2589,105,2341,126,2052,155,1991,162,1990,157,2051,149,2340,121,2589,100"/>
-<area shape="rect" id="Node000023" href="$GroupInfoHandler_8cpp.html" title=" " alt="" coords="2063,159,2307,185"/>
-<area shape="poly" id="edge36_Node000022_Node000023" title=" " alt="" coords="2624,109,2262,162,2261,157,2623,103"/>
-<area shape="rect" id="Node000024" href="$GroupKeyExchangeHandler_8cpp.html" title=" " alt="" coords="2331,152,2561,192"/>
-<area shape="poly" id="edge37_Node000022_Node000024" title=" " alt="" coords="2662,110,2511,154,2510,149,2661,105"/>
-<area shape="rect" id="Node000025" href="$GroupLeaveHandler_8cpp.html" title=" " alt="" coords="2585,159,2843,185"/>
-<area shape="poly" id="edge38_Node000022_Node000025" title=" " alt="" coords="2717,118,2717,159,2711,159,2711,118"/>
-<area shape="rect" id="Node000026" href="$GroupMessageHandler_8cpp.html" title=" " alt="" coords="2867,152,3067,192"/>
-<area shape="poly" id="edge39_Node000022_Node000026" title=" " alt="" coords="2765,106,2907,149,2906,154,2763,111"/>
-<area shape="rect" id="Node000027" href="$GroupRepository_8cpp.html" title=" " alt="" coords="3091,159,3329,185"/>
-<area shape="poly" id="edge40_Node000022_Node000027" title=" " alt="" coords="2800,104,3138,157,3137,162,2799,109"/>
-<area shape="poly" id="edge41_Node000022_Node000028" title=" " alt="" coords="2839,99,3113,120,3436,149,3500,157,3499,162,3435,155,3113,125,2839,104"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="2539,5,2728,31"/>
+<area shape="rect" id="Node000002" href="$AckHandler_8cpp.html" title=" " alt="" coords="3215,262,3419,287"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="2742,19,3076,32,3502,58,3707,77,3885,100,3958,114,4017,130,4062,146,4088,165,4117,187,4155,203,4198,214,4242,220,4321,222,4359,218,4356,218,4332,215,4205,214,3948,226,3532,257,3420,267,3419,262,3532,252,3948,220,4205,209,4333,210,4359,213,4364,220,4321,228,4242,226,4197,219,4153,208,4114,192,4085,169,4059,151,4016,135,3957,119,3884,106,3707,82,3501,63,3075,37,2742,25"/>
+<area shape="rect" id="Node000003" href="$BaseSqlRepository_8h.html" title=" " alt="" coords="1504,86,1739,111"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="2525,27,2183,47,1971,62,1758,81,1697,89,1697,83,1757,76,1970,57,2182,41,2525,22"/>
+<area shape="rect" id="Node000006" href="$LoginHandler_8cpp.html" title=" " alt="" coords="1754,262,1969,287"/>
+<area shape="poly" id="edge44_Node000001_Node000006" title=" " alt="" coords="2525,24,2339,35,2230,44,2121,58,2017,77,1925,101,1852,132,1825,149,1805,168,1799,180,1798,191,1808,217,1828,241,1848,260,1845,264,1824,245,1804,220,1793,192,1794,178,1801,165,1822,145,1850,127,1924,96,2016,72,2120,53,2230,39,2338,29,2525,19"/>
+<area shape="rect" id="Node000013" href="$Server_8cpp.html" title=" " alt="" coords="544,262,715,287"/>
+<area shape="poly" id="edge47_Node000001_Node000013" title=" " alt="" coords="2525,24,2074,40,1785,56,1492,81,1209,112,1087,133,931,169,852,192,775,219,657,264,655,259,773,214,851,187,930,164,1086,128,1209,107,1492,76,1784,51,2074,34,2525,19"/>
+<area shape="rect" id="Node000021" href="$DbManager_8cpp.html" title=" " alt="" coords="2531,86,2735,111"/>
+<area shape="poly" id="edge31_Node000001_Node000021" title=" " alt="" coords="2636,44,2636,86,2631,86,2631,44"/>
+<area shape="rect" id="Node000022" href="$DeleteGroupHandler_8cpp.html" title=" " alt="" coords="1814,174,2077,199"/>
+<area shape="poly" id="edge32_Node000001_Node000022" title=" " alt="" coords="2573,37,1993,177,1992,171,2572,31"/>
+<area shape="rect" id="Node000023" href="$GroupRepository_8h.html" title=" " alt="" coords="2943,86,3166,111"/>
+<area shape="poly" id="edge33_Node000001_Node000023" title=" " alt="" coords="2708,30,2994,83,2993,89,2707,36"/>
+<area shape="rect" id="Node000029" href="$ReadReceiptHandler_8cpp.html" title=" " alt="" coords="3811,174,4074,199"/>
+<area shape="poly" id="edge46_Node000001_Node000029" title=" " alt="" coords="2742,27,3179,76,3566,128,3867,171,3866,177,3566,133,3178,81,2741,33"/>
+<area shape="rect" id="Node000030" href="$PendingNotificationRepository_8cpp.html" title=" " alt="" coords="4150,79,4381,119"/>
+<area shape="poly" id="edge45_Node000001_Node000030" title=" " alt="" coords="2742,17,2990,21,3334,30,3730,48,4131,76,4150,78,4149,83,4130,81,3729,53,3334,36,2990,26,2742,23"/>
+<area shape="rect" id="Node000004" href="$MessageRepository_8h.html" title=" " alt="" coords="2153,174,2394,199"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="1722,111,2187,171,2186,177,1721,116"/>
+<area shape="rect" id="Node000011" href="$OfflineQueueRepository_8h.html" title=" " alt="" coords="1542,167,1730,207"/>
+<area shape="poly" id="edge11_Node000003_Node000011" title=" " alt="" coords="1628,124,1635,166,1630,167,1623,125"/>
+<area shape="rect" id="Node000014" href="$SessionRepository_8h.html" title=" " alt="" coords="943,174,1177,199"/>
+<area shape="poly" id="edge18_Node000003_Node000014" title=" " alt="" coords="1533,116,1135,177,1134,171,1532,111"/>
+<area shape="rect" id="Node000017" href="$UserRepository_8h.html" title=" " alt="" coords="1293,174,1507,199"/>
+<area shape="poly" id="edge24_Node000003_Node000017" title=" " alt="" coords="1580,119,1431,176,1429,171,1578,114"/>
+<area shape="poly" id="edge4_Node000004_Node000002" title=" " alt="" coords="2362,199,2407,204,2592,222,2737,232,3067,252,3215,263,3215,268,3066,257,2736,237,2592,227,2406,209,2361,204"/>
+<area shape="rect" id="Node000005" href="$DeleteConversationHandler_8cpp.html" title=" " alt="" coords="2543,255,2775,295"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="2339,200,2575,252,2574,257,2338,205"/>
+<area shape="poly" id="edge6_Node000004_Node000006" title=" " alt="" coords="2205,205,1917,265,1916,259,2204,200"/>
+<area shape="rect" id="Node000007" href="$MessageHandler_8cpp.html" title=" " alt="" coords="2279,262,2518,287"/>
+<area shape="poly" id="edge7_Node000004_Node000007" title=" " alt="" coords="2303,205,2383,260,2380,264,2300,209"/>
+<area shape="rect" id="Node000008" href="$MessageRepository_8cpp.html" title=" " alt="" coords="2799,262,3055,287"/>
+<area shape="poly" id="edge8_Node000004_Node000008" title=" " alt="" coords="2367,199,2407,204,2787,252,2843,259,2842,265,2786,257,2406,209,2366,204"/>
+<area shape="rect" id="Node000009" href="$RegisterHandler_8cpp.html" title=" " alt="" coords="1283,262,1517,287"/>
+<area shape="poly" id="edge9_Node000004_Node000009" title=" " alt="" coords="2151,203,2090,209,1810,231,1531,257,1475,265,1474,259,1530,252,1810,226,2089,204,2150,198"/>
+<area shape="rect" id="Node000010" href="$SyncHistoryHandler_8cpp.html" title=" " alt="" coords="3544,262,3803,287"/>
+<area shape="poly" id="edge10_Node000004_Node000010" title=" " alt="" coords="2359,199,2407,204,2695,225,2919,233,3144,239,3432,252,3544,260,3544,265,3432,257,3143,244,2919,239,2694,231,2406,209,2359,204"/>
+<area shape="poly" id="edge12_Node000011_Node000002" title=" " alt="" coords="1744,199,1803,204,2158,225,2434,232,2711,237,3067,252,3215,262,3215,268,3067,257,2711,242,2434,237,2158,230,1802,209,1743,204"/>
+<area shape="poly" id="edge13_Node000011_Node000006" title=" " alt="" coords="1699,209,1832,259,1830,264,1698,214"/>
+<area shape="poly" id="edge14_Node000011_Node000007" title=" " alt="" coords="1744,198,1803,204,2036,227,2268,252,2323,259,2322,265,2268,257,2035,232,1802,209,1743,203"/>
+<area shape="poly" id="edge16_Node000011_Node000009" title=" " alt="" coords="1572,214,1432,264,1431,259,1570,209"/>
+<area shape="rect" id="Node000012" href="$OfflineQueueRepository_8cpp.html" title=" " alt="" coords="1542,255,1730,295"/>
+<area shape="poly" id="edge15_Node000011_Node000012" title=" " alt="" coords="1639,221,1639,254,1633,254,1633,221"/>
+<area shape="poly" id="edge17_Node000011_Node000013" title=" " alt="" coords="1529,208,1519,209,1399,221,1296,227,1122,231,949,237,847,244,727,257,683,265,682,259,726,252,847,239,949,231,1122,226,1296,222,1398,215,1518,204,1528,203"/>
+<area shape="poly" id="edge20_Node000014_Node000006" title=" " alt="" coords="1191,197,1491,225,1743,252,1794,259,1793,265,1742,257,1490,231,1190,202"/>
+<area shape="poly" id="edge21_Node000014_Node000009" title=" " alt="" coords="1119,200,1355,259,1354,265,1118,205"/>
+<area shape="poly" id="edge22_Node000014_Node000013" title=" " alt="" coords="990,205,687,265,686,259,989,199"/>
+<area shape="rect" id="Node000015" href="$BaseAuthHandler_8cpp.html" title=" " alt="" coords="5,262,248,287"/>
+<area shape="poly" id="edge19_Node000014_Node000015" title=" " alt="" coords="930,199,624,223,260,257,203,265,202,259,260,252,623,217,929,194"/>
+<area shape="rect" id="Node000016" href="$SessionRepository_8cpp.html" title=" " alt="" coords="272,262,520,287"/>
+<area shape="poly" id="edge23_Node000014_Node000016" title=" " alt="" coords="954,204,532,257,478,265,477,259,532,252,954,198"/>
+<area shape="poly" id="edge27_Node000017_Node000006" title=" " alt="" coords="1476,199,1800,259,1799,265,1475,205"/>
+<area shape="poly" id="edge28_Node000017_Node000009" title=" " alt="" coords="1403,213,1403,261,1397,261,1397,213"/>
+<area shape="poly" id="edge29_Node000017_Node000013" title=" " alt="" coords="1280,201,981,229,727,257,684,265,683,259,726,252,980,224,1279,196"/>
+<area shape="rect" id="Node000018" href="$CreateGroupHandler_8cpp.html" title=" " alt="" coords="1993,262,2255,287"/>
+<area shape="poly" id="edge25_Node000017_Node000018" title=" " alt="" coords="1490,199,1531,204,1756,228,1982,252,2040,259,2040,265,1981,257,1756,234,1530,209,1489,204"/>
+<area shape="rect" id="Node000019" href="$KeyExchangeHandler_8cpp.html" title=" " alt="" coords="992,262,1259,287"/>
+<area shape="poly" id="edge26_Node000017_Node000019" title=" " alt="" coords="1351,206,1163,264,1161,259,1349,201"/>
+<area shape="rect" id="Node000020" href="$UserRepository_8cpp.html" title=" " alt="" coords="739,262,967,287"/>
+<area shape="poly" id="edge30_Node000017_Node000020" title=" " alt="" coords="1314,204,926,265,926,259,1313,199"/>
+<area shape="poly" id="edge34_Node000023_Node000002" title=" " alt="" coords="3180,103,3255,110,3329,122,3390,140,3414,151,3430,165,3438,180,3437,196,3429,210,3416,223,3382,247,3347,264,3345,259,3380,242,3413,219,3425,207,3432,194,3433,181,3426,168,3411,156,3388,145,3327,127,3254,115,3180,108"/>
+<area shape="poly" id="edge43_Node000023_Node000010" title=" " alt="" coords="3180,100,3343,107,3521,119,3671,138,3722,150,3750,165,3758,178,3758,193,3744,220,3719,245,3693,264,3690,260,3716,241,3740,217,3753,191,3753,180,3746,169,3720,155,3670,143,3521,124,3343,112,3179,106"/>
+<area shape="poly" id="edge35_Node000023_Node000018" title=" " alt="" coords="2930,111,2445,144,2233,160,2143,169,2129,190,2123,215,2124,262,2119,262,2118,215,2124,188,2140,164,2232,154,2445,138,2930,105"/>
+<area shape="poly" id="edge36_Node000023_Node000022" title=" " alt="" coords="2930,111,2489,139,2096,169,2031,177,2030,171,2096,164,2489,134,2929,105"/>
+<area shape="rect" id="Node000024" href="$GroupInfoHandler_8cpp.html" title=" " alt="" coords="3491,174,3735,199"/>
+<area shape="poly" id="edge37_Node000023_Node000024" title=" " alt="" coords="3143,111,3539,171,3539,177,3142,116"/>
+<area shape="rect" id="Node000025" href="$GroupKeyExchangeHandler_8cpp.html" title=" " alt="" coords="2419,167,2648,207"/>
+<area shape="poly" id="edge38_Node000023_Node000025" title=" " alt="" coords="2972,116,2648,169,2647,164,2971,111"/>
+<area shape="rect" id="Node000026" href="$GroupLeaveHandler_8cpp.html" title=" " alt="" coords="2672,174,2931,199"/>
+<area shape="poly" id="edge39_Node000023_Node000026" title=" " alt="" coords="3009,118,2836,176,2835,171,3007,113"/>
+<area shape="rect" id="Node000027" href="$GroupMessageHandler_8cpp.html" title=" " alt="" coords="2955,167,3155,207"/>
+<area shape="poly" id="edge40_Node000023_Node000027" title=" " alt="" coords="3057,125,3057,166,3052,166,3052,125"/>
+<area shape="rect" id="Node000028" href="$GroupRepository_8cpp.html" title=" " alt="" coords="3179,174,3416,199"/>
+<area shape="poly" id="edge41_Node000023_Node000028" title=" " alt="" coords="3101,113,3266,171,3264,176,3099,119"/>
+<area shape="poly" id="edge42_Node000023_Node000029" title=" " alt="" coords="3180,107,3461,132,3792,164,3855,171,3855,177,3792,169,3460,137,3180,113"/>
 </map>

@@ -8,5 +8,5 @@ var searchData=
   ['timestamputil_2eh_5',['TimestampUtil.h',['../TimestampUtil_8h.html',1,'']]],
   ['to_6',['to',['../structPacket.html#ade008e6fbe56f0f663ffcc1f36f32b9a',1,'Packet']]],
   ['touchar_7',['touchar',['../classOpensslAdapter.html#a435f91eb88a517389a2fec92cc942dc2',1,'OpensslAdapter::toUChar(const QByteArray &amp;ba)'],['../classOpensslAdapter.html#a5cbd3639d0e7ab9d5e0041da8be531e9',1,'OpensslAdapter::toUChar(QByteArray &amp;ba)']]],
-  ['type_8',['type',['../structPacket.html#aebbae2cef32f967d0bbcabbe41dae6bf',1,'Packet']]]
+  ['type_8',['type',['../structPendingNotification.html#aa19aa6e2672214c8be6593d8a5de5771',1,'PendingNotification::type'],['../structPacket.html#aebbae2cef32f967d0bbcabbe41dae6bf',1,'Packet::type']]]
 ];

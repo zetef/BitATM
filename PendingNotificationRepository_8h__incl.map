@@ -1,0 +1,19 @@
+<map id="backend/src/PendingNotificationRepository.h" name="backend/src/PendingNotificationRepository.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,236,45"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="73,240,131,265"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="106,47,91,69,79,94,74,130,77,166,94,227,89,228,72,167,69,129,74,93,86,66,102,44"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="89,93,152,119"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="123,46,123,79,118,79,118,46"/>
+<area shape="rect" id="Node000004" href="$protocol_8h.html" title=" " alt="" coords="176,93,348,119"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="156,43,230,84,228,89,153,48"/>
+<area shape="poly" id="edge6_Node000004_Node000002" title=" " alt="" coords="211,121,168,139,147,152,129,168,114,196,107,226,101,225,109,194,125,165,144,148,165,135,209,116"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="139,167,206,192"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="249,121,200,160,196,156,246,117"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="230,167,310,192"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="266,119,270,153,265,153,261,119"/>
+<area shape="rect" id="Node000007" href="$AppException_8h.html" title=" " alt="" coords="334,167,457,192"/>
+<area shape="poly" id="edge7_Node000004_Node000007" title=" " alt="" coords="285,116,363,158,360,162,282,121"/>
+<area shape="poly" id="edge9_Node000007_Node000002" title=" " alt="" coords="349,195,145,244,144,238,348,189"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="352,240,439,265"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="398,192,398,226,393,226,393,192"/>
+</map>

@@ -11,6 +11,6 @@ var searchData=
   ['basesqlrepository_3c_20offlinemessage_20_3e_8',['BaseSqlRepository&lt; OfflineMessage &gt;',['../classBaseSqlRepository.html',1,'']]],
   ['basesqlrepository_3c_20session_20_3e_9',['BaseSqlRepository&lt; Session &gt;',['../classBaseSqlRepository.html',1,'']]],
   ['basesqlrepository_3c_20user_20_3e_10',['BaseSqlRepository&lt; User &gt;',['../classBaseSqlRepository.html',1,'']]],
-  ['body_11',['body',['../structPacket.html#ada78c8572a1e66220e361f274f8cc953',1,'Packet']]],
+  ['body_11',['body',['../structPendingNotification.html#a90bae5ecb263c08d9639bb443a73780e',1,'PendingNotification::body'],['../structPacket.html#ada78c8572a1e66220e361f274f8cc953',1,'Packet::body']]],
   ['build_12',['build',['../classPacketBuilder.html#a20f3e56b3173fa11b66dbade7962c51a',1,'PacketBuilder']]]
 ];
