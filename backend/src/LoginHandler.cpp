@@ -239,6 +239,8 @@ void LoginHandler::flushPendingNotifications(const std::string& username, Client
         fwd.from = n.fromUser;
         fwd.to = username;
         fwd.body = n.body;
+        fwd.errorMsg = n.errorMsg;
+        fwd.key = n.packetKey;
         try {
             session.send(fwd);
         } catch (const NetworkException& e) {

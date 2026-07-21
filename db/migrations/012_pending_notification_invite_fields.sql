@@ -1,0 +1,2 @@
+ALTER TABLE pending_notifications ADD COLUMN IF NOT EXISTS error_msg VARCHAR(128) NOT NULL DEFAULT '';
+ALTER TABLE pending_notifications ADD COLUMN IF NOT EXISTS packet_key TEXT NOT NULL DEFAULT '';
