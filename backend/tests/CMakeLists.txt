@@ -66,3 +66,9 @@ add_executable(pending_notification_repository_test PendingNotificationRepositor
 set_target_properties(pending_notification_repository_test PROPERTIES AUTOMOC ON)
 target_link_libraries(pending_notification_repository_test PRIVATE Qt6::Test bitatm-backend-lib)
 add_test(NAME PendingNotificationRepositoryTest COMMAND pending_notification_repository_test)
+
+# MessageRepository::deleteConversation ("delete for everyone" server-side cleanup)
+add_executable(message_repository_test MessageRepositoryTest.cpp)
+set_target_properties(message_repository_test PROPERTIES AUTOMOC ON)
+target_link_libraries(message_repository_test PRIVATE Qt6::Test bitatm-backend-lib)
+add_test(NAME MessageRepositoryTest COMMAND message_repository_test)

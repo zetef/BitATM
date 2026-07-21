@@ -28,6 +28,15 @@ public:
     std::vector<Message> findBySender(const std::string& sender);
 
     /**
+     * @brief Hard-delete all messages between two users ("delete for everyone").
+     *
+     * Deletes any offline_queue rows referencing those messages first (the
+     * FK on offline_queue.message_id has no cascade), then deletes the
+     * messages rows themselves.
+     */
+    void deleteConversation(const std::string& userA, const std::string& userB);
+
+    /**
      * @brief Find all messages where user is sender or recipient,
      *        with created_at strictly after the given ISO 8601 cursor.
      *        If cursor is empty, returns all messages for the user.
