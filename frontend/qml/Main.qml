@@ -57,7 +57,7 @@ ApplicationWindow {
 
         function onMessageDecrypted(from, plaintext, timestamp) {
             chatModel.appendAndCache(from, from, plaintext, timestamp, false)
-            convListModel.addOrUpdate(from, plaintext, timestamp)
+            convListModel.addOrUpdate(from, plaintext, timestamp, from !== root.activePeer)
             if (from === root.activePeer) {
                 networkManager.markConversationRead(from)
             }
@@ -88,8 +88,9 @@ ApplicationWindow {
             chatModel.updateStatus(groupId, timestamp, "delivered", true)
         }
 
-        function onConvListUpdated(peer, lastMessage, lastTimestamp) {
+        function onConvListUpdated(peer, lastMessage, lastTimestamp, unreadCount) {
             convListModel.addOrUpdate(peer, lastMessage, lastTimestamp)
+            convListModel.setUnreadCount(peer, unreadCount)
         }
 
         function onConversationDeleted(peer) {
@@ -106,7 +107,8 @@ ApplicationWindow {
 
         function onGroupMessageDecrypted(groupId, sender, plaintext, timestamp, isOutgoing) {
             chatModel.appendAndCache(groupId, sender, plaintext, timestamp, isOutgoing)
-            convListModel.addOrUpdateGroup(groupId, "", plaintext, timestamp)
+            convListModel.addOrUpdateGroup(groupId, "", plaintext, timestamp,
+                                           !isOutgoing && groupId !== root.activePeer)
             if (!isOutgoing && groupId === root.activePeer) {
                 networkManager.markConversationRead(groupId)
             }
@@ -121,8 +123,9 @@ ApplicationWindow {
             chatModel.appendAndCache(groupId, sender, content, timestamp, isOutgoing, status)
         }
 
-        function onGroupConvUpdated(groupId, groupName, lastMessage, lastTimestamp) {
+        function onGroupConvUpdated(groupId, groupName, lastMessage, lastTimestamp, unreadCount) {
             convListModel.addOrUpdateGroup(groupId, groupName, lastMessage, lastTimestamp)
+            convListModel.setUnreadCount(groupId, unreadCount)
         }
 
         function onGroupInfoReceived(groupId, groupName, members) {

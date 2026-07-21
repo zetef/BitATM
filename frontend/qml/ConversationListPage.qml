@@ -169,6 +169,19 @@ Rectangle {
                     }
                 }
 
+                Label {
+                    id: unreadBadge
+                    visible: model.unreadCount > 0 && !convDelegate.hovered
+                    anchors.right: parent.right
+                    anchors.rightMargin: 10
+                    anchors.verticalCenter: parent.verticalCenter
+                    text: "[" + (model.unreadCount > 99 ? "99+" : model.unreadCount) + "]"
+                    color: "#00ff41"
+                    font.pixelSize: 11
+                    font.bold: true
+                    font.family: "Monospace"
+                }
+
                 Button {
                     id: deleteBtn
                     anchors.right: parent.right
@@ -226,6 +239,7 @@ Rectangle {
         convListPage.peerSelected(peer)
         chatModel.switchConversation(peer)
         networkManager.markConversationRead(peer)
+        convListModel.markRead(peer)
         networkManager.fetchPeerKey(peer)
         newChatInput.text = ""
         if (convListPage.isMobile && convListPage.stackView !== null) {
@@ -238,6 +252,7 @@ Rectangle {
         convListPage.peerSelected(groupId)
         chatModel.switchConversation(groupId)
         networkManager.markConversationRead(groupId)
+        convListModel.markRead(groupId)
         networkManager.fetchGroupInfo(groupId)
         if (convListPage.isMobile && convListPage.stackView !== null) {
             convListPage.stackView.push(convListPage.chatPageComponent)

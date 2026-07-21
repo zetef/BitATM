@@ -5,6 +5,7 @@
 #include "../../common/AppException.h"
 #include "ClientSession.h"
 #include "GroupRepository.h"
+#include "PendingNotificationRepository.h"
 #include "Server.h"
 
 /** @brief Parse a pipe-separated key map into (username, encryptedKey) pairs. */
@@ -67,29 +68,70 @@ void GroupKeyExchangeHandler::execute(Packet& packet, ClientSession& session) {
     if (keyPairs.empty())
         throw ProtocolException("GROUP_KEY_EXCHANGE: no valid key pairs found in key field");
 
+    bool newMemberAdded = false;
     if (keyPairs.size() == 1) {
-        // Single-member add
-        repo.saveKey(groupId, keyPairs[0].first, keyPairs[0].second);
+        // Single-member add. Only insert group_members if they aren't already
+        // a member - this path is also reachable in principle for a lone key
+        // refresh, and re-adding must never demote an existing admin/creator.
+        const std::string& newMember = keyPairs[0].first;
+        newMemberAdded = repo.getMemberRole(groupId, newMember).empty();
+        if (newMemberAdded) repo.addMember(groupId, newMember, "member");
+        repo.saveKey(groupId, newMember, keyPairs[0].second);
     } else {
         // Full rotation after kick
         repo.replaceAllKeys(groupId, keyPairs);
     }
 
-    // Notify each affected member with their individual key
+    // A brand-new member must be told via GROUP_INVITE - the same shape
+    // CreateGroupHandler uses - so their client saves the group locally and
+    // adds it to the sidebar. A plain GROUP_KEY_EXCHANGE only stores the key
+    // silently and never surfaces a group the recipient didn't already know
+    // about (existing members being re-keyed after a kick already know the
+    // group, so they keep getting GROUP_KEY_EXCHANGE).
+    std::string groupName;
+    if (newMemberAdded) {
+        auto group = repo.findGroupById(groupId);
+        groupName = group ? group->name : "";
+    }
+
+    // Notify each affected member with their individual key. A new member who
+    // is offline gets the GROUP_INVITE queued for delivery on their next
+    // login, exactly like the offline paths for delete-conversation and
+    // group-delete - otherwise they'd never learn about the group at all.
+    PendingNotificationRepository pendingRepo;
     for (const auto& [user, key] : keyPairs) {
+        const bool isNewMemberNotif = newMemberAdded && user == keyPairs[0].first;
         auto peerSession = _server.findClient(user);
-        if (!peerSession) continue;
+
+        if (!peerSession) {
+            if (isNewMemberNotif)
+                pendingRepo.queue(user, PacketType::GROUP_INVITE, actorName, packet.to, groupName,
+                                  key);
+            continue;
+        }
 
         Packet resp;
-        resp.type = PacketType::GROUP_KEY_EXCHANGE;
-        resp.from = actorName;
-        resp.to = packet.to;  // group_id as string
-        resp.key = key;
-        resp.body = user;  // recipient username so client can verify
+        if (isNewMemberNotif) {
+            resp.type = PacketType::GROUP_INVITE;
+            resp.from = actorName;
+            resp.to = user;
+            resp.errorMsg = groupName;
+            resp.body = packet.to;  // group_id as string
+            resp.key = key;
+        } else {
+            resp.type = PacketType::GROUP_KEY_EXCHANGE;
+            resp.from = actorName;
+            resp.to = packet.to;  // group_id as string
+            resp.key = key;
+            resp.body = user;  // recipient username so client can verify
+        }
         try {
             peerSession->send(resp);
         } catch (const NetworkException&) {
-            // recipient disconnected - skip silently
+            // recipient disconnected mid-send - queue the invite so it's not lost
+            if (isNewMemberNotif)
+                pendingRepo.queue(user, PacketType::GROUP_INVITE, actorName, packet.to, groupName,
+                                  key);
         }
     }
 }

@@ -94,6 +94,9 @@ public:
     /** @brief Creator: grant admin role to a member. */
     Q_INVOKABLE void grantAdmin(const QString& groupId, const QString& username);
 
+    /** @brief Creator: revoke admin role from a member, demoting them back to member. */
+    Q_INVOKABLE void revokeAdmin(const QString& groupId, const QString& username);
+
     /** @brief Leave a group voluntarily. */
     Q_INVOKABLE void leaveGroup(const QString& groupId);
 
@@ -177,6 +180,13 @@ signals:
     void groupMessageDelivered(const QString& groupId, const QString& timestamp);
 
     /**
+     * @brief Fires on every individual per-member delivered/seen update for a
+     *        group message, not just when the whole-group aggregate completes -
+     *        lets an open message info sheet refresh its per-member breakdown live.
+     */
+    void groupReceiptUpdated(const QString& groupId, const QString& timestamp);
+
+    /**
      * @brief Emitted once per stored message during local history load on login.
      *
      * QML handles this to populate chatModel and convListModel from local storage
@@ -198,9 +208,10 @@ signals:
      * @param peer          The peer username.
      * @param lastMessage   Latest message content.
      * @param lastTimestamp ISO 8601 timestamp of the latest message.
+     * @param unreadCount   Persisted unread badge count for this conversation.
      */
     void convListUpdated(const QString& peer, const QString& lastMessage,
-                         const QString& lastTimestamp);
+                         const QString& lastTimestamp, int unreadCount);
 
     /** @brief Emitted when the server sends a GROUP_INVITE packet for the current user. */
     void groupInviteReceived(const QString& groupId, const QString& groupName);
@@ -226,7 +237,8 @@ signals:
 
     /** @brief Emitted once per group during local history load for sidebar population. */
     void groupConvUpdated(const QString& groupId, const QString& groupName,
-                          const QString& lastMessage, const QString& lastTimestamp);
+                          const QString& lastMessage, const QString& lastTimestamp,
+                          int unreadCount);
 
 private slots:
     void onConnected();

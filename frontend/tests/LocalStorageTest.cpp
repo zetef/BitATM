@@ -14,7 +14,7 @@ class LocalStorageTest : public QObject {
 private slots:
     void initTestCase() {
         QStandardPaths::setTestModeEnabled(true);
-        QVERIFY(LocalStorage::instance().open());
+        QVERIFY(LocalStorage::instance().openForUser("test_user"));
     }
 
     void cleanupTestCase() { LocalStorage::instance().close(); }
@@ -115,6 +115,32 @@ private slots:
         ls.deleteConversation(peer);
 
         QVERIFY(ls.loadMessages(peer).isEmpty());
+    }
+
+    /** @brief Different accounts get different files; switching preserves each account's data. */
+    void perAccountIsolationAndPersistence() {
+        auto& ls = LocalStorage::instance();
+
+        QVERIFY(ls.openForUser("account_a"));
+        ls.saveMessage("peer_x", "account_a", "Message from A", "2026-07-21T12:00:00.000Z", false);
+        QVERIFY(!ls.loadMessages("peer_x").isEmpty());
+
+        ls.close();
+        QVERIFY(ls.openForUser("account_b"));
+        QVERIFY(ls.loadMessages("peer_x").isEmpty());
+
+        ls.close();
+        QVERIFY(ls.openForUser("account_a"));
+        QList<MessageRecord> msgs = ls.loadMessages("peer_x");
+        bool found = false;
+        for (const auto& m : msgs) {
+            if (m.content == "Message from A") found = true;
+        }
+        QVERIFY(found);
+
+        // Restore the shared connection the other tests in this file depend on.
+        ls.close();
+        QVERIFY(ls.openForUser("test_user"));
     }
 };
 

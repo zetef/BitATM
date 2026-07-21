@@ -12,6 +12,8 @@ struct PendingNotification {
     PacketType type;
     std::string fromUser;
     std::string body;
+    std::string errorMsg;
+    std::string packetKey;
 };
 
 /**
@@ -35,9 +37,12 @@ public:
      * @param type Packet type to reconstruct on flush.
      * @param fromUser Value for the reconstructed packet's `from` field.
      * @param body Value for the reconstructed packet's `body` field (e.g. group id).
+     * @param errorMsg Value for the reconstructed packet's `errorMsg` field (e.g. group name).
+     * @param packetKey Value for the reconstructed packet's `key` field (e.g. wrapped AES key).
      */
     void queue(const std::string& recipient, PacketType type, const std::string& fromUser,
-               const std::string& body = "");
+               const std::string& body = "", const std::string& errorMsg = "",
+               const std::string& packetKey = "");
 
     /**
      * @brief Return all pending notifications for a recipient and delete them.

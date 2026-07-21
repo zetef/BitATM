@@ -4,15 +4,10 @@
 
 #include "ChatModel.h"
 #include "ConversationListModel.h"
-#include "LocalStorage.h"
 #include "NetworkManager.h"
 
 int main(int argc, char* argv[]) {
     QGuiApplication app(argc, argv);
-
-    if (!LocalStorage::instance().open()) {
-        qWarning() << "Failed to open local message cache - history will not persist";
-    }
 
     NetworkManager net;
     ChatModel chatModel;

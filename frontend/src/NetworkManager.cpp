@@ -172,7 +172,7 @@ void NetworkManager::loadLocalHistory() {
             emit historySyncMessage(m.peer, m.sender, m.content, m.timestamp, m.isOutgoing,
                                     m.status);
         }
-        emit convListUpdated(c.peer, c.lastMessage, c.lastTimestamp);
+        emit convListUpdated(c.peer, c.lastMessage, c.lastTimestamp, c.unreadCount);
     }
     qCInfo(logChat) << "Loaded local history:" << convs.size() << "conversations";
 
@@ -188,7 +188,7 @@ void NetworkManager::loadLocalHistory() {
             emit groupHistorySyncMessage(m.groupId, m.sender, m.content, m.timestamp, m.isOutgoing,
                                          m.status);
         }
-        emit groupConvUpdated(g.groupId, g.name, g.lastMessage, g.lastTimestamp);
+        emit groupConvUpdated(g.groupId, g.name, g.lastMessage, g.lastTimestamp, g.unreadCount);
     }
     qCInfo(logChat) << "Loaded local group history:" << groups.size() << "groups";
 }
@@ -202,22 +202,21 @@ void NetworkManager::persistMessage(const QString& peer, const QString& sender,
 
 void NetworkManager::handleLoginAck(const Packet& p) {
     _hasError = false;
+    const QString previousUsername = _currentUsername;
     _currentUsername = QString::fromStdString(p.to);
     _lastMessage = "Logged in as " + _currentUsername;
     emit currentUsernameChanged();
 
-    QSettings settings("BitATM", "BitATM");
-
-    // Clear local cache if a different user is logging in to prevent data leakage
-    const QString lastUser = settings.value("session/lastUsername").toString();
-    if (!lastUser.isEmpty() && lastUser != _currentUsername) {
-        LocalStorage::instance().clearAllData();
-        qCInfo(logNetwork) << "User switched from" << lastUser << "to" << _currentUsername
-                           << "- local cache cleared";
+    if (!previousUsername.isEmpty() && previousUsername != _currentUsername) {
+        LocalStorage::instance().close();
     }
-    settings.setValue("session/lastUsername", _currentUsername);
+    if (!LocalStorage::instance().openForUser(_currentUsername)) {
+        qCWarning(logNetwork) << "Failed to open local cache for" << _currentUsername
+                              << "- history will not persist";
+    }
 
     if (_pendingRegister) {
+        QSettings settings("BitATM", "BitATM");
         settings.remove("history/" + _currentUsername);
         _pendingRegister = false;
     }
@@ -325,6 +324,7 @@ void NetworkManager::handleReadReceipt(const Packet& p) {
         // v2: per-member row update; the aggregate decides when the bubble
         // flips. First-receipt-wins v1 behavior is gone.
         LocalStorage::instance().markRecipientSeen(to, ts, reader);
+        emit groupReceiptUpdated(to, ts);
         recomputeGroupAggregate(to, ts);
         return;
     }
@@ -343,6 +343,7 @@ void NetworkManager::handleGroupDelivered(const Packet& p) {
     const QString member = QString::fromStdString(p.from);
     const QString ts = TimestampUtil::canonical(QString::fromStdString(p.body));
     LocalStorage::instance().markRecipientDelivered(groupId, ts, member);
+    emit groupReceiptUpdated(groupId, ts);
     recomputeGroupAggregate(groupId, ts);
 }
 
@@ -406,6 +407,7 @@ void NetworkManager::handleKeyExchangeResponse(const Packet& p) {
 }
 
 void NetworkManager::logout() {
+    LocalStorage::instance().close();
     _currentUsername.clear();
     _ownPrivKey.clear();
     _ownPubKey.clear();
@@ -545,6 +547,16 @@ void NetworkManager::grantAdmin(const QString& groupId, const QString& username)
     p.from = _currentUsername.toStdString();
     p.to = groupId.toStdString();
     p.body = "grant_admin";
+    p.key = username.toStdString();
+    sendPacket(p);
+}
+
+void NetworkManager::revokeAdmin(const QString& groupId, const QString& username) {
+    Packet p;
+    p.type = PacketType::GROUP_INFO;
+    p.from = _currentUsername.toStdString();
+    p.to = groupId.toStdString();
+    p.body = "revoke_admin";
     p.key = username.toStdString();
     sendPacket(p);
 }
@@ -710,7 +722,10 @@ void NetworkManager::handleGroupInfo(const Packet& p) {
     QStringList usernames;
     for (const QVariant& mv : members) usernames << mv.toMap().value("username").toString();
     const QStringList affected = LocalStorage::instance().removeRecipientsNotIn(groupId, usernames);
-    for (const QString& t : affected) recomputeGroupAggregate(groupId, t);
+    for (const QString& t : affected) {
+        emit groupReceiptUpdated(groupId, t);
+        recomputeGroupAggregate(groupId, t);
+    }
 
     emit groupInfoReceived(groupId, groupName, members);
 }
