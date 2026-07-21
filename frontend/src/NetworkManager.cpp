@@ -819,6 +819,18 @@ void NetworkManager::onDisconnected() {
     emit connectionChanged();
     emit disconnected();
 
+    // The auto-reconnect below only reopens the raw socket - it never re-sends
+    // LOGIN, so the server treats the new connection as a fresh, unauthenticated
+    // ClientSession (its own disconnect handling already deactivated the old
+    // session token). Without this, _currentUsername stayed set across the drop
+    // and the UI kept behaving as if still logged in while every authenticated
+    // request (send message, group key recovery) silently failed server-side
+    // with no visible error. Clearing it forces a real re-login once reconnected.
+    if (!_currentUsername.isEmpty()) {
+        _currentUsername.clear();
+        emit currentUsernameChanged();
+    }
+
     if (!_serverUrl.isEmpty()) {
         QTimer::singleShot(2000, this, [this]() {
             if (!isConnected()) {
