@@ -613,6 +613,21 @@ void NetworkManager::handleGroupInvite(const Packet& p) {
         LocalStorage::instance().saveGroup(groupId, groupName, "member");
         LocalStorage::instance().saveGroupKey(groupId, QString::fromLatin1(aesKey.toBase64()));
         emit groupInviteReceived(groupId, groupName);
+
+        // The backend now also replies with GROUP_INVITE (not a bare
+        // GROUP_KEY_EXCHANGE) for key-recovery requests, so this handler must
+        // mirror handleGroupKeyExchange()'s cleanup: clear the in-flight guard
+        // and drain anything that was buffered waiting on this group's key.
+        _pendingGroupKeyRequests.remove(groupId);
+        emit groupKeyUpdated(groupId);
+        if (_pendingGroupPackets.contains(groupId)) {
+            const QList<Packet> buffered = _pendingGroupPackets.take(groupId);
+            for (const Packet& bp : buffered) handleGroupMessage(bp);
+        }
+        if (_pendingGroupSends.contains(groupId)) {
+            const QList<QPair<QString, QString>> sends = _pendingGroupSends.take(groupId);
+            for (const auto& [msg, ts] : sends) sendGroupMessage(groupId, msg, ts);
+        }
     } catch (const std::exception& e) {
         qWarning() << "handleGroupInvite: decrypt failed:" << e.what();
     }
