@@ -54,6 +54,14 @@ public:
     /** @brief Reset the unread badge for a conversation (peer or groupId) to zero. */
     Q_INVOKABLE void markRead(const QString& peer);
 
+    /**
+     * @brief Set the unread badge to an exact value, in memory only.
+     *
+     * Used to seed the badge from the persisted LocalStorage count during
+     * local history load - does not itself write back to LocalStorage.
+     */
+    Q_INVOKABLE void setUnreadCount(const QString& peer, int count);
+
     /** @brief Removes all entries from the model. */
     Q_INVOKABLE void clear();
 

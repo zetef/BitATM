@@ -86,6 +86,8 @@ bool LocalStorage::createSchema() {
         qCWarning(logStorage) << "Create conversations table failed:" << q.lastError().text();
         return false;
     }
+    // Upgrade pre-existing caches in place; failure just means the column exists
+    q.exec("ALTER TABLE conversations ADD COLUMN unread_count INTEGER NOT NULL DEFAULT 0");
 
     bool ok = q.exec(
         "CREATE TABLE IF NOT EXISTS group_messages ("
@@ -126,6 +128,8 @@ bool LocalStorage::createSchema() {
         qWarning() << "LocalStorage: schema error (groups):" << q.lastError().text();
         return false;
     }
+    // Upgrade pre-existing caches in place; failure just means the column exists
+    q.exec("ALTER TABLE groups ADD COLUMN unread_count INTEGER NOT NULL DEFAULT 0");
 
     q.exec(
         "CREATE UNIQUE INDEX IF NOT EXISTS idx_gm_dedup ON group_messages(group_id, sender, "
@@ -221,7 +225,7 @@ void LocalStorage::saveConversation(const QString& peer, const QString& lastMess
 QList<ConversationRecord> LocalStorage::loadConversations() {
     QSqlQuery q(_db);
     QList<ConversationRecord> result;
-    if (!q.exec("SELECT peer, last_message, last_timestamp FROM conversations "
+    if (!q.exec("SELECT peer, last_message, last_timestamp, unread_count FROM conversations "
                 "ORDER BY last_timestamp DESC")) {
         qCWarning(logStorage) << "loadConversations failed:" << q.lastError().text();
         return result;
@@ -232,9 +236,24 @@ QList<ConversationRecord> LocalStorage::loadConversations() {
         r.peer = q.value(0).toString();
         r.lastMessage = q.value(1).toString();
         r.lastTimestamp = q.value(2).toString();
+        r.unreadCount = q.value(3).toInt();
         result.append(r);
     }
     return result;
+}
+
+void LocalStorage::incrementUnread(const QString& peer) {
+    QSqlQuery q(_db);
+    q.prepare("UPDATE conversations SET unread_count = unread_count + 1 WHERE peer=?");
+    q.addBindValue(peer);
+    if (!q.exec()) qCWarning(logStorage) << "incrementUnread failed:" << q.lastError().text();
+}
+
+void LocalStorage::resetUnread(const QString& peer) {
+    QSqlQuery q(_db);
+    q.prepare("UPDATE conversations SET unread_count = 0 WHERE peer=?");
+    q.addBindValue(peer);
+    if (!q.exec()) qCWarning(logStorage) << "resetUnread failed:" << q.lastError().text();
 }
 
 QString LocalStorage::newestTimestamp() {
@@ -279,6 +298,17 @@ void LocalStorage::saveGroupMessage(const QString& groupId, const QString& sende
     q.addBindValue(timestamp);
     q.addBindValue(isOutgoing ? 1 : 0);
     if (!q.exec()) qWarning() << "saveGroupMessage:" << q.lastError().text();
+
+    // Keep the sidebar preview (groups.last_message/last_timestamp) current -
+    // this was previously never written, so the preview only ever reflected
+    // in-memory state and vanished on every restart.
+    QSqlQuery summary(_db);
+    summary.prepare("UPDATE groups SET last_message=?, last_timestamp=? WHERE group_id=?");
+    summary.addBindValue(content);
+    summary.addBindValue(timestamp);
+    summary.addBindValue(groupId);
+    if (!summary.exec())
+        qWarning() << "saveGroupMessage (summary update):" << summary.lastError().text();
 }
 
 QList<GroupMessageRecord> LocalStorage::loadGroupMessages(const QString& groupId) {
@@ -344,9 +374,23 @@ void LocalStorage::saveGroup(const QString& groupId, const QString& name, const 
     if (!q.exec()) qWarning() << "saveGroup:" << q.lastError().text();
 }
 
+void LocalStorage::incrementGroupUnread(const QString& groupId) {
+    QSqlQuery q(_db);
+    q.prepare("UPDATE groups SET unread_count = unread_count + 1 WHERE group_id=?");
+    q.addBindValue(groupId);
+    if (!q.exec()) qWarning() << "incrementGroupUnread failed:" << q.lastError().text();
+}
+
+void LocalStorage::resetGroupUnread(const QString& groupId) {
+    QSqlQuery q(_db);
+    q.prepare("UPDATE groups SET unread_count = 0 WHERE group_id=?");
+    q.addBindValue(groupId);
+    if (!q.exec()) qWarning() << "resetGroupUnread failed:" << q.lastError().text();
+}
+
 QList<GroupRecord> LocalStorage::loadGroups() {
     QSqlQuery q(
-        "SELECT group_id,name,role,last_message,last_timestamp FROM groups "
+        "SELECT group_id,name,role,last_message,last_timestamp,unread_count FROM groups "
         "ORDER BY last_timestamp DESC",
         _db);
     QList<GroupRecord> result;
@@ -357,6 +401,7 @@ QList<GroupRecord> LocalStorage::loadGroups() {
         r.role = q.value(2).toString();
         r.lastMessage = q.value(3).toString();
         r.lastTimestamp = q.value(4).toString();
+        r.unreadCount = q.value(5).toInt();
         result.append(r);
     }
     return result;

@@ -88,8 +88,9 @@ ApplicationWindow {
             chatModel.updateStatus(groupId, timestamp, "delivered", true)
         }
 
-        function onConvListUpdated(peer, lastMessage, lastTimestamp) {
+        function onConvListUpdated(peer, lastMessage, lastTimestamp, unreadCount) {
             convListModel.addOrUpdate(peer, lastMessage, lastTimestamp)
+            convListModel.setUnreadCount(peer, unreadCount)
         }
 
         function onConversationDeleted(peer) {
@@ -122,8 +123,9 @@ ApplicationWindow {
             chatModel.appendAndCache(groupId, sender, content, timestamp, isOutgoing, status)
         }
 
-        function onGroupConvUpdated(groupId, groupName, lastMessage, lastTimestamp) {
+        function onGroupConvUpdated(groupId, groupName, lastMessage, lastTimestamp, unreadCount) {
             convListModel.addOrUpdateGroup(groupId, groupName, lastMessage, lastTimestamp)
+            convListModel.setUnreadCount(groupId, unreadCount)
         }
 
         function onGroupInfoReceived(groupId, groupName, members) {

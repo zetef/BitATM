@@ -208,9 +208,10 @@ signals:
      * @param peer          The peer username.
      * @param lastMessage   Latest message content.
      * @param lastTimestamp ISO 8601 timestamp of the latest message.
+     * @param unreadCount   Persisted unread badge count for this conversation.
      */
     void convListUpdated(const QString& peer, const QString& lastMessage,
-                         const QString& lastTimestamp);
+                         const QString& lastTimestamp, int unreadCount);
 
     /** @brief Emitted when the server sends a GROUP_INVITE packet for the current user. */
     void groupInviteReceived(const QString& groupId, const QString& groupName);
@@ -236,7 +237,8 @@ signals:
 
     /** @brief Emitted once per group during local history load for sidebar population. */
     void groupConvUpdated(const QString& groupId, const QString& groupName,
-                          const QString& lastMessage, const QString& lastTimestamp);
+                          const QString& lastMessage, const QString& lastTimestamp,
+                          int unreadCount);
 
 private slots:
     void onConnected();

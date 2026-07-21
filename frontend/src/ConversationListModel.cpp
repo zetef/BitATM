@@ -2,6 +2,8 @@
 
 #include <algorithm>
 
+#include "LocalStorage.h"
+
 ConversationListModel::ConversationListModel(QObject* parent) : QAbstractListModel(parent) {}
 
 void ConversationListModel::addOrUpdate(const QString& username, const QString& lastMessage,
@@ -12,7 +14,10 @@ void ConversationListModel::addOrUpdate(const QString& username, const QString& 
     if (it != entries_.end()) {
         it->lastMessage = lastMessage;
         it->timestamp = timestamp;
-        if (incrementUnread) ++it->unreadCount;
+        if (incrementUnread) {
+            ++it->unreadCount;
+            LocalStorage::instance().incrementUnread(username);
+        }
         int row = static_cast<int>(std::distance(entries_.begin(), it));
         QModelIndex idx = index(row);
         emit dataChanged(idx, idx, {LastMessageRole, TimestampRole, UnreadCountRole});
@@ -24,6 +29,7 @@ void ConversationListModel::addOrUpdate(const QString& username, const QString& 
         e.lastMessage = lastMessage;
         e.timestamp = timestamp;
         e.unreadCount = incrementUnread ? 1 : 0;
+        if (incrementUnread) LocalStorage::instance().incrementUnread(username);
         entries_.push_back(e);
         endInsertRows();
     }
@@ -48,6 +54,10 @@ void ConversationListModel::markRead(const QString& peer) {
         const bool matches = e.isGroup ? (e.groupId == peer) : (e.username == peer);
         if (matches) {
             if (e.unreadCount == 0) return;
+            if (e.isGroup)
+                LocalStorage::instance().resetGroupUnread(e.groupId);
+            else
+                LocalStorage::instance().resetUnread(e.username);
             e.unreadCount = 0;
             QModelIndex idx = index(i);
             emit dataChanged(idx, idx, {UnreadCountRole});
@@ -115,7 +125,10 @@ void ConversationListModel::addOrUpdateGroup(const QString& groupId, const QStri
                 entries_[static_cast<std::size_t>(i)].lastMessage = lastMessage;
             if (!lastTimestamp.isEmpty())
                 entries_[static_cast<std::size_t>(i)].timestamp = lastTimestamp;
-            if (incrementUnread) ++entries_[static_cast<std::size_t>(i)].unreadCount;
+            if (incrementUnread) {
+                ++entries_[static_cast<std::size_t>(i)].unreadCount;
+                LocalStorage::instance().incrementGroupUnread(groupId);
+            }
             QModelIndex idx = index(i);
             emit dataChanged(idx, idx, {LastMessageRole, TimestampRole, UnreadCountRole});
             return;
@@ -130,6 +143,21 @@ void ConversationListModel::addOrUpdateGroup(const QString& groupId, const QStri
     e.lastMessage = lastMessage;
     e.timestamp = lastTimestamp;
     e.unreadCount = incrementUnread ? 1 : 0;
+    if (incrementUnread) LocalStorage::instance().incrementGroupUnread(groupId);
     entries_.push_back(e);
     endInsertRows();
+}
+
+void ConversationListModel::setUnreadCount(const QString& peer, int count) {
+    for (int i = 0; i < static_cast<int>(entries_.size()); ++i) {
+        ConvEntry& e = entries_[static_cast<std::size_t>(i)];
+        const bool matches = e.isGroup ? (e.groupId == peer) : (e.username == peer);
+        if (matches) {
+            if (e.unreadCount == count) return;
+            e.unreadCount = count;
+            QModelIndex idx = index(i);
+            emit dataChanged(idx, idx, {UnreadCountRole});
+            return;
+        }
+    }
 }

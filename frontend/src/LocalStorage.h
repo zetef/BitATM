@@ -20,6 +20,7 @@ struct ConversationRecord {
     QString peer;
     QString lastMessage;
     QString lastTimestamp;
+    int unreadCount{0};
 };
 
 /** @brief One group message from the group_messages SQLite table. */
@@ -39,6 +40,7 @@ struct GroupRecord {
     QString role;
     QString lastMessage;
     QString lastTimestamp;
+    int unreadCount{0};
 };
 
 /**
@@ -82,6 +84,12 @@ public:
 
     /** @brief Load all conversation summaries. */
     QList<ConversationRecord> loadConversations();
+
+    /** @brief Increment the persisted unread badge count for a 1:1 conversation. */
+    void incrementUnread(const QString& peer);
+
+    /** @brief Reset the persisted unread badge count for a 1:1 conversation to zero. */
+    void resetUnread(const QString& peer);
 
     /** @brief Returns the ISO timestamp of the newest stored message, or empty string. */
     QString newestTimestamp();
@@ -140,6 +148,12 @@ public:
 
     /** @brief Load all groups ordered by last_timestamp DESC. */
     QList<GroupRecord> loadGroups();
+
+    /** @brief Increment the persisted unread badge count for a group. */
+    void incrementGroupUnread(const QString& groupId);
+
+    /** @brief Reset the persisted unread badge count for a group to zero. */
+    void resetGroupUnread(const QString& groupId);
 
     /** @brief Returns true if a group message with this groupId+sender+timestamp already exists. */
     bool isGroupMessageDuplicate(const QString& groupId, const QString& sender,

@@ -172,7 +172,7 @@ void NetworkManager::loadLocalHistory() {
             emit historySyncMessage(m.peer, m.sender, m.content, m.timestamp, m.isOutgoing,
                                     m.status);
         }
-        emit convListUpdated(c.peer, c.lastMessage, c.lastTimestamp);
+        emit convListUpdated(c.peer, c.lastMessage, c.lastTimestamp, c.unreadCount);
     }
     qCInfo(logChat) << "Loaded local history:" << convs.size() << "conversations";
 
@@ -188,7 +188,7 @@ void NetworkManager::loadLocalHistory() {
             emit groupHistorySyncMessage(m.groupId, m.sender, m.content, m.timestamp, m.isOutgoing,
                                          m.status);
         }
-        emit groupConvUpdated(g.groupId, g.name, g.lastMessage, g.lastTimestamp);
+        emit groupConvUpdated(g.groupId, g.name, g.lastMessage, g.lastTimestamp, g.unreadCount);
     }
     qCInfo(logChat) << "Loaded local group history:" << groups.size() << "groups";
 }
