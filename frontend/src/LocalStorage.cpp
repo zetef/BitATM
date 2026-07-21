@@ -2,6 +2,7 @@
 
 #include <QDir>
 #include <QLoggingCategory>
+#include <QRegularExpression>
 #include <QSqlError>
 #include <QSqlQuery>
 #include <QStandardPaths>
@@ -13,8 +14,14 @@ LocalStorage& LocalStorage::instance() {
     return s;
 }
 
-bool LocalStorage::open() {
-    const QString dataDir = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
+bool LocalStorage::openForUser(const QString& username) {
+    if (_db.isOpen()) close();
+
+    QString sanitized = username;
+    sanitized.replace(QRegularExpression("[^A-Za-z0-9_-]"), "_");
+
+    const QString dataDir = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation) +
+                            "/accounts/" + sanitized;
     QDir().mkpath(dataDir);
 
     _db = QSqlDatabase::addDatabase("QSQLITE", "bitatm_local");
@@ -24,6 +31,8 @@ bool LocalStorage::open() {
         qCWarning(logStorage) << "Failed to open SQLite DB:" << _db.lastError().text();
         return false;
     }
+
+    QSqlQuery(_db).exec("PRAGMA journal_mode=WAL");
 
     if (!createSchema()) {
         qCWarning(logStorage) << "Failed to create schema";

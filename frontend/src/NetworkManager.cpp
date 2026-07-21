@@ -202,22 +202,21 @@ void NetworkManager::persistMessage(const QString& peer, const QString& sender,
 
 void NetworkManager::handleLoginAck(const Packet& p) {
     _hasError = false;
+    const QString previousUsername = _currentUsername;
     _currentUsername = QString::fromStdString(p.to);
     _lastMessage = "Logged in as " + _currentUsername;
     emit currentUsernameChanged();
 
-    QSettings settings("BitATM", "BitATM");
-
-    // Clear local cache if a different user is logging in to prevent data leakage
-    const QString lastUser = settings.value("session/lastUsername").toString();
-    if (!lastUser.isEmpty() && lastUser != _currentUsername) {
-        LocalStorage::instance().clearAllData();
-        qCInfo(logNetwork) << "User switched from" << lastUser << "to" << _currentUsername
-                           << "- local cache cleared";
+    if (!previousUsername.isEmpty() && previousUsername != _currentUsername) {
+        LocalStorage::instance().close();
     }
-    settings.setValue("session/lastUsername", _currentUsername);
+    if (!LocalStorage::instance().openForUser(_currentUsername)) {
+        qCWarning(logNetwork) << "Failed to open local cache for" << _currentUsername
+                              << "- history will not persist";
+    }
 
     if (_pendingRegister) {
+        QSettings settings("BitATM", "BitATM");
         settings.remove("history/" + _currentUsername);
         _pendingRegister = false;
     }
@@ -406,6 +405,7 @@ void NetworkManager::handleKeyExchangeResponse(const Packet& p) {
 }
 
 void NetworkManager::logout() {
+    LocalStorage::instance().close();
     _currentUsername.clear();
     _ownPrivKey.clear();
     _ownPubKey.clear();

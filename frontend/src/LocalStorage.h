@@ -44,16 +44,24 @@ struct GroupRecord {
 /**
  * @brief Singleton SQLite cache for messages and conversations.
  *
- * Opened once at app start. All reads/writes happen on the main thread
- * (same as NetworkManager). Not thread-safe by design.
+ * Opened per-account, once a username is known (see openForUser()) - never
+ * at app start, since no username exists yet at that point. All reads/writes
+ * happen on the main thread (same as NetworkManager). Not thread-safe by design.
  */
 class LocalStorage {
 public:
     /** @brief Returns the singleton instance. */
     static LocalStorage& instance();
 
-    /** @brief Open (or create) the SQLite DB at AppDataLocation/bitatm.db. */
-    bool open();
+    /**
+     * @brief Open (or create) the per-account SQLite DB at
+     *        AppDataLocation/accounts/<sanitized-username>/bitatm.db.
+     *
+     * Closes any previously-open connection first, so calling this again
+     * with a different username in the same process is safe and simply
+     * switches to that account's own file - nothing is cleared or shared.
+     */
+    bool openForUser(const QString& username);
 
     /** @brief Close the database connection. */
     void close();
