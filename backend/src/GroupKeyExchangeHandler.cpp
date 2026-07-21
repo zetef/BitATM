@@ -42,7 +42,14 @@ void GroupKeyExchangeHandler::execute(Packet& packet, ClientSession& session) {
     std::string actorRole = repo.getMemberRole(groupId, actorName);
 
     // Key recovery: any member may request their own stored wrapped key
-    // (lost local cache, new device). Reply mirrors the distribution shape.
+    // (lost local cache, new device, or - as with a member who never got
+    // their original invite delivered - the first time their client learns
+    // about this group at all). Reply as GROUP_INVITE, not a bare
+    // GROUP_KEY_EXCHANGE: handleGroupInvite() on the frontend is idempotent
+    // (safe to re-run for an already-known group) and is the only inbound
+    // handler that saves the group's name/sidebar entry locally. A plain
+    // GROUP_KEY_EXCHANGE here left already-a-DB-member-but-never-invited
+    // recipients with a working key but no group name - an empty sidebar entry.
     if (packet.key.empty()) {
         if (actorRole.empty())
             throw ProtocolException("GROUP_KEY_EXCHANGE: requester is not a member of group " +
@@ -51,12 +58,14 @@ void GroupKeyExchangeHandler::execute(Packet& packet, ClientSession& session) {
         if (!stored)
             throw ProtocolException("GROUP_KEY_EXCHANGE: no stored key for requester in group " +
                                     packet.to);
+        auto group = repo.findGroupById(groupId);
         Packet resp;
-        resp.type = PacketType::GROUP_KEY_EXCHANGE;
+        resp.type = PacketType::GROUP_INVITE;
         resp.from = actorName;
-        resp.to = packet.to;
+        resp.to = actorName;
+        resp.errorMsg = group ? group->name : "";
+        resp.body = packet.to;  // group_id as string
         resp.key = *stored;
-        resp.body = actorName;
         session.send(resp);
         return;
     }

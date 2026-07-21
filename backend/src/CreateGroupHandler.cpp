@@ -6,6 +6,7 @@
 #include "../../common/AppException.h"
 #include "ClientSession.h"
 #include "GroupRepository.h"
+#include "PendingNotificationRepository.h"
 #include "Server.h"
 #include "UserRepository.h"
 
@@ -90,10 +91,21 @@ void CreateGroupHandler::execute(Packet& packet, ClientSession& session) {
 
     const std::string groupIdStr = std::to_string(groupId);
 
-    // Fan GROUP_INVITE to each online member (offline members silently skipped)
+    // Fan GROUP_INVITE to each member. An offline member gets it queued for
+    // delivery on their next login - previously silently dropped, meaning an
+    // offline invitee at group-creation time would never learn about the
+    // group at all (unlike the single-member-add path, which already queues).
+    PendingNotificationRepository pendingRepo;
     for (const auto& m : members) {
+        std::string key;
+        auto keyIt = keyMap.find(m);
+        if (keyIt != keyMap.end()) key = keyIt->second;
+
         auto peerSession = _server.findClient(m);
-        if (!peerSession) continue;
+        if (!peerSession) {
+            pendingRepo.queue(m, PacketType::GROUP_INVITE, creator, groupIdStr, groupName, key);
+            continue;
+        }
 
         Packet invite;
         invite.type = PacketType::GROUP_INVITE;
@@ -101,12 +113,12 @@ void CreateGroupHandler::execute(Packet& packet, ClientSession& session) {
         invite.to = m;
         invite.errorMsg = groupName;
         invite.body = groupIdStr;
-        auto keyIt = keyMap.find(m);
-        if (keyIt != keyMap.end()) invite.key = keyIt->second;
+        invite.key = key;
         try {
             peerSession->send(invite);
         } catch (const NetworkException&) {
-            // member disconnected between lookup and send - skip silently
+            // member disconnected between lookup and send - queue instead
+            pendingRepo.queue(m, PacketType::GROUP_INVITE, creator, groupIdStr, groupName, key);
         }
     }
 
