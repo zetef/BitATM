@@ -22,7 +22,8 @@ public:
         LastMessageRole,
         TimestampRole,
         IsGroupRole = Qt::UserRole + 4,
-        GroupIdRole = Qt::UserRole + 5
+        GroupIdRole = Qt::UserRole + 5,
+        UnreadCountRole = Qt::UserRole + 6
     };
 
     /** @brief Constructs the model with an optional parent. */
@@ -35,16 +36,23 @@ public:
      * timestamp fields are updated in-place and dataChanged is emitted.
      * Otherwise a new row is appended.
      *
-     * @param username    Peer username (unique key).
-     * @param lastMessage Most recent message preview.
-     * @param timestamp   Display timestamp string.
+     * @param username       Peer username (unique key).
+     * @param lastMessage    Most recent message preview.
+     * @param timestamp      Display timestamp string.
+     * @param incrementUnread Increment the unread badge by one (a new incoming
+     *        message for a conversation that isn't currently open).
      */
     Q_INVOKABLE void addOrUpdate(const QString& username, const QString& lastMessage,
-                                 const QString& timestamp);
+                                 const QString& timestamp, bool incrementUnread = false);
 
-    /** @brief Add or update a group conversation by groupId. */
+    /** @brief Add or update a group conversation by groupId. See addOrUpdate() for incrementUnread.
+     */
     Q_INVOKABLE void addOrUpdateGroup(const QString& groupId, const QString& groupName,
-                                      const QString& lastMessage, const QString& lastTimestamp);
+                                      const QString& lastMessage, const QString& lastTimestamp,
+                                      bool incrementUnread = false);
+
+    /** @brief Reset the unread badge for a conversation (peer or groupId) to zero. */
+    Q_INVOKABLE void markRead(const QString& peer);
 
     /** @brief Removes all entries from the model. */
     Q_INVOKABLE void clear();
@@ -70,6 +78,7 @@ private:
         QString timestamp;
         bool isGroup{false};
         QString groupId;
+        int unreadCount{0};
     };
 
     std::vector<ConvEntry> entries_;

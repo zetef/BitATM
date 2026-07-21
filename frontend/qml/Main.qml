@@ -57,7 +57,7 @@ ApplicationWindow {
 
         function onMessageDecrypted(from, plaintext, timestamp) {
             chatModel.appendAndCache(from, from, plaintext, timestamp, false)
-            convListModel.addOrUpdate(from, plaintext, timestamp)
+            convListModel.addOrUpdate(from, plaintext, timestamp, from !== root.activePeer)
             if (from === root.activePeer) {
                 networkManager.markConversationRead(from)
             }
@@ -106,7 +106,8 @@ ApplicationWindow {
 
         function onGroupMessageDecrypted(groupId, sender, plaintext, timestamp, isOutgoing) {
             chatModel.appendAndCache(groupId, sender, plaintext, timestamp, isOutgoing)
-            convListModel.addOrUpdateGroup(groupId, "", plaintext, timestamp)
+            convListModel.addOrUpdateGroup(groupId, "", plaintext, timestamp,
+                                           !isOutgoing && groupId !== root.activePeer)
             if (!isOutgoing && groupId === root.activePeer) {
                 networkManager.markConversationRead(groupId)
             }
