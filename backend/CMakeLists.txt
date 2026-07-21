@@ -35,6 +35,7 @@ add_library(bitatm-backend-lib STATIC
     src/GroupInfoHandler.h        src/GroupInfoHandler.cpp
     src/GroupLeaveHandler.h       src/GroupLeaveHandler.cpp
     src/DeleteGroupHandler.h      src/DeleteGroupHandler.cpp
+    src/DeleteConversationHandler.h src/DeleteConversationHandler.cpp
 )
 target_include_directories(bitatm-backend-lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src)
 target_link_libraries(bitatm-backend-lib PUBLIC

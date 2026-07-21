@@ -72,3 +72,9 @@ add_executable(message_repository_test MessageRepositoryTest.cpp)
 set_target_properties(message_repository_test PROPERTIES AUTOMOC ON)
 target_link_libraries(message_repository_test PRIVATE Qt6::Test bitatm-backend-lib)
 add_test(NAME MessageRepositoryTest COMMAND message_repository_test)
+
+# DELETE_CONVERSATION: online forward + offline queue-then-flush-on-login
+add_executable(delete_conversation_handler_test DeleteConversationHandlerTest.cpp)
+set_target_properties(delete_conversation_handler_test PROPERTIES AUTOMOC ON)
+target_link_libraries(delete_conversation_handler_test PRIVATE Qt6::Test bitatm-backend-lib)
+add_test(NAME DeleteConversationHandlerTest COMMAND delete_conversation_handler_test)
