@@ -245,7 +245,7 @@ void Server::registerHandlers() {
     _factory.registerHandler(PacketType::GROUP_KEY_EXCHANGE,
                              [this] { return std::make_unique<GroupKeyExchangeHandler>(*this); });
     _factory.registerHandler(PacketType::GROUP_INFO,
-                             [] { return std::make_unique<GroupInfoHandler>(); });
+                             [this] { return std::make_unique<GroupInfoHandler>(*this); });
     _factory.registerHandler(PacketType::GROUP_LEAVE,
                              [this] { return std::make_unique<GroupLeaveHandler>(*this); });
     _factory.registerHandler(PacketType::DELETE_GROUP,

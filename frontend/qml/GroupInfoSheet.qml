@@ -147,10 +147,7 @@ Rectangle {
                             Layout.preferredWidth: 68
                             Layout.preferredHeight: 22
                             padding: 4
-                            onClicked: {
-                                networkManager.grantAdmin(sheet.groupId, modelData.username)
-                                sheet.closed()
-                            }
+                            onClicked: networkManager.grantAdmin(sheet.groupId, modelData.username)
                             contentItem: Text {
                                 text: parent.text; color: "#00ff41"; font.pixelSize: 10
                                 font.family: "Monospace"
@@ -170,10 +167,7 @@ Rectangle {
                             Layout.preferredWidth: 68
                             Layout.preferredHeight: 22
                             padding: 4
-                            onClicked: {
-                                networkManager.revokeAdmin(sheet.groupId, modelData.username)
-                                sheet.closed()
-                            }
+                            onClicked: networkManager.revokeAdmin(sheet.groupId, modelData.username)
                             contentItem: Text {
                                 text: parent.text; color: "#ffcc00"; font.pixelSize: 10
                                 font.family: "Monospace"
@@ -193,10 +187,7 @@ Rectangle {
                             Layout.preferredWidth: 56
                             Layout.preferredHeight: 22
                             padding: 4
-                            onClicked: {
-                                networkManager.kickMember(sheet.groupId, modelData.username)
-                                sheet.closed()
-                            }
+                            onClicked: networkManager.kickMember(sheet.groupId, modelData.username)
                             contentItem: Text {
                                 text: parent.text; color: "#ff3333"; font.pixelSize: 10
                                 font.family: "Monospace"
