@@ -4,6 +4,7 @@
 #include "ClientSession.h"
 #include "DbManager.h"
 #include "GroupRepository.h"
+#include "PendingNotificationRepository.h"
 #include "Server.h"
 
 void DeleteGroupHandler::validate(const Packet& packet) {
@@ -28,10 +29,15 @@ void DeleteGroupHandler::execute(Packet& packet, ClientSession& session) {
     // Collect all members before deleting so we can notify them
     auto members = repo.getMembers(groupId);
 
-    // Fan GROUP_LEAVE to every online member (including the creator)
+    // Fan GROUP_LEAVE to every online member (including the creator);
+    // offline members get it queued for delivery on their next login.
+    PendingNotificationRepository pendingRepo;
     for (const auto& m : members) {
         auto peerSession = _server.findClient(m.username);
-        if (!peerSession) continue;
+        if (!peerSession) {
+            pendingRepo.queue(m.username, PacketType::GROUP_LEAVE, actor, packet.to);
+            continue;
+        }
         Packet notif;
         notif.type = PacketType::GROUP_LEAVE;
         notif.to = m.username;
@@ -39,7 +45,8 @@ void DeleteGroupHandler::execute(Packet& packet, ClientSession& session) {
         try {
             peerSession->send(notif);
         } catch (const NetworkException&) {
-            // member disconnected between lookup and send - skip silently
+            // member disconnected between lookup and send - queue instead
+            pendingRepo.queue(m.username, PacketType::GROUP_LEAVE, actor, packet.to);
         }
     }
 

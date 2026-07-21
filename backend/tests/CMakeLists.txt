@@ -78,3 +78,9 @@ add_executable(delete_conversation_handler_test DeleteConversationHandlerTest.cp
 set_target_properties(delete_conversation_handler_test PROPERTIES AUTOMOC ON)
 target_link_libraries(delete_conversation_handler_test PRIVATE Qt6::Test bitatm-backend-lib)
 add_test(NAME DeleteConversationHandlerTest COMMAND delete_conversation_handler_test)
+
+# DELETE_GROUP: offline member gets GROUP_LEAVE queued for next login
+add_executable(delete_group_handler_test DeleteGroupHandlerTest.cpp)
+set_target_properties(delete_group_handler_test PROPERTIES AUTOMOC ON)
+target_link_libraries(delete_group_handler_test PRIVATE Qt6::Test bitatm-backend-lib)
+add_test(NAME DeleteGroupHandlerTest COMMAND delete_group_handler_test)
