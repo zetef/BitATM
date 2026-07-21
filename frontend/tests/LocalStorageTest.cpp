@@ -103,6 +103,19 @@ private slots:
         QVERIFY(affected.contains("2026-02-02T11:00:00.000Z"));
         QCOMPARE(ls.recipientCount(gid, "2026-02-02T11:00:00.000Z"), 1);
     }
+
+    /** @brief deleteConversation removes both the messages and the conversation summary row. */
+    void deleteConversationRemovesMessagesAndSummary() {
+        auto& ls = LocalStorage::instance();
+        const QString peer = "ut_delconv_local_peer";
+        ls.saveMessage(peer, peer, "Hi", "2026-07-21T10:00:00.000Z", false);
+        ls.saveMessage(peer, "me", "Hey", "2026-07-21T10:01:00.000Z", true);
+        QVERIFY(!ls.loadMessages(peer).isEmpty());
+
+        ls.deleteConversation(peer);
+
+        QVERIFY(ls.loadMessages(peer).isEmpty());
+    }
 };
 
 QTEST_MAIN(LocalStorageTest)

@@ -570,6 +570,17 @@ void NetworkManager::deleteConversation(const QString& peer) {
     emit conversationDeleted(peer);
 }
 
+void NetworkManager::deleteConversationForEveryone(const QString& peer) {
+    LocalStorage::instance().deleteConversation(peer);
+    emit conversationDeleted(peer);
+
+    Packet p;
+    p.type = PacketType::DELETE_CONVERSATION;
+    p.from = _currentUsername.toStdString();
+    p.to = peer.toStdString();
+    sendPacket(p);
+}
+
 void NetworkManager::fetchGroupInfo(const QString& groupId) {
     Packet p;
     p.type = PacketType::GROUP_INFO;
@@ -717,6 +728,12 @@ void NetworkManager::handleGroupLeave(const Packet& p) {
     }
 }
 
+void NetworkManager::handleDeleteConversation(const Packet& p) {
+    const QString peer = QString::fromStdString(p.from);
+    LocalStorage::instance().deleteConversation(peer);
+    emit conversationDeleted(peer);
+}
+
 void NetworkManager::rotateGroupKey(const QString& groupId) {
     try {
         QByteArray newKey = _crypto.generateAESKey();
@@ -849,6 +866,10 @@ void NetworkManager::onTextMessageReceived(const QString& message) {
 
         case PacketType::GROUP_LEAVE:
             handleGroupLeave(p);
+            break;
+
+        case PacketType::DELETE_CONVERSATION:
+            handleDeleteConversation(p);
             break;
 
         default:

@@ -60,3 +60,27 @@ add_executable(group_receipts_test GroupReceiptsTest.cpp)
 set_target_properties(group_receipts_test PROPERTIES AUTOMOC ON)
 target_link_libraries(group_receipts_test PRIVATE Qt6::Test bitatm-backend-lib)
 add_test(NAME GroupReceiptsTest COMMAND group_receipts_test)
+
+# Pending notification queue (offline delete/group-leave delivery on next login)
+add_executable(pending_notification_repository_test PendingNotificationRepositoryTest.cpp)
+set_target_properties(pending_notification_repository_test PROPERTIES AUTOMOC ON)
+target_link_libraries(pending_notification_repository_test PRIVATE Qt6::Test bitatm-backend-lib)
+add_test(NAME PendingNotificationRepositoryTest COMMAND pending_notification_repository_test)
+
+# MessageRepository::deleteConversation ("delete for everyone" server-side cleanup)
+add_executable(message_repository_test MessageRepositoryTest.cpp)
+set_target_properties(message_repository_test PROPERTIES AUTOMOC ON)
+target_link_libraries(message_repository_test PRIVATE Qt6::Test bitatm-backend-lib)
+add_test(NAME MessageRepositoryTest COMMAND message_repository_test)
+
+# DELETE_CONVERSATION: online forward + offline queue-then-flush-on-login
+add_executable(delete_conversation_handler_test DeleteConversationHandlerTest.cpp)
+set_target_properties(delete_conversation_handler_test PROPERTIES AUTOMOC ON)
+target_link_libraries(delete_conversation_handler_test PRIVATE Qt6::Test bitatm-backend-lib)
+add_test(NAME DeleteConversationHandlerTest COMMAND delete_conversation_handler_test)
+
+# DELETE_GROUP: offline member gets GROUP_LEAVE queued for next login
+add_executable(delete_group_handler_test DeleteGroupHandlerTest.cpp)
+set_target_properties(delete_group_handler_test PROPERTIES AUTOMOC ON)
+target_link_libraries(delete_group_handler_test PRIVATE Qt6::Test bitatm-backend-lib)
+add_test(NAME DeleteGroupHandlerTest COMMAND delete_group_handler_test)

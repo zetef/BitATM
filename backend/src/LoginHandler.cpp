@@ -18,6 +18,7 @@
 #include "DbManager.h"
 #include "MessageRepository.h"
 #include "OfflineQueueRepository.h"
+#include "PendingNotificationRepository.h"
 #include "SessionRepository.h"
 #include "UserRepository.h"
 
@@ -166,6 +167,9 @@ void LoginHandler::execute(Packet& packet, ClientSession& session) {
 
     // flush queued read receipts - sent while this user was offline
     flushOfflineReadReceipts(packet.from, session);
+
+    // flush queued control notifications (deleted conversations, deleted groups)
+    flushPendingNotifications(packet.from, session);
 }
 
 void LoginHandler::flushOfflineReadReceipts(const std::string& username, ClientSession& session) {
@@ -223,5 +227,24 @@ void LoginHandler::flushOfflineReadReceipts(const std::string& username, ClientS
         }
     } catch (const Poco::Exception& e) {
         throw DbException("LoginHandler::flushOfflineReadReceipts: " + e.message());
+    }
+}
+
+void LoginHandler::flushPendingNotifications(const std::string& username, ClientSession& session) {
+    PendingNotificationRepository pendingRepo;
+    auto pending = pendingRepo.findAndClear(username);
+    for (const auto& n : pending) {
+        Packet fwd;
+        fwd.type = n.type;
+        fwd.from = n.fromUser;
+        fwd.to = username;
+        fwd.body = n.body;
+        try {
+            session.send(fwd);
+        } catch (const NetworkException& e) {
+            poco_warning(
+                Poco::Logger::get("LoginHandler"),
+                "flushPendingNotifications: send failed for " + username + ": " + e.what());
+        }
     }
 }

@@ -2,6 +2,7 @@
 
 #include <Poco/Data/Session.h>
 #include <Poco/Data/Statement.h>
+#include <Poco/Data/Transaction.h>
 
 #include "../../common/AppException.h"
 
@@ -186,5 +187,26 @@ std::vector<Message> MessageRepository::findBySender(const std::string& sender) 
         return msgs;
     } catch (const Poco::Exception& e) {
         throw DbException("MessageRepository::findBySender: " + e.message());
+    }
+}
+
+void MessageRepository::deleteConversation(const std::string& userA, const std::string& userB) {
+    try {
+        auto ses = DbManager::instance().session();
+        Poco::Data::Transaction trx(ses);
+        std::string a = userA;
+        std::string b = userB;
+        // clang-format off
+        ses << "DELETE FROM offline_queue WHERE message_id IN ("
+               "SELECT id FROM messages WHERE (sender = $1 AND recipient = $2) "
+               "OR (sender = $2 AND recipient = $1))",
+            use(a), use(b), now;
+        ses << "DELETE FROM messages WHERE (sender = $1 AND recipient = $2) "
+               "OR (sender = $2 AND recipient = $1)",
+            use(a), use(b), now;
+        // clang-format on
+        trx.commit();
+    } catch (const Poco::Exception& e) {
+        throw DbException("MessageRepository::deleteConversation: " + e.message());
     }
 }

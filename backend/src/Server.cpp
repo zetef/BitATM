@@ -17,6 +17,7 @@
 #include "AckHandler.h"
 #include "CreateGroupHandler.h"
 #include "DbManager.h"
+#include "DeleteConversationHandler.h"
 #include "DeleteGroupHandler.h"
 #include "GroupInfoHandler.h"
 #include "GroupKeyExchangeHandler.h"
@@ -249,6 +250,8 @@ void Server::registerHandlers() {
                              [this] { return std::make_unique<GroupLeaveHandler>(*this); });
     _factory.registerHandler(PacketType::DELETE_GROUP,
                              [this] { return std::make_unique<DeleteGroupHandler>(*this); });
+    _factory.registerHandler(PacketType::DELETE_CONVERSATION,
+                             [this] { return std::make_unique<DeleteConversationHandler>(*this); });
 }
 
 int Server::main(const std::vector<std::string>&) {

@@ -109,6 +109,15 @@ public:
     /** @brief Delete a conversation from local cache. Messages stay on the server. */
     Q_INVOKABLE void deleteConversation(const QString& peer);
 
+    /**
+     * @brief Delete a conversation for both participants.
+     *
+     * Wipes the local copy immediately and sends DELETE_CONVERSATION so the
+     * server hard-deletes the messages and notifies the peer (now if online,
+     * on their next login otherwise).
+     */
+    Q_INVOKABLE void deleteConversationForEveryone(const QString& peer);
+
     /** @brief Per-member receipt states for the info sheet: [{member, delivered, seen}]. */
     Q_INVOKABLE QVariantList groupMessageReceipts(const QString& groupId, const QString& timestamp);
 
@@ -330,6 +339,9 @@ private:
 
     /** @brief Handle GROUP_LEAVE - either key rotation notice or self-leave confirmation. */
     void handleGroupLeave(const Packet& p);
+
+    /** @brief Handle an incoming DELETE_CONVERSATION: peer deleted our shared conversation. */
+    void handleDeleteConversation(const Packet& p);
 
     /** @brief Generate a new AES key for a group and request member list for redistribution. */
     void rotateGroupKey(const QString& groupId);
