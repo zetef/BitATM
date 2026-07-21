@@ -182,7 +182,7 @@ Rectangle {
                         if (model.is_group)
                             networkManager.deleteGroup(model.group_id)
                         else
-                            networkManager.deleteConversation(model.username)
+                            deleteChoiceMenu.popup()
                     }
                     contentItem: Text {
                         text: parent.text
@@ -197,6 +197,18 @@ Rectangle {
                         radius: 0
                         border.color: "#ff3333"
                         border.width: 1
+                    }
+
+                    Menu {
+                        id: deleteChoiceMenu
+                        MenuItem {
+                            text: "Delete for me"
+                            onTriggered: networkManager.deleteConversation(model.username)
+                        }
+                        MenuItem {
+                            text: "Delete for everyone"
+                            onTriggered: networkManager.deleteConversationForEveryone(model.username)
+                        }
                     }
                 }
 
