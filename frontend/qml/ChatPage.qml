@@ -289,6 +289,7 @@ Rectangle {
                     color: "#c8c8c8"
                     placeholderTextColor: "#505050"
                     font.family: "Monospace"
+                    verticalAlignment: TextInput.AlignVCenter
                     background: Rectangle { color: "#1a1a1a"; radius: 0 }
                     padding: 10
                     onAccepted: sendButton.clicked()

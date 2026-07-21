@@ -75,6 +75,7 @@ Rectangle {
                 placeholderTextColor: "#505050"
                 font.pixelSize: 12
                 font.family: "Monospace"
+                verticalAlignment: TextInput.AlignVCenter
                 background: Rectangle { color: "#1a1a1a"; radius: 0 }
                 padding: 8
                 onAccepted: openChat(newChatInput.text)
@@ -143,7 +144,7 @@ Rectangle {
 
                 Column {
                     anchors.left: parent.left
-                    anchors.right: deleteBtn.left
+                    anchors.right: rightControls.left
                     anchors.verticalCenter: parent.verticalCenter
                     anchors.leftMargin: 12
                     anchors.rightMargin: 6
@@ -169,58 +170,67 @@ Rectangle {
                     }
                 }
 
-                Label {
-                    id: unreadBadge
-                    visible: model.unreadCount > 0 && !(convListPage.isMobile || convDelegate.hovered)
-                    anchors.right: parent.right
-                    anchors.rightMargin: 10
-                    anchors.verticalCenter: parent.verticalCenter
-                    text: "[" + (model.unreadCount > 99 ? "99+" : model.unreadCount) + "]"
-                    color: "#00ff41"
-                    font.pixelSize: 11
-                    font.bold: true
-                    font.family: "Monospace"
-                }
-
-                Button {
-                    id: deleteBtn
+                // Badge and delete button sit side by side rather than
+                // overlapping: on mobile the delete button is always visible
+                // (no hover state to gate it), so it can no longer share the
+                // same anchored slot as the unread badge the way it did when
+                // hover alone decided which of the two was showing.
+                Row {
+                    id: rightControls
                     anchors.right: parent.right
                     anchors.rightMargin: 8
                     anchors.verticalCenter: parent.verticalCenter
-                    visible: convListPage.isMobile || convDelegate.hovered
-                    width: 36
-                    height: 24
-                    text: "[x]"
-                    onClicked: {
-                        if (model.is_group)
-                            networkManager.deleteGroup(model.group_id)
-                        else
-                            deleteChoiceMenu.popup()
-                    }
-                    contentItem: Text {
-                        text: parent.text
-                        color: "#ff3333"
+                    spacing: 6
+
+                    Label {
+                        id: unreadBadge
+                        visible: model.unreadCount > 0
+                        anchors.verticalCenter: parent.verticalCenter
+                        text: "[" + (model.unreadCount > 99 ? "99+" : model.unreadCount) + "]"
+                        color: "#00ff41"
                         font.pixelSize: 11
+                        font.bold: true
                         font.family: "Monospace"
-                        horizontalAlignment: Text.AlignHCenter
-                        verticalAlignment: Text.AlignVCenter
-                    }
-                    background: Rectangle {
-                        color: parent.down ? "#1a0000" : "transparent"
-                        radius: 0
-                        border.color: "#ff3333"
-                        border.width: 1
                     }
 
-                    Menu {
-                        id: deleteChoiceMenu
-                        MenuItem {
-                            text: "Delete for me"
-                            onTriggered: networkManager.deleteConversation(model.username)
+                    Button {
+                        id: deleteBtn
+                        anchors.verticalCenter: parent.verticalCenter
+                        visible: convListPage.isMobile || convDelegate.hovered
+                        width: 36
+                        height: 24
+                        text: "[x]"
+                        onClicked: {
+                            if (model.is_group)
+                                networkManager.deleteGroup(model.group_id)
+                            else
+                                deleteChoiceMenu.popup()
                         }
-                        MenuItem {
-                            text: "Delete for everyone"
-                            onTriggered: networkManager.deleteConversationForEveryone(model.username)
+                        contentItem: Text {
+                            text: parent.text
+                            color: "#ff3333"
+                            font.pixelSize: 11
+                            font.family: "Monospace"
+                            horizontalAlignment: Text.AlignHCenter
+                            verticalAlignment: Text.AlignVCenter
+                        }
+                        background: Rectangle {
+                            color: parent.down ? "#1a0000" : "transparent"
+                            radius: 0
+                            border.color: "#ff3333"
+                            border.width: 1
+                        }
+
+                        Menu {
+                            id: deleteChoiceMenu
+                            MenuItem {
+                                text: "Delete for me"
+                                onTriggered: networkManager.deleteConversation(model.username)
+                            }
+                            MenuItem {
+                                text: "Delete for everyone"
+                                onTriggered: networkManager.deleteConversationForEveryone(model.username)
+                            }
                         }
                     }
                 }

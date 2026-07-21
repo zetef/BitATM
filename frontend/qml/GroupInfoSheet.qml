@@ -232,6 +232,7 @@ Rectangle {
                     placeholderTextColor: "#505050"
                     font.pixelSize: 12
                     font.family: "Monospace"
+                    verticalAlignment: TextInput.AlignVCenter
                     background: Rectangle { color: "#1a1a1a"; radius: 0 }
                     padding: 6
                 }
