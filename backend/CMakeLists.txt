@@ -28,6 +28,7 @@ add_library(bitatm-backend-lib STATIC
     src/SyncHistoryHandler.h      src/SyncHistoryHandler.cpp
     src/ReadReceiptHandler.h      src/ReadReceiptHandler.cpp
     src/GroupRepository.h         src/GroupRepository.cpp
+    src/PendingNotificationRepository.h src/PendingNotificationRepository.cpp
     src/CreateGroupHandler.h      src/CreateGroupHandler.cpp
     src/GroupMessageHandler.h     src/GroupMessageHandler.cpp
     src/GroupKeyExchangeHandler.h src/GroupKeyExchangeHandler.cpp
