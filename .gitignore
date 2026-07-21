@@ -1,5 +1,6 @@
 # build output
 build/
+build-release/
 cmake-build-*/
 *.o *.a *.so *.dll *.exe
 
