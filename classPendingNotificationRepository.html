@@ -113,9 +113,9 @@ Collaboration diagram for PendingNotificationRepository:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:af891b1d1034a0c4cd5c4fb7fa265e1b8" id="r_af891b1d1034a0c4cd5c4fb7fa265e1b8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPendingNotificationRepository.html#af891b1d1034a0c4cd5c4fb7fa265e1b8">PendingNotificationRepository</a> ()=default</td></tr>
 <tr class="separator:af891b1d1034a0c4cd5c4fb7fa265e1b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adee54ae85c7909aa859a83d1f971589c" id="r_adee54ae85c7909aa859a83d1f971589c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPendingNotificationRepository.html#adee54ae85c7909aa859a83d1f971589c">queue</a> (const std::string &amp;recipient, <a class="el" href="protocol_8h.html#a0a80a7bc045affcf10846075b88cbca0">PacketType</a> type, const std::string &amp;fromUser, const std::string &amp;body=&quot;&quot;)</td></tr>
-<tr class="memdesc:adee54ae85c7909aa859a83d1f971589c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Queue a packet for delivery the next time recipient logs in.  <br /></td></tr>
-<tr class="separator:adee54ae85c7909aa859a83d1f971589c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa9bf253d6228e52e419f1a7f7e8ff29b" id="r_aa9bf253d6228e52e419f1a7f7e8ff29b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPendingNotificationRepository.html#aa9bf253d6228e52e419f1a7f7e8ff29b">queue</a> (const std::string &amp;recipient, <a class="el" href="protocol_8h.html#a0a80a7bc045affcf10846075b88cbca0">PacketType</a> type, const std::string &amp;fromUser, const std::string &amp;body=&quot;&quot;, const std::string &amp;errorMsg=&quot;&quot;, const std::string &amp;packetKey=&quot;&quot;)</td></tr>
+<tr class="memdesc:aa9bf253d6228e52e419f1a7f7e8ff29b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Queue a packet for delivery the next time recipient logs in.  <br /></td></tr>
+<tr class="separator:aa9bf253d6228e52e419f1a7f7e8ff29b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5f12a9a8424efb68236fa7b8bcf2a6c8" id="r_a5f12a9a8424efb68236fa7b8bcf2a6c8"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="structPendingNotification.html">PendingNotification</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPendingNotificationRepository.html#a5f12a9a8424efb68236fa7b8bcf2a6c8">findAndClear</a> (const std::string &amp;recipient)</td></tr>
 <tr class="memdesc:a5f12a9a8424efb68236fa7b8bcf2a6c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return all pending notifications for a recipient and delete them.  <br /></td></tr>
 <tr class="separator:a5f12a9a8424efb68236fa7b8bcf2a6c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -172,8 +172,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="adee54ae85c7909aa859a83d1f971589c" name="adee54ae85c7909aa859a83d1f971589c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adee54ae85c7909aa859a83d1f971589c">&#9670;&#160;</a></span>queue()</h2>
+<a id="aa9bf253d6228e52e419f1a7f7e8ff29b" name="aa9bf253d6228e52e419f1a7f7e8ff29b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa9bf253d6228e52e419f1a7f7e8ff29b">&#9670;&#160;</a></span>queue()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -200,7 +200,19 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>body</em> = <code>&quot;&quot;</code>&#160;</td>
+          <td class="paramname"><em>body</em> = <code>&quot;&quot;</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>errorMsg</em> = <code>&quot;&quot;</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>packetKey</em> = <code>&quot;&quot;</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -217,6 +229,8 @@ Public Member Functions</h2></td></tr>
     <tr><td class="paramname">type</td><td><a class="el" href="structPacket.html">Packet</a> type to reconstruct on flush. </td></tr>
     <tr><td class="paramname">fromUser</td><td>Value for the reconstructed packet's <code>from</code> field. </td></tr>
     <tr><td class="paramname">body</td><td>Value for the reconstructed packet's <code>body</code> field (e.g. group id). </td></tr>
+    <tr><td class="paramname">errorMsg</td><td>Value for the reconstructed packet's <code>errorMsg</code> field (e.g. group name). </td></tr>
+    <tr><td class="paramname">packetKey</td><td>Value for the reconstructed packet's <code>key</code> field (e.g. wrapped AES key). </td></tr>
   </table>
   </dd>
 </dl>

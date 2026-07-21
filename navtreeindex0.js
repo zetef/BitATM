@@ -246,8 +246,8 @@ var NAVTREEINDEX0 =
 "classConversationHistory.html#acf305a2f9b6603adf70522794b2477da":[1,0,10,6],
 "classConversationHistory.html#adc6a5ffcfe9ff8e6a40e151db1b72f16":[1,0,10,13],
 "classConversationListModel.html":[1,0,11],
+"classConversationListModel.html#a0266be4db4e2c9d0ccd7bc9f8c9db997":[1,0,11,10],
 "classConversationListModel.html#a0583358476b94b1569013eaea18e0561":[1,0,11,1],
-"classConversationListModel.html#a23f1502bd41d34f3b1461120962ce9b7":[1,0,11,4],
-"classConversationListModel.html#a331b4758287f72926ae9aee990a92e7a":[1,0,11,5],
-"classConversationListModel.html#a37f0ccaab1caa4fb45977c98256e8705":[1,0,11,6]
+"classConversationListModel.html#a05e042467484812b2a2f8c67521ecc24":[1,0,11,3],
+"classConversationListModel.html#a23f1502bd41d34f3b1461120962ce9b7":[1,0,11,4]
 };

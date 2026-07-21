@@ -2,7 +2,7 @@ var searchData=
 [
   ['offlinemessage_0',['offlinemessage',['../classOfflineMessage.html#a5643aed0b25487ca4295ca0058077cf0',1,'OfflineMessage::OfflineMessage(int id, int messageId, std::string recipient, std::string queuedAt, bool delivered=false, int deliveryAttempts=0)'],['../classOfflineMessage.html#a6595b74771eaef485dba5452eda2b2fb',1,'OfflineMessage::OfflineMessage(const OfflineMessage &amp;)=default'],['../classOfflineMessage.html#ae0f740f6e5a38cfc0257901396d04c6c',1,'OfflineMessage::OfflineMessage(OfflineMessage &amp;&amp;) noexcept=default'],['../classOfflineMessage.html#ae794c64398879500be1e481b405a9e09',1,'OfflineMessage::OfflineMessage()=default']]],
   ['offlinequeuerepository_1',['OfflineQueueRepository',['../classOfflineQueueRepository.html#ad235da8242a245c5bbe89d1b13eaf5e9',1,'OfflineQueueRepository']]],
-  ['open_2',['open',['../classLocalStorage.html#ad21ff41070edb6041563a977462daaea',1,'LocalStorage']]],
+  ['openforuser_2',['openForUser',['../classLocalStorage.html#a437551b149e7d9461f66fb923ee80437',1,'LocalStorage']]],
   ['openssladapter_3',['OpensslAdapter',['../classOpensslAdapter.html#a37cf3577386737eef07cbdb6afece650',1,'OpensslAdapter']]],
   ['operator_2b_4',['operator+',['../classConversationHistory.html#a38239676432b7da77d1af384c142bd3b',1,'ConversationHistory']]],
   ['operator_3c_5',['operator&lt;',['../classMessage.html#adcff5d6cc2990635a0dd2d097f6116ad',1,'Message']]],

@@ -112,9 +112,9 @@ Collaboration diagram for LocalStorage:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ad21ff41070edb6041563a977462daaea" id="r_ad21ff41070edb6041563a977462daaea"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLocalStorage.html#ad21ff41070edb6041563a977462daaea">open</a> ()</td></tr>
-<tr class="memdesc:ad21ff41070edb6041563a977462daaea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Open (or create) the SQLite DB at AppDataLocation/bitatm.db.  <br /></td></tr>
-<tr class="separator:ad21ff41070edb6041563a977462daaea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a437551b149e7d9461f66fb923ee80437" id="r_a437551b149e7d9461f66fb923ee80437"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLocalStorage.html#a437551b149e7d9461f66fb923ee80437">openForUser</a> (const QString &amp;username)</td></tr>
+<tr class="memdesc:a437551b149e7d9461f66fb923ee80437"><td class="mdescLeft">&#160;</td><td class="mdescRight">Open (or create) the per-account SQLite DB at AppDataLocation/accounts/&lt;sanitized-username&gt;/bitatm.db.  <br /></td></tr>
+<tr class="separator:a437551b149e7d9461f66fb923ee80437"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a65c1f42f831642375777d54843b25aba" id="r_a65c1f42f831642375777d54843b25aba"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLocalStorage.html#a65c1f42f831642375777d54843b25aba">close</a> ()</td></tr>
 <tr class="memdesc:a65c1f42f831642375777d54843b25aba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Close the database connection.  <br /></td></tr>
 <tr class="separator:a65c1f42f831642375777d54843b25aba"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -133,6 +133,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a9776c3af4db5e7c4b20076291a95348b" id="r_a9776c3af4db5e7c4b20076291a95348b"><td class="memItemLeft" align="right" valign="top">QList&lt; <a class="el" href="structConversationRecord.html">ConversationRecord</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLocalStorage.html#a9776c3af4db5e7c4b20076291a95348b">loadConversations</a> ()</td></tr>
 <tr class="memdesc:a9776c3af4db5e7c4b20076291a95348b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load all conversation summaries.  <br /></td></tr>
 <tr class="separator:a9776c3af4db5e7c4b20076291a95348b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa5fe64256541f67f7d481a9414f1bbcf" id="r_aa5fe64256541f67f7d481a9414f1bbcf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLocalStorage.html#aa5fe64256541f67f7d481a9414f1bbcf">incrementUnread</a> (const QString &amp;peer)</td></tr>
+<tr class="memdesc:aa5fe64256541f67f7d481a9414f1bbcf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Increment the persisted unread badge count for a 1:1 conversation.  <br /></td></tr>
+<tr class="separator:aa5fe64256541f67f7d481a9414f1bbcf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7b14da8351cafdc7a5bdd50e625cb21" id="r_ae7b14da8351cafdc7a5bdd50e625cb21"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLocalStorage.html#ae7b14da8351cafdc7a5bdd50e625cb21">resetUnread</a> (const QString &amp;peer)</td></tr>
+<tr class="memdesc:ae7b14da8351cafdc7a5bdd50e625cb21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset the persisted unread badge count for a 1:1 conversation to zero.  <br /></td></tr>
+<tr class="separator:ae7b14da8351cafdc7a5bdd50e625cb21"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1da495871df90969dcdfdb848b0e7b27" id="r_a1da495871df90969dcdfdb848b0e7b27"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLocalStorage.html#a1da495871df90969dcdfdb848b0e7b27">newestTimestamp</a> ()</td></tr>
 <tr class="memdesc:a1da495871df90969dcdfdb848b0e7b27"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the ISO timestamp of the newest stored message, or empty string.  <br /></td></tr>
 <tr class="separator:a1da495871df90969dcdfdb848b0e7b27"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -184,6 +190,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ada663a005a01cd9dba3af7f84460ac0d" id="r_ada663a005a01cd9dba3af7f84460ac0d"><td class="memItemLeft" align="right" valign="top">QList&lt; <a class="el" href="structGroupRecord.html">GroupRecord</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLocalStorage.html#ada663a005a01cd9dba3af7f84460ac0d">loadGroups</a> ()</td></tr>
 <tr class="memdesc:ada663a005a01cd9dba3af7f84460ac0d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load all groups ordered by last_timestamp DESC.  <br /></td></tr>
 <tr class="separator:ada663a005a01cd9dba3af7f84460ac0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22291ad86c9c0dc4ffae19de835d1d30" id="r_a22291ad86c9c0dc4ffae19de835d1d30"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLocalStorage.html#a22291ad86c9c0dc4ffae19de835d1d30">incrementGroupUnread</a> (const QString &amp;groupId)</td></tr>
+<tr class="memdesc:a22291ad86c9c0dc4ffae19de835d1d30"><td class="mdescLeft">&#160;</td><td class="mdescRight">Increment the persisted unread badge count for a group.  <br /></td></tr>
+<tr class="separator:a22291ad86c9c0dc4ffae19de835d1d30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb03097cbc689860dabe25569a833a83" id="r_afb03097cbc689860dabe25569a833a83"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLocalStorage.html#afb03097cbc689860dabe25569a833a83">resetGroupUnread</a> (const QString &amp;groupId)</td></tr>
+<tr class="memdesc:afb03097cbc689860dabe25569a833a83"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset the persisted unread badge count for a group to zero.  <br /></td></tr>
+<tr class="separator:afb03097cbc689860dabe25569a833a83"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab60f6bb97d6255b8b0eba6edf3b9d2d8" id="r_ab60f6bb97d6255b8b0eba6edf3b9d2d8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLocalStorage.html#ab60f6bb97d6255b8b0eba6edf3b9d2d8">isGroupMessageDuplicate</a> (const QString &amp;groupId, const QString &amp;sender, const QString &amp;timestamp)</td></tr>
 <tr class="memdesc:ab60f6bb97d6255b8b0eba6edf3b9d2d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if a group message with this groupId+sender+timestamp already exists.  <br /></td></tr>
 <tr class="separator:ab60f6bb97d6255b8b0eba6edf3b9d2d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -205,7 +217,7 @@ Static Public Member Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Singleton SQLite cache for messages and conversations. </p>
-<p>Opened once at app start. All reads/writes happen on the main thread (same as <a class="el" href="classNetworkManager.html" title="Proxy to the BitATM WebSocket server with integrated E2EE and local history.">NetworkManager</a>). Not thread-safe by design. </p>
+<p>Opened per-account, once a username is known (see <a class="el" href="classLocalStorage.html#a437551b149e7d9461f66fb923ee80437" title="Open (or create) the per-account SQLite DB at AppDataLocation/accounts/&lt;sanitized-username&gt;/bitatm....">openForUser()</a>) - never at app start, since no username exists yet at that point. All reads/writes happen on the main thread (same as <a class="el" href="classNetworkManager.html" title="Proxy to the BitATM WebSocket server with integrated E2EE and local history.">NetworkManager</a>). Not thread-safe by design. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a86c7513591cb8422ad2a0202ad37ca54" name="a86c7513591cb8422ad2a0202ad37ca54"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a86c7513591cb8422ad2a0202ad37ca54">&#9670;&#160;</a></span>allRecipientsDelivered()</h2>
@@ -322,6 +334,46 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Delete all messages and the conversation summary row for a single peer. </p>
+
+</div>
+</div>
+<a id="a22291ad86c9c0dc4ffae19de835d1d30" name="a22291ad86c9c0dc4ffae19de835d1d30"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a22291ad86c9c0dc4ffae19de835d1d30">&#9670;&#160;</a></span>incrementGroupUnread()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LocalStorage::incrementGroupUnread </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>groupId</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Increment the persisted unread badge count for a group. </p>
+
+</div>
+</div>
+<a id="aa5fe64256541f67f7d481a9414f1bbcf" name="aa5fe64256541f67f7d481a9414f1bbcf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa5fe64256541f67f7d481a9414f1bbcf">&#9670;&#160;</a></span>incrementUnread()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LocalStorage::incrementUnread </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>peer</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Increment the persisted unread badge count for a 1:1 conversation. </p>
 
 </div>
 </div>
@@ -613,22 +665,24 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ad21ff41070edb6041563a977462daaea" name="ad21ff41070edb6041563a977462daaea"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad21ff41070edb6041563a977462daaea">&#9670;&#160;</a></span>open()</h2>
+<a id="a437551b149e7d9461f66fb923ee80437" name="a437551b149e7d9461f66fb923ee80437"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a437551b149e7d9461f66fb923ee80437">&#9670;&#160;</a></span>openForUser()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool LocalStorage::open </td>
+          <td class="memname">bool LocalStorage::openForUser </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>username</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Open (or create) the SQLite DB at AppDataLocation/bitatm.db. </p>
+<p>Open (or create) the per-account SQLite DB at AppDataLocation/accounts/&lt;sanitized-username&gt;/bitatm.db. </p>
+<p>Closes any previously-open connection first, so calling this again with a different username in the same process is safe and simply switches to that account's own file - nothing is cleared or shared. </p>
 
 </div>
 </div>
@@ -740,6 +794,46 @@ Static Public Member Functions</h2></td></tr>
 
 <p>Delete snapshot rows of members no longer in the group. </p>
 <dl class="section return"><dt>Returns</dt><dd>Timestamps that still have rows (aggregate recompute candidates). </dd></dl>
+
+</div>
+</div>
+<a id="afb03097cbc689860dabe25569a833a83" name="afb03097cbc689860dabe25569a833a83"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afb03097cbc689860dabe25569a833a83">&#9670;&#160;</a></span>resetGroupUnread()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LocalStorage::resetGroupUnread </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>groupId</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reset the persisted unread badge count for a group to zero. </p>
+
+</div>
+</div>
+<a id="ae7b14da8351cafdc7a5bdd50e625cb21" name="ae7b14da8351cafdc7a5bdd50e625cb21"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae7b14da8351cafdc7a5bdd50e625cb21">&#9670;&#160;</a></span>resetUnread()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LocalStorage::resetUnread </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>peer</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reset the persisted unread badge count for a 1:1 conversation to zero. </p>
 
 </div>
 </div>

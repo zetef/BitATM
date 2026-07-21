@@ -12,7 +12,10 @@ var searchData=
   ['removerecipientsnotin_9',['removeRecipientsNotIn',['../classLocalStorage.html#ab68f9f9d75fa0077bfc92619108ea203',1,'LocalStorage']]],
   ['replaceallkeys_10',['replaceAllKeys',['../classGroupRepository.html#a7be0fdd4fd7487d49f7e17eda8db2618',1,'GroupRepository']]],
   ['requestgroupkey_11',['requestGroupKey',['../classNetworkManager.html#aff1ef88014dd9590fa629dc0ddada3b8',1,'NetworkManager']]],
-  ['rolenames_12',['rolenames',['../classChatModel.html#ad0973978d5d2c49262577d5442a5afbb',1,'ChatModel::roleNames()'],['../classConversationListModel.html#ab2bcf9c321f917452d4f788bbff41ed7',1,'ConversationListModel::roleNames()']]],
-  ['rowcount_13',['rowcount',['../classChatModel.html#aa597aa46f94dba90ba14a990562bd9f1',1,'ChatModel::rowCount()'],['../classConversationListModel.html#acacc560a21df4b3dc006432a85cc8ee2',1,'ConversationListModel::rowCount()']]],
-  ['rsaoaepstrategy_14',['RsaOaepStrategy',['../classRsaOaepStrategy.html#a680f1e962f75d4598e53f65404d19bfa',1,'RsaOaepStrategy']]]
+  ['resetgroupunread_12',['resetGroupUnread',['../classLocalStorage.html#afb03097cbc689860dabe25569a833a83',1,'LocalStorage']]],
+  ['resetunread_13',['resetUnread',['../classLocalStorage.html#ae7b14da8351cafdc7a5bdd50e625cb21',1,'LocalStorage']]],
+  ['revokeadmin_14',['revokeAdmin',['../classNetworkManager.html#a3585fe9b07554b596904a4afbfb0f3f9',1,'NetworkManager']]],
+  ['rolenames_15',['rolenames',['../classChatModel.html#ad0973978d5d2c49262577d5442a5afbb',1,'ChatModel::roleNames()'],['../classConversationListModel.html#ab2bcf9c321f917452d4f788bbff41ed7',1,'ConversationListModel::roleNames()']]],
+  ['rowcount_16',['rowcount',['../classChatModel.html#aa597aa46f94dba90ba14a990562bd9f1',1,'ChatModel::rowCount()'],['../classConversationListModel.html#acacc560a21df4b3dc006432a85cc8ee2',1,'ConversationListModel::rowCount()']]],
+  ['rsaoaepstrategy_17',['RsaOaepStrategy',['../classRsaOaepStrategy.html#a680f1e962f75d4598e53f65404d19bfa',1,'RsaOaepStrategy']]]
 ];

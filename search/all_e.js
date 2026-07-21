@@ -6,7 +6,7 @@ var searchData=
   ['offlinequeuerepository_3',['offlinequeuerepository',['../classOfflineQueueRepository.html',1,'OfflineQueueRepository'],['../classOfflineQueueRepository.html#ad235da8242a245c5bbe89d1b13eaf5e9',1,'OfflineQueueRepository::OfflineQueueRepository()']]],
   ['offlinequeuerepository_2ecpp_4',['OfflineQueueRepository.cpp',['../OfflineQueueRepository_8cpp.html',1,'']]],
   ['offlinequeuerepository_2eh_5',['OfflineQueueRepository.h',['../OfflineQueueRepository_8h.html',1,'']]],
-  ['open_6',['open',['../classLocalStorage.html#ad21ff41070edb6041563a977462daaea',1,'LocalStorage']]],
+  ['openforuser_6',['openForUser',['../classLocalStorage.html#a437551b149e7d9461f66fb923ee80437',1,'LocalStorage']]],
   ['openssladapter_7',['openssladapter',['../classOpensslAdapter.html',1,'OpensslAdapter'],['../classOpensslAdapter.html#a37cf3577386737eef07cbdb6afece650',1,'OpensslAdapter::OpensslAdapter()']]],
   ['openssladapter_2ecpp_8',['OpensslAdapter.cpp',['../OpensslAdapter_8cpp.html',1,'']]],
   ['openssladapter_2eh_9',['OpensslAdapter.h',['../OpensslAdapter_8h.html',1,'']]],

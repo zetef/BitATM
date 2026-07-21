@@ -107,9 +107,9 @@ Inheritance diagram for ConversationListModel:</div>
 <div class="dyncontent">
 <div class="center"><img src="classConversationListModel__inherit__graph.png" border="0" usemap="#aConversationListModel_inherit__map" alt="Inheritance graph"/></div>
 <map name="aConversationListModel_inherit__map" id="aConversationListModel_inherit__map">
-<area shape="rect" title="QAbstractListModel for the conversation sidebar." alt="" coords="5,119,193,324"/>
+<area shape="rect" title="QAbstractListModel for the conversation sidebar." alt="" coords="5,119,193,364"/>
 <area shape="rect" title=" " alt="" coords="29,5,170,71"/>
-<area shape="poly" title=" " alt="" coords="102,84,102,119,97,119,97,84"/>
+<area shape="poly" title=" " alt="" coords="102,84,102,118,97,118,97,84"/>
 </map>
 </div>
 <div class="dynheader">
@@ -117,9 +117,9 @@ Collaboration diagram for ConversationListModel:</div>
 <div class="dyncontent">
 <div class="center"><img src="classConversationListModel__coll__graph.png" border="0" usemap="#aConversationListModel_coll__map" alt="Collaboration graph"/></div>
 <map name="aConversationListModel_coll__map" id="aConversationListModel_coll__map">
-<area shape="rect" title="QAbstractListModel for the conversation sidebar." alt="" coords="5,119,193,324"/>
+<area shape="rect" title="QAbstractListModel for the conversation sidebar." alt="" coords="5,119,193,364"/>
 <area shape="rect" title=" " alt="" coords="29,5,170,71"/>
-<area shape="poly" title=" " alt="" coords="102,84,102,119,97,119,97,84"/>
+<area shape="poly" title=" " alt="" coords="102,84,102,118,97,118,97,84"/>
 </map>
 </div>
 <table class="memberdecls">
@@ -132,6 +132,7 @@ Public Types</h2></td></tr>
 , <a class="el" href="classConversationListModel.html#ac6c4a9feb3a203d342de583ca01bc38ea8b7a838d1823ca83bed8148e8c598ee8">IsGroupRole</a> = Qt::UserRole + 4
 , <br />
 &#160;&#160;<a class="el" href="classConversationListModel.html#ac6c4a9feb3a203d342de583ca01bc38eaf0e58025765c985dde2f37f89322fb2c">GroupIdRole</a> = Qt::UserRole + 5
+, <a class="el" href="classConversationListModel.html#ac6c4a9feb3a203d342de583ca01bc38ea2f62b35ff4fbd11e6a6f5e2ba9fbcc47">UnreadCountRole</a> = Qt::UserRole + 6
 <br />
  }</td></tr>
 <tr class="memdesc:ac6c4a9feb3a203d342de583ca01bc38e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Role identifiers exposed to QML.  <a href="classConversationListModel.html#ac6c4a9feb3a203d342de583ca01bc38e">More...</a><br /></td></tr>
@@ -142,12 +143,18 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a0583358476b94b1569013eaea18e0561" id="r_a0583358476b94b1569013eaea18e0561"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConversationListModel.html#a0583358476b94b1569013eaea18e0561">ConversationListModel</a> (QObject *parent=nullptr)</td></tr>
 <tr class="memdesc:a0583358476b94b1569013eaea18e0561"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs the model with an optional parent.  <br /></td></tr>
 <tr class="separator:a0583358476b94b1569013eaea18e0561"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acf023bbcd5d16dac0619d909a3280565" id="r_acf023bbcd5d16dac0619d909a3280565"><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConversationListModel.html#acf023bbcd5d16dac0619d909a3280565">addOrUpdate</a> (const QString &amp;username, const QString &amp;lastMessage, const QString &amp;timestamp)</td></tr>
-<tr class="memdesc:acf023bbcd5d16dac0619d909a3280565"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inserts a new entry or updates an existing one by username.  <br /></td></tr>
-<tr class="separator:acf023bbcd5d16dac0619d909a3280565"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a93d4759883f8df68c20757ead27c6868" id="r_a93d4759883f8df68c20757ead27c6868"><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConversationListModel.html#a93d4759883f8df68c20757ead27c6868">addOrUpdateGroup</a> (const QString &amp;groupId, const QString &amp;groupName, const QString &amp;lastMessage, const QString &amp;lastTimestamp)</td></tr>
-<tr class="memdesc:a93d4759883f8df68c20757ead27c6868"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add or update a group conversation by groupId.  <br /></td></tr>
-<tr class="separator:a93d4759883f8df68c20757ead27c6868"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60f8649cd23ff019c5934033f7ad5211" id="r_a60f8649cd23ff019c5934033f7ad5211"><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConversationListModel.html#a60f8649cd23ff019c5934033f7ad5211">addOrUpdate</a> (const QString &amp;username, const QString &amp;lastMessage, const QString &amp;timestamp, bool incrementUnread=false)</td></tr>
+<tr class="memdesc:a60f8649cd23ff019c5934033f7ad5211"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inserts a new entry or updates an existing one by username.  <br /></td></tr>
+<tr class="separator:a60f8649cd23ff019c5934033f7ad5211"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a05e042467484812b2a2f8c67521ecc24" id="r_a05e042467484812b2a2f8c67521ecc24"><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConversationListModel.html#a05e042467484812b2a2f8c67521ecc24">addOrUpdateGroup</a> (const QString &amp;groupId, const QString &amp;groupName, const QString &amp;lastMessage, const QString &amp;lastTimestamp, bool incrementUnread=false)</td></tr>
+<tr class="memdesc:a05e042467484812b2a2f8c67521ecc24"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add or update a group conversation by groupId. See <a class="el" href="classConversationListModel.html#a60f8649cd23ff019c5934033f7ad5211" title="Inserts a new entry or updates an existing one by username.">addOrUpdate()</a> for incrementUnread.  <br /></td></tr>
+<tr class="separator:a05e042467484812b2a2f8c67521ecc24"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d0643df36771b20003331d1939801bc" id="r_a2d0643df36771b20003331d1939801bc"><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConversationListModel.html#a2d0643df36771b20003331d1939801bc">markRead</a> (const QString &amp;peer)</td></tr>
+<tr class="memdesc:a2d0643df36771b20003331d1939801bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset the unread badge for a conversation (peer or groupId) to zero.  <br /></td></tr>
+<tr class="separator:a2d0643df36771b20003331d1939801bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0266be4db4e2c9d0ccd7bc9f8c9db997" id="r_a0266be4db4e2c9d0ccd7bc9f8c9db997"><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConversationListModel.html#a0266be4db4e2c9d0ccd7bc9f8c9db997">setUnreadCount</a> (const QString &amp;peer, int count)</td></tr>
+<tr class="memdesc:a0266be4db4e2c9d0ccd7bc9f8c9db997"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the unread badge to an exact value, in memory only.  <br /></td></tr>
+<tr class="separator:a0266be4db4e2c9d0ccd7bc9f8c9db997"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a23f1502bd41d34f3b1461120962ce9b7" id="r_a23f1502bd41d34f3b1461120962ce9b7"><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConversationListModel.html#a23f1502bd41d34f3b1461120962ce9b7">clear</a> ()</td></tr>
 <tr class="memdesc:a23f1502bd41d34f3b1461120962ce9b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes all entries from the model.  <br /></td></tr>
 <tr class="separator:a23f1502bd41d34f3b1461120962ce9b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -166,7 +173,7 @@ Public Member Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>QAbstractListModel for the conversation sidebar. </p>
-<p>Holds a list of ConvEntry items, each representing a conversation with a peer. Supports <a class="el" href="classConversationListModel.html#acf023bbcd5d16dac0619d909a3280565" title="Inserts a new entry or updates an existing one by username.">addOrUpdate()</a> to insert new entries or refresh existing ones in-place. </p>
+<p>Holds a list of ConvEntry items, each representing a conversation with a peer. Supports <a class="el" href="classConversationListModel.html#a60f8649cd23ff019c5934033f7ad5211" title="Inserts a new entry or updates an existing one by username.">addOrUpdate()</a> to insert new entries or refresh existing ones in-place. </p>
 </div><h2 class="groupheader">Member Enumeration Documentation</h2>
 <a id="ac6c4a9feb3a203d342de583ca01bc38e" name="ac6c4a9feb3a203d342de583ca01bc38e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac6c4a9feb3a203d342de583ca01bc38e">&#9670;&#160;</a></span>Roles</h2>
@@ -187,6 +194,7 @@ Public Member Functions</h2></td></tr>
 <tr><td class="fieldname"><a id="ac6c4a9feb3a203d342de583ca01bc38ea1ac943673dbb92fa545ca59443f30877" name="ac6c4a9feb3a203d342de583ca01bc38ea1ac943673dbb92fa545ca59443f30877"></a>TimestampRole&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="ac6c4a9feb3a203d342de583ca01bc38ea8b7a838d1823ca83bed8148e8c598ee8" name="ac6c4a9feb3a203d342de583ca01bc38ea8b7a838d1823ca83bed8148e8c598ee8"></a>IsGroupRole&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="ac6c4a9feb3a203d342de583ca01bc38eaf0e58025765c985dde2f37f89322fb2c" name="ac6c4a9feb3a203d342de583ca01bc38eaf0e58025765c985dde2f37f89322fb2c"></a>GroupIdRole&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ac6c4a9feb3a203d342de583ca01bc38ea2f62b35ff4fbd11e6a6f5e2ba9fbcc47" name="ac6c4a9feb3a203d342de583ca01bc38ea2f62b35ff4fbd11e6a6f5e2ba9fbcc47"></a>UnreadCountRole&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
 </div>
@@ -221,8 +229,8 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="acf023bbcd5d16dac0619d909a3280565" name="acf023bbcd5d16dac0619d909a3280565"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acf023bbcd5d16dac0619d909a3280565">&#9670;&#160;</a></span>addOrUpdate()</h2>
+<a id="a60f8649cd23ff019c5934033f7ad5211" name="a60f8649cd23ff019c5934033f7ad5211"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60f8649cd23ff019c5934033f7ad5211">&#9670;&#160;</a></span>addOrUpdate()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -243,7 +251,13 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const QString &amp;&#160;</td>
-          <td class="paramname"><em>timestamp</em>&#160;</td>
+          <td class="paramname"><em>timestamp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>incrementUnread</em> = <code>false</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -260,14 +274,15 @@ Public Member Functions</h2></td></tr>
     <tr><td class="paramname">username</td><td>Peer username (unique key). </td></tr>
     <tr><td class="paramname">lastMessage</td><td>Most recent message preview. </td></tr>
     <tr><td class="paramname">timestamp</td><td>Display timestamp string. </td></tr>
+    <tr><td class="paramname">incrementUnread</td><td>Increment the unread badge by one (a new incoming message for a conversation that isn't currently open). </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a id="a93d4759883f8df68c20757ead27c6868" name="a93d4759883f8df68c20757ead27c6868"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a93d4759883f8df68c20757ead27c6868">&#9670;&#160;</a></span>addOrUpdateGroup()</h2>
+<a id="a05e042467484812b2a2f8c67521ecc24" name="a05e042467484812b2a2f8c67521ecc24"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a05e042467484812b2a2f8c67521ecc24">&#9670;&#160;</a></span>addOrUpdateGroup()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -294,7 +309,13 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const QString &amp;&#160;</td>
-          <td class="paramname"><em>lastTimestamp</em>&#160;</td>
+          <td class="paramname"><em>lastTimestamp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>incrementUnread</em> = <code>false</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -304,7 +325,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Add or update a group conversation by groupId. </p>
+<p>Add or update a group conversation by groupId. See <a class="el" href="classConversationListModel.html#a60f8649cd23ff019c5934033f7ad5211" title="Inserts a new entry or updates an existing one by username.">addOrUpdate()</a> for incrementUnread. </p>
 
 </div>
 </div>
@@ -362,6 +383,26 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns the data for a given index and role. </p>
+
+</div>
+</div>
+<a id="a2d0643df36771b20003331d1939801bc" name="a2d0643df36771b20003331d1939801bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d0643df36771b20003331d1939801bc">&#9670;&#160;</a></span>markRead()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ConversationListModel::markRead </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>peer</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reset the unread badge for a conversation (peer or groupId) to zero. </p>
 
 </div>
 </div>
@@ -437,6 +478,37 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns the number of entries in the model. </p>
+
+</div>
+</div>
+<a id="a0266be4db4e2c9d0ccd7bc9f8c9db997" name="a0266be4db4e2c9d0ccd7bc9f8c9db997"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0266be4db4e2c9d0ccd7bc9f8c9db997">&#9670;&#160;</a></span>setUnreadCount()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ConversationListModel::setUnreadCount </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>peer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>count</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set the unread badge to an exact value, in memory only. </p>
+<p>Used to seed the badge from the persisted <a class="el" href="classLocalStorage.html" title="Singleton SQLite cache for messages and conversations.">LocalStorage</a> count during local history load - does not itself write back to <a class="el" href="classLocalStorage.html" title="Singleton SQLite cache for messages and conversations.">LocalStorage</a>. </p>
 
 </div>
 </div>

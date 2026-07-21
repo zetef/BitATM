@@ -18,11 +18,14 @@ var searchData=
   ['removerecipientsnotin_15',['removeRecipientsNotIn',['../classLocalStorage.html#ab68f9f9d75fa0077bfc92619108ea203',1,'LocalStorage']]],
   ['replaceallkeys_16',['replaceAllKeys',['../classGroupRepository.html#a7be0fdd4fd7487d49f7e17eda8db2618',1,'GroupRepository']]],
   ['requestgroupkey_17',['requestGroupKey',['../classNetworkManager.html#aff1ef88014dd9590fa629dc0ddada3b8',1,'NetworkManager']]],
-  ['role_18',['role',['../structGroupMember.html#a93ff775d08f660d9281a2ed4c1297111',1,'GroupMember::role'],['../structGroupRecord.html#aa242ef916c1f0d5736728247661db642',1,'GroupRecord::role']]],
-  ['rolenames_19',['rolenames',['../classChatModel.html#ad0973978d5d2c49262577d5442a5afbb',1,'ChatModel::roleNames()'],['../classConversationListModel.html#ab2bcf9c321f917452d4f788bbff41ed7',1,'ConversationListModel::roleNames()']]],
-  ['roles_20',['roles',['../classChatModel.html#a63e01c84f289f33e414ae789fcdc68e0',1,'ChatModel::Roles'],['../classConversationListModel.html#ac6c4a9feb3a203d342de583ca01bc38e',1,'ConversationListModel::Roles']]],
-  ['rowcount_21',['rowcount',['../classChatModel.html#aa597aa46f94dba90ba14a990562bd9f1',1,'ChatModel::rowCount()'],['../classConversationListModel.html#acacc560a21df4b3dc006432a85cc8ee2',1,'ConversationListModel::rowCount()']]],
-  ['rsaoaepstrategy_22',['rsaoaepstrategy',['../classRsaOaepStrategy.html',1,'RsaOaepStrategy'],['../classRsaOaepStrategy.html#a680f1e962f75d4598e53f65404d19bfa',1,'RsaOaepStrategy::RsaOaepStrategy()']]],
-  ['rsaoaepstrategy_2ecpp_23',['RsaOaepStrategy.cpp',['../RsaOaepStrategy_8cpp.html',1,'']]],
-  ['rsaoaepstrategy_2eh_24',['RsaOaepStrategy.h',['../RsaOaepStrategy_8h.html',1,'']]]
+  ['resetgroupunread_18',['resetGroupUnread',['../classLocalStorage.html#afb03097cbc689860dabe25569a833a83',1,'LocalStorage']]],
+  ['resetunread_19',['resetUnread',['../classLocalStorage.html#ae7b14da8351cafdc7a5bdd50e625cb21',1,'LocalStorage']]],
+  ['revokeadmin_20',['revokeAdmin',['../classNetworkManager.html#a3585fe9b07554b596904a4afbfb0f3f9',1,'NetworkManager']]],
+  ['role_21',['role',['../structGroupMember.html#a93ff775d08f660d9281a2ed4c1297111',1,'GroupMember::role'],['../structGroupRecord.html#aa242ef916c1f0d5736728247661db642',1,'GroupRecord::role']]],
+  ['rolenames_22',['rolenames',['../classChatModel.html#ad0973978d5d2c49262577d5442a5afbb',1,'ChatModel::roleNames()'],['../classConversationListModel.html#ab2bcf9c321f917452d4f788bbff41ed7',1,'ConversationListModel::roleNames()']]],
+  ['roles_23',['roles',['../classChatModel.html#a63e01c84f289f33e414ae789fcdc68e0',1,'ChatModel::Roles'],['../classConversationListModel.html#ac6c4a9feb3a203d342de583ca01bc38e',1,'ConversationListModel::Roles']]],
+  ['rowcount_24',['rowcount',['../classChatModel.html#aa597aa46f94dba90ba14a990562bd9f1',1,'ChatModel::rowCount()'],['../classConversationListModel.html#acacc560a21df4b3dc006432a85cc8ee2',1,'ConversationListModel::rowCount()']]],
+  ['rsaoaepstrategy_25',['rsaoaepstrategy',['../classRsaOaepStrategy.html',1,'RsaOaepStrategy'],['../classRsaOaepStrategy.html#a680f1e962f75d4598e53f65404d19bfa',1,'RsaOaepStrategy::RsaOaepStrategy()']]],
+  ['rsaoaepstrategy_2ecpp_26',['RsaOaepStrategy.cpp',['../RsaOaepStrategy_8cpp.html',1,'']]],
+  ['rsaoaepstrategy_2eh_27',['RsaOaepStrategy.h',['../RsaOaepStrategy_8h.html',1,'']]]
 ];

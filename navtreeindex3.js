@@ -1,5 +1,16 @@
 var NAVTREEINDEX3 =
 {
+"protocol_8h.html#a56879c1b9a1575b9bff0da71453d6593":[2,0,1,1,5],
+"protocol_8h.html#a70f52007f8c2408ec768efe3c27c8849":[2,0,1,1,3],
+"protocol_8h.html#ae4d2325390b1703d2db37ab125ef43cf":[2,0,1,1,2],
+"protocol_8h_source.html":[2,0,1,1],
+"structConversationRecord.html":[1,0,12],
+"structConversationRecord.html#a2342a5880f62236a244f9d219aaefc2d":[1,0,12,1],
+"structConversationRecord.html#ac2f9c7ff8f0edee9c94e785c1abcc9d6":[1,0,12,2],
+"structConversationRecord.html#add79efb252175ba52cc4c67cf8355bd5":[1,0,12,3],
+"structConversationRecord.html#aebf318f01d76254306e8aca4c0f445e0":[1,0,12,0],
+"structGroupInfo.html":[1,0,20],
+"structGroupInfo.html#a23fe0f05d4856e231c3aacf5fe939b9a":[1,0,20,0],
 "structGroupInfo.html#a6fb4450cc60c5c8c75fe4c340cca193a":[1,0,20,2],
 "structGroupInfo.html#af611c3e44607be5825b6c05734c5661a":[1,0,20,1],
 "structGroupMember.html":[1,0,24],
@@ -21,6 +32,7 @@ var NAVTREEINDEX3 =
 "structGroupRecord.html":[1,0,29],
 "structGroupRecord.html#a1c94690597a3227201f6d4856ac1d992":[1,0,29,3],
 "structGroupRecord.html#a2eb74158b4f1f108895960a871400e38":[1,0,29,0],
+"structGroupRecord.html#a5af4146e64318abc07a2ab76b79464d3":[1,0,29,5],
 "structGroupRecord.html#aa242ef916c1f0d5736728247661db642":[1,0,29,4],
 "structGroupRecord.html#aeb9a169227720afa8c087e5d35e693f0":[1,0,29,1],
 "structGroupRecord.html#af92dcb5eac64d8548efd1fc579760761":[1,0,29,2],
@@ -50,8 +62,10 @@ var NAVTREEINDEX3 =
 "structPacket.html#aebbae2cef32f967d0bbcabbe41dae6bf":[1,0,49,15],
 "structPacket.html#af746ece6c1398c63273f9ff8644074db":[1,0,49,2],
 "structPendingNotification.html":[1,0,52],
-"structPendingNotification.html#a16b46c3a0dabc8a4685df365128a3a52":[1,0,52,2],
-"structPendingNotification.html#a7e05b25061648d8b4c7014041bcdbb74":[1,0,52,1],
+"structPendingNotification.html#a16b46c3a0dabc8a4685df365128a3a52":[1,0,52,3],
+"structPendingNotification.html#a2176c0639bca1eeac3c130e32e1f0123":[1,0,52,1],
+"structPendingNotification.html#a7cbfa73c653a9c96b655c1beab6c70f0":[1,0,52,4],
+"structPendingNotification.html#a7e05b25061648d8b4c7014041bcdbb74":[1,0,52,2],
 "structPendingNotification.html#a90bae5ecb263c08d9639bb443a73780e":[1,0,52,0],
-"structPendingNotification.html#aa19aa6e2672214c8be6593d8a5de5771":[1,0,52,3]
+"structPendingNotification.html#aa19aa6e2672214c8be6593d8a5de5771":[1,0,52,5]
 };

@@ -90,6 +90,7 @@ $(document).ready(function(){initNavTree('classGroupInfoHandler.html',''); initR
 
 <div class="header">
   <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="classGroupInfoHandler-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">GroupInfoHandler Class Reference</div></div>
@@ -105,7 +106,7 @@ Inheritance diagram for GroupInfoHandler:</div>
 <div class="dyncontent">
 <div class="center"><img src="classGroupInfoHandler__inherit__graph.png" border="0" usemap="#aGroupInfoHandler_inherit__map" alt="Inheritance graph"/></div>
 <map name="aGroupInfoHandler_inherit__map" id="aGroupInfoHandler_inherit__map">
-<area shape="rect" title="Handles GROUP_INFO packets. L3 under BaseAuthHandler." alt="" coords="27,312,156,397"/>
+<area shape="rect" title="Handles GROUP_INFO packets. L3 under BaseAuthHandler." alt="" coords="15,312,168,417"/>
 <area shape="rect" href="classBaseAuthHandler.html" title="L2 abstract handler for packet types that require an authenticated session." alt="" coords="28,199,155,264"/>
 <area shape="poly" title=" " alt="" coords="94,278,94,312,89,312,89,278"/>
 <area shape="rect" href="classICommandHandler.html" title="Template Method base for all packet handlers." alt="" coords="5,5,177,151"/>
@@ -117,7 +118,7 @@ Collaboration diagram for GroupInfoHandler:</div>
 <div class="dyncontent">
 <div class="center"><img src="classGroupInfoHandler__coll__graph.png" border="0" usemap="#aGroupInfoHandler_coll__map" alt="Collaboration graph"/></div>
 <map name="aGroupInfoHandler_coll__map" id="aGroupInfoHandler_coll__map">
-<area shape="rect" title="Handles GROUP_INFO packets. L3 under BaseAuthHandler." alt="" coords="27,312,156,397"/>
+<area shape="rect" title="Handles GROUP_INFO packets. L3 under BaseAuthHandler." alt="" coords="15,312,168,417"/>
 <area shape="rect" href="classBaseAuthHandler.html" title="L2 abstract handler for packet types that require an authenticated session." alt="" coords="28,199,155,264"/>
 <area shape="poly" title=" " alt="" coords="94,278,94,312,89,312,89,278"/>
 <area shape="rect" href="classICommandHandler.html" title="Template Method base for all packet handlers." alt="" coords="5,5,177,151"/>
@@ -125,31 +126,63 @@ Collaboration diagram for GroupInfoHandler:</div>
 </map>
 </div>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a9caf555d44bf6f52dd1df3d2cfcfa527" id="r_a9caf555d44bf6f52dd1df3d2cfcfa527"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGroupInfoHandler.html#a9caf555d44bf6f52dd1df3d2cfcfa527">GroupInfoHandler</a> (<a class="el" href="classServer.html">Server</a> &amp;server)</td></tr>
+<tr class="memdesc:a9caf555d44bf6f52dd1df3d2cfcfa527"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct with a reference to the server for fanning role-change updates.  <br /></td></tr>
+<tr class="separator:a9caf555d44bf6f52dd1df3d2cfcfa527"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classICommandHandler"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classICommandHandler')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classICommandHandler.html">ICommandHandler</a></td></tr>
+<tr class="memitem:a2c2d11b6bd94d4bd721935b793fcd33d inherit pub_methods_classICommandHandler" id="r_a2c2d11b6bd94d4bd721935b793fcd33d"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classICommandHandler.html#a2c2d11b6bd94d4bd721935b793fcd33d">~ICommandHandler</a> ()=default</td></tr>
+<tr class="separator:a2c2d11b6bd94d4bd721935b793fcd33d inherit pub_methods_classICommandHandler"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16f6823694fb8f2134d2b6942484dbaf inherit pub_methods_classICommandHandler" id="r_a16f6823694fb8f2134d2b6942484dbaf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classICommandHandler.html#a16f6823694fb8f2134d2b6942484dbaf">handle</a> (<a class="el" href="structPacket.html">Packet</a> &amp;packet, <a class="el" href="classClientSession.html">ClientSession</a> &amp;session)</td></tr>
+<tr class="separator:a16f6823694fb8f2134d2b6942484dbaf inherit pub_methods_classICommandHandler"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr class="memitem:af2853edfc87965c5f4a8a50d951ea2e3" id="r_af2853edfc87965c5f4a8a50d951ea2e3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGroupInfoHandler.html#af2853edfc87965c5f4a8a50d951ea2e3">validate</a> (const <a class="el" href="structPacket.html">Packet</a> &amp;packet) override</td></tr>
 <tr class="memdesc:af2853edfc87965c5f4a8a50d951ea2e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Validate that to (group_id) is present.  <br /></td></tr>
 <tr class="separator:af2853edfc87965c5f4a8a50d951ea2e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1a8b22e2ac80123788cee4b37a29230e" id="r_a1a8b22e2ac80123788cee4b37a29230e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGroupInfoHandler.html#a1a8b22e2ac80123788cee4b37a29230e">execute</a> (<a class="el" href="structPacket.html">Packet</a> &amp;packet, <a class="el" href="classClientSession.html">ClientSession</a> &amp;session) override</td></tr>
-<tr class="memdesc:a1a8b22e2ac80123788cee4b37a29230e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return group member list with roles; handle grant_admin sub-command.  <br /></td></tr>
+<tr class="memdesc:a1a8b22e2ac80123788cee4b37a29230e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return group member list with roles; handle grant_admin/revoke_admin sub-commands.  <br /></td></tr>
 <tr class="separator:a1a8b22e2ac80123788cee4b37a29230e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_classBaseAuthHandler"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classBaseAuthHandler')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classBaseAuthHandler.html">BaseAuthHandler</a></td></tr>
 <tr class="memitem:ab8d97c34782d2f2e20edb6c56074bfdf inherit pro_methods_classBaseAuthHandler" id="r_ab8d97c34782d2f2e20edb6c56074bfdf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBaseAuthHandler.html#ab8d97c34782d2f2e20edb6c56074bfdf">authorize</a> (const <a class="el" href="classClientSession.html">ClientSession</a> &amp;session) override</td></tr>
 <tr class="memdesc:ab8d97c34782d2f2e20edb6c56074bfdf inherit pro_methods_classBaseAuthHandler"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reject the request unless the session is authenticated and its token maps to an active, unexpired row in the sessions table.  <br /></td></tr>
 <tr class="separator:ab8d97c34782d2f2e20edb6c56074bfdf inherit pro_methods_classBaseAuthHandler"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
-Additional Inherited Members</h2></td></tr>
-<tr class="inherit_header pub_methods_classICommandHandler"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classICommandHandler')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classICommandHandler.html">ICommandHandler</a></td></tr>
-<tr class="memitem:a2c2d11b6bd94d4bd721935b793fcd33d inherit pub_methods_classICommandHandler" id="r_a2c2d11b6bd94d4bd721935b793fcd33d"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classICommandHandler.html#a2c2d11b6bd94d4bd721935b793fcd33d">~ICommandHandler</a> ()=default</td></tr>
-<tr class="separator:a2c2d11b6bd94d4bd721935b793fcd33d inherit pub_methods_classICommandHandler"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a16f6823694fb8f2134d2b6942484dbaf inherit pub_methods_classICommandHandler" id="r_a16f6823694fb8f2134d2b6942484dbaf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classICommandHandler.html#a16f6823694fb8f2134d2b6942484dbaf">handle</a> (<a class="el" href="structPacket.html">Packet</a> &amp;packet, <a class="el" href="classClientSession.html">ClientSession</a> &amp;session)</td></tr>
-<tr class="separator:a16f6823694fb8f2134d2b6942484dbaf inherit pub_methods_classICommandHandler"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Handles GROUP_INFO packets. L3 under <a class="el" href="classBaseAuthHandler.html" title="L2 abstract handler for packet types that require an authenticated session.">BaseAuthHandler</a>. </p>
-<p>Returns current group membership and roles to the requester. Also handles the "grant_admin" sub-command when body == "grant_admin" (only the group creator may grant admin status). </p>
-</div><h2 class="groupheader">Member Function Documentation</h2>
+<p>Returns current group membership and roles to the requester. Also handles the "grant_admin" and "revoke_admin" sub-commands (only the group creator may grant/revoke admin status); on either, every other online member is fanned a fresh GROUP_INFO too, so anyone with the group info sheet open sees the role change live instead of only on next fetch. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a9caf555d44bf6f52dd1df3d2cfcfa527" name="a9caf555d44bf6f52dd1df3d2cfcfa527"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9caf555d44bf6f52dd1df3d2cfcfa527">&#9670;&#160;</a></span>GroupInfoHandler()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">GroupInfoHandler::GroupInfoHandler </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classServer.html">Server</a> &amp;&#160;</td>
+          <td class="paramname"><em>server</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Construct with a reference to the server for fanning role-change updates. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
 <a id="a1a8b22e2ac80123788cee4b37a29230e" name="a1a8b22e2ac80123788cee4b37a29230e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1a8b22e2ac80123788cee4b37a29230e">&#9670;&#160;</a></span>execute()</h2>
 
@@ -184,7 +217,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Return group member list with roles; handle grant_admin sub-command. </p>
+<p>Return group member list with roles; handle grant_admin/revoke_admin sub-commands. </p>
 
 <p>Implements <a class="el" href="classICommandHandler.html#ac84b26b8eaff696e610a35304476f50c">ICommandHandler</a>.</p>
 
