@@ -30,6 +30,19 @@ void GroupInfoHandler::execute(Packet& packet, ClientSession& session) {
         repo.updateRole(groupId, packet.key, "admin");
     }
 
+    // Handle revoke_admin sub-command
+    if (packet.body == "revoke_admin") {
+        std::string requesterRole = repo.getMemberRole(groupId, requester);
+        if (requesterRole != "creator")
+            throw ProtocolException("GROUP_INFO: only the creator may revoke admin status");
+        if (packet.key.empty())
+            throw ProtocolException(
+                "GROUP_INFO: target username (key) is required for revoke_admin");
+        if (repo.getMemberRole(groupId, packet.key) != "admin")
+            throw ProtocolException("GROUP_INFO: target is not an admin");
+        repo.updateRole(groupId, packet.key, "member");
+    }
+
     auto group = repo.findGroupById(groupId);
     if (!group) throw ProtocolException("GROUP_INFO: group not found: " + packet.to);
 

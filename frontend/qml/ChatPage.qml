@@ -11,6 +11,30 @@ Rectangle {
     property var stackView: null
     property bool _isGroup: /^\d+$/.test(chatPage.activePeer)
 
+    // getGroupName() is a plain Q_INVOKABLE, not a NOTIFY-backed property, so a
+    // binding that calls it directly only re-evaluates when activePeer changes -
+    // never when the name arrives later via an async GROUP_INFO/invite response.
+    // _liveGroupName is updated imperatively by the Connections below and reset
+    // whenever activePeer changes, so _groupDisplayName stays reactive to both.
+    property string _liveGroupName: ""
+    property string _groupDisplayName: chatPage._liveGroupName.length > 0
+        ? chatPage._liveGroupName
+        : networkManager.getGroupName(chatPage.activePeer)
+    onActivePeerChanged: chatPage._liveGroupName = ""
+
+    Connections {
+        target: networkManager
+        function onGroupInfoReceived(gid, name, members) {
+            if (gid === chatPage.activePeer && name.length > 0) chatPage._liveGroupName = name
+        }
+        function onGroupConvUpdated(gid, name, lastMessage, lastTimestamp) {
+            if (gid === chatPage.activePeer && name.length > 0) chatPage._liveGroupName = name
+        }
+        function onGroupInviteReceived(gid, name) {
+            if (gid === chatPage.activePeer && name.length > 0) chatPage._liveGroupName = name
+        }
+    }
+
     MessageInfoSheet {
         id: messageInfoSheet
         anchors.right: parent.right
@@ -108,7 +132,7 @@ Rectangle {
             Label {
                 anchors.centerIn: parent
                 text: chatPage._isGroup
-                    ? "[ " + networkManager.getGroupName(chatPage.activePeer) + " ]"
+                    ? "[ " + chatPage._groupDisplayName + " ]"
                     : "[ " + chatPage.activePeer + " ]"
                 color: "#c8c8c8"
                 font.pixelSize: 14
@@ -257,7 +281,7 @@ Rectangle {
                     width: parent.width - sendButton.width - parent.spacing
                     height: parent.height
                     placeholderText: "> msg " + (chatPage._isGroup
-                        ? networkManager.getGroupName(chatPage.activePeer)
+                        ? chatPage._groupDisplayName
                         : chatPage.activePeer) + "..."
                     color: "#c8c8c8"
                     placeholderTextColor: "#505050"

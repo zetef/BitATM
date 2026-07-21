@@ -68,8 +68,13 @@ void GroupKeyExchangeHandler::execute(Packet& packet, ClientSession& session) {
         throw ProtocolException("GROUP_KEY_EXCHANGE: no valid key pairs found in key field");
 
     if (keyPairs.size() == 1) {
-        // Single-member add
-        repo.saveKey(groupId, keyPairs[0].first, keyPairs[0].second);
+        // Single-member add. Only insert group_members if they aren't already
+        // a member - this path is also reachable in principle for a lone key
+        // refresh, and re-adding must never demote an existing admin/creator.
+        const std::string& newMember = keyPairs[0].first;
+        if (repo.getMemberRole(groupId, newMember).empty())
+            repo.addMember(groupId, newMember, "member");
+        repo.saveKey(groupId, newMember, keyPairs[0].second);
     } else {
         // Full rotation after kick
         repo.replaceAllKeys(groupId, keyPairs);

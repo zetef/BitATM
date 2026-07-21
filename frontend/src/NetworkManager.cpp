@@ -549,6 +549,16 @@ void NetworkManager::grantAdmin(const QString& groupId, const QString& username)
     sendPacket(p);
 }
 
+void NetworkManager::revokeAdmin(const QString& groupId, const QString& username) {
+    Packet p;
+    p.type = PacketType::GROUP_INFO;
+    p.from = _currentUsername.toStdString();
+    p.to = groupId.toStdString();
+    p.body = "revoke_admin";
+    p.key = username.toStdString();
+    sendPacket(p);
+}
+
 void NetworkManager::leaveGroup(const QString& groupId) {
     Packet p;
     p.type = PacketType::GROUP_LEAVE;

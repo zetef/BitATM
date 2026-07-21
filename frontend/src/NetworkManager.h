@@ -94,6 +94,9 @@ public:
     /** @brief Creator: grant admin role to a member. */
     Q_INVOKABLE void grantAdmin(const QString& groupId, const QString& username);
 
+    /** @brief Creator: revoke admin role from a member, demoting them back to member. */
+    Q_INVOKABLE void revokeAdmin(const QString& groupId, const QString& username);
+
     /** @brief Leave a group voluntarily. */
     Q_INVOKABLE void leaveGroup(const QString& groupId);
 
