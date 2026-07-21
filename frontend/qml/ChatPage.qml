@@ -223,7 +223,7 @@ Rectangle {
 
                             TapHandler {
                                 enabled: model.isOutgoing && chatPage._isGroup
-                                onTapped: messageInfoSheet.openFor(
+                                onTapped: messageInfoSheet.openFor(chatPage.activePeer, model.timestamp,
                                     networkManager.groupMessageReceipts(chatPage.activePeer,
                                                                         model.timestamp))
                             }

@@ -180,6 +180,13 @@ signals:
     void groupMessageDelivered(const QString& groupId, const QString& timestamp);
 
     /**
+     * @brief Fires on every individual per-member delivered/seen update for a
+     *        group message, not just when the whole-group aggregate completes -
+     *        lets an open message info sheet refresh its per-member breakdown live.
+     */
+    void groupReceiptUpdated(const QString& groupId, const QString& timestamp);
+
+    /**
      * @brief Emitted once per stored message during local history load on login.
      *
      * QML handles this to populate chatModel and convListModel from local storage

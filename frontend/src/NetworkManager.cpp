@@ -324,6 +324,7 @@ void NetworkManager::handleReadReceipt(const Packet& p) {
         // v2: per-member row update; the aggregate decides when the bubble
         // flips. First-receipt-wins v1 behavior is gone.
         LocalStorage::instance().markRecipientSeen(to, ts, reader);
+        emit groupReceiptUpdated(to, ts);
         recomputeGroupAggregate(to, ts);
         return;
     }
@@ -342,6 +343,7 @@ void NetworkManager::handleGroupDelivered(const Packet& p) {
     const QString member = QString::fromStdString(p.from);
     const QString ts = TimestampUtil::canonical(QString::fromStdString(p.body));
     LocalStorage::instance().markRecipientDelivered(groupId, ts, member);
+    emit groupReceiptUpdated(groupId, ts);
     recomputeGroupAggregate(groupId, ts);
 }
 
@@ -720,7 +722,10 @@ void NetworkManager::handleGroupInfo(const Packet& p) {
     QStringList usernames;
     for (const QVariant& mv : members) usernames << mv.toMap().value("username").toString();
     const QStringList affected = LocalStorage::instance().removeRecipientsNotIn(groupId, usernames);
-    for (const QString& t : affected) recomputeGroupAggregate(groupId, t);
+    for (const QString& t : affected) {
+        emit groupReceiptUpdated(groupId, t);
+        recomputeGroupAggregate(groupId, t);
+    }
 
     emit groupInfoReceived(groupId, groupName, members);
 }

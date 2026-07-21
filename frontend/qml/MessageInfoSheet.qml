@@ -10,16 +10,30 @@ Rectangle {
     visible: false
 
     property var receipts: []   // [{member, delivered, seen}]
+    property string currentGroupId: ""
+    property string currentTimestamp: ""
 
     signal closed()
 
-    function openFor(receiptList) {
+    function openFor(groupId, timestamp, receiptList) {
+        currentGroupId = groupId
+        currentTimestamp = timestamp
         receipts = receiptList
         visible = true
     }
 
     function section(title, filter) {
         return { title: title, entries: receipts.filter(filter) }
+    }
+
+    Connections {
+        target: networkManager
+        function onGroupReceiptUpdated(gid, ts) {
+            if (infoSheet.visible && gid === infoSheet.currentGroupId
+                    && ts === infoSheet.currentTimestamp) {
+                infoSheet.receipts = networkManager.groupMessageReceipts(gid, ts)
+            }
+        }
     }
 
     Rectangle {
