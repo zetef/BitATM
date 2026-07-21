@@ -20,4 +20,7 @@ protected:
 private:
     /** @brief Deliver any read receipts queued while username was offline. */
     void flushOfflineReadReceipts(const std::string& username, ClientSession& session);
+
+    /** @brief Deliver any DELETE_CONVERSATION/GROUP_LEAVE notifications queued while offline. */
+    void flushPendingNotifications(const std::string& username, ClientSession& session);
 };
